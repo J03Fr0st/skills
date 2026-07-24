@@ -15,5 +15,7 @@
     "engineering",
     "productivity"
   ],
-  "skills": []
+  "skills": [
+    "./skills/html-writeup"
+  ]
 }

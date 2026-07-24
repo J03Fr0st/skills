@@ -1,0 +1,3 @@
+interface:
+  display_name: "HTML Write-up"
+  short_description: "Deliver findings as a self-contained HTML document"

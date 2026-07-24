@@ -4,8 +4,12 @@
 
 J03Fr0st's public library of original agent skills.
 
-This repository currently contains the library infrastructure only. Skills will
-be added under `skills/` as they are created.
+## Skills
+
+### Model-invoked
+
+- [html-writeup](docs/html-writeup.md) — deliver findings as a self-contained HTML document
+  with diagrams, tables, and code, verified in a real browser.
 
 ## Install
 
