@@ -1,0 +1,22 @@
+{
+  "name": "j03fr0st",
+  "owner": {
+    "name": "J03Fr0st",
+    "url": "https://github.com/J03Fr0st"
+  },
+  "description": "J03Fr0st's public agent skills library as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "j03fr0st-skills",
+      "source": "./",
+      "description": "J03Fr0st's public agent skills library.",
+      "category": "engineering",
+      "keywords": [
+        "agent-skills",
+        "skills",
+        "engineering",
+        "productivity"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "j03fr0st-skills",
+  "version": "0.0.0",
+  "description": "J03Fr0st's public agent skills library.",
+  "author": {
+    "name": "J03Fr0st",
+    "url": "https://github.com/J03Fr0st"
+  },
+  "homepage": "https://github.com/J03Fr0st/skills",
+  "repository": "https://github.com/J03Fr0st/skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "skills",
+    "engineering",
+    "productivity"
+  ],
+  "skills": []
+}
