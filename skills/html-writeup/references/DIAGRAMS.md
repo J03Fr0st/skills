@@ -8,6 +8,8 @@ Put every diagram in a `.wide` figure so it escapes the prose measure (see SHELL
 
 **Mermaid** for anything genuinely graph-shaped. It lays the graph out for you, and the layout stays right when the content changes.
 
+When Mermaid is the chosen renderer, read [MERMAID.md](MERMAID.md) for runtime loading, integrity, offline freezing, and network disclosure.
+
 **Hand-built inline SVG or CSS** when the picture isn't a graph and Mermaid would fight you: a before/after mass comparison, a layered cross-section, a timeline band, a proportion bar. A few positioned `<div>`s with borders, or one `<svg>` with `<rect>`/`<line>`, beat forcing the idea into a flowchart. Give hand-built figures a `role="img"` and an `aria-label` describing what they show, since there's no `accDescr` to do it for you.
 
 Mixing both across a write-up is the norm — every diagram looking identical is its own kind of tell.
@@ -32,6 +34,15 @@ Rules of thumb:
 - **Flowchart is the workhorse, not the default.** If the content is really an interaction, a sequence reads better; if it's really a data model, an ER diagram does. Reach for the shape that matches.
 - **`LR` (left-right) for wide, shallow flows; `TD` (top-down) for deep, branching ones.** Wide flows in `TD` scroll off the bottom; deep flows in `LR` scroll off the side.
 - **Split, don't cram.** More than ~15 nodes in one flowchart stops communicating. Use `subgraph` to group, or split into two diagrams on the page.
+
+## Preserve ownership in the edges
+
+Arrow geometry is a claim. The visible source, destination, and label must name who initiates each action; prose cannot repair a misleading shortcut.
+
+- Route an orchestration response back to the coordinator before drawing the coordinator's next command. A failed `Payment` response should return to `Order Service`, then a separate `Order Service -> Inventory: release reservation` edge should show compensation.
+- Draw emitted events from the owning service, not from the dependency whose success made emission possible. Payment success returns to `Order Service`; `Order Service -> Event stream: OrderConfirmed` is a separate edge.
+- When time order or request/response ownership matters more than topology, use a sequence diagram or a numbered companion list.
+- Before delivery, read every arrow aloud as “source does label to destination.” If that sentence is false or ambiguous, redraw it.
 
 ## Syntax rules that prevent parse errors
 
@@ -58,6 +69,8 @@ flowchart LR
 ```
 
 **`accDescr` carries the relationships, not just the subject.** Mermaid exposes node text to screen readers but not the edges between nodes — a reader who can't see the diagram gets the boxes and none of the arrows. So write the connections into the description ("payment failure returns to the cart"), rather than restating the title.
+
+The accessible description and the visible arrows must agree on initiator, receiver, and order. Treat a disagreement as a correctness defect.
 
 ## Styling within a diagram
 

@@ -1,25 +1,6 @@
 # Write-up components
 
-The parts a findings document actually needs. Each is plain HTML plus a few lines of CSS, styled from the shell's tokens (`--surface`, `--border`, `--muted`, `--accent`, the `--text-*` ramp and the `--space-*` scale). Add only the ones the write-up uses.
-
-## Contents
-
-Worth it past ~5 sections; noise below that. Anchors pair with the shell's `scroll-margin-top`.
-
-```html
-<nav class="toc" aria-label="Contents">
-  <ol>
-    <li><a href="#findings">Findings</a></li>
-    <li><a href="#evidence">Evidence</a></li>
-  </ol>
-</nav>
-```
-
-```css
-.toc ol { margin: 0; padding-left: 1.2rem; color: var(--muted); }
-.toc a { text-decoration: none; }
-.toc a:hover { text-decoration: underline; }
-```
+The parts a document-shaped deliverable actually needs. Each is plain HTML plus a few lines of CSS, styled from the shell's tokens (`--surface`, `--border`, `--muted`, `--accent`, the `--text-*` ramp and the `--space-*` scale). Add only the ones the write-up uses. For contents, rails, or tabs, read [NAVIGATION.md](NAVIGATION.md).
 
 ## Callout
 
