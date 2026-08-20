@@ -9,7 +9,7 @@ Measure the built page in **screens** (`document.body.scrollHeight / window.inne
 | Screens | Affordance |
 | --- | --- |
 | ≤ 2 | None. Headings alone carry it. |
-| 2–6 | A **contents** list under the lede (COMPONENTS.md). |
+| 2–6 | A **contents** list under the lede. |
 | > 6 | A **sticky contents** rail that tracks the reader's position. |
 
 Then override on shape, because length isn't the only question:
@@ -18,6 +18,25 @@ Then override on shape, because length isn't the only question:
 - **Sections you read *instead of* each other** — one per service, per option, per environment, per package — are **tabs**. The reader wants one of them, and stacking all five vertically just makes them scroll past four.
 
 That distinction is the whole rule: tabs are for **alternatives**, never for a sequence.
+
+## Contents list
+
+For a medium continuous document, keep navigation inline and visible:
+
+```html
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#findings">Findings</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+  </ol>
+</nav>
+```
+
+```css
+.toc ol { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+```
 
 ## What tabs cost
 

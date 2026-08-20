@@ -1,63 +1,67 @@
 # HTML Write-up
 
-Deliver findings as a **write-up**: one self-contained `.html` file that opens straight from a
-double-click, offline, with no build step — and survives being emailed as a single attachment.
+`html-writeup` v2 turns findings, comparisons, audits, research, architecture, plans, and status reports into one verified `.html` document. It is for document-shaped work, not shipped application or marketing UI.
 
-- **Invocation:** model-invoked. Fires when you want findings, an analysis, an audit, a
-  comparison, or a design doc presented as a visual document rather than terminal text; when
-  you ask for an HTML report or standalone page; or when you want a Mermaid diagram rendered.
-  You can also invoke it by name.
+- **Invocation:** model-invoked. It fires for a standalone HTML report, visual write-up, shareable page, or document that materially benefits from tables, diagrams, evidence disclosure, or light interaction.
+- **Output:** one local HTML file with an absolute handoff path. Publishing is a separate explicit action.
 
-## What it does
+## What v2 adds
 
-1. **Outlines the spine** — names the one question the write-up answers, then picks a form for
-   each section: prose for judgement, a table for things compared on shared axes, a diagram for
-   anything graph-shaped, a stat row for the numbers that matter. Nothing is prose by default.
-2. **Builds the page** from a document shell plus a component vocabulary — callouts, tables,
-   code blocks, stat rows, collapsible evidence, footnotes, contents.
-3. **Verifies it in a real browser** — diagrams drew their shape, console clean, no horizontal
-   overflow, headings in order — plus a squint test on the rendered page, since hierarchy that
-   looks flat to a blurred eye is decorative rather than real. Then hands you the absolute path.
+### Presentation profiles
 
-## What makes the output good
+The skill first identifies the reader's job, then selects one profile:
 
-- **Typography built for reading.** Prose sits at a ~68ch measure (the 45–75 character range
-  long-form reading wants) in a grid that lets tables and diagrams break out to a wider column.
-  Fluid `clamp()` sizing, `text-wrap: balance` on headings and `pretty` on body text.
-- **A type ramp with real contrast.** Five sizes with ≥1.25 between steps — sizes a hair apart
-  read as muddy rather than hierarchical.
-- **Rhythm, not uniform spacing.** Tight within a group, generous between sections, so the
-  reader feels a new idea start instead of scanning an even grey texture.
-- **Headings that state their conclusion.** Read the headings alone and you get the argument.
-- **Navigation sized to the page.** Under ~2 screens, nothing; past that a contents list, and past
-  ~6 a sticky rail that tracks your position. Sections you read *instead of* each other — one per
-  service, per option — become tabs; a narrative stays continuous, because hiding half an argument
-  behind a control makes it worse.
-- **One-line theming.** `color-scheme: light dark` plus `light-dark()` tokens — no duplicated
-  media-query block, and native UI (scrollbars, controls) themes itself too.
-- **Contrast that's checked, not assumed.** Every foreground/background pair clears WCAG AA in
-  both themes.
-- **Print-ready.** `@page` margins, `break-inside: avoid` on figures and tables, and link URLs
-  printed inline so a paper copy keeps its references.
-- **Tamper-evident CDN.** Diagrams load Mermaid through an import map pinned to an exact
-  version, optionally with an SRI `integrity` hash — browsers block a mismatched file outright.
+| Profile | Reader job | Default posture |
+| --- | --- | --- |
+| Editorial | Understand an argument | Spacious, narrative, heading-led |
+| Analytical | Compare evidence | Dense, tabular, provenance-forward |
+| Operational | Decide and act | Status, risk, sequence, ownership |
+| Showcase | Experience an explanation | Art-directed with one memorable visual |
 
-## Why it's reliable
+Each profile tunes layout variance, motion, and density without replacing the document's factual structure or the user's supplied design direction.
 
-A finished-looking page can still be broken in two ways, and neither throws: a diagram with a
-syntax error becomes a red **error card**, and a blocked or failed module leaves the diagram's
-**raw source** sitting in the page as plain text. The skill never claims success unseen — it
-opens the page and checks for both, plus overflow and heading order.
+### Document recipes
 
-## References
+Six recipes provide proven information topologies for comparisons, audits, research briefs, architecture decisions, implementation plans, and status or incident reports. A recipe defines the argument's spine, useful forms, central visual anchor, and completion gate. It is a starting structure rather than a visual template.
 
-- `skills/html-writeup/references/SHELL.md` — document shell: theming, typography, layout,
-  print, and the pinned-CDN pattern.
-- `skills/html-writeup/references/COMPONENTS.md` — callouts, tables, stat rows, code blocks,
-  badges, collapsible detail, footnotes, contents.
-- `skills/html-writeup/references/DIAGRAMS.md` — Mermaid selection and syntax rules, and when
-  to hand-build SVG instead.
-- `skills/html-writeup/references/CRAFT.md` — the quality bar: hierarchy dimensions, rhythm,
-  restraint, writing, and the squint/scan checks on the rendered page.
-- `skills/html-writeup/references/NAVIGATION.md` — contents, sticky rail, and accessible tabs,
-  chosen by page length and section shape.
+### Deterministic verification
+
+The bundled `scripts/check_html.py` catches structural problems before browser review:
+
+- missing metadata or semantic landmarks;
+- heading skips, duplicate IDs, and broken internal links;
+- inaccessible images, diagrams, and tables;
+- unresolved placeholders;
+- motion without reduced-motion handling;
+- missing theme or print support;
+- remote fonts and undisclosed network dependencies.
+
+The browser pass then checks desktop and mobile overflow, console errors, diagram rendering, keyboard interaction, print completeness, and screenshot hierarchy. Diagram review also reads every arrow as source-action-destination so visual shortcuts cannot misstate ownership. Repairs are bounded to one complete fix batch plus one confirmation pass.
+
+## Core workflow
+
+1. Frame the one question and map each section to prose, table, diagram, stats, code, or callout.
+2. Choose the profile and nearest recipe.
+3. Build from the shared shell, component vocabulary, diagram rules, craft guidance, and navigation patterns.
+4. Run the static checker and rendered browser checks.
+5. Hand off one verified local file and disclose any remaining network dependency.
+
+## Reliability boundaries
+
+- The default artifact is local and has no publishing side effect.
+- Inline CSS, JavaScript, data, and SVG make a truly offline page.
+- A pinned Mermaid CDN keeps the file single-file but network-dependent; the handoff must disclose it, or the diagram must be frozen to inline SVG before the file is called offline.
+- Visual design guidance lives here only to serve comprehension. Product UI belongs to a frontend-design skill.
+
+## Resources
+
+- `skills/html-writeup/references/PROFILES.md` - presentation profiles and the variance, motion, and density controls.
+- `skills/html-writeup/references/RECIPES.md` - document topologies by task.
+- `skills/html-writeup/references/SHELL.md` - offline document shell, tokens, layout, theming, and print.
+- `skills/html-writeup/references/COMPONENTS.md` - tables, stats, code, callouts, badges, disclosure, and footnotes.
+- `skills/html-writeup/references/DIAGRAMS.md` - graph selection, Mermaid syntax, SVG alternatives, and accessibility.
+- `skills/html-writeup/references/MERMAID.md` - optional pinned Mermaid runtime, integrity, offline freezing, and disclosure.
+- `skills/html-writeup/references/CRAFT.md` - hierarchy, rhythm, restraint, writing, and screenshot checks.
+- `skills/html-writeup/references/NAVIGATION.md` - contents, sticky rail, tabs, deep links, and print behaviour.
+- `skills/html-writeup/references/VERIFY.md` - static, browser, print, and visual verification.
+- `skills/html-writeup/scripts/check_html.py` - dependency-free static checker.

@@ -8,7 +8,7 @@ J03Fr0st's public library of original agent skills.
 
 ### Model-invoked
 
-- [html-writeup](docs/html-writeup.md) — deliver findings as a self-contained HTML document
+- [html-writeup](docs/html-writeup.md) — build and verify a self-contained HTML document
   with diagrams, tables, and code, verified in a real browser.
 
 ## Install
