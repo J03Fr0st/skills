@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agile Flow"
+  short_description: "Route work through the Agile skill suite"
+
+policy:
+  allow_implicit_invocation: false

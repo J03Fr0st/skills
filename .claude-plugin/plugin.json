@@ -1,6 +1,6 @@
 {
   "name": "j03fr0st-skills",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "J03Fr0st's public agent skills library.",
   "author": {
     "name": "J03Fr0st",
@@ -13,9 +13,16 @@
     "agent-skills",
     "skills",
     "engineering",
+    "agile",
+    "software-development",
     "productivity"
   ],
   "skills": [
+    "./skills/agile/agile-flow",
+    "./skills/agile/agile-refine",
+    "./skills/agile/agile-retro",
+    "./skills/agile/agile-sprint-plan",
+    "./skills/agile/agile-sprint-review",
     "./skills/html-writeup"
   ]
 }
