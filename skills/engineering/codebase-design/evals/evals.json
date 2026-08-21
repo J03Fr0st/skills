@@ -1,0 +1,44 @@
+{
+  "skill_name": "codebase-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review our TypeScript checkout flow before we refactor it. The route handler imports repositories, Stripe, inventory, email, and analytics directly. Several callers repeat validation and rollback ordering. Propose a deeper module without implementing it, show source dependency direction separately from runtime flow, and explain how we stop future imports from bypassing the public surface.",
+      "expected_output": "A read-only, evidence-first design that assigns the checkout invariant and workflow to a cohesive module, compares at least two materially different interfaces, maps every consequential edge, and recommends proportionate import or architecture enforcement.",
+      "files": [],
+      "expectations": [
+        "The response remains read-only and distinguishes observed evidence from assumptions.",
+        "Every proposed module states its responsibility, invariant or hidden knowledge, owner, and clients.",
+        "Static source dependencies are shown separately from runtime control and data flow.",
+        "At least two materially different designs are compared using one scorecard and one is recommended.",
+        "The proposal includes a concrete public-entry-point or dependency-rule enforcement mechanism, migration order, test evidence, and rollback condition."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We are splitting invoice generation from a modular monolith. The invoicing team wants HTTP because it is familiar; the platform team wants a queue so billing can survive spikes. Invoices must not be duplicated, callers need a final status within ten minutes, and tax rules are owned by invoicing. Decide how the modules should communicate and document the contract, failure model, retries, ordering, consistency, and observability.",
+      "expected_output": "An edge-first communication decision that separates command intent from transport, evaluates local, synchronous, and queued alternatives, preserves invoicing ownership, and defines bounded completion, idempotency, capacity, recovery, and telemetry semantics.",
+      "files": [],
+      "expectations": [
+        "The response distinguishes command intent, transport, topology, source dependency, and runtime flow.",
+        "The recommendation states the contract owner and authoritative state owner.",
+        "The failure contract includes deadline, timeout or expiry, unknown outcome, retry owner and budget, idempotency identity, duplicate scope, and final-status protocol.",
+        "Queue capacity, backlog, poison-message handling, ordering scope, and consistency are explicit if asynchronous transport is recommended.",
+        "The response defines outcome telemetry, latency or message age, backlog, retries, and trace or correlation context."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Java codebase has an interface for every class, six layers for a simple policy change, mocked repositories everywhere, and package cycles between orders and fulfilment. The team says this follows SOLID. Audit the design, identify what to merge or remove, and give us a safe migration and test strategy without turning it into microservices.",
+      "expected_output": "A contextual SOLID audit that prioritizes invariants, cohesion, information hiding, and dependency direction over interface count, breaks the package cycle deliberately, preserves useful seams, and migrates with characterization and conformance evidence.",
+      "files": [],
+      "expectations": [
+        "SOLID principles are applied as diagnostics with evidence and costs rather than rules requiring more interfaces.",
+        "The audit identifies the order and fulfilment invariant or ownership question before recommending merge, extraction, orchestration, or a policy-owned port.",
+        "The cycle-breaking recommendation explains both source dependency direction and runtime collaboration.",
+        "Mocks are distinguished from fakes, emulators, real integrations, and contract or conformance tests based on risk.",
+        "The migration overlaps old and new evidence and removes obsolete layers or tests only after replacement coverage and callers are proven."
+      ]
+    }
+  ]
+}
