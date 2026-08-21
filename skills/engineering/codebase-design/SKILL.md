@@ -1,6 +1,6 @@
 ---
 name: codebase-design
-description: Design or improve software architecture through cohesive modules, intentional dependency direction, and explicit inter-module contracts. Use when the user asks about module or service boundaries, interfaces, coupling or cohesion, SOLID trade-offs, ports and adapters, layers or vertical slices, dependency cycles, synchronous or asynchronous communication, architecture refactoring, testability, reliability, or making a codebase easier for humans and coding agents to navigate. Route UI-only visual design and infrastructure topology with no software ownership decision to their dedicated skills.
+description: Design or improve software architecture through cohesive modules, intentional dependency direction, and explicit inter-module contracts. Use when the user asks about module or service boundaries, interfaces, coupling or cohesion, SOLID trade-offs, ports and adapters, layers or vertical slices, dependency cycles, synchronous or asynchronous communication, architecture refactoring, test seams and substitutes, reliability semantics at a boundary, or making a codebase easier for humans and coding agents to navigate. Route UI-only visual design and infrastructure topology with no software ownership decision to their dedicated skills.
 ---
 
 # Codebase Design
@@ -13,7 +13,7 @@ Design cohesive modules and explicit relationships under change and failure. A g
 - **Interface:** everything a client must know to use a module correctly, including behavior, invariants, effects, errors, time, and compatibility.
 - **Contract:** the testable obligations carried by an interface.
 - **Boundary:** a qualified separation such as module, domain, process, trust, transaction, deployment, state-ownership, or team boundary.
-- **Seam:** a place where behavior can vary without editing the caller.
+- **Seam:** a place where behavior can vary without editing the code at that place.
 - **Port:** a policy-owned interface at a seam.
 - **Adapter:** a concrete translator or implementation that satisfies a port.
 - **Depth:** leverage relative to the cohesive complexity hidden behind an interface.
@@ -33,7 +33,9 @@ Inspect the current code, configuration, tests, diagrams, and project context be
 - current pain, likely change axes, constraints, and evidence;
 - whether the request authorizes design only or implementation too.
 
-Read [references/MODULE-DESIGN.md](references/MODULE-DESIGN.md) when deciding what belongs together, whether a module is deep enough, or whether layers, slices, or bounded contexts fit.
+For a design or audit request, remain read-only. Implement only when the user explicitly asks for the change; implementation does not broaden permission to publish, deploy, commit, or migrate external state.
+
+Read [references/MODULE-DESIGN.md](references/MODULE-DESIGN.md) when deciding what belongs together, whether a module is deep enough, or whether layers, slices, or bounded contexts fit. When the task is consolidating an existing shallow cluster, follow [references/DEEPENING.md](references/DEEPENING.md) from here; it sequences mapping, diagnosis, migration, and retirement across all four stages.
 
 **Complete when:** every proposed module has a stated responsibility, hidden knowledge or invariant, owner, clients, and concrete reason to exist.
 
@@ -43,18 +45,19 @@ Draw or tabulate the important modules and every relationship that can constrain
 
 For each important edge, record this **edge card**:
 
-| Dimension | Required decision                                                           |
-| --------- | --------------------------------------------------------------------------- |
-| Intent    | Query, command, event, document, stream, batch, or shared state             |
-| Owner     | Contract owner, policy owner, and authoritative state owner                 |
-| Direction | Static source dependency and runtime data/control flow                      |
-| Location  | In-process, cross-process, remote owned, third party, human, or device      |
-| Time      | Blocking, deferred, streaming, deadline, timeout, cancellation, or expiry   |
-| Delivery  | Acknowledgement, duplicate, ordering, replay, and retention semantics       |
-| State     | Transaction scope, consistency, freshness, conflict, and compensation       |
-| Failure   | Rejection, timeout, unknown outcome, overload, retry, and poison data       |
-| Trust     | Authentication, authorization, validation, tenancy, and data classification |
-| Evidence  | Tests, enforcement, telemetry, and compatibility checks                     |
+| Dimension | Required decision                                                                |
+| --------- | -------------------------------------------------------------------------------- |
+| Intent    | Query, command, event, document, stream, batch, or shared state                  |
+| Owner     | Contract owner, policy owner, and authoritative state owner                      |
+| Direction | Static source dependency and runtime data/control flow                           |
+| Location  | In-process, cross-process, remote owned, third party, human, or device           |
+| Topology  | Direct, request/reply, queue, competing consumers, pub/sub, log, or orchestrated |
+| Time      | Blocking, deferred, streaming, deadline, timeout, cancellation, or expiry        |
+| Delivery  | Acknowledgement, duplicate, ordering, replay, and retention semantics            |
+| State     | Transaction scope, consistency, freshness, conflict, and compensation            |
+| Failure   | Rejection, timeout, unknown outcome, overload, retry, and poison data            |
+| Trust     | Authentication, authorization, validation, tenancy, and data classification      |
+| Evidence  | Tests, enforcement, telemetry, and compatibility checks                          |
 
 Keep static dependency direction separate from runtime flow. Policy may call an adapter at runtime while the adapter depends on a policy-owned port in source code.
 
@@ -92,9 +95,7 @@ Translate prose into evidence at the same seams where assumptions cross:
 - define migration order, compatibility period, rollback, and the evidence required before old paths or tests are removed;
 - define production evidence for cross-process edges: outcomes, latency, errors, saturation or backlog, retries, and trace or correlation context.
 
-Read [references/TESTING.md](references/TESTING.md) for seam-aligned evidence, [references/OBSERVABILITY.md](references/OBSERVABILITY.md) for production evidence, and [references/DEEPENING.md](references/DEEPENING.md) when consolidating an existing shallow cluster.
-
-For a design or audit request, remain read-only. Implement only when the user explicitly asks for the change; implementation does not broaden permission to publish, deploy, commit, or migrate external state.
+Read [references/TESTING.md](references/TESTING.md) for seam-aligned evidence and [references/OBSERVABILITY.md](references/OBSERVABILITY.md) for production evidence.
 
 **Complete when:** the proposal names its enforcement, test portfolio, migration and rollback path, production evidence, unresolved risks, and the next authorized action.
 

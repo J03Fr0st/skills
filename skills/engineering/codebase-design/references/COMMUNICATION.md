@@ -4,18 +4,7 @@ Describe interactions as contracts between owners, not arrows between boxes. Sep
 
 ## Edge description
 
-For every consequential edge, answer:
-
-1. **Intent:** query, command, event, document, stream, batch, or shared state?
-2. **Authority:** who owns the action, contract, and authoritative state?
-3. **Direction:** which source depends on which contract, and which way does control or data flow?
-4. **Location:** same process, remote owned process, third party, human, or device?
-5. **Topology:** direct, request/reply, queue, competing consumers, publish-subscribe, log, or orchestrated?
-6. **Time:** blocking, deferred, streaming, scheduled, deadline, cancellation, or expiry?
-7. **Delivery:** acknowledgement, duplicates, order, replay, and retention?
-8. **State:** transaction, consistency, freshness, conflict, and compensation?
-9. **Failure:** rejection, timeout, unknown outcome, overload, poison data, and retry?
-10. **Evidence:** contract tests, integration tests, telemetry, and compatibility checks?
+The edge card in [SKILL.md](../SKILL.md) is the checklist; fill every dimension of it for each consequential edge. This reference expands the four dimensions that carry the communication decision: intent, topology, contract, and the envelope that makes delivery and correlation real.
 
 ## Choose intent before transport
 
@@ -93,10 +82,14 @@ Label arrows with verbs and intent:
 ```text
 Checkout API --commands CreateOrder--> Order
 Order --queries Availability--> Inventory
+Order --commands ReserveStock--> Inventory
+Order --commands AuthorizePayment--> Payment
 Payment --returns PaymentRejected--> Order
 Order --commands ReleaseReservation--> Inventory
-Order --publishes OrderConfirmed--> Fulfilment subscribers
+Order --publishes OrderRejected--> Order subscribers
 ```
+
+Every result arrives before the action it justifies: Order can only compensate the reservation because the rejection returned to it, and the published fact reports the outcome that actually happened. Dropping the `AuthorizePayment` arrow would leave a result with no request and silently move payment ownership.
 
 ## Primary sources and specifications
 

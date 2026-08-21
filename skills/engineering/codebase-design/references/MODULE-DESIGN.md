@@ -56,6 +56,8 @@ For each client interface, record:
 - compatibility promise;
 - facts intentionally hidden.
 
+Many valuable modules exist to cause effects. Separate the decision from the effect where it makes policy easier to test and reason about, and keep the effect honest in the operation's name, result type, idempotency, failure modes, and tests. An operation that writes, charges, or notifies should say so in its interface.
+
 ## Choose an organizing shape
 
 | Shape                  | Strength                                           | Cost                                                   | Prefer when                                                        |
