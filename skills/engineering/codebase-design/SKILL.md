@@ -45,19 +45,19 @@ Draw or tabulate the important modules and every relationship that can constrain
 
 For each important edge, record this **edge card**:
 
-| Dimension | Required decision                                                                |
-| --------- | -------------------------------------------------------------------------------- |
-| Intent    | Query, command, event, document, stream, batch, or shared state                  |
-| Owner     | Contract owner, policy owner, and authoritative state owner                      |
-| Direction | Static source dependency and runtime data/control flow                           |
-| Location  | In-process, cross-process, remote owned, third party, human, or device           |
-| Topology  | Direct, request/reply, queue, competing consumers, pub/sub, log, or orchestrated |
-| Time      | Blocking, deferred, streaming, deadline, timeout, cancellation, or expiry        |
-| Delivery  | Acknowledgement, duplicate, ordering, replay, and retention semantics            |
-| State     | Transaction scope, consistency, freshness, conflict, and compensation            |
-| Failure   | Rejection, timeout, unknown outcome, overload, retry, and poison data            |
-| Trust     | Authentication, authorization, validation, tenancy, and data classification      |
-| Evidence  | Tests, enforcement, telemetry, and compatibility checks                          |
+| Dimension | Required decision                                                                        |
+| --------- | ---------------------------------------------------------------------------------------- |
+| Intent    | Query, command, event, document, stream, batch, or shared state                          |
+| Owner     | Contract owner, policy owner, and authoritative state owner                              |
+| Direction | Static source dependency and runtime data/control flow                                   |
+| Location  | In-process, cross-process, remote owned, third party, human, or device                   |
+| Topology  | Direct, request/reply, queue, competing consumers, pub/sub, log, or orchestrated         |
+| Time      | Blocking, deferred, streaming, deadline, timeout, cancellation, or expiry                |
+| Delivery  | Acknowledgement, duplicate, ordering, replay, and retention semantics                    |
+| State     | Transaction scope, consistency, freshness, conflict, and compensation                    |
+| Failure   | Rejection, timeout, unknown outcome, overload, retry, and poison data                    |
+| Trust     | Authentication, authorization, validation, tenancy, data classification, and rate limits |
+| Evidence  | Tests, enforcement, telemetry, and compatibility checks                                  |
 
 Keep static dependency direction separate from runtime flow. Policy may call an adapter at runtime while the adapter depends on a policy-owned port in source code.
 
