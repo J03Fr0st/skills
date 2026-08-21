@@ -39,6 +39,32 @@
         "Mocks are distinguished from fakes, emulators, real integrations, and contract or conformance tests based on risk.",
         "The migration overlaps old and new evidence and removes obsolete layers or tests only after replacement coverage and callers are proven."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "I have a 120-line Python script that reads a CSV of orders, applies one discount rule, and writes a summary file. It runs nightly, I am the only maintainer, and it has not changed in a year. A teammate says we should add a repository interface, a service layer, and an event bus so it is properly architected, and that we need a clean boundary. What should we actually do?",
+      "expected_output": "A restrained recommendation that keeps the direct design, names the missing evidence that each proposed abstraction would need, and qualifies the ambiguous boundary request instead of accepting it as a mandate.",
+      "files": [],
+      "expectations": [
+        "The recommendation is to keep the direct in-process design, and it says so plainly rather than proposing a smaller version of the abstraction.",
+        "Each proposed abstraction is refused against a stated evidence gate: no second implementation, no independent change or failure axis, no trust or process boundary, no test-control pressure.",
+        "The response asks which kind of boundary is meant, or qualifies it explicitly, instead of using boundary as an unqualified synonym for module, seam, or service.",
+        "The response names concrete observable triggers that would later justify a seam, so the decision is reversible rather than permanent.",
+        "The discount rule's ownership and invariant are addressed at a scale appropriate to a single-file script, without ports, adapters, messaging, or distribution machinery."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Review our billing design. Notifications subscribes to an `OrderExported` event published by Billing and is the only subscriber; if Notifications does not send the invoice email, support gets a ticket the next morning. Billing also exposes a single `BillingFacade` used by the admin console, the customer portal, and a nightly reconciliation job, and the portal can currently call `voidInvoice` on it.",
+      "expected_output": "A review that reclassifies the disguised event as a command with a completion contract, and replaces the single union surface with coherent role-specific interfaces without fragmenting the module.",
+      "files": [],
+      "expectations": [
+        "`OrderExported` is identified as a command wearing past tense because the producer requires one specific receiver to act, and the response says what changes once it is treated as a command.",
+        "The response specifies the completion contract a required action needs: accepted, rejected, and completed outcomes, deduplication identity, and how a missed send is detected rather than discovered by a support ticket.",
+        "The response recommends coherent client-specific interfaces for the admin, portal, and reconciliation clients instead of one union surface, and treats portal access to `voidInvoice` as both an interface-segregation and an authorization problem.",
+        "Interface segregation is applied to client roles without fragmenting Billing into one interface per method or splitting its cohesive ownership.",
+        "The billing-to-notifications edge names its contract owner and authoritative state owner, plus duplicate and ordering scope for whichever intent and transport is recommended."
+      ]
     }
   ]
 }

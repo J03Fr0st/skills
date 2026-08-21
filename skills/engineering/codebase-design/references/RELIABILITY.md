@@ -80,7 +80,7 @@ Start from the invariant and authoritative owner:
 - Treat cache, replica, and projection freshness as contract data.
 - Avoid multiple modules writing the same invariant-bearing state without an authority model.
 
-CAP applies narrowly to consistency and availability during a network partition in a replicated asynchronous system. It is not a general instruction to “choose two.” Name the actual consistency and availability guarantees instead.
+CAP is proved narrowly, for atomic consistency (linearizability) and availability during a network partition in a replicated asynchronous system ([Gilbert and Lynch](https://www.cs.princeton.edu/courses/archive/spring21/cos418/papers/cap.pdf)). It is not a general instruction to “choose two.” Name the actual consistency and availability guarantees instead.
 
 ## Coordinate state and messages
 
@@ -131,4 +131,5 @@ A cross-boundary relationship is designed only when it names:
 - [Google SRE, Addressing cascading failures](https://sre.google/sre-book/addressing-cascading-failures/)
 - [Reactive Streams specification](https://github.com/reactive-streams/reactive-streams-jvm)
 - [Garcia-Molina and Salem, Sagas](https://doi.org/10.1145/38713.38742)
+- [Gilbert and Lynch, proof of the CAP conjecture](https://www.cs.princeton.edu/courses/archive/spring21/cos418/papers/cap.pdf)
 - [Apache Kafka design](https://kafka.apache.org/42/design/design/)

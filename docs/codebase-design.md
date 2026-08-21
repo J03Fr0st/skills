@@ -2,7 +2,7 @@
 
 `codebase-design` helps an agent reason about both sides of software architecture: what belongs inside a module and what every relationship between modules promises.
 
-- **Invocation:** model-invoked. It fires for module or service boundaries, interface design, coupling and cohesion, SOLID trade-offs, ports and adapters, layers and vertical slices, dependency cycles, communication choices, architectural refactoring, testability, reliability, and human or agent navigability.
+- **Invocation:** model-invoked. It fires for module or service boundaries, interface design, coupling and cohesion, SOLID trade-offs, ports and adapters, layers and vertical slices, dependency cycles, communication choices, architectural refactoring, test seams and substitutes, reliability semantics at a boundary, and human or agent navigability. Bare test authoring and SLO work carry no ownership or boundary decision, so they route elsewhere.
 - **Posture:** design and audit work stays read-only unless implementation is explicitly requested.
 - **Output:** an evidence-backed architecture decision or review with modules, relationship contracts, alternatives, enforcement, migration, tests, observability, risks, and the next authorized action.
 
