@@ -65,6 +65,45 @@
         "Interface segregation is applied to client roles without fragmenting Billing into one interface per method or splitting its cohesive ownership.",
         "The billing-to-notifications edge names its contract owner and authoritative state owner, plus duplicate and ordering scope for whichever intent and transport is recommended."
       ]
+    },
+    {
+      "id": 6,
+      "prompt": "Two pricing paths contain identical rounding code. Finance owns the rounding rule, and a recent correction had to be made in both paths. The retail and wholesale discount-eligibility blocks also look similar, but different teams own them and their policies are already diverging. A reviewer says to make all of it DRY. Decide what to consolidate and what to leave separate.",
+      "expected_output": "A knowledge-centered DRY decision that gives the shared rounding policy one authoritative owner while leaving independently owned discount policies separate despite their textual similarity.",
+      "files": [],
+      "expectations": [
+        "The response distinguishes duplicated knowledge or intent from merely similar code.",
+        "The shared rounding rule is consolidated behind a finance-owned policy or similarly authoritative surface because coordinated edits and inconsistency risk are evidenced.",
+        "The retail and wholesale eligibility logic remains separate because ownership, policy, and change axes differ.",
+        "The proposed abstraction does not introduce caller flags, a generic rules language, or a union interface that exposes unrelated policy choices.",
+        "The recommendation states how tests prove the shared rounding invariant and the intentionally separate discount behavior."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "We have one CSV exporter. Because an AI model can generate the code cheaply, the team wants an Exporter interface, plugin registry, configuration DSL, and extension hooks for possible JSON and Parquet exports. No second format has been requested or prototyped. Review the design and say what should be built now and what evidence would change the decision.",
+      "expected_output": "A KISS- and YAGNI-based recommendation that keeps the current exporter direct, rejects speculative machinery despite cheap code generation, and records observable triggers for introducing a seam later.",
+      "files": [],
+      "expectations": [
+        "The response evaluates total complexity, including client knowledge, indirection, navigation, testing, migration, and operational burden, rather than equating simplicity with line count.",
+        "The interface, registry, DSL, and extension hooks are deferred because no present variation, owner, failure boundary, or second implementation pays for them.",
+        "Cheap code generation is not treated as evidence that speculative structure is cheap to understand, maintain, or remove.",
+        "The current design remains explicit and testable without manufacturing ports, adapters, plugins, or configuration concepts.",
+        "The response names observable triggers such as a real second format, independently changing policy, or concrete test-control pressure that would reopen the decision."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "A shared pricing normalizer now accepts region, channel, and customer-type flags and branches differently for every caller. Each new feature adds another flag, but the callers still share some rounding and tax invariants. Explain how to undo this wrong abstraction safely and decide what, if anything, should be extracted again.",
+      "expected_output": "A reversible recovery plan that characterizes current behavior, inlines the conditional abstraction into its callers, removes irrelevant branches, compares the resulting cases by owner and invariant, and only re-extracts genuinely shared knowledge.",
+      "files": [],
+      "expectations": [
+        "The response identifies caller-selected flags and growing conditional branches as evidence that the abstraction is encoding unrelated variation.",
+        "Characterization tests or equivalent behavior evidence are added before structural changes.",
+        "The shared normalizer is inlined into callers and irrelevant branches are removed before a replacement abstraction is designed.",
+        "The resulting cases are compared by authoritative owner, invariant, lifecycle, and change reason rather than by textual similarity alone.",
+        "Only rounding or tax knowledge proven to be authoritative and shared is re-extracted, with migration evidence and a rollback condition."
+      ]
     }
   ]
 }

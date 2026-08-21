@@ -21,8 +21,9 @@ J03Fr0st's public library of original agent skills.
   against intended outcomes and record stakeholder acceptance.
 - [agile-retro](docs/agile-retro.md) — turn delivery evidence into one bounded,
   measurable improvement experiment.
-- [codebase-design](docs/codebase-design.md) — design cohesive modules, intentional
-  dependency direction, and explicit inter-module contracts under change and failure.
+- [codebase-design](docs/codebase-design.md) — design cohesive modules,
+  evidence-gated abstractions, intentional dependency direction, and explicit
+  inter-module contracts.
 - [html-writeup](docs/html-writeup.md) — build and verify a self-contained HTML document
   with diagrams, tables, and code, verified in a real browser.
 
@@ -58,6 +59,6 @@ on its composability, plus the delivery guardrails of
 files are vendored; the suite's instructions and artifact contracts are
 maintained here. `codebase-design`
 adapts Matt Pocock's original deep-module vocabulary and expands it with
-source-backed guidance for decomposition, dependency direction, communication,
-reliability, testing, observability, and enforcement. See the repository
-license for attribution.
+source-backed guidance for simplicity and abstraction timing, decomposition,
+dependency direction, communication, reliability, testing, observability, and
+enforcement. See the repository license for attribution.

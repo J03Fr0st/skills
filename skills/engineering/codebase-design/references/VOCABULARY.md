@@ -38,6 +38,10 @@ Use the most specific term and qualify overloaded terms. Consistency makes compa
 | **Depth**                | Leverage relative to the cohesive behavior and complexity hidden behind an interface.                                              | How much useful capability does each client concept unlock?                             |
 | **Leverage**             | Capability callers receive per concept they must learn.                                                                            | Does one decision or implementation pay back across several callers?                    |
 | **Locality**             | The degree to which a change, bug, knowledge, and verification remain concentrated.                                                | How many modules and tests move for one business change?                                |
+| **Duplicated knowledge** | One rule, invariant, or fact represented in more than one place, so a single conceptual change must be made in several.            | Is this what DRY targets here, and which module should own the authority?                |
+| **Duplicated representation** | One piece of knowledge expressed in several forms: code, schema, migration, config, documentation, or fixture.                | Can the other forms be derived from one source instead of extracted into a function?    |
+| **Deliberate duplication** | Similar code kept separate on purpose because the occurrences have different owners, policies, or change axes.                   | Is the reason for keeping it separate recorded, or is this an oversight?                |
+| **Coincidental similarity** | Code that currently looks alike without expressing shared knowledge.                                                            | Do the occurrences share an invariant and a change history, or only their text?         |
 | **Policy**               | A business or system decision that expresses what should happen.                                                                   | Does the abstraction belong with the policy that needs it?                              |
 | **Detail**               | A mechanism that fulfills policy, such as storage, transport, framework, or vendor integration.                                    | Can the detail change without rewriting the policy?                                     |
 | **Stability**            | Resistance to change created by responsibility and dependents, not by age alone.                                                   | Are less stable modules depending on more stable policy?                                |
@@ -73,6 +77,7 @@ Use the most specific term and qualify overloaded terms. Consistency makes compa
 
 ## Do not conflate
 
+- duplicated knowledge, duplicated representation, deliberate duplication, and coincidental similarity;
 - interface, signature, API, and contract;
 - boundary, seam, and port;
 - adapter, gateway, facade, and anti-corruption layer;
@@ -89,6 +94,7 @@ Use the most specific term and qualify overloaded terms. Consistency makes compa
 
 - [Parnas, On the Criteria To Be Used in Decomposing Systems into Modules](https://dl.acm.org/doi/10.1145/361598.361623)
 - [Ousterhout, Modular Design](https://web.stanford.edu/~ouster/cgi-bin/cs190-winter18/lecture.php%3Ftopic%3DmodularDesign)
+- [Hunt and Thomas, The Pragmatic Programmer: DRY excerpt](https://media.pragprog.com/titles/tpp20/dry.pdf)
 - [Feathers, The Seam Model](https://www.informit.com/articles/article.aspx?p=359417&seqNum=2)
 - [Meyer, Applying Design by Contract](https://archive.eiffel.com/doc/manuals/technology/contract/)
 - [Cockburn, Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture)

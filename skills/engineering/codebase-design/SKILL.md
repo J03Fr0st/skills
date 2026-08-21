@@ -1,6 +1,6 @@
 ---
 name: codebase-design
-description: Design or improve software architecture through cohesive modules, intentional dependency direction, and explicit inter-module contracts. Use when the user asks about module or service boundaries, interfaces, coupling or cohesion, SOLID trade-offs, ports and adapters, layers or vertical slices, dependency cycles, synchronous or asynchronous communication, architecture refactoring, test seams and substitutes, reliability semantics at a boundary, or making a codebase easier for humans and coding agents to navigate. Route UI-only visual design and infrastructure topology with no software ownership decision to their dedicated skills.
+description: Design or improve software architecture through cohesive modules, intentional dependency direction, explicit inter-module contracts, and evidence-gated abstraction. Use when the user asks about module or service boundaries, interfaces, coupling or cohesion, DRY/KISS/YAGNI, duplication versus abstraction, over- or under-engineering, SOLID trade-offs, ports and adapters, layers or vertical slices, dependency cycles, synchronous or asynchronous communication, architecture refactoring, test seams and substitutes, reliability semantics at a boundary, or making a codebase easier for humans and coding agents to navigate. Route UI-only visual design and infrastructure topology with no software ownership decision to their dedicated skills.
 ---
 
 # Codebase Design
@@ -35,7 +35,7 @@ Inspect the current code, configuration, tests, diagrams, and project context be
 
 For a design or audit request, remain read-only. Implement only when the user explicitly asks for the change; implementation does not broaden permission to publish, deploy, commit, or migrate external state.
 
-Read [references/MODULE-DESIGN.md](references/MODULE-DESIGN.md) when deciding what belongs together, whether a module is deep enough, or whether layers, slices, or bounded contexts fit. When the task is consolidating an existing shallow cluster, follow [references/DEEPENING.md](references/DEEPENING.md) from here; it sequences mapping, diagnosis, migration, and retirement across all four stages.
+Read [references/MODULE-DESIGN.md](references/MODULE-DESIGN.md) when deciding what belongs together, whether a module is deep enough, whether layers, slices, or bounded contexts fit, or how DRY, KISS, and YAGNI apply to duplication and abstraction timing. When the task is consolidating an existing shallow cluster, follow [references/DEEPENING.md](references/DEEPENING.md) from here; its six steps sequence mapping, diagnosis, migration, and retirement across all four stages of this workflow.
 
 **Complete when:** every proposed module has a stated responsibility, hidden knowledge or invariant, owner, clients, and concrete reason to exist.
 
@@ -71,7 +71,7 @@ Keep static dependency direction separate from runtime flow. Policy may call an 
 
 For a meaningful module, seam, or interaction change, produce at least two materially different designs. For a small local change, compare the proposed shape with keeping the current shape. Vary the interface or ownership model, not merely names and folders.
 
-Score each design on:
+Use **KISS -> YAGNI -> DRY** as an evidence sequence: choose the lowest total complexity that meets present constraints, defer structure justified only by hypothetical needs, then consolidate knowledge whose shared owner and change pattern are real. Score each design on:
 
 - cohesion and information hidden;
 - caller knowledge and module depth;
@@ -82,7 +82,7 @@ Score each design on:
 
 Read [references/DESIGN-IT-TWICE.md](references/DESIGN-IT-TWICE.md) for the alternative-design brief and comparison format. Use [references/SOLID.md](references/SOLID.md) when a SOLID principle is part of the argument; treat the principles as diagnostics, not architecture badges.
 
-Recommend the simplest design that satisfies current evidence and likely change. Name the rejected alternative and the evidence that would make it preferable later.
+Recommend the simplest design that satisfies current constraints and evidenced change or failure pressure. Simplicity means total client knowledge, indirection, navigation, testing, migration, and operational machinery, not the fewest lines or modules. Name the rejected alternative and the evidence that would make it preferable later.
 
 **Complete when:** the alternatives differ materially, use the same scorecard, and end in one opinionated, reversible recommendation.
 
@@ -101,6 +101,8 @@ Read [references/TESTING.md](references/TESTING.md) for seam-aligned evidence an
 
 ## Design rules
 
+- Consolidate duplicated knowledge, not similar syntax. Similar code stays separate when owners, invariants, or change axes differ, and caller flags multiplying inside a shared abstraction are evidence it has joined unrelated knowledge.
+- Cheap code generation lowers the cost of writing an abstraction, not the cost of understanding, maintaining, migrating, or deleting it. Speculative structure still needs present evidence or a recorded trigger.
 - Hide difficult or volatile decisions, not merely steps in a processing sequence.
 - Put cohesion before depth. A small interface does not redeem an unrelated god module.
 - Expose coherent client-specific interfaces instead of one union surface for every caller.
