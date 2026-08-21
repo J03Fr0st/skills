@@ -1,6 +1,6 @@
 ---
 name: codebase-design
-description: Design or improve software architecture through cohesive modules, intentional dependency direction, explicit inter-module contracts, and evidence-gated simplicity. Use when the user asks about module or service boundaries, interfaces, coupling or cohesion, DRY/KISS/YAGNI, duplication versus abstraction, over- or under-engineering, SOLID trade-offs, ports and adapters, layers or vertical slices, dependency cycles, synchronous or asynchronous communication, architecture refactoring, test seams and substitutes, reliability semantics at a boundary, or making a codebase easier for humans and coding agents to navigate. Route UI-only visual design and infrastructure topology with no software ownership decision to their dedicated skills.
+description: Design or improve software architecture through cohesive modules, intentional dependency direction, explicit inter-module contracts, and evidence-gated abstraction. Use when the user asks about module or service boundaries, interfaces, coupling or cohesion, DRY/KISS/YAGNI, duplication versus abstraction, over- or under-engineering, SOLID trade-offs, ports and adapters, layers or vertical slices, dependency cycles, synchronous or asynchronous communication, architecture refactoring, test seams and substitutes, reliability semantics at a boundary, or making a codebase easier for humans and coding agents to navigate. Route UI-only visual design and infrastructure topology with no software ownership decision to their dedicated skills.
 ---
 
 # Codebase Design
@@ -35,7 +35,7 @@ Inspect the current code, configuration, tests, diagrams, and project context be
 
 For a design or audit request, remain read-only. Implement only when the user explicitly asks for the change; implementation does not broaden permission to publish, deploy, commit, or migrate external state.
 
-Read [references/MODULE-DESIGN.md](references/MODULE-DESIGN.md) when deciding what belongs together, whether a module is deep enough, whether layers, slices, or bounded contexts fit, or how DRY, KISS, and YAGNI apply to duplication and abstraction timing. When the task is consolidating an existing shallow cluster, follow [references/DEEPENING.md](references/DEEPENING.md) from here; it sequences mapping, diagnosis, migration, and retirement across all four stages.
+Read [references/MODULE-DESIGN.md](references/MODULE-DESIGN.md) when deciding what belongs together, whether a module is deep enough, whether layers, slices, or bounded contexts fit, or how DRY, KISS, and YAGNI apply to duplication and abstraction timing. When the task is consolidating an existing shallow cluster, follow [references/DEEPENING.md](references/DEEPENING.md) from here; its six steps sequence mapping, diagnosis, migration, and retirement across all four stages of this workflow.
 
 **Complete when:** every proposed module has a stated responsibility, hidden knowledge or invariant, owner, clients, and concrete reason to exist.
 

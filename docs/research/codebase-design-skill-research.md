@@ -609,7 +609,7 @@ A narrower follow-up on DRY, KISS, YAGNI, premature abstraction, and deliberate 
 
 Every normative claim the skill makes here rests on the durable sources, not on the current window. In particular, the skill's treatment of the rule of three as a prompt for comparison rather than a threshold for extraction follows Hunt and Thomas's definition of duplication as repeated knowledge and Metz's account of counting occurrences as the wrong test; no recent source in this run establishes it.
 
-The skill therefore uses **KISS → YAGNI → DRY** as an evidence sequence, not as three independent slogans: minimize total present complexity, defer structure justified only by hypothetical needs, then consolidate authoritative knowledge whose owner and change pattern are real. The refined query output and supplemental sources are preserved in `C:/Users/joevr/Documents/Last30Days/premature-abstraction-deliberate-duplication-simple-software-design-yagni-raw-v3-refined.md`.
+The skill therefore uses **KISS → YAGNI → DRY** as an evidence sequence, not as three independent slogans: minimize total present complexity, defer structure justified only by hypothetical needs, then consolidate authoritative knowledge whose owner and change pattern are real. The refined query output and supplemental sources are not checked in; they are preserved locally in the researcher's `last30days` output as `premature-abstraction-deliberate-duplication-simple-software-design-yagni-raw-v3-refined.md`.
 
 ## Evidence matrix
 
