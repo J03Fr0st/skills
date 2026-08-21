@@ -26,6 +26,8 @@ J03Fr0st's public library of original agent skills.
   inter-module contracts.
 - [html-writeup](docs/html-writeup.md) — build and verify a self-contained HTML document
   with diagrams, tables, and code, verified in a real browser.
+- [writing-for-humans](docs/writing-for-humans.md) — write and revise clear,
+  specific, genre-aware prose while preserving meaning and the author's voice.
 
 ## Install
 
@@ -61,4 +63,14 @@ maintained here. `codebase-design`
 adapts Matt Pocock's original deep-module vocabulary and expands it with
 source-backed guidance for simplicity and abstraction timing, decomposition,
 dependency direction, communication, reliability, testing, observability, and
-enforcement. See the repository license for attribution.
+enforcement. `writing-for-humans` is original work informed by a comparative
+read of this family of skills and their published evaluations: it adapts the
+editorial intent of Cursor's `pstack/unslop`, meaning-preservation gates from
+[`jlevy/practical-prose`](https://github.com/jlevy/practical-prose), mode
+separation and structural validation from
+[`conorbronsdon/avoid-ai-writing`](https://github.com/conorbronsdon/avoid-ai-writing),
+check-only operation from
+[`tornikegomareli/agent-rules`](https://github.com/tornikegomareli/agent-rules),
+and genre-sensitive voice precedence from
+[`blader/humanizer`](https://github.com/blader/humanizer). See the repository
+license for attribution.

@@ -15,7 +15,8 @@
     "engineering",
     "agile",
     "software-development",
-    "productivity"
+    "productivity",
+    "writing"
   ],
   "skills": [
     "./skills/agile/agile-flow",
@@ -24,6 +25,7 @@
     "./skills/agile/agile-sprint-plan",
     "./skills/agile/agile-sprint-review",
     "./skills/html-writeup",
-    "./skills/engineering/codebase-design"
+    "./skills/engineering/codebase-design",
+    "./skills/writing-for-humans"
   ]
 }
