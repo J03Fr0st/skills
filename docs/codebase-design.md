@@ -1,8 +1,8 @@
 # Codebase Design
 
-`codebase-design` helps an agent reason about both sides of software architecture: what belongs inside a module and what every relationship between modules promises.
+`codebase-design` helps an agent reason about both sides of software architecture: what belongs inside a module, what every relationship between modules promises, and when an abstraction has earned its cost.
 
-- **Invocation:** model-invoked. It fires for module or service boundaries, interface design, coupling and cohesion, SOLID trade-offs, ports and adapters, layers and vertical slices, dependency cycles, communication choices, architectural refactoring, test seams and substitutes, reliability semantics at a boundary, and human or agent navigability. Bare test authoring and SLO work carry no ownership or boundary decision, so they route elsewhere.
+- **Invocation:** model-invoked. It fires for module or service boundaries, interface design, coupling and cohesion, DRY/KISS/YAGNI, duplication versus abstraction, over- or under-engineering, SOLID trade-offs, ports and adapters, layers and vertical slices, dependency cycles, communication choices, architectural refactoring, test seams and substitutes, reliability semantics at a boundary, and human or agent navigability. Bare test authoring and SLO work carry no ownership or boundary decision, so they route elsewhere.
 - **Posture:** design and audit work stays read-only unless implementation is explicitly requested.
 - **Output:** an evidence-backed architecture decision or review with modules, relationship contracts, alternatives, enforcement, migration, tests, observability, risks, and the next authorized action.
 
@@ -18,6 +18,16 @@ The skill retains Matt Pocock's memorable deep-module vocabulary: module, interf
 - thin adapters and anti-corruption layers can protect valuable semantics even when they contain little business logic;
 - public-contract tests are the default stable evidence, but internal, property, conformance, integration, resilience, and end-to-end tests cover different risks;
 - SOLID principles are design diagnostics rather than an architecture recipe.
+
+## Simplicity and abstraction timing
+
+The skill applies three familiar principles as one evidence sequence:
+
+1. **KISS:** choose the lowest total complexity that satisfies present invariants, failure constraints, and client needs. Simplicity includes navigation, tests, migration, and operations, not only source size.
+2. **YAGNI:** defer structure justified only by hypothetical variation. Record the observable trigger that would make the abstraction worthwhile later.
+3. **DRY:** consolidate authoritative knowledge or intent once its shared owner and change pattern are real. Similar-looking code may remain deliberately duplicated when it belongs to different policies.
+
+This prevents two symmetric failures: abstracting repeated syntax before the domain is understood, and using simplicity slogans to excuse duplicated policy, hidden coupling, or ignored failure semantics. A rule of three can prompt comparison, but ownership, invariants, coordinated changes, and total complexity decide.
 
 ## Workflow
 
@@ -61,7 +71,7 @@ For diagrams, every arrow must read as **source - action - destination**. The ge
 ## Progressive references
 
 - `references/VOCABULARY.md` - canonical terms and disambiguations.
-- `references/MODULE-DESIGN.md` - information hiding, cohesion, depth, layers, slices, and bounded contexts.
+- `references/MODULE-DESIGN.md` - information hiding, cohesion, depth, DRY/KISS/YAGNI, layers, slices, and bounded contexts.
 - `references/DEPENDENCIES.md` - dependency profiles, DIP, cycles, ports, seams, and enforceable architecture.
 - `references/COMMUNICATION.md` - edge cards, calls, commands, events, messaging topology, contracts, and diagrams.
 - `references/RELIABILITY.md` - time, partial failure, retries, idempotency, delivery, ordering, capacity, and consistency.
@@ -75,11 +85,14 @@ The core router stays short enough to guide a complete run. Each reference loads
 
 ## Research basis
 
-The design was developed from the repository's [primary-source research report](research/codebase-design-skill-research.md), which audits the upstream base and records a 29-source evidence matrix. Its foundations include:
+The design was developed from the repository's [primary-source research report](research/codebase-design-skill-research.md), which audits the upstream base and records a 34-row evidence matrix. Its foundations include:
 
 - Parnas on information hiding;
 - Stevens, Myers, and Constantine on coupling and cohesion;
 - Ousterhout on deep modules and interface complexity;
+- Hunt and Thomas on DRY as authoritative knowledge rather than matching text;
+- Beck on YAGNI as abstraction timing and preserved optionality;
+- Metz on deliberate duplication and recovering from the wrong abstraction;
 - Feathers on seams and safe legacy-code change;
 - Liskov and Wing plus Martin's original SOLID articles;
 - Cockburn on ports and adapters;

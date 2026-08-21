@@ -42,6 +42,34 @@ Ask:
 
 A generic method can be shallow if clients must understand a large behavioral state space. A thin module can be valuable if it isolates protocol translation, security policy, validation, a foreign model, failure, or migration.
 
+## Balance simplicity, speculation, and duplication
+
+Use **KISS, YAGNI, and DRY as an evidence sequence**, not three independent commandments:
+
+1. **KISS - minimize total complexity.** Start with the most direct design that satisfies current invariants, failure constraints, and client needs. Count caller knowledge, indirection, navigation, test setup, migration, and operational machinery rather than lines or module count.
+2. **YAGNI - delay speculative commitment.** Ask which current requirement, observed change, failure mode, owner, or migration pays for each abstraction. Record a concrete trigger for introducing it later when the pressure is hypothetical.
+3. **DRY - give shared knowledge one authority.** Consolidate a rule, invariant, schema fact, or policy when one conceptual change must otherwise be coordinated across representations. Similar text is not enough evidence.
+
+Before extracting shared code, apply this **duplication gate**:
+
+- Does each occurrence represent the same knowledge or intent, rather than merely similar syntax?
+- Do the occurrences share an invariant owner, lifecycle, and reason to change?
+- Has a coordinated edit, inconsistency, or defect shown that the knowledge is already coupled?
+- Will the abstraction remove knowledge from clients without adding caller flags, conditional branches, or a generic mini-language?
+- Is the direct or deliberately duplicated shape easier to reverse while the cases are still evolving?
+
+Use the rule of three as a prompt to compare real cases, not as proof that an abstraction is correct. One occurrence can justify a module when it hides a current invariant or material risk. Several occurrences can remain separate when they belong to different policies.
+
+When a shared abstraction accumulates caller modes, booleans, and conditionals, treat that as evidence that it may be joining different knowledge. Recover by:
+
+1. capturing current behavior in characterization tests before any structural edit;
+2. inlining the abstraction back into each caller;
+3. deleting the branches and parameters that do not apply to that caller;
+4. comparing the resulting cases by invariant, owner, and change history;
+5. re-extracting only the authoritative knowledge that remains genuinely shared.
+
+**Gate:** the decision is ready when it names the present evidence for abstraction or the observable trigger for waiting, and distinguishes duplicated knowledge from similar code.
+
 ## Shape client interfaces
 
 A module may expose several coherent interfaces when clients have different roles, permissions, knowledge, or compatibility timelines. Apply interface segregation to client views without fragmenting the module's conceptual model into one interface per method.
@@ -85,5 +113,10 @@ Combine shapes deliberately. A bounded context can contain vertical slices; a sl
 - [Parnas, On the Criteria To Be Used in Decomposing Systems into Modules](https://dl.acm.org/doi/10.1145/361598.361623)
 - [Stevens, Myers, and Constantine, Structured Design](https://doi.org/10.1147/sj.132.0115)
 - [Ousterhout, Modular Design](https://web.stanford.edu/~ouster/cgi-bin/cs190-winter18/lecture.php%3Ftopic%3DmodularDesign)
+- [Hunt and Thomas, The Pragmatic Programmer: DRY excerpt](https://media.pragprog.com/titles/tpp20/dry.pdf)
+- [Kent Beck, The Cost YAGNI Was Never About](https://newsletter.kentbeck.com/p/the-cost-yagni-was-never-about)
+- [Sandi Metz, The Wrong Abstraction](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
+- [Kempner Institute, Software Design Principles](https://handbook.eng.kempnerinstitute.harvard.edu/s2_swe_for_research/software_design_principles.html)
+- [Derek Comartin, Decoupling in Software Architecture Moves Complexity](https://codeopinion.com/decoupling-in-software-architecture-moves-complexity/)
 - [Fowler, Presentation-Domain-Data Layering](https://martinfowler.com/bliki/PresentationDomainDataLayering.html)
 - [Bogard, Vertical Slice Architecture](https://www.jimmybogard.com/vertical-slice-architecture/)

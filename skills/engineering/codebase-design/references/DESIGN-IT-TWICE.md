@@ -14,6 +14,8 @@ Clients and use cases:
 Dependency profiles:
 Process, transaction, trust, and compatibility constraints:
 Likely changes and their evidence:
+Duplicated knowledge versus merely similar code:
+Current requirement or pressure paying for new machinery:
 Required migration or backward compatibility:
 Out of scope:
 ```
@@ -71,7 +73,7 @@ Score with evidence rather than numeric theater:
 | Dimension            | Question                                                                  |
 | -------------------- | ------------------------------------------------------------------------- |
 | Cohesion             | Do responsibilities share invariant, owner, capability, and lifecycle?    |
-| Information hiding   | Which difficult or volatile decisions disappear from clients?             |
+| Information hiding   | Which difficult or volatile decisions and duplicated knowledge disappear from clients? |
 | Depth                | How much cohesive capability does each client concept unlock?             |
 | Coupling             | What must change, deploy, be available, or agree together?                |
 | Dependency direction | Do source dependencies protect policy, and are cycles visible?            |
@@ -81,14 +83,15 @@ Score with evidence rather than numeric theater:
 | Testability          | Can risks be proven at stable seams with faithful substitutes?            |
 | Observability        | Can operators reconstruct outcomes across every important edge?           |
 | Migration            | Is there an incremental path, compatibility period, and rollback?         |
-| Cost                 | What cognitive, implementation, and operational machinery is added?       |
-| Reversibility        | Which choice is easiest to change when assumptions fail?                  |
+| Cost                 | What total cognitive, implementation, navigation, and operational machinery is added, and which current evidence pays for it? |
+| Reversibility        | Which choice preserves optionality when variation assumptions fail?        |
 
 ## Recommend
 
 Choose the simplest design that protects current invariants and satisfies evidenced change or failure pressure. State:
 
 - why it wins now;
+- which knowledge is consolidated and which duplication remains deliberate;
 - which cost is consciously accepted;
 - why the alternative loses now;
 - the trigger that would reverse the decision;
