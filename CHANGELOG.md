@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- [#4](https://github.com/J03Fr0st/skills/pull/4) [`190062c`](https://github.com/J03Fr0st/skills/commit/190062cd4330455bf0c8195a8142c6f8d7df9086) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add a composable Agile software-delivery suite:
+
+  - `agile-refine` shapes one valuable, Ready backlog item and embeds deep Grill Me refinement for consequential uncertainty.
+  - `agile-sprint-plan` plans one coherent cycle around an observable goal and realistic capacity.
+  - `agile-sprint-review` makes evidence-backed product acceptance decisions from working behavior.
+  - `agile-retro` turns delivery evidence into one bounded improvement experiment.
+  - `agile-flow` gives humans one explicit router while preserving the repository's existing delivery workflow and artifacts.
+
+  Backlog items and cycle records record the items blocking them and note when an agent drafted them. Refinement shapes work that changes no observable behavior — migrations, mechanical renames, gating decisions — as enabling items verified by preservation rather than by a demonstration that does not exist.
+
+- [#9](https://github.com/J03Fr0st/skills/pull/9) [`c4da30c`](https://github.com/J03Fr0st/skills/commit/c4da30cfe228961a15ec5f6a7651419dee809e2d) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `code-review` skill with quick, standard, and deep levels. Standard is
+  a bounded single-reviewer default; deep review adds independent defects,
+  specification, and standards/architecture passes plus evidence-based candidate
+  validation. All levels share a defect-first finding gate, merge-base scope,
+  repository-rule awareness, and concise findings-first output.
+
+- [`78c22f7`](https://github.com/J03Fr0st/skills/commit/78c22f77130d30f3ad79361d80bb4b7b5e77c79f) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `codebase-design` skill for designing cohesive modules and explicit relationships. It expands the deep-module vocabulary with evidence-gated DRY, KISS, and YAGNI guidance, dependency direction, communication contracts, SOLID trade-offs, distributed reliability, seam-aligned testing, production evidence, architecture enforcement, and progressive deepening and alternative-design workflows.
+
+- [#11](https://github.com/J03Fr0st/skills/pull/11) [`5f82174`](https://github.com/J03Fr0st/skills/commit/5f82174f4f41a2e636a67ae11ca9fbba5c47f596) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `writing-for-agents` skill for the documents agents consume: skills,
+  `AGENTS.md`, `CLAUDE.md`, and reference files reached by a pointer. It carries
+  the two-loads model, context pointers, the information hierarchy, completion
+  criteria, leading words, and a pruning discipline in the body, with three
+  branch references for skill mechanics, instruction files, and verification.
+
+  The skill merges three upstream lines of work and resolves where they conflict.
+  Descriptions open with bounded identity, list trigger branches pushily, and never
+  summarize the process, which reconciles the shortcut evidence against the
+  undertriggering evidence. Verification is a proportionate tier rather than a
+  universal baseline requirement, with a discipline document still gated on a
+  documented baseline failure before it ships.
+
+- [#8](https://github.com/J03Fr0st/skills/pull/8) [`7ecaaf3`](https://github.com/J03Fr0st/skills/commit/7ecaaf39b827cd2dc91711c8c32598999e76deb7) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `writing-for-humans` skill for clear, specific, genre-aware prose with
+  separate writing, diagnosis, editing, rewriting, and sample-grounded voice
+  modes. It includes meaning-preservation guardrails, false-positive-aware
+  editorial lenses, a deterministic literal and Markdown-structure checker, and
+  evaluation cases for accuracy, restraint, cleanup, voice transfer, and
+  leaving a sound draft alone.
+
 ## 0.1.0
 
 ### Minor Changes
