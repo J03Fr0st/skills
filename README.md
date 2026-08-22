@@ -28,6 +28,9 @@ J03Fr0st's public library of original agent skills.
   deep depth with a bounded default and evidence-backed findings.
 - [html-writeup](docs/html-writeup.md) — build and verify a self-contained HTML document
   with diagrams, tables, and code, verified in a real browser.
+- [writing-for-agents](docs/writing-for-agents.md) — write skills, `AGENTS.md`,
+  and `CLAUDE.md` so an agent reaches the right material and takes the same path
+  through it every run.
 - [writing-for-humans](docs/writing-for-humans.md) — write and revise clear,
   specific, genre-aware prose while preserving meaning and the author's voice.
 
@@ -76,6 +79,20 @@ check-only operation from
 and genre-sensitive voice precedence from
 [`blader/humanizer`](https://github.com/blader/humanizer). See the repository
 license for attribution.
+
+`writing-for-agents` deliberately reuses the name of Matt Pocock's
+[`writing-for-agents`](https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-for-agents)
+and adapts its conceptual vocabulary: the two loads, context pointers, the
+information hierarchy, completion criteria, leading words, and the pruning
+discipline. It extends that base with the failure-form taxonomy,
+rationalization tables, baseline-first testing, and wording micro-tests from
+[`obra/superpowers`](https://github.com/obra/superpowers) `writing-skills`, and
+with the layout conventions, three-level loading model, eval-set shape, and
+no-surprise principle from Anthropic's
+[`skill-creator`](https://github.com/anthropics/skills). Where those sources
+conflict — what a skill `description` should contain, and how strict the testing
+gate should be — the skill states the conflict and resolves it rather than
+picking a side silently. No upstream skill file is vendored.
 
 `code-review` preserves the useful Standards and Spec separation from Matt
 Pocock's
