@@ -1,6 +1,6 @@
 # Deep Review
 
-Load this branch only for an explicitly requested `deep` review. Preserve the read-only boundary and the finding gate in `SKILL.md`.
+Load this reference only for an explicitly requested `deep` review. Preserve the read-only boundary and the finding gate in `SKILL.md`.
 
 ## 1. Build one review packet
 
