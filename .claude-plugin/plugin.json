@@ -13,6 +13,7 @@
     "agent-skills",
     "skills",
     "engineering",
+    "code-review",
     "agile",
     "software-development",
     "productivity",
@@ -26,6 +27,7 @@
     "./skills/agile/agile-sprint-review",
     "./skills/html-writeup",
     "./skills/engineering/codebase-design",
+    "./skills/engineering/code-review",
     "./skills/writing-for-humans"
   ]
 }

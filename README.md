@@ -24,6 +24,8 @@ J03Fr0st's public library of original agent skills.
 - [codebase-design](docs/codebase-design.md) — design cohesive modules,
   evidence-gated abstractions, intentional dependency direction, and explicit
   inter-module contracts.
+- [code-review](docs/code-review.md) — review changes at quick, standard, or
+  deep depth with a bounded default and evidence-backed findings.
 - [html-writeup](docs/html-writeup.md) — build and verify a self-contained HTML document
   with diagrams, tables, and code, verified in a real browser.
 - [writing-for-humans](docs/writing-for-humans.md) — write and revise clear,
@@ -74,3 +76,14 @@ check-only operation from
 and genre-sensitive voice precedence from
 [`blader/humanizer`](https://github.com/blader/humanizer). See the repository
 license for attribution.
+
+`code-review` preserves the useful Standards and Spec separation from Matt
+Pocock's
+[`code-review`](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review)
+while adding a defect-first finding gate, explicit review levels, and
+independent validation for deep reviews. Its merge-base and contextual review
+discipline is informed by
+[`openai/codex`](https://github.com/openai/codex), and its deep parallel-pass
+shape is informed by
+[`anthropics/claude-code`](https://github.com/anthropics/claude-code). No
+upstream skill file is vendored; the instructions are maintained here.
