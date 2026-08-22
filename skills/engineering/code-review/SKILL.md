@@ -64,7 +64,7 @@ Use one reviewer and keep the work bounded.
 
 ### `deep`
 
-Use when the user explicitly requests it or accepts the recommendation. Read and follow [references/DEEP-REVIEW.md](references/DEEP-REVIEW.md). That branch adds independent review axes, candidate validation, selective history, and risk-based checks.
+Use when the user explicitly requests it or accepts the recommendation. Read and follow [references/DEEP-REVIEW.md](references/DEEP-REVIEW.md). That reference adds independent review axes, candidate validation, selective history, and risk-based checks.
 
 **Complete when:** the requested level has been applied without borrowing expensive steps from a deeper level, and any uncovered high-risk area is named as residual risk.
 
