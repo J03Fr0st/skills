@@ -1,6 +1,7 @@
 ---
 name: agile-refine
-description: Shape, challenge, or prioritize a software backlog item before commitment. Use for backlog refinement, acceptance examples, Definition of Ready checks, or a deep "grill me" examination of a feature, decision, or idea. Do not use to implement work that is already ready.
+description: Shape valuable, ready software backlog work before commitment.
+disable-model-invocation: true
 ---
 
 # Agile Refine
@@ -14,7 +15,9 @@ Read the existing issue, product context, working agreements, relevant code, and
 Choose the mode:
 
 - **Standard refinement:** the desired outcome is mostly understood and needs boundaries, acceptance examples, or a readiness decision.
-- **Deep refinement:** the user asks to be grilled, or value, assumptions, trade-offs, scope, or acceptance remain materially uncertain. Read [references/GRILL-MODE.md](references/GRILL-MODE.md) and finish its decision tree before continuing.
+- **Deep refinement:** the user asks to be grilled, or value, assumptions, trade-offs, scope, or acceptance remain materially uncertain. Run the `/grilling` skill. Continue only after the user explicitly confirms its shared-understanding summary.
+
+If no live decision-maker is available, do not decide unresolved branches on their behalf. Return the open decisions with owners and keep only the affected items Not Ready.
 
 **Complete when:** the target and mode are explicit, discoverable facts are checked, and unresolved matters are genuine user decisions.
 

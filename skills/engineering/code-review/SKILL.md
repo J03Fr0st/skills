@@ -9,7 +9,9 @@ Report only change-caused problems with concrete impact and a practical author a
 
 ## Operating boundary
 
-The review phase is read-only. Inspect files, history, metadata, and tests only to the depth selected below. Do not edit code, post comments, approve, merge, commit, or push during review. If the user explicitly asks to review and fix, finish the review first, then continue under the implementation workflow with the findings as evidence.
+The review phase is read-only. Inspect files, history, metadata, and tests only to the depth selected below. Do not edit code, post comments, approve, merge, commit, or push during review. If the user explicitly asks to review and fix, finish the review first, then run `implement` with the findings as evidence.
+
+For a dedicated security audit or threat model, use `security-review`. Security defects introduced by the reviewed change remain within ordinary code review's finding gate.
 
 Accept three inputs when present:
 

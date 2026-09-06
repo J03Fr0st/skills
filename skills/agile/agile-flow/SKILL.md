@@ -6,7 +6,9 @@ disable-model-invocation: true
 
 # Agile Flow
 
-Use one entry point to find the current delivery state, run the matching Agile skill, and make the next gate explicit. Enter at the state the work is actually in; ceremonies are not prerequisites.
+Use one entry point to find the current delivery state and make the next command
+or delivery gate explicit. Enter at the state the work is actually in;
+ceremonies are not prerequisites.
 
 ## 1. Locate canonical state
 
@@ -20,23 +22,27 @@ When the user asks to initialize local Agile documents or the repository has no 
 
 Choose the first unresolved state:
 
-| Current state                                 | Run or resume                                                      |
+| Current state                                 | Next command or workflow                                           |
 | --------------------------------------------- | ------------------------------------------------------------------ |
-| Fuzzy, disputed, or assumption-heavy idea     | `agile-refine` in deep refinement mode                             |
-| Backlog item is not Ready                     | `agile-refine` in standard mode                                    |
-| Ready work needs a goal and capacity decision | `agile-sprint-plan`                                                |
-| Selected work is active                       | The repository's implementation, testing, and code-review workflow |
-| Working behavior awaits product acceptance    | `agile-sprint-review`                                              |
-| A reviewed cycle or milestone needs learning  | `agile-retro`                                                      |
+| Fuzzy, disputed, or assumption-heavy idea     | `/agile-refine` in deep refinement mode                            |
+| Backlog item is not Ready                     | `/agile-refine` in standard mode                                   |
+| Ready work needs a goal and capacity decision | `/agile-sprint-plan`                                               |
+| Selected work is active                       | `implement`, composing technical planning, TDD, diagnosis, verification, `security-review`, and review as needed |
+| Working behavior awaits product acceptance    | `/agile-sprint-review`                                             |
+| A reviewed cycle or milestone needs learning  | `/agile-retro`                                                     |
 
 Honor repository safety and quality gates, strengthening verification for higher-risk work. Use independent implementation, test, security, or review agents only at genuinely independent seams and when their use is authorized.
 
 **Complete when:** one matching stage is selected from evidence rather than assumed from labels.
 
-## 3. Carry the artifact forward
+## 3. Hand off the next command
 
-Run the selected stage instead of merely recommending it. After the stage completes, update or propose the canonical artifact, reclassify the state, and name the next gate. Stop at a human decision, missing authority, unresolved blocker, or the boundary requested by the user.
+When the next stage is another Agile skill, return its explicit `/agile-*`
+command and stop; only the user can invoke it. When selected work is active,
+hand off to `implement` only when delivery is authorized. After any completed
+delivery work, reclassify the state and name the next explicit Agile command.
 
 Do not invent an implementation methodology, shadow backlog, duplicate status report, or automatic commit. Reuse the project's delivery tools and keep external writes within the user's authorization.
 
-**Complete when:** the current state is evidence-backed, the relevant artifact reflects it or awaits explicit approval, and the next gate is visible.
+**Complete when:** the current state is evidence-backed and the next explicit
+command or authorized delivery handoff is visible.

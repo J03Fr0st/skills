@@ -4,6 +4,12 @@ Every skill must contain a `SKILL.md` whose `name` matches its directory name.
 Keep skill instructions, supporting references, scripts, and assets together in
 the skill directory.
 
+Store all research in `docs/research/`. Before researching a skill, read
+`docs/source-repos.md`. Consult every relevant preferred repository and record
+its influence, or why it was not applicable, in the research report. Treat the
+ordered list as personal preferences and update it only when the user changes
+those preferences.
+
 Published skills must have:
 
 - an entry in the top-level `README.md`

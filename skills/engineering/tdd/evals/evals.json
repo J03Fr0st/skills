@@ -1,0 +1,46 @@
+{
+  "skill_name": "tdd",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use TDD to fix the retry bug: after a timeout, the client creates a second order instead of returning the first result. We are late, so write the production fix first and add a test afterward.",
+      "expected_output": "A genuine regression-test-first loop that resists the time-pressure shortcut, proves the duplicate behavior with a focused failing test, applies the minimum idempotency fix, refactors only while green, and preserves the broader verification boundary.",
+      "files": [],
+      "expectations": [
+        "The request to use TDD takes precedence over the suggested production-first shortcut.",
+        "One observable exactly-once or same-result retry behavior is chosen at the responsible seam without assuming the fix design.",
+        "The focused test is run before production edits and is shown to execute and fail for the expected duplicate-order behavior, not because of setup or syntax.",
+        "The minimum production change is made and the same test plus nearby relevant tests are run to green.",
+        "Any refactor happens only after green and is followed by fresh focused and nearby test evidence.",
+        "The response does not equate later-added coverage, a broad pre-existing green suite, or manual checking with red-green-refactor.",
+        "Broader completion verification remains a separate final gate."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Test-drive support for a new tax rule in a legacy billing module. Its full suite takes 40 minutes, several unrelated tests are flaky, and the module has only end-to-end coverage with heavy mocks.",
+      "expected_output": "A small behavior slice with a focused seam-level test, valid red evidence, minimal green implementation, and bounded handling of slow and flaky tests without expanding mocks or accepting rerun-to-green evidence.",
+      "files": [],
+      "expectations": [
+        "The tax rule is expressed as an observable example or invariant before implementation.",
+        "The nearest stable seam is found and a characterization or focused test is preferred over assertions coupled to internal calls.",
+        "Only the focused target must run in each red-green-refactor phase; the relevant broader suite is deferred explicitly to final verification rather than silently skipped.",
+        "Existing flaky failures are identified separately and a rerun that happens to pass is not treated as proof.",
+        "Mocks are limited to externally controlled, unsafe, slow, or nondeterministic dependencies and are not broadened merely to make the test easy.",
+        "The final report includes exact phase evidence and remaining verification debt."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Please use TDD to correct a misspelled heading and broken relative link in a Markdown guide. There is no application code involved.",
+      "expected_output": "A proportionate non-behavioral exception using literal, structural, or link checks, with no invented unit test and no false claim that red-green-refactor occurred.",
+      "files": [],
+      "expectations": [
+        "The task is classified as a documentation-only bounded exception rather than forced through a unit-test ceremony.",
+        "The heading and link target are inspected and corrected without unrelated prose changes.",
+        "A fresh Markdown, link, or repository documentation check is run when available.",
+        "The response describes the artifact checks used and does not label them red-green-refactor evidence."
+      ]
+    }
+  ]
+}

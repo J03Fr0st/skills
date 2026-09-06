@@ -5,10 +5,7 @@ Five composable skills for evidence-led software delivery. They preserve the pro
 ## User-invoked
 
 - [`agile-flow`](agile-flow/SKILL.md) — inspect current state and route work through the suite. This is the one command to remember.
-
-## Model-invoked
-
-- [`agile-refine`](agile-refine/SKILL.md) — shape one valuable Ready item; deep refinement contains the full Grill Me decision-tree mode.
+- [`agile-refine`](agile-refine/SKILL.md) — shape one valuable Ready item; deep refinement composes the general `/grilling` skill.
 - [`agile-sprint-plan`](agile-sprint-plan/SKILL.md) — choose one cycle goal and a realistic set of Ready work.
 - [`agile-sprint-review`](agile-sprint-review/SKILL.md) — accept or reject delivered outcomes from working behavior and fresh evidence.
 - [`agile-retro`](agile-retro/SKILL.md) — turn delivery evidence into one bounded improvement experiment.
@@ -16,13 +13,16 @@ Five composable skills for evidence-led software delivery. They preserve the pro
 ## Flow
 
 ```text
-agile-refine -> agile-sprint-plan -> repository delivery workflow
-                                           |
-                                           v
-                              agile-sprint-review -> agile-retro
+/agile-refine -> /agile-sprint-plan -> repository delivery workflow
+                                             |
+                                             v
+                              /agile-sprint-review -> /agile-retro
 ```
 
-`agile-flow` can enter this lifecycle at any evidenced state. It routes implementation to the repository's existing planning, TDD, testing, security, and code-review practices.
+`agile-flow` can enter this lifecycle at any evidenced state. It points to the
+next explicit Agile command; each Agile stage starts only when the user invokes
+it. Active delivery still routes to the repository's implementation, TDD,
+testing, security, and code-review practices.
 
 ## Artifacts
 

@@ -4,7 +4,7 @@
 
 Add a composable Agile software-delivery suite:
 
-- `agile-refine` shapes one valuable, Ready backlog item and embeds deep Grill Me refinement for consequential uncertainty.
+- `agile-refine` shapes one valuable, Ready backlog item and composes the generalized `grilling` skill for consequential uncertainty.
 - `agile-sprint-plan` plans one coherent cycle around an observable goal and realistic capacity.
 - `agile-sprint-review` makes evidence-backed product acceptance decisions from working behavior.
 - `agile-retro` turns delivery evidence into one bounded improvement experiment.

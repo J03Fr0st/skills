@@ -7,6 +7,8 @@ description: Design or improve software architecture through cohesive modules, i
 
 Design cohesive modules and explicit relationships under change and failure. A good module hides knowledge; a good relationship makes ownership, direction, semantics, and evidence visible.
 
+For scoped cleanup that preserves the existing contract, use `simplify`. Keep consequential interface, module, or ownership decisions here; return the decision to the caller's authorized workflow.
+
 ## Core grammar
 
 - **Module:** a cohesive unit that owns behavior or knowledge and exposes one or more client-specific interfaces. State the scale when it matters.

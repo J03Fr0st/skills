@@ -44,6 +44,7 @@ Use KISS, YAGNI, DRY, SOLID, and smell names to investigate evidence, never as s
 
 - Inspect history or blame when intent is ambiguous, a suspicious line predates the change, or compatibility depends on an earlier decision.
 - Read distant callers and implementations when the changed contract can fan out beyond nearby code.
+- Map the blast radius of a changed assumption: name affected consumers and the control or invariant that keeps each safe. Exercise the decisive fact with a focused test or safe reproduction when static evidence cannot establish it; report unavailable proof as a coverage gap.
 - Run the smallest relevant tests, static checks, reproductions, or focused experiments that can prove or disprove material candidates.
 - Expand to broader checks only when narrow evidence cannot cover the risk and the user has not imposed a tighter boundary.
 

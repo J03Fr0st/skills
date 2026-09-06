@@ -16,8 +16,12 @@
         "skills",
         "engineering",
         "agile",
+        "debugging",
+        "grilling",
         "software-development",
-        "productivity"
+        "productivity",
+        "tdd",
+        "verification"
       ]
     }
   ]

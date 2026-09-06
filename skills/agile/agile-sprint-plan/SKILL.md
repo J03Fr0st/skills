@@ -1,6 +1,7 @@
 ---
 name: agile-sprint-plan
-description: Plan a software sprint, iteration, or delivery cycle around one goal. Use when selecting ready backlog work, balancing capacity and risk, exposing dependencies, or creating a cycle record. Do not use for detailed implementation planning of a single item.
+description: Plan one coherent, realistic software delivery cycle.
+disable-model-invocation: true
 ---
 
 # Agile Sprint Plan
@@ -13,7 +14,8 @@ Read product context, working agreements, the current backlog, recent cycle evid
 
 When agents carry part of the delivery, state that in the capacity basis: which work is intended for an agent, the review and verification each piece still requires, and the human attention that review consumes. Agent throughput is not free capacity, and unreviewed agent output is not delivered work.
 
-Run `agile-refine` for an item whose value, boundary, acceptance, or readiness is still unresolved.
+If an item's value, boundary, acceptance, or readiness is unresolved, stop and
+point the user to `/agile-refine`; only the user can invoke that skill.
 
 **Complete when:** the planning inputs, capacity basis, and eligible Ready items are visible.
 

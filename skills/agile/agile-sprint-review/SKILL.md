@@ -1,6 +1,7 @@
 ---
 name: agile-sprint-review
-description: Review completed software against its intended product outcome and acceptance examples. Use for sprint reviews, stakeholder acceptance, demonstrations, or deciding backlog follow-ups from working behavior. This is product review, not code review.
+description: Review delivered software outcomes against product evidence.
+disable-model-invocation: true
 ---
 
 # Agile Sprint Review
@@ -31,7 +32,9 @@ For each outcome, record:
 
 Classify each outcome as **Accepted**, **Partially accepted**, **Not accepted**, or **Pending stakeholder decision**. Never infer stakeholder acceptance from passing tests or code completion.
 
-Turn new demand, defects, and rejected scope into separate backlog candidates. Send ambiguous candidates through `agile-refine`; do not smuggle them into the completed item.
+Turn new demand, defects, and rejected scope into separate backlog candidates.
+Point ambiguous candidates to `/agile-refine` for explicit user invocation; do
+not smuggle them into the completed item.
 
 Update the Review and Evidence sections of the canonical cycle record when the request authorizes artifact changes, keeping the record's existing structure and its note that an agent drafted it. Preserve dissent and pending decisions. Link demonstrations, runs, and logs rather than pasting their bulk into the record. Treat external publication, commits, and pushes as separate actions unless requested.
 

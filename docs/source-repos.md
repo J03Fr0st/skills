@@ -1,0 +1,13 @@
+# Preferred Source Repositories
+
+This is the repository owner's personal shortlist for skill research, in
+preference order. It is not an exhaustive catalogue of skill repositories or
+research citations. Change the list only when the owner's preferences change.
+
+1. [`mattpocock/skills`](https://github.com/mattpocock/skills)
+2. [`obra/superpowers`](https://github.com/obra/superpowers)
+3. [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills)
+4. [`cursor/plugins`](https://github.com/cursor/plugins) — especially the
+   [`pstack`](https://github.com/cursor/plugins/tree/main/pstack) subtree
+5. [`DietrichGebert/ponytail`](https://github.com/DietrichGebert/ponytail)
+6. [`mvanhorn/last30days-skill`](https://github.com/mvanhorn/last30days-skill)

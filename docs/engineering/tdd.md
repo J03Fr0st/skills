@@ -1,0 +1,46 @@
+# TDD
+
+`tdd` owns one observable behavior at a time through an evidenced red, green, and refactor loop. It is both directly callable and the behavior-change discipline used by `implement`.
+
+- **Invocation:** model-invoked for TDD, test-first, red-green-refactor, and regression-test-before-fix requests, or by implementation when a practical executable seam exists.
+- **Default:** one vertical behavior slice and the narrowest reliable test target.
+- **Posture:** fresh command evidence at every phase; no deletion of pre-existing or user-authored code to manufacture red.
+- **Output:** phase-by-phase evidence, the coherent code/test slice, exceptions, quality caveats, and broader checks still owed.
+
+## Red, green, refactor
+
+### Define the behavior
+
+The skill identifies an example, invariant, acceptance criterion, or diagnosed regression and locates the closest stable public seam. Before accepting a test, it names a realistic wrong implementation the test would reject and derives expected values independently from production logic.
+
+### Red
+
+The new focused test runs before production edits. Red is valid only when the test is discovered, executed, and fails because the requested behavior is missing or wrong. Syntax errors, setup aborts, missing fixtures, unrelated failures, skips, and already-green tests do not qualify.
+
+### Green
+
+The minimum production change makes the same focused test pass. The nearest relevant existing tests then check local regressions. Assertions are not weakened and mocks are not broadened simply to obtain green.
+
+### Refactor
+
+Only structure and clarity change while behavior remains green. Tests run again after the final refactor, because a green result captured before the last edit is stale.
+
+The loop repeats only for another independently observable behavior. Final packaging, documentation, configuration, visual, migration, deployment, and product claims go to `verification-before-completion`.
+
+## Test-quality gate
+
+Tests observe stable behavior through the narrowest useful seam. Real collaborators are preferred inside an ownership boundary; fakes, stubs, and mocks must earn their use for slow, unsafe, nondeterministic, or externally controlled dependencies. Multiple assertions are acceptable when they prove one behavior. An imagined horizontal suite written ahead of all implementation is not a substitute for vertical learning.
+
+## Exceptions
+
+Strict test-first sequencing is not useful for every artifact. Prose and metadata use parser, renderer, link, literal, or structural checks. Generated output is verified through its source or generator. A disposable spike is not production evidence. Slow suites use focused phase checks and a broader final gate; flaky tests are isolated rather than rerun to a lucky pass.
+
+If explicit TDD has no practical red path, production edits stop while the user chooses between a bounded harness investment and an honestly non-TDD path. If `implement` selected TDD implicitly, control returns with the missing-harness reason and closest safe alternative. Tests added after implementation remain useful coverage but are never reported as red-green-refactor evidence.
+
+## Boundaries
+
+Unknown causes belong to `diagnosing-bugs`. Repository safety and delivery scope belong to `implement`. Fresh completion proof belongs to `verification-before-completion`. Review belongs to `code-review`.
+
+## Attribution and design basis
+
+The original local workflow was informed by test-seam and mocking guidance from Matt Pocock's MIT-licensed [`tdd`](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd), phase discipline and rationalization resistance from Obra's MIT-licensed [`test-driven-development`](https://github.com/obra/superpowers/tree/main/skills/test-driven-development), repository/eval patterns from Addy Osmani's MIT-licensed [`test-driven-development`](https://github.com/addyosmani/agent-skills/tree/main/skills/test-driven-development), phase gates from Wshobson's MIT-licensed [TDD workflows](https://github.com/wshobson/agents/tree/main/plugins/tdd-workflows), and the practical-signal exception from Cursor pstack's MIT-licensed TDD skill. No upstream prose or eval fixtures are vendored. See the pinned [research record](../research/tdd-skill-research.md).

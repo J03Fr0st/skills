@@ -1,6 +1,7 @@
 ---
 name: agile-retro
-description: Run an evidence-based retrospective after a software delivery cycle, incident, or meaningful milestone. Use to examine flow, interruptions, defects, review feedback, or team process and choose one measurable improvement experiment. Do not use for product acceptance or code review.
+description: Turn delivery evidence into one measurable improvement experiment.
+disable-model-invocation: true
 ---
 
 # Agile Retro
