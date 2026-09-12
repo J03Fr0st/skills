@@ -26,7 +26,13 @@ flowchart TD
     B -->|No| I[implement]
     P -->|Ready slice and implementation authorized| I
     I --> C[Run relevant slice checks]
-    C --> R{Review requested or required?}
+    C -->|Pass| S{Cleanup authorized and useful?}
+    C -->|Task defect| I
+    S -->|Yes| SC[simplify current-task changes]
+    SC --> VC[Rerun contract checks]
+    VC -->|Pass| R{Review requested or required?}
+    VC -->|Cleanup regression| SC
+    S -->|No| R
     R -->|Yes| CR[code-review or security-review]
     CR --> F{Confirmed finding in authorized scope?}
     F -->|Yes| I
@@ -40,7 +46,11 @@ flowchart TD
 
 `implement` selects `tdd` for useful behavioral checks and `codebase-design` for material module decisions. Uncertain external facts go to `research`; a needed experiment goes to `prototype`. Their results return to the current task. A review or planning request alone finishes with its requested artifact. A request to plan and build proceeds through both within the existing authorization.
 
-For a requested cleanup, `implement` selects `simplify` and receives its contract checks and result. `simplify` can also run standalone. It is not an automatic phase after every feature, and a cleanup that needs an architecture decision reaches `codebase-design` only for that decision.
+During planning and design, consider whether an existing owner or suitable native facility already solves the problem. This applies Ponytail's reuse-first guidance before new complexity is introduced.
+
+When cleanup is requested or included in the authorized workflow, `implement` selects `simplify` after the relevant slice checks pass and before review and final verification. Keep the pass scoped to current-task changes, preserve observable behavior, and rerun the contract checks afterward. Resolve or undo cleanup regressions before review; report unavailable checks as evidence gaps. Skip the pass when no useful simplification is evident.
+
+`implement` retains delivery coordination, `simplify` owns cleanup, and `codebase-design` owns consequential architecture decisions. Ponytail's guidance is incorporated into `simplify`, rather than adding a separate workflow stage. `simplify` can also run standalone; it is not an automatic phase after every feature.
 
 ## Agile and task continuity
 
