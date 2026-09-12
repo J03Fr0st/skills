@@ -11,3 +11,11 @@ research citations. Change the list only when the owner's preferences change.
    [`pstack`](https://github.com/cursor/plugins/tree/main/pstack) subtree
 5. [`DietrichGebert/ponytail`](https://github.com/DietrichGebert/ponytail)
 6. [`mvanhorn/last30days-skill`](https://github.com/mvanhorn/last30days-skill)
+7. [`anthropics/skills`](https://github.com/anthropics/skills) — especially
+   `skill-creator` for skill authoring and evaluation
+8. [`trailofbits/skills`](https://github.com/trailofbits/skills) — especially
+   `differential-review`, `audit-context-building`, and `property-based-testing`
+9. [`EveryInc/compound-engineering-plugin`](https://github.com/EveryInc/compound-engineering-plugin)
+   — especially `ce-compound` and `ce-compound-refresh` for preserving and
+   maintaining useful engineering lessons
+10. [`garrytan/gstack`](https://github.com/garrytan/gstack)
