@@ -23,6 +23,8 @@ Start with the [workflow map](docs/workflow.md) to choose an entry point and see
 
 ### Model-invoked
 
+- [babysit-pr](docs/engineering/babysit-pr.md) — carry an existing PR through review
+  feedback, CI repairs, and verified completion with resumable monitoring.
 - [codebase-design](docs/engineering/codebase-design.md) — design cohesive modules,
   evidence-gated abstractions, intentional dependency direction, and explicit
   inter-module contracts.

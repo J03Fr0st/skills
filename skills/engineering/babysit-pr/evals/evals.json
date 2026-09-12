@@ -1,0 +1,40 @@
+{
+  "skill_name": "babysit-pr",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Babysit PR 123. You may fix, commit and push; I'll merge. CI is green now. A Copilot review arrives next with a valid bug, then CI reruns and I merge it.",
+      "expected_output": "Continues past green, repairs valid late feedback and rearms, then verifies the user's merge without merging itself.",
+      "files": [],
+      "expectations": ["Green is reported as progress, not terminal success.", "Copilot feedback is evaluated regardless of author naming.", "A verified authorized fix is pushed and observation resumes in the same run.", "The agent never merges or posts an unauthorized reply.", "Completion cites remote merged state and final observed SHA."]
+    },
+    {
+      "id": 2,
+      "prompt": "Get PR 42 merge-ready and stop. The checks list is empty and mergeability is UNKNOWN. A reviewer has requested changes, but the watcher reports unchanged.",
+      "expected_output": "Investigates missing check requirements and review feedback rather than interpreting empty or unchanged state as ready.",
+      "files": [],
+      "expectations": ["Unknown state blocks readiness.", "Required checks are independently established.", "The review request receives a disposition.", "The agent refreshes state and does not merge."]
+    },
+    {
+      "id": 3,
+      "prompt": "Resume PR 9. The run record says a push of commit B was attempted but its response was lost. Remote head now contains B; another author also pushed C. The old snapshot has failed CI on A.",
+      "expected_output": "Reconciles the successful push, preserves concurrent work and inspects current-head CI before another mutation.",
+      "files": [],
+      "expectations": ["The push is not blindly repeated.", "C is preserved and current head is captured.", "Failure on A does not justify a current-head repair.", "Outstanding recorded feedback is revisited even without a change event."]
+    },
+    {
+      "id": 4,
+      "prompt": "Babysit and merge PR 7 when ready. It entered the merge queue, then was removed after a merge-group failure. One review finding needs a product decision, while an independent test failure can be repaired.",
+      "expected_output": "Treats queue admission as progress, diagnoses the queue failure, completes independent authorized repair and hands back the concrete decision if it is the only remaining blocker.",
+      "files": [],
+      "expectations": ["Queue admission is not called merged.", "Queue checks are distinguished from PR-head checks.", "The independent repair is completed before final handback.", "Required gates are preserved and merge authority is reused without redundant confirmation."]
+    },
+    {
+      "id": 5,
+      "prompt": "Babysit PR 11. CI failure A disappears after a fix, B appears, and fixing B brings A back. Three retries have already been used in this run. The session is about to end.",
+      "expected_output": "Recognizes oscillation, preserves the retry budget and records a paused or needs-input handback with evidence and a resume path.",
+      "files": [],
+      "expectations": ["New SHAs do not reset the run retry total.", "The agent investigates the recurring invariant instead of repeating the same patch.", "Pending work and authority survive in the run record.", "The final response accurately states monitoring is paused unless a scheduler is confirmed active."]
+    }
+  ]
+}
