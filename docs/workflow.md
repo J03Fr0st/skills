@@ -13,6 +13,7 @@ Start from the question or outcome you have. Most skills can be selected by the 
 | Design a module or responsibility boundary | [codebase-design](engineering/codebase-design.md) | An explicit interface and ownership decision |
 | Simplify working code | [simplify](engineering/simplify.md) | Lower complexity with behavior-preservation evidence |
 | Review changes | [code-review](engineering/code-review.md) | Evidence-backed findings at the requested depth |
+| Apply or define coding conventions | [coding-standards](engineering/coding-standards.md) | Project-first rules for the affected code domain |
 | Run a dedicated security audit | [security-review](engineering/security-review.md) | Scoped threat model, findings, and closing checks |
 | Pause, resume, or move work | [handoff](productivity/handoff.md) | Current state and the next executable check |
 | Navigate backlog or delivery-cycle work | [agile-flow](agile/agile-flow.md) | The next explicit Agile command or authorized delivery handoff |
