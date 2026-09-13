@@ -30,6 +30,8 @@ Start with the [workflow map](docs/workflow.md) to choose an entry point and see
   inter-module contracts.
 - [code-review](docs/engineering/code-review.md) — review changes at quick, standard, or
   deep depth with a bounded default and evidence-backed findings.
+- [coding-standards](docs/engineering/coding-standards.md) — apply project conventions
+  with shared rules and conditional backend and frontend guidance.
 - [diagnosing-bugs](docs/engineering/diagnosing-bugs.md) — prove a root cause through
   reproduction, competing hypotheses, and discriminating evidence before a fix.
 - [grilling](docs/productivity/grilling.md) — stress-test a consequential or ambiguous
