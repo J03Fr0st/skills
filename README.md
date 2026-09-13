@@ -6,6 +6,9 @@ J03Fr0st's public library of original agent skills.
 
 Start with the [workflow map](docs/workflow.md) to choose an entry point and see how the skills compose.
 
+See [contribution and validation guidance](CONTRIBUTING.md) for local setup and
+release checks, and [security reporting](SECURITY.md) for vulnerability reports.
+
 ## Skills
 
 ### User-invoked
