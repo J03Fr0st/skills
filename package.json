@@ -16,7 +16,7 @@
     "version:skills": "changeset version && node scripts/sync-version.mjs && npm run validate"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/changelog-github": "^1.0.1",
     "@changesets/cli": "^2.30.0",
     "js-yaml": "^4.3.2"
   },
