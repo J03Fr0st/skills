@@ -19,3 +19,5 @@ research citations. Change the list only when the owner's preferences change.
    — especially `ce-compound` and `ce-compound-refresh` for preserving and
    maintaining useful engineering lessons
 10. [`garrytan/gstack`](https://github.com/garrytan/gstack)
+11. [`affaan-m/ECC`](https://github.com/affaan-m/ECC/tree/main/skills) —
+    the `skills/` subtree
