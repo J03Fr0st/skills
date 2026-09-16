@@ -21,3 +21,4 @@ research citations. Change the list only when the owner's preferences change.
 10. [`garrytan/gstack`](https://github.com/garrytan/gstack)
 11. [`affaan-m/ECC`](https://github.com/affaan-m/ECC/tree/main/skills) —
     the `skills/` subtree
+12. [`wshobson/agents`](https://github.com/wshobson/agents)
