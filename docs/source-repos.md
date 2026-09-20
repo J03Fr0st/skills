@@ -22,3 +22,6 @@ research citations. Change the list only when the owner's preferences change.
 11. [`affaan-m/ECC`](https://github.com/affaan-m/ECC/tree/main/skills) —
     the `skills/` subtree
 12. [`wshobson/agents`](https://github.com/wshobson/agents)
+13. [`nahid-sparktales/agent-dispatcher`](https://github.com/nahid-sparktales/agent-dispatcher)
+    — a capability-aware dispatcher routing tasks to specialist roles, each
+    with its own focused skills, tools, and verification workflows
