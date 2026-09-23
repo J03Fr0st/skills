@@ -56,7 +56,7 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
 - [simplify](docs/engineering/simplify.md) — reduce code complexity in a scoped pass
   while preserving observable behavior and useful boundaries.
 - [tdd](docs/engineering/tdd.md) — drive behavior changes through observable red, green,
-  and refactor evidence with bounded practical exceptions.
+  and refactor evidence, with example or property tests and bounded practical exceptions.
 - [verification-before-completion](docs/engineering/verification-before-completion.md) —
   prove completion claims with fresh, scope-matched evidence and honest verdicts.
 - [writing-for-agents](docs/authoring/writing-for-agents.md) — write skills, `AGENTS.md`,
