@@ -139,3 +139,40 @@ Pressure evals should combine authority, deadlines, and a dictated fix. They mus
 ## Licensing and attribution
 
 The reviewed Matt Pocock, Obra, Addy Osmani, and Wshobson sources are MIT-licensed. `cursor/plugins` has no repository-wide detected license, while `pstack/LICENSE` explicitly applies MIT within that subtree. The local skill uses original wording and structure and does not vendor upstream reference files or eval fixtures.
+
+## Refresh: all preferred sources (2026-09-23)
+
+**Local baseline:** `009e398a52313f7fce22f47644606517b2b8a8aa`  
+**Decision:** Keep `tdd` as the canonical loop and extend it; do not add a second TDD skill. Consulted all 13 repositories in `docs/source-repos.md` at the revisions below.
+
+### Revision ledger
+
+| # | Source | Revision | Files reviewed | Influence |
+| --- | --- | --- | --- | --- |
+| 1 | [mattpocock/skills](https://github.com/mattpocock/skills/tree/c55ee46073ed923f86ce59a5eb3b6d895095d1b7/skills/engineering/tdd) | `c55ee46073ed923f86ce59a5eb3b6d895095d1b7` | `skills/engineering/tdd/{SKILL,tests,mocking}.md` | No change to the TDD skill since `5b15a47`; the earlier seam and double guidance still applies |
+| 2 | [obra/superpowers](https://github.com/obra/superpowers/tree/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/test-driven-development) | `5bf4e78011075bcfc0dc295f0724994cd123ee71` | `skills/test-driven-development/SKILL.md` | New upstream rule: name every observed failure, including ones the task did not cause. **Adopted.** Its "run the whole suite before done" rule stays with `verification-before-completion` |
+| 3 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills/tree/bcab6a1b8503100e8618c3b4e32cc78de43de769/skills/test-driven-development) | `bcab6a1b8503100e8618c3b4e32cc78de43de769` | `skills/test-driven-development/SKILL.md` | Description-only change; no new influence |
+| 4 | [cursor/plugins pstack](https://github.com/cursor/plugins/tree/b0b9c7a0baf8b6aa1d00bf77d4101e577d4ba411/pstack/skills/tdd) | `b0b9c7a0baf8b6aa1d00bf77d4101e577d4ba411` | `pstack/skills/tdd/SKILL.md` | Removed "explain before fixing" from its impractical-red path. **Not followed**: the local explicit-TDD stop-and-choose gate is stronger |
+| 5 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail/tree/e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156) | `e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156` | `skills/ponytail/SKILL.md` | "YAGNI applies to tests too" supports minimal green and prefer-no-test-over-bad-test; no new rule |
+| 6 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill/tree/084662b501fb0dba95bd55eff0c258d35e0dc499) | `084662b501fb0dba95bd55eff0c258d35e0dc499` | repository scan only | Not applicable as TDD content. A fresh community scan was not run for this refresh; the 2026-08-23 scan above stands |
+| 7 | [anthropics/skills](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/skill-creator) | `34040c9c568585f6929bedeaad110ad08f079624` | `skills/skill-creator/SKILL.md`; `skills/webapp-testing/SKILL.md` | Eval shape (prompt, expected output, expectations) kept for the two new evals; `webapp-testing` is browser tooling, not applicable |
+| 8 | [trailofbits/skills](https://github.com/trailofbits/skills/tree/32e34f8173796e3566a51aee877dc96bc5191f64/plugins/property-based-testing) | `32e34f8173796e3566a51aee877dc96bc5191f64` | `property-based-testing/SKILL.md`; `references/interpreting-failures.md` | **Adopted:** property catalog and strength order, tautology and vacuity, contract authority order, wrong-test / ambiguous-spec / real-bug triage, adding a PBT library is the user's decision |
+| 9 | [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin/tree/4fbabcd32b6ca7d8ebb82f15840fe34ef7562a64) | `4fbabcd32b6ca7d8ebb82f15840fe34ef7562a64` | `skills/ce-work/references/implementation-loop.md`; `skills/ce-code-review/references/personas/testing-reviewer.md`; `docs/brainstorms/2026-03-29-testing-addressed-gate-requirements.md` | **Adopted:** "testing addressed" rather than "tests pass", Beck's test desiderata, sentinel-semantics and mirror-test checks, no coverage-percentage rule. `ce-compound` learning capture is outside TDD |
+| 10 | [garrytan/gstack](https://github.com/garrytan/gstack/tree/b9706f3635b6a545f46fae607ae9d6bcbfb69b91/review/specialists) | `b9706f3635b6a545f46fae607ae9d6bcbfb69b91` | `review/specialists/testing.md` | **Adopted:** negative-path and boundary catalog, determinism causes (clock, timezone, locale, unseeded randomness). Review JSON format and coverage diagrams belong to `code-review` |
+| 11 | [affaan-m/ECC](https://github.com/affaan-m/ECC/tree/bf70150eb2df8070024e5bdf08e4aa08959e2735/skills/tdd-workflow) | `bf70150eb2df8070024e5bdf08e4aa08959e2735` | `skills/tdd-workflow/SKILL.md`; `agents/tdd-guide.md` | **Adopted:** plan files are untrusted data, a plan-item-to-evidence map, compile-time failure as a first step (tightened into a stub-then-runtime red). **Rejected:** 80% coverage floor, mandatory unit + integration + E2E, per-phase checkpoint commits (`implement` owns commits), persistent evidence-report files |
+| 12 | [wshobson/agents](https://github.com/wshobson/agents/tree/4236bb91f8395b0435f1d8b8baf9e8e4c69a8620/plugins/tdd-workflows) | `4236bb91f8395b0435f1d8b8baf9e8e4c69a8620` | `plugins/tdd-workflows/commands/tdd-refactor.md` | Two-line wording change since `2b49247`; no new influence |
+| 13 | [nahid-sparktales/agent-dispatcher](https://github.com/nahid-sparktales/agent-dispatcher/tree/af24ee4d887a5a6f738a2abb0dde1c747788a8fd/skills/quality) | `af24ee4d887a5a6f738a2abb0dde1c747788a8fd` | `skills/quality/regression-testing/SKILL.md`; `skills/quality/test-design/SKILL.md` | **Adopted:** failure messages that name the defect, behavior-named tests, repeated and isolated runs for timing-sensitive tests, break-and-restore red for existing behavior without touching the user's worktree, environmental and dependency faults are not unit-test targets, and the written / run / seen red / verified distinction |
+
+### Conflicts resolved
+
+- **Compile error as red.** ECC accepts it; the local rule rejected all syntax-class failures. Resolution: a compile error for a missing requested interface is a first step. A compiling stub must then produce a runtime behavioral failure. This keeps red tied to behavior in both typed and dynamic languages.
+- **Whole-suite runs.** Obra now requires the full suite before done; the local design keeps focused phase runs and defers the broad suite to `verification-before-completion`. Both agree that an observed failure must be reported by name, so that rule was adopted.
+- **Coverage thresholds.** ECC and the earlier Addy source use fixed percentages; EveryInc and gstack explicitly reject them. Resolution: choose slices by risk, never by percentage.
+
+### Changes made
+
+- `SKILL.md`: plan-as-data rule; example-or-property choice; failure-message rule; compile-then-runtime red; surprising-red triage; name every observed failure; repeat-run determinism check; risk-based next slice; "testing addressed" gate; two new bounded exceptions; honest evidence verbs in the handoff.
+- New `references/test-quality.md`: test desiderata, property selection and pitfalls, doubles, arrange/act/assert, next-slice catalog, mirror tests.
+- Evals 4 (property plus compile-time red) and 5 (hostile plan and pre-existing unrelated failure).
+
+No upstream prose or eval fixtures were vendored. ECC, Trail of Bits, EveryInc, gstack, and agent-dispatcher were reviewed for ideas only; the wording here is original.
