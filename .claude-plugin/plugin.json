@@ -23,6 +23,13 @@
     "verification",
     "writing"
   ],
+  "agents": [
+    "./skills/engineering/orchestrate/assets/claude-agents/orchestrate-explorer.md",
+    "./skills/engineering/orchestrate/assets/claude-agents/orchestrate-researcher.md",
+    "./skills/engineering/orchestrate/assets/claude-agents/orchestrate-worker.md",
+    "./skills/engineering/orchestrate/assets/claude-agents/orchestrate-tester.md",
+    "./skills/engineering/orchestrate/assets/claude-agents/orchestrate-reviewer.md"
+  ],
   "skills": [
     "./skills/agile/agile-flow",
     "./skills/agile/agile-refine",
@@ -37,6 +44,7 @@
     "./skills/engineering/diagnosing-bugs",
     "./skills/engineering/git-workflow",
     "./skills/engineering/implement",
+    "./skills/engineering/orchestrate",
     "./skills/engineering/planning-and-task-breakdown",
     "./skills/engineering/prototype",
     "./skills/engineering/research",

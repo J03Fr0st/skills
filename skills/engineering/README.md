@@ -13,6 +13,7 @@ See the [workflow map](../../docs/workflow.md) for entry points and handoffs.
 - [coding-standards](../../docs/engineering/coding-standards.md) - apply project conventions with shared rules and conditional backend and frontend guidance.
 - [implement](../../docs/engineering/implement.md) - execute authorized changes in coherent slices while preserving repository state and user authority.
 - [git-workflow](../../docs/engineering/git-workflow.md) - manage branches, worktrees, PR writing, and verified integration.
+- [orchestrate](../../docs/engineering/orchestrate.md) - select native agents and models, coordinate bounded assignments, and verify integrated results.
 - [planning-and-task-breakdown](../../docs/engineering/planning-and-task-breakdown.md) - plan verifiable slices, dependencies, and the ready frontier.
 - [prototype](../../docs/engineering/prototype.md) - answer one empirical design question through a reproducible experiment.
 - [research](../../docs/engineering/research.md) - investigate primary sources and preserve cited findings with explicit limitations.

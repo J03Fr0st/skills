@@ -47,6 +47,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   with diagrams, tables, and code, verified in a real browser.
 - [implement](docs/engineering/implement.md) — execute authorized changes in coherent,
   repository-safe slices and hand off fresh completion evidence.
+- [orchestrate](docs/engineering/orchestrate.md) — route bounded work to native
+  Claude Code or Codex agents with task-appropriate models and verified integration.
 - [planning-and-task-breakdown](docs/engineering/planning-and-task-breakdown.md) — turn clear
   requirements into verifiable slices, dependencies, and a ready frontier.
 - [prototype](docs/engineering/prototype.md) — answer one design or feasibility question

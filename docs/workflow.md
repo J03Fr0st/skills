@@ -5,6 +5,7 @@ Start from the question or outcome you have. Most skills can be selected by the 
 | Your request | Entry point | Result |
 | --- | --- | --- |
 | Build a clear, bounded change | [implement](engineering/implement.md) | A coherent change with fresh verification |
+| Route independent work among native agents and models | [orchestrate](engineering/orchestrate.md) | Bounded assignments, reconciled ownership, and verified integration |
 | Find why something is failing | [diagnosing-bugs](engineering/diagnosing-bugs.md) | Cause, evidence, and remaining uncertainty |
 | Plan dependent work across sessions | [planning-and-task-breakdown](engineering/planning-and-task-breakdown.md) | Verifiable slices, dependencies, and ready frontier |
 | Research an API, approach, or current practice | [research](engineering/research.md) | Cited findings and evidence limits |
@@ -46,6 +47,8 @@ flowchart TD
 ```
 
 `implement` selects `tdd` for useful behavioral checks and `codebase-design` for material module decisions. Uncertain external facts go to `research`; a needed experiment goes to `prototype`. Their results return to the current task. A review or planning request alone finishes with its requested artifact. A request to plan and build proceeds through both within the existing authorization.
+
+When native delegation is useful, `orchestrate` selects agents and models for ready slices while the root retains integration ownership. It composes the workflow doing the work: `implement` still owns implementation discipline and `verification-before-completion` owns completion evidence. Claude Code uses Claude-native agents; Codex uses Codex-native agents. Small localized work stays with its current owner.
 
 During planning and design, consider whether an existing owner or suitable native facility already solves the problem. This applies Ponytail's reuse-first guidance before new complexity is introduced.
 
