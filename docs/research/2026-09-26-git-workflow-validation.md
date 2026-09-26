@@ -113,21 +113,27 @@ and repository validation during this expansion.
 
 ## Runnable helper and templates
 
-The combined helper and Git mechanics suites passed **14/14 tests** on 2026-09-26:
-eight helper tests and the six mechanics exercises above. Helper coverage includes
+The combined helper and Git mechanics suites passed **19/19 tests** on 2026-09-26:
+thirteen helper tests and the six mechanics exercises above. Helper coverage includes
 explicit non-main base resolution, dirty-state preservation, rename paths and
-counts, detached HEAD, worktree inventory and newline fields, invalid arguments,
-asset lookup from another directory, exclusive output, and traversal rejection.
+counts, staged renames and Unicode paths, detached HEAD, worktree inventory and
+newline fields, invalid arguments with specific error messages, unborn branches,
+unrelated histories, the exact JSON field sets, execution through a linked skill
+directory, asset lookup from another directory, exclusive output, traversal
+rejection, and committing a filled commit template with `--cleanup=strip`.
 Manual smoke checks also confirmed an empty HEAD-to-HEAD range and template stdout.
 
 Independent review found and prompted corrections to rename/numstat parsing,
 worktree inventory, newline handling, and partial-clone fetch prevention. A test
 fixture initially compared against a base predating the renamed file; it was
-corrected to rename a file present at the base. The final review found no material
-remaining defects. Partial-clone fetch prevention and tab-containing filenames
+corrected to rename a file present at the base. A later review found that the CLI
+exited 0 without output when run through a symlinked or junctioned install,
+that ref errors did not name the failing ref, and that JSON output duplicated
+raw and parsed fields; these were fixed with regression tests. The helper's
+timeout path is not covered by a test. Partial-clone fetch prevention and tab-containing filenames
 have not been exercised by a regression test; arbitrary non-UTF-8 filename bytes
 are outside the helper's supported output contract.
 
 `npm run check` passed its eight repository-tooling tests and metadata/link/version
 validation. `claude plugin validate . --strict` and `git diff --check` passed.
-No live PR was published and no persistent Git configuration was installed.
+The work was published as PR #29; no persistent Git configuration was installed.

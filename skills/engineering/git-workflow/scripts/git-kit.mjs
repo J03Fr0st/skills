@@ -336,8 +336,14 @@ function prContextCommand(repoArg, baseRef, headRef) {
   const root = repositoryRoot(repoArg);
   const base = resolveCommit(root, baseRef, 'Base');
   const head = resolveCommit(root, headRef ?? 'HEAD', 'Head');
-  const mergeBase = runGit(['merge-base', base, head], root, { allowFailure: true }).stdout.trim();
-  if (!mergeBase) throw new CliError('Base and head have no merge base (unrelated histories)');
+  const mergeBaseResult = runGit(['merge-base', base, head], root, { allowFailure: true });
+  if (mergeBaseResult.status === 1) {
+    throw new CliError('Base and head have no merge base (unrelated histories)');
+  }
+  if (mergeBaseResult.status !== 0) {
+    throw new CliError(redactedGitError(mergeBaseResult.stderr) || 'git merge-base failed');
+  }
+  const mergeBase = mergeBaseResult.stdout.trim();
 
   const commits = runGit(['rev-list', '--reverse', `${mergeBase}..${head}`], root)
     .stdout.trim()
