@@ -1,6 +1,0 @@
-interface:
-  display_name: "Agile Retro"
-  short_description: "Turn delivery evidence into one experiment"
-
-policy:
-  allow_implicit_invocation: false

@@ -1,6 +1,6 @@
 ---
 name: planning-and-task-breakdown
-description: Plan technical work when clear requirements span dependent changes, multiple sessions, or an uncertain implementation order. Use for implementation plans, vertical slices, and task dependencies. Cycle goals and capacity belong to agile-sprint-plan; a small clear change can go directly to implement.
+description: Plan technical work when clear requirements span dependent changes, multiple sessions, or an uncertain implementation order. Use for implementation plans, vertical slices, and task dependencies. A small clear change can go directly to implement.
 ---
 
 # Planning and Task Breakdown
@@ -11,7 +11,7 @@ Turn an agreed outcome into independently verifiable slices and a ready frontier
 
 Read the requested outcome, repository instructions, existing plan or tracker, relevant code, and available checks. Separate confirmed behavior from assumptions. Resolve discoverable facts directly; use `research` for external facts and `codebase-design` for a consequential module decision.
 
-Ask about an unresolved choice only when it changes acceptance, scope, architecture, or risk. Use `grilling` for an interview when several material choices depend on each other. For a backlog readiness decision, recommend the explicit `agile-refine` command. Continue planning independent parts while a decision is pending.
+Ask about an unresolved choice only when it changes acceptance, scope, architecture, or risk. Use `grilling` for an interview when several material choices depend on each other. Continue planning independent parts while a decision is pending.
 
 **Complete when:** the outcome, exclusions, acceptance conditions, existing state, and unresolved decision owners are explicit.
 

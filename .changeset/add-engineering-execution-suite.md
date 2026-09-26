@@ -9,4 +9,4 @@ Add four composable engineering execution skills:
 - `diagnosing-bugs` separates read-only root-cause investigation from later remediation.
 - `verification-before-completion` maps final claims to fresh, scope-matched evidence and honest terminal states.
 
-The suite includes revision-pinned research, adversarial eval cases, human-facing documentation, Agile and review handoffs, and plugin publication metadata.
+The suite includes revision-pinned research, adversarial eval cases, human-facing documentation, review handoffs, and plugin publication metadata.
