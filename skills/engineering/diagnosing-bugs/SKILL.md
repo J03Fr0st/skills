@@ -1,11 +1,21 @@
 ---
 name: diagnosing-bugs
-description: Diagnose bugs and performance regressions through reproduction, observations, competing hypotheses, and discriminating experiments before proposing a fix. Use when the user says diagnose, debug, investigate, find the root cause, explain a failure, or reports broken, throwing, failing, flaky, intermittent, or slow behavior whose cause is not established. Keep diagnosis read-only unless mutation is explicitly authorized; hand confirmed remediation to implement or tdd, and route review-only findings to code-review.
+description: Investigate an unexplained bug or performance regression when its cause requires evidence from code, runtime behavior, logs, or reproduction. Use for explicit diagnosis or root-cause requests, intermittent or environment-specific failures, and fix requests with an unknown cause. Answer quick questions from available evidence directly; send known-cause fixes to implement and review-only findings to code-review. Diagnose-only work remains read-only.
 ---
 
 # Diagnosing Bugs
 
 Establish what causes the observed behavior before changing production code. A plausible story is a hypothesis; a symptom disappearing after an edit is not automatically root-cause proof.
+
+## Choose the route
+
+Match the depth to the unresolved question before starting the diagnostic steps:
+
+- If the user asks for a quick explanation and the available error or code already supports one, answer it directly. State what the evidence shows and what remains uncertain. A hypothetical reproduction adds no evidence.
+- If the cause is already established and the user wants a change, use `implement`. A known-cause fix does not need a new diagnosis.
+- If the cause remains uncertain or the user asks for an investigation, follow the workflow below. Use the smallest faithful check that can distinguish causes; increase depth only when that check leaves uncertainty.
+
+**Complete when:** the request has a direct answer, a known-cause implementation route, or a specific unresolved causal question for diagnosis.
 
 ## Operating boundary
 
