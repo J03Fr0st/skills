@@ -11,9 +11,17 @@ Use tests as a design and evidence loop, not as decoration added after implement
 
 Start from one observable behavior: an example, invariant, acceptance criterion, or reproduced defect. Locate the closest stable seam where a test can express that behavior without copying implementation details.
 
-Test public effects at the narrowest useful level. Prefer real collaborators inside the ownership boundary and substitute only slow, nondeterministic, unsafe, or externally controlled dependencies. A test that only proves how mocks were called is weak evidence unless the call protocol is itself the contract.
+Test public effects at the narrowest useful level. Prefer real collaborators inside the ownership boundary and substitute only slow, nondeterministic, unsafe, or externally controlled dependencies.
 
 Before accepting a test, name a realistic wrong implementation it would reject, derive expected values independently from the production algorithm, and confirm that assertions observe stable behavior rather than private structure.
+
+The sharpest wrong implementation is a hollow one: if the test would still pass with every function it imports returning `undefined`, it observes nothing. Rewrite the assertion or delete the test. Hollow tests take five shapes:
+
+- **Weak assertion:** checks only that a result exists, is truthy, or has a type.
+- **Mock-only:** asserts what a mock was called with or returned, not what the code produced, unless the call protocol is itself the contract.
+- **Self-referential:** computes the expected value with the code under test.
+- **Constant pinning:** asserts a literal the test itself supplied, or a configuration value copied into the test.
+- **Fixture echo:** asserts that fixture data equals the fixture.
 
 ## 1. Define the slice
 

@@ -173,6 +173,10 @@ restatements that leading words retire.
   **cache**, earning its load only when the lookup is expensive. Cache the
   unwritten convention, the reason behind a choice, the gotcha no config
   confesses; leave one-command lookups where they cannot go stale.
+- Promote a rule you keep restating into **structure**: a lint rule, type,
+  test, validation script, or runtime check. The mechanism enforces the rule on
+  every run, including runs where the prose was never read, so delete the prose
+  once the check lands.
 - Check every line for **relevance**. A line loses it by never bearing on the
   task, or by going stale as the world it describes changes. Without a pruning
   discipline the default fate is **sediment**: stale layers that settle because
