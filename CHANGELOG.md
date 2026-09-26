@@ -1,5 +1,83 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- [#4](https://github.com/J03Fr0st/skills/pull/4) [`190062c`](https://github.com/J03Fr0st/skills/commit/190062cd4330455bf0c8195a8142c6f8d7df9086) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add a composable Agile software-delivery suite:
+
+  - `agile-refine` shapes one valuable, Ready backlog item and composes the generalized `grilling` skill for consequential uncertainty.
+  - `agile-sprint-plan` plans one coherent cycle around an observable goal and realistic capacity.
+  - `agile-sprint-review` makes evidence-backed product acceptance decisions from working behavior.
+  - `agile-retro` turns delivery evidence into one bounded improvement experiment.
+  - `agile-flow` gives humans one explicit router while preserving the repository's existing delivery workflow and artifacts.
+
+  Backlog items and cycle records record the items blocking them and note when an agent drafted them. Refinement shapes work that changes no observable behavior — migrations, mechanical renames, gating decisions — as enabling items verified by preservation rather than by a demonstration that does not exist.
+
+- [#9](https://github.com/J03Fr0st/skills/pull/9) [`c4da30c`](https://github.com/J03Fr0st/skills/commit/c4da30cfe228961a15ec5f6a7651419dee809e2d) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `code-review` skill with quick, standard, and deep levels. Standard is
+  a bounded single-reviewer default; deep review adds independent defects,
+  specification, and standards/architecture passes plus evidence-based candidate
+  validation. All levels share a defect-first finding gate, merge-base scope,
+  repository-rule awareness, and concise findings-first output.
+
+- [#18](https://github.com/J03Fr0st/skills/pull/18) [`7405922`](https://github.com/J03Fr0st/skills/commit/7405922c950b68942ba09d04add24b46cc85adeb) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add coding-standards with a project-first shared baseline, conditional backend
+  and frontend references, documentation, and paired evaluation scenarios.
+
+- [`bd4a7b5`](https://github.com/J03Fr0st/skills/commit/bd4a7b56db0effb22c131e5121ca7a6e20db3a86) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add four composable engineering execution skills:
+
+  - `implement` coordinates authorized repository changes while preserving dirty state and external-action boundaries.
+  - `tdd` requires observable red, green, and refactor evidence with bounded, explicit exceptions.
+  - `diagnosing-bugs` separates read-only root-cause investigation from later remediation.
+  - `verification-before-completion` maps final claims to fresh, scope-matched evidence and honest terminal states.
+
+  The suite includes revision-pinned research, adversarial eval cases, human-facing documentation, Agile and review handoffs, and plugin publication metadata.
+
+- [`bd4a7b5`](https://github.com/J03Fr0st/skills/commit/bd4a7b56db0effb22c131e5121ca7a6e20db3a86) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add `grilling`, a model-invoked productivity skill for dependency-aware, live stress-testing of consequential plans, decisions, and ideas.
+
+  Route deep Agile refinement through the shared primitive while keeping backlog shaping, acceptance, and readiness in `agile-refine`.
+
+- [`bd4a7b5`](https://github.com/J03Fr0st/skills/commit/bd4a7b56db0effb22c131e5121ca7a6e20db3a86) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add a scoped, behavior-preserving simplify skill with contract checks, runnable
+  evaluation fixtures, documentation, and implementation/design routing.
+
+- [`bd4a7b5`](https://github.com/J03Fr0st/skills/commit/bd4a7b56db0effb22c131e5121ca7a6e20db3a86) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add planning-and-task-breakdown, research, security-review, prototype, and handoff.
+  Connect their ownership boundaries to implementation and Agile delivery, document
+  the workflow, and add focused blast-radius and project-verification guidance.
+
+- [`82e32e8`](https://github.com/J03Fr0st/skills/commit/82e32e89e5151fdefda11c3dc934905bd1123ed9) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add babysit-pr with a resumable GitHub watch loop, explicit completion endpoints, and scoped recovery guidance.
+
+- [`78c22f7`](https://github.com/J03Fr0st/skills/commit/78c22f77130d30f3ad79361d80bb4b7b5e77c79f) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `codebase-design` skill for designing cohesive modules and explicit relationships. It expands the deep-module vocabulary with evidence-gated DRY, KISS, and YAGNI guidance, dependency direction, communication contracts, SOLID trade-offs, distributed reliability, seam-aligned testing, production evidence, architecture enforcement, and progressive deepening and alternative-design workflows.
+
+- [#29](https://github.com/J03Fr0st/skills/pull/29) [`e1af4df`](https://github.com/J03Fr0st/skills/commit/e1af4df870ac789e8840989f6dfd2a5617adc8d2) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add git-workflow for repository-aware branching, worktree lifecycle, PR titles and descriptions, and verified integration.
+
+  Include policy decisions, common recipes, recovery, PR examples, integration pitfalls, environment setup, and scenario/mechanics evaluations.
+
+  Provide directly runnable Git context helpers and PR/commit draft templates with exclusive file creation.
+
+- [#11](https://github.com/J03Fr0st/skills/pull/11) [`5f82174`](https://github.com/J03Fr0st/skills/commit/5f82174f4f41a2e636a67ae11ca9fbba5c47f596) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `writing-for-agents` skill for the documents agents consume: skills,
+  `AGENTS.md`, `CLAUDE.md`, and reference files reached by a pointer. It carries
+  the two-loads model, context pointers, the information hierarchy, completion
+  criteria, leading words, and a pruning discipline in the body, with three
+  branch references for skill mechanics, instruction files, and verification.
+
+  The skill merges three upstream lines of work and resolves where they conflict.
+  Descriptions open with bounded identity, list trigger branches pushily, and never
+  summarize the process, which reconciles the shortcut evidence against the
+  undertriggering evidence. Verification is a proportionate tier rather than a
+  universal baseline requirement, with a discipline document still gated on a
+  documented baseline failure before it ships.
+
+- [#8](https://github.com/J03Fr0st/skills/pull/8) [`7ecaaf3`](https://github.com/J03Fr0st/skills/commit/7ecaaf39b827cd2dc91711c8c32598999e76deb7) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `writing-for-humans` skill for clear, specific, genre-aware prose with
+  separate writing, diagnosis, editing, rewriting, and sample-grounded voice
+  modes. It includes meaning-preservation guardrails, false-positive-aware
+  editorial lenses, a deterministic literal and Markdown-structure checker, and
+  evaluation cases for accuracy, restraint, cleanup, voice transfer, and
+  leaving a sound draft alone.
+
+### Patch Changes
+
+- [#19](https://github.com/J03Fr0st/skills/pull/19) [`9970739`](https://github.com/J03Fr0st/skills/commit/9970739dd3e8720ce3ee2b31ef5ac6a6a4199bc6) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Synchronize plugin metadata during releases and add repository validation,
+  cross-platform checks, dependency maintenance, and contribution guidance.
+
 ## 0.1.0
 
 ### Minor Changes
