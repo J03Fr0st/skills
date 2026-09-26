@@ -37,6 +37,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   with shared rules and conditional backend and frontend guidance.
 - [diagnosing-bugs](docs/engineering/diagnosing-bugs.md) — prove a root cause through
   reproduction, competing hypotheses, and discriminating evidence before a fix.
+- [git-workflow](docs/engineering/git-workflow.md) — manage branches and worktrees,
+  write outcome-led PR titles and descriptions, and verify authorized integration.
 - [grilling](docs/productivity/grilling.md) — stress-test a consequential or ambiguous
   plan, decision, or idea through a live, dependency-aware interview.
 - [handoff](docs/productivity/handoff.md) — preserve verified task state across a pause,

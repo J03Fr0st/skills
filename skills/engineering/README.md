@@ -12,6 +12,7 @@ See the [workflow map](../../docs/workflow.md) for entry points and handoffs.
 - [diagnosing-bugs](../../docs/engineering/diagnosing-bugs.md) - establish root causes through reproduction, hypotheses, and discriminating evidence before remediation.
 - [coding-standards](../../docs/engineering/coding-standards.md) - apply project conventions with shared rules and conditional backend and frontend guidance.
 - [implement](../../docs/engineering/implement.md) - execute authorized changes in coherent slices while preserving repository state and user authority.
+- [git-workflow](../../docs/engineering/git-workflow.md) - manage branches, worktrees, PR writing, and verified integration.
 - [planning-and-task-breakdown](../../docs/engineering/planning-and-task-breakdown.md) - plan verifiable slices, dependencies, and the ready frontier.
 - [prototype](../../docs/engineering/prototype.md) - answer one empirical design question through a reproducible experiment.
 - [research](../../docs/engineering/research.md) - investigate primary sources and preserve cited findings with explicit limitations.
