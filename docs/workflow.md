@@ -14,6 +14,7 @@ Start from the question or outcome you have. Most skills can be selected by the 
 | Design a module or responsibility boundary | [codebase-design](engineering/codebase-design.md) | An explicit interface and ownership decision |
 | Simplify working code | [simplify](engineering/simplify.md) | Lower complexity with behavior-preservation evidence |
 | Review changes | [code-review](engineering/code-review.md) | Evidence-backed findings at the requested depth |
+| Ship finished changes | [ship-it](engineering/ship-it.md) | A verified PR, merge, or deployment endpoint |
 | Apply or define coding conventions | [coding-standards](engineering/coding-standards.md) | Project-first rules for the affected code domain |
 | Run a dedicated security audit | [security-review](engineering/security-review.md) | Scoped threat model, findings, and closing checks |
 | Pause, resume, or move work | [handoff](productivity/handoff.md) | Current state and the next executable check |
@@ -61,6 +62,12 @@ When cleanup is requested or included in the authorized workflow, `implement` se
 Keep the project's existing issue, plan, or cycle record authoritative. Use `handoff` at an actual pause or transfer boundary, with evidence pointers and the ready frontier. Routine progress and final summaries stay with the workflow doing the work.
 
 Commits, PRs, releases, and deployments follow the user's authorization and the project's tools. They are separate from proving the local result.
+
+For finished work, `ship-it` coordinates delivery using `code-review`,
+`verification-before-completion`, `git-workflow`, and `babysit-pr`. Bare "ship it"
+targets a merge-ready PR; an explicit publication, merge or deployment request
+sets that endpoint instead. Local implementation remains owned by `implement`,
+Git transitions by `git-workflow`, and the remote repair loop by `babysit-pr`.
 
 ## Agentic development lifecycle
 
