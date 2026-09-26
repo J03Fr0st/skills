@@ -107,6 +107,8 @@ Combine shapes deliberately. A bounded context can contain vertical slices; a sl
 - A small interface hides unrelated responsibilities and shared mutable state.
 - A new service or event bus is proposed before ownership or failure isolation requires distribution.
 - A thin translator is removed even though it protects a domain, trust, protocol, or vendor boundary.
+- Domain rules live in scattered conditionals: a new feature adds one more branch to an existing if/else chain, or a second boolean must stay in sync with the first. Move the rule into one explicit model (a state machine, tagged union, lookup table, or reducer) that owns the valid states and transitions.
+- Modules are named for execution phases (`parse`, `process`, `finalize`) while a single domain concept is spread across all of them.
 
 ## Primary sources
 
