@@ -6,7 +6,7 @@ The result is a plan with observable slices, acceptance checks, dependencies, a 
 
 ## When it fits
 
-A direct small change goes to `implement`. Product ambiguity goes to `grilling` or explicit Agile refinement. Cycle goals and capacity belong to `agile-sprint-plan`; this skill owns technical execution order.
+A direct small change goes to `implement`. Product ambiguity goes to `grilling`. This skill owns technical execution order.
 
 A planning request normally includes saving a local plan. Chat-only requests stay inline. Existing plans and trackers remain canonical, and remote tracker writes use the user's existing authorization. If implementation is already requested, the plan feeds `implement` immediately.
 

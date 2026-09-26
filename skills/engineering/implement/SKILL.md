@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Execute authorized software changes from direct requests, issues, specifications, or plans. Use when asked to build, change, refactor, or fix known-cause behavior, or when selected Agile work enters delivery. Diagnosis, explicit test-first work, review-only work, planning-only work, and research have dedicated workflows.
+description: Execute authorized software changes from direct requests, issues, specifications, or plans. Use when asked to build, change, refactor, or fix known-cause behavior. Diagnosis, explicit test-first work, review-only work, planning-only work, and research have dedicated workflows.
 ---
 
 # Implement

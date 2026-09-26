@@ -52,7 +52,7 @@ Verdict precedence is: contradictory evidence, then a prevented material check, 
 
 Verification does not silently implement, commit, push, approve, merge, deploy, accept, or publish. Destructive, paid, rate-limited, externally visible, credentialed, or privacy-sensitive checks pause for authorization.
 
-`implement` owns edits and calls this after the final relevant change. `tdd` supplies phase evidence but not broader completion. `diagnosing-bugs` supplies the cause and original symptom. `code-review` remains an independent review. `agile-sprint-review` owns product acceptance.
+`implement` owns edits and calls this after the final relevant change. `tdd` supplies phase evidence but not broader completion. `diagnosing-bugs` supplies the cause and original symptom. `code-review` remains an independent review.
 
 ## Evidence receipt
 
