@@ -57,6 +57,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   revision-aware citations, and explicit evidence gaps.
 - [security-review](docs/engineering/security-review.md) — assess trust boundaries and
   concrete abuse paths through a scoped, read-only security review.
+- [ship-it](docs/engineering/ship-it.md) — carry finished changes through delivery
+  to an explicit, verified PR, merge, or deployment endpoint.
 - [simplify](docs/engineering/simplify.md) — reduce code complexity in a scoped pass
   while preserving observable behavior and useful boundaries.
 - [tdd](docs/engineering/tdd.md) — drive behavior changes through observable red, green,

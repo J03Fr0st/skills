@@ -49,6 +49,7 @@
     "./skills/engineering/prototype",
     "./skills/engineering/research",
     "./skills/engineering/security-review",
+    "./skills/engineering/ship-it",
     "./skills/engineering/simplify",
     "./skills/engineering/tdd",
     "./skills/engineering/verification-before-completion",
