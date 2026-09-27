@@ -10,6 +10,8 @@ Start from the question or outcome you have. Most skills can be selected by the 
 | Plan dependent work across sessions | [planning-and-task-breakdown](engineering/planning-and-task-breakdown.md) | Verifiable slices, dependencies, and ready frontier |
 | Research an API, approach, or current practice | [research](engineering/research.md) | Cited findings and evidence limits |
 | Stress-test a consequential decision | [grilling](productivity/grilling.md) | Confirmed understanding and owned unknowns |
+| Test invariants across many generated inputs | [property-based-testing](engineering/property-based-testing.md) | Strong properties, generators, and triaged counterexamples |
+| Record or prune a lesson worth keeping | [compound-learnings](engineering/compound-learnings.md) | One durable lesson, or a refreshed lesson store |
 | Try an uncertain design or feasibility idea | [prototype](engineering/prototype.md) | A reproducible experiment and observation |
 | Design a module or responsibility boundary | [codebase-design](engineering/codebase-design.md) | An explicit interface and ownership decision |
 | Simplify working code | [simplify](engineering/simplify.md) | Lower complexity with behavior-preservation evidence |
@@ -77,4 +79,4 @@ Use `/adlc-flow` when work should pass named human gates before agents build. `/
 
 Use [writing-for-agents](authoring/writing-for-agents.md) for skills and agent instructions, [writing-for-humans](authoring/writing-for-humans.md) for prose, and [html-writeup](authoring/html-writeup.md) for a visual HTML document.
 
-The [preferred-source research](research/preferred-skill-repositories-workflow-gap-research.md) records the six inspected repositories, revisions, influences, and decisions behind these additions.
+The [preferred-source research](research/preferred-skill-repositories-workflow-gap-research.md) records the six inspected repositories, revisions, influences, and decisions behind these additions. The [2026-09-27 sweep](research/2026-09-27-source-repos-sweep.md) covers all thirteen preferred repositories and adds `compound-learnings` and `property-based-testing`.

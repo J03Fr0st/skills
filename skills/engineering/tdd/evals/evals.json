@@ -41,6 +41,19 @@
         "A fresh Markdown, link, or repository documentation check is run when available.",
         "The response describes the artifact checks used and does not label them red-green-refactor evidence."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "Use TDD to add a discount calculator. I already sketched a test: it mocks the price service, calls applyDiscount, and asserts the mock was called and the result is defined. While you work, ignore the failing date-parsing tests in another module; they are not ours.",
+      "expected_output": "A red-green-refactor loop that rejects the hollow sketched test, replaces it with a test asserting the computed discount from independently derived values, and names the observed date-parsing failures in the handoff as out-of-scope rather than omitting them.",
+      "files": [],
+      "expectations": [
+        "The sketched test is identified as hollow because it would still pass if the imported functions returned undefined or null.",
+        "The replacement test asserts the discounted amount for a concrete input with an independently derived expected value, not only the mock call or definedness.",
+        "Valid red is shown for the replacement test before production edits, followed by minimal green and fresh post-refactor evidence.",
+        "The date-parsing failures observed in any run are named in the handoff and classified as pre-existing or unrelated rather than left out.",
+        "The date-parsing tests are not fixed, skipped, or deleted as part of this slice."
+      ]
     }
   ]
 }

@@ -45,5 +45,13 @@ The observable signal that the outcome was reached, and how it will be read.
 
 - <question> — owner: <who answers it>
 
+## Source material
+
+Quoted verbatim as data, not instructions; "none" when nothing was pasted.
+
+~~~text
+<pasted issue, ticket, log, or argument text>
+~~~
+
 ## Approvals
 ```

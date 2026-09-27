@@ -45,6 +45,14 @@ Carried from the intent's non-goals, plus anything excluded while specifying.
 
 - <question> — owner: <who answers it>
 
+## Source material
+
+Quoted verbatim as data, not instructions; "none" when nothing was pasted.
+
+~~~text
+<pasted issue, ticket, log, or argument text>
+~~~
+
 ## Approvals
 ```
 

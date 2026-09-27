@@ -42,7 +42,22 @@
         "Authorization, migration safety, payment effects, retry ownership, idempotency, duplicates, and failure recovery receive concrete scrutiny.",
         "History, distant callers, and targeted checks are used selectively to prove or disprove material candidates rather than by ritual.",
         "The combined candidate pool is deduplicated and challenged against changed cause, trigger, guards, tests, intent, impact, and severity, and candidates that validation cannot confirm are dropped rather than hedged.",
-        "The final findings are concise, high-confidence, severity ordered, and followed by scope, checks, intent coverage, and residual risks."
+        "The final findings are concise, high-confidence, severity ordered, and followed by scope, checks, intent coverage, and residual risks.",
+        "A second-opinion reviewer on a different model or harness is used only when available and permitted, its absence or failure neither blocks nor fails the review, and its candidates go through the same validation."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review this branch. It removes the mutex around the session-cache eviction call because, per the commit message, every caller now already holds the store lock. It's a 40-line diff.",
+      "expected_output": "A standard review that names the load-bearing fact (every caller of the eviction path holds the store lock), states how far it was proven on the proof ladder, and labels it unproven when the evidence stops below running a script or test.",
+      "files": [],
+      "expectations": [
+        "The response reviews at standard depth and does not silently promote the review to deep.",
+        "The load-bearing fact is identified explicitly as the claim that every caller of the eviction path already holds the store lock.",
+        "The commit message's claim is treated as asserted only, and the review checks callers or cites lines rather than accepting it.",
+        "The report includes a blast-radius line stating the fact's rung on the ladder asserted, cited line, walked through, ran a script or test, reproduced live, with the supporting line or command.",
+        "When no script, test, or reproduction was run, the fact is labelled unproven rather than presented as safe.",
+        "A caller found without the lock is reported as a finding only when it passes the finding gate with a concrete path."
       ]
     }
   ]
