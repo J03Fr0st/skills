@@ -14,6 +14,7 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
+MARKER=".linked-by-skills-repo"
 
 if [ ! -d "$REPO/skills" ]; then
   echo "No skills directory found."
@@ -51,11 +52,22 @@ for DEST in "${DESTS[@]}"; do
     src="${srcs[$i]}"
     target="$DEST/$name"
 
+    # A real directory is either a copy this script made (where ln -s copies
+    # instead of linking, e.g. Git Bash on Windows) or a local install or fork
+    # it does not own. Replace only its own copies, marked below.
     if [ -e "$target" ] && [ ! -L "$target" ]; then
-      rm -rf "$target"
+      if [ -f "$target/$MARKER" ]; then
+        rm -rf "$target"
+      else
+        echo "skipped $name: $target is a real directory this script did not create (move it aside to link)" >&2
+        continue
+      fi
     fi
 
     ln -sfn "$src" "$target"
+    if [ ! -L "$target" ]; then
+      touch "$target/$MARKER"
+    fi
     echo "linked $name -> $src ($DEST)"
   done
 done

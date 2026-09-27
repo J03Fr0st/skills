@@ -80,6 +80,8 @@ Track these axes even when one reviewer performs them together:
 
 Use architecture only to explain a concrete changed risk. Examine ownership, invariants, dependency direction, caller knowledge, failure semantics, and seam-aligned tests. Apply **KISS -> YAGNI -> DRY** as an evidence sequence: prefer the lowest total complexity that meets current constraints, reject structure justified only by hypothetical needs, then consolidate duplicated knowledge whose shared owner and change pattern are real. Similar syntax is not necessarily duplicated knowledge. Treat SOLID principles and code smells as diagnostic questions, not automatic findings.
 
+At `standard` and `deep`, identify the change's **load-bearing fact**: the one condition its safety depends on, such as "every caller already holds the lock" or "the removed column has no remaining readers." Record how far up the **proof ladder** that fact got: *asserted* -> *cited line* -> *walked through* -> *ran a script or test* -> *reproduced live*. A fact that stops below *ran* is **unproven**. Climb as far as the level's budget allows, then label the rung honestly.
+
 ## 4. Admit only proven findings
 
 A finding must satisfy every item:
@@ -118,6 +120,7 @@ If nothing passes the gate, write `No findings.` Do not manufacture reassurance,
 After the findings, include only:
 
 - **Review scope:** target, base, level, and what was inspected.
+- **Blast radius** (`standard` and `deep`): the load-bearing fact, its rung on the proof ladder with the cited line or command, and the label `unproven` when it stopped below *ran*.
 - **Residual risks:** unavailable specification, checks not run, unverified generated output, or areas for which a deeper review is warranted. Write `None identified` when appropriate.
 
 ## Completion gate
@@ -129,5 +132,6 @@ The review is complete only when:
 - applicable repository instructions were applied;
 - each reported item passes the finding gate and cites a precise changed cause;
 - uncertain or duplicate candidates were verified, removed, or disclosed as residual risk;
+- at `standard` and `deep`, the load-bearing fact is named with its proof rung, labelled `unproven` below *ran*;
 - the final response leads with findings and names the review level and evidence limits;
 - the review itself changed no repository or remote state.

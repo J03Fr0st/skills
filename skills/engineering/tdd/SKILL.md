@@ -15,6 +15,16 @@ Test public effects at the narrowest useful level. Prefer real collaborators ins
 
 Before accepting a test, name a realistic wrong implementation it would reject, derive expected values independently from the production algorithm, and confirm that assertions observe stable behavior rather than private structure.
 
+Apply the **hollow-test** litmus: would this test still pass if every function it imports returned `undefined` or `null`? If yes, rewrite it. Common hollow shapes:
+
+- asserts only truthiness, definedness, or that nothing threw;
+- asserts only that a mock was called, not what it received or what the subject produced;
+- computes the expected value with the subject itself;
+- pins a constant or snapshots the input fixture rather than the output;
+- never runs the subject, so the fixture asserts itself.
+
+When the behavior is an invariant over many inputs, such as a round-trip, ordering, or conservation rule, `property-based-testing` can supply a generative test in place of hand-picked examples.
+
 ## 1. Define the slice
 
 Write down:
@@ -52,7 +62,7 @@ Change the minimum production code needed for the red test. Avoid unrelated clea
 
 Run the same test target again. Green is valid only when the test executes and passes for the intended reason. Then run the nearest relevant existing tests to detect local regressions.
 
-If another failure appears, distinguish a task-caused regression from an unrelated or flaky failure. Do not weaken assertions, delete coverage, or broaden mocks merely to obtain green.
+If another failure appears, distinguish a task-caused regression from an unrelated or flaky failure, and record it for the handoff either way. Do not weaken assertions, delete coverage, or broaden mocks merely to obtain green; `verification-before-completion` scans the final diff for these.
 
 Record the command and result.
 
@@ -104,4 +114,4 @@ For behavior-bearing work, when the user explicitly requested TDD and no practic
 
 ## Handoff
 
-Report the behavior slices and, for each, the red command and expected failure, green command and result, final refactor command and result, test-quality caveats, exceptions taken, and broader checks still owed. Never label work TDD-complete when red was skipped or invalid.
+Report the behavior slices and, for each, the red command and expected failure, green command and result, final refactor command and result, test-quality caveats, exceptions taken, and broader checks still owed. Name every failing test observed in any run, including pre-existing, unrelated, and flaky ones, with its classification; a report that omits an observed failure is false by omission. Never label work TDD-complete when red was skipped or invalid.

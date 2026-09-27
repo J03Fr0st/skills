@@ -20,6 +20,9 @@ Example fix body:
 >
 > Validation: [reproduction command and observed before/after result].
 > [Name any integration check not run and its practical limit.]
+>
+> Merge danger: two-way door. If wrong, retried payments fail or double-charge
+> for every customer until reverted.
 
 Example mechanical refactor body:
 
@@ -27,6 +30,15 @@ Example mechanical refactor body:
 > boundary condition. Behavior is intended to remain unchanged.
 >
 > Validation: [actual regression checks and outcome].
+>
+> Merge danger: two-way door. If wrong, sessions near expiry are accepted or
+> rejected one boundary tick early or late across every caller.
+
+Example migration merge danger:
+
+> Merge danger: one-way door. The backfill rewrites plan IDs in place; revert
+> restores the code but not the old IDs, so recovery needs the pre-migration
+> snapshot. If wrong, affected subscribers lose access until restored.
 
 ## Editing checks
 
@@ -37,6 +49,7 @@ Example mechanical refactor body:
 | “Fully tested” | State which behavior was exercised, the result, and material gaps |
 | “Fix retries” when scope also changes charge identity | Cover both outcomes in title/opening or find a precise shared outcome |
 | “Safe rollback” for an irreversible migration | State the actual recovery procedure and its limits |
+| “Low risk” | Name the door and who is affected if the change is wrong |
 
 **Complete when:** examples have guided the wording without introducing invented
 facts, unearned guarantees, or sections that answer no reviewer question.

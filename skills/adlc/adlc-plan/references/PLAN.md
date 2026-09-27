@@ -16,7 +16,11 @@ source: <spec path>@<content hash>
 
 ## Slices
 
-<slices, dependencies, and ready frontier from planning-and-task-breakdown>
+<slices with interfaces, dependencies, and ready frontier from planning-and-task-breakdown>
+
+## Review focus
+
+<ranked failure modes no slice check exercises yet, each with its owning slice>
 
 ## Coverage
 
