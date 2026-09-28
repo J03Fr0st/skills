@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.1
+
+### Patch Changes
+
+- [#38](https://github.com/J03Fr0st/skills/pull/38) [`c6a7335`](https://github.com/J03Fr0st/skills/commit/c6a73358417a07c103025b29293908f11bef90e0) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Strengthen the five ADLC skills with a shared portable content-hash helper,
+  full upstream approval-chain checks, revision-bound decisions and delivery
+  evidence, explicit conditional approval handling, and declared delivery endpoints.
+  Preserve existing authorization and progress across turns and plan revisions;
+  add regression checks and scenario fixtures for the lifecycle boundaries.
+
 ## 0.2.0
 
 ### Minor Changes
