@@ -13,16 +13,16 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
 
 ### User-invoked
 
-- [adlc-flow](docs/adlc/adlc-flow.md) — route one piece of work through the agentic
-  development lifecycle from its evidenced stage to the next command or handoff.
+- [adlc-flow](docs/adlc/adlc-flow.md) — verify the approval chain and route work
+  from its evidenced stage to the next command or declared delivery endpoint.
 - [adlc-intent](docs/adlc/adlc-intent.md) — interview the human and record the problem,
   outcome, and success signal before agents build.
 - [adlc-spec](docs/adlc/adlc-spec.md) — turn approved intent into observable behavior
   and numbered, verifiable acceptance criteria.
 - [adlc-plan](docs/adlc/adlc-plan.md) — plan covered, assigned slices with separate
   verifiers and rollback from an approved spec.
-- [adlc-gate](docs/adlc/adlc-gate.md) — record a named human sign-off against the exact
-  content hash of an intent, spec, or plan, or on a delivery slice.
+- [adlc-gate](docs/adlc/adlc-gate.md) — record revision-bound human sign-off with
+  portable content hashes, explicit conditions, and freshness checks.
 
 ### Model-invoked
 
