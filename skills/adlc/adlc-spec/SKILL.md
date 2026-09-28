@@ -16,9 +16,17 @@ Read the intent beside this work item (`docs/adlc/<slug>/intent.md` or the proje
 sed -e '/^status:/d' -e '/^## Approvals/,$d' <intent> | git hash-object --stdin
 ```
 
+In PowerShell without Git Bash:
+
+```powershell
+$f = New-TemporaryFile; [IO.File]::WriteAllText($f, ((Get-Content -Raw <intent>) -replace '(?m)^status:.*\n' -replace '(?ms)^## Approvals.*')); git hash-object --no-filters $f; Remove-Item $f
+```
+
 Otherwise return `/adlc-gate intent` and stop.
 
-**Complete when:** the intent is approved and current, and its path and content hash are recorded as the spec's source.
+Read the intent's approval conditions and its open questions and assumptions with `decide by: spec`; this stage settles them.
+
+**Complete when:** the intent is approved and current, its path and content hash are recorded as the spec's source, and its conditions and due items are listed.
 
 ## 2. Derive the behavior
 
@@ -30,18 +38,18 @@ Apply constraints now, while the spec is written: security, privacy, compliance,
 
 When the behavior would contradict the approved intent, stop drafting and return `/adlc-intent` with the conflict.
 
-**Complete when:** every intent outcome has behavior, and every open question from the intent is resolved or carried with an owner.
+**Complete when:** every intent outcome has behavior, and every intent approval condition and item due by `spec` is settled in the spec, while every later item is carried with an owner and a `decide by` stage.
 
 ## 3. Draft the spec
 
 Write the artifact with [references/SPEC.md](references/SPEC.md), beside the intent. Each acceptance criterion names a scenario, an action, an expected observable result, and how it will be verified. Keep the spec free of file paths and code.
 
-Flag each policy conflict or judgement call under **Areas of concern** with an owner; the human resolves those, not the agent.
+Flag each policy conflict or judgement call under **Areas of concern** with an owner and a `decide by` stage: the earliest stage whose content depends on the answer. The human decides those, not the agent; record each decision beside its concern.
 
-**Complete when:** every outcome maps to at least one acceptance criterion, every criterion is observable and has a verification method, and every concern has an owner.
+**Complete when:** every outcome maps to at least one acceptance criterion, every criterion is observable and has a verification method, and every concern is decided or has an owner and a `decide by` stage.
 
 ## 4. Hand off to the gate
 
-Show the draft to the human and apply their corrections. Leave `status: draft`. Return `/adlc-gate spec` with the artifact path and stop.
+Show the draft to the human, name the concerns and judgement calls awaiting them, and ask for a reply. Apply their corrections. Leave `status: draft`. Return `/adlc-gate spec` with the artifact path and stop.
 
-**Complete when:** the human has reviewed the draft and the gate command is visible.
+**Complete when:** the human has replied to the draft and the gate command is visible.

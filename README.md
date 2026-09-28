@@ -22,7 +22,7 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
 - [adlc-plan](docs/adlc/adlc-plan.md) — plan covered, assigned slices with separate
   verifiers and rollback from an approved spec.
 - [adlc-gate](docs/adlc/adlc-gate.md) — record a named human sign-off against the exact
-  content hash of an intent, spec, or plan.
+  content hash of an intent, spec, or plan, or on a delivery slice.
 
 ### Model-invoked
 
