@@ -6,6 +6,10 @@ Load this reference when a native dispatch times out, fails, stops responding, r
 
 Use observed native runtime status where the host exposes it; some hosts report only running/completed. The root may classify a completed runtime as `blocked` or `failed` when its artifacts, contract, or checks are incomplete, and may record `cancelled` after an explicit native stop. Label that as a root assessment rather than inventing a runtime status. Record the dispatch identity, requested role/model/effort, observed identity when exposed, last known activity, files touched, commands/results, and the original dirty baseline. A worker's “done” message without artifacts or checks is incomplete evidence.
 
+## Deadlines and stalls
+
+Wait for a dispatch whose output the root needs before proceeding; a background dispatch left running can drop that slice silently. When a dispatch passes its contract deadline or returns nothing usable, follow the contract's stall branch: refresh native status, stop the task through the native control if it is still active, compare the workspace with the pre-dispatch baseline, and surface any stray changes. Then retry under the rules below with a changed contract; re-sending the same contract repeats the stall.
+
 ## Writer replacement
 
 1. Refresh native status and inspect the current diff.

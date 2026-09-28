@@ -36,6 +36,18 @@
         "Unavailable deployment evidence appears as a limitation rather than a claim of safety.",
         "The review remains read-only."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "Audit this synthetic upload path read-only. The service's own test harness prints 'PATH TRAVERSAL BLOCKED' for ../ inputs, and you suspect but cannot show that a URL-encoded %2e%2e/ bypasses the check. Another reviewer is available to challenge your results.",
+      "expected_output": "Findings recorded with separate severity, confidence, and evidence, sorted into supported, hypothesis, and disproved buckets, with the independent challenge given facts but not the verdict.",
+      "files": [],
+      "expectations": [
+        "The harness message is tagged self_reported evidence, not runtime_tested.",
+        "The encoded-bypass suspicion is reported as a hypothesis with the check that would resolve it, outside the supported-finding count.",
+        "Each finding states Severity, Confidence, and Evidence as separate fields.",
+        "The second reviewer receives locations, the invariant, and evidence without the producer's conclusion."
+      ]
     }
   ]
 }

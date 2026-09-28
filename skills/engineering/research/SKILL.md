@@ -44,8 +44,10 @@ For a comparison, use one set of criteria across candidates and distinguish miss
 
 Save one task-specific Markdown report under the repository's research convention, defaulting to `docs/research/<topic>-research.md`. For chat-only requests, return the report inline. Reuse an existing report for a continuation and date material updates; preserve historical observations when versions changed.
 
+Open the report with a **freshness fingerprint**: the commit SHA or retrieval date each source was checked at, and the repository paths or URLs the conclusions depend on. A later staleness check then becomes `git diff <sha>..HEAD -- <paths>` or a re-fetch of the listed URLs instead of a full reread.
+
 Include scope/date, conclusion, evidence and citations near their claims, limitations, and the next decision or implementation contract when useful. For preferred-source research, include each relevant repository's revision and influence, plus reasons for non-applicability or unavailable evidence. Link retained raw results without copying them wholesale.
 
 Check citations, revision pins, and local links. Return the saved path and the supported conclusion. Research alone ends here. When the user already requested another stage, pass the evidence to that workflow and continue within the existing scope; a research-and-plan request proceeds to planning, and authorized production changes proceed to `implement`.
 
-**Complete when:** the answer is traceable, the requested artifact exists, and its limits and next action are clear.
+**Complete when:** the answer is traceable, the fingerprint names every monitored source, the requested artifact exists, and its limits and next action are clear.

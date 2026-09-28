@@ -32,13 +32,13 @@ List the spec's approval conditions and its open questions and areas of concern 
 
 ## 2. Slice the work
 
-Run `planning-and-task-breakdown` with the approved spec as the contract and the plan artifact as its canonical save path. Its slices, dependencies, ready frontier, and checks become the plan's core.
+Run `planning-and-task-breakdown` with the approved spec as the contract and the plan artifact as its canonical save path. Its slices, interfaces, dependencies, review focus, ready frontier, and checks become the plan's core.
 
 When planning uncovers a fact that contradicts the approved spec, stop and return `/adlc-spec` with the evidence. The plan carries the spec as settled; it does not quietly change it.
 
 Slice headings carry no status: state changes during delivery, and an edit to the approved plan makes it stale. Slice state lives in `progress.md`.
 
-**Complete when:** the slices, dependencies, and ready frontier are written by that skill, with no placeholders.
+**Complete when:** the slices, interfaces, dependencies, review focus, and ready frontier are written by that skill, with no placeholders.
 
 ## 3. Add the ADLC sections
 
@@ -57,6 +57,6 @@ Write `progress.md` beside the plan with [references/PROGRESS.md](references/PRO
 
 ## 4. Hand off to the gate
 
-Show the plan to the human with each entry under Decisions called out, and ask for a reply to each. Apply their corrections. Leave `status: draft`. Return `/adlc-gate plan` with the artifact path and stop.
+Rerun that skill's proportion check across the whole plan, ADLC sections included. Show the plan to the human with each entry under Decisions called out, and ask for a reply to each. Apply their corrections. Leave `status: draft`. Return `/adlc-gate plan` with the artifact path and stop.
 
 **Complete when:** the human has replied to the plan and the gate command is visible.

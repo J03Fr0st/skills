@@ -9,6 +9,7 @@
       "expectations": [
         "The plan includes observable vertical slices and a verification path for tenant isolation and retries.",
         "Every dependency resolves and the ready frontier contains only unblocked slices.",
+        "Cross-slice contracts appear as slice interfaces, and a review focus names the failure modes no slice check covers yet.",
         "The agent saves the requested plan without requesting redundant permission.",
         "No production code, remote tracker, branch, or commit is changed."
       ]

@@ -31,6 +31,10 @@ The loop repeats only for another independently observable behavior. Final packa
 
 Tests observe stable behavior through the narrowest useful seam. Real collaborators are preferred inside an ownership boundary; fakes, stubs, and mocks must earn their use for slow, unsafe, nondeterministic, or externally controlled dependencies. Multiple assertions are acceptable when they prove one behavior. An imagined horizontal suite written ahead of all implementation is not a substitute for vertical learning.
 
+A test that would still pass if every imported function returned `undefined` or `null` is hollow and gets rewritten: truthiness-only or no-throw assertions, mock-call-only assertions, expected values computed by the subject, snapshots of the input, and tests that never run the subject. Invariants over many inputs can use the optional `property-based-testing` skill.
+
+The handoff names every failing test observed in any run, including pre-existing and unrelated ones.
+
 ## Exceptions
 
 Strict test-first sequencing is not useful for every artifact. Prose and metadata use parser, renderer, link, literal, or structural checks. Generated output is verified through its source or generator. A disposable spike is not production evidence. Slow suites use focused phase checks and a broader final gate; flaky tests are isolated rather than rerun to a lucky pass.
@@ -44,3 +48,5 @@ Unknown causes belong to `diagnosing-bugs`. Repository safety and delivery scope
 ## Attribution and design basis
 
 The original local workflow was informed by test-seam and mocking guidance from Matt Pocock's MIT-licensed [`tdd`](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd), phase discipline and rationalization resistance from Obra's MIT-licensed [`test-driven-development`](https://github.com/obra/superpowers/tree/main/skills/test-driven-development), repository/eval patterns from Addy Osmani's MIT-licensed [`test-driven-development`](https://github.com/addyosmani/agent-skills/tree/main/skills/test-driven-development), phase gates from Wshobson's MIT-licensed [TDD workflows](https://github.com/wshobson/agents/tree/main/plugins/tdd-workflows), and the practical-signal exception from Cursor pstack's MIT-licensed TDD skill. No upstream prose or eval fixtures are vendored. See the pinned [research record](../research/tdd-skill-research.md).
+
+The hollow-test litmus (from Cursor pstack's `principle-test-behavior-not-implementation`) and the rule to disclose every observed failure (from Obra's `test-driven-development`) were added from the [2026-09 source sweep](../research/2026-09-27-source-repos-sweep.md).

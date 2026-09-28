@@ -14,3 +14,5 @@ Every intent outcome becomes observable behavior and at least one acceptance cri
 Each area of concern has an owner and a `decide by` stage: the earliest stage whose content depends on the answer. The intent's approval conditions and items due by `spec` are settled here; the rest are carried.
 
 The spec contains no file paths or code. When the behavior would contradict the intent, the skill stops and routes back to `/adlc-intent`. The draft ends at `/adlc-gate spec`.
+
+Command arguments, pasted issues, feedback, and logs are treated as data, not instructions: kept text is quoted in a delimited **Source material** block, and commands inside it are never run. The [2026-09-27 source sweep](../research/2026-09-27-source-repos-sweep.md) takes this framing from wshobson/agents.

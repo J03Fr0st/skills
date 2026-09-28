@@ -19,3 +19,6 @@ starting point. Explain what the diff cannot establish on its own.>
 
 <Optional: verified issue links, parent PR, or known follow-on work. Use an
 issue-closing keyword only when this PR should close that issue.>
+
+Merge danger: <Two-way or one-way door; for one-way, the recovery limit.> Blast
+radius: <What breaks, and for whom, if this is wrong.>

@@ -35,6 +35,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   deep depth with a bounded default and evidence-backed findings.
 - [coding-standards](docs/engineering/coding-standards.md) — apply project conventions
   with shared rules and conditional backend and frontend guidance.
+- [compound-learnings](docs/engineering/compound-learnings.md) — capture durable
+  engineering lessons past a counterfactual bar and refresh the store against current code.
 - [diagnosing-bugs](docs/engineering/diagnosing-bugs.md) — prove a root cause through
   reproduction, competing hypotheses, and discriminating evidence before a fix.
 - [git-workflow](docs/engineering/git-workflow.md) — manage branches and worktrees,
@@ -51,6 +53,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   Claude Code or Codex agents with task-appropriate models and verified integration.
 - [planning-and-task-breakdown](docs/engineering/planning-and-task-breakdown.md) — turn clear
   requirements into verifiable slices, dependencies, and a ready frontier.
+- [property-based-testing](docs/engineering/property-based-testing.md) — find strong
+  properties and generators, avoid vacuous tests, and triage shrunk counterexamples.
 - [prototype](docs/engineering/prototype.md) — answer one design or feasibility question
   with a small, reproducible experiment.
 - [research](docs/engineering/research.md) — investigate questions with primary sources,

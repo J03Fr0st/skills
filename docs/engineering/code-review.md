@@ -5,7 +5,7 @@
 - **Invocation:** model-invoked for working-tree, commit, branch, pull-request, pre-merge, specification-compliance, and repository-standards reviews.
 - **Default:** `standard`, a bounded single-reviewer pass.
 - **Posture:** read-only during review. A requested review-and-fix completes review first, then hands findings to `implement`; publishing, approving, merging, committing, and posting remote comments require separate authorization.
-- **Output:** severity-ordered findings first, followed by the exact review scope and residual risks.
+- **Output:** severity-ordered findings first, followed by the exact review scope, a blast-radius line at `standard` and `deep`, and residual risks.
 
 ## Review levels
 
@@ -49,8 +49,12 @@ Deep mode builds one fixed review packet, then runs independent passes for defec
 
 This separation gives high-risk work broader attention while keeping the default review responsive.
 
-Deep review also maps the blast radius of changed assumptions: affected consumers, the invariant that protects each, and a focused runtime check when static evidence is insufficient. Missing proof is a coverage gap, not a speculative finding. Dedicated threat modeling belongs to [security-review](security-review.md).
+When a reviewer on a different model or harness is available and permitted, deep mode can add it as one more read-only pass. It never blocks the review, and its candidates face the same validation. Dedicated threat modeling belongs to [security-review](security-review.md).
+
+## Blast radius
+
+At `standard` and `deep`, the reviewer names the one fact the change's safety depends on and reports how far it was proven: asserted, cited line, walked through, ran a script or test, or reproduced live. A fact that never reached a run is labelled `unproven` rather than presented as safe. Deep review also maps affected consumers and the invariant protecting each, and pushes the fact to a runtime check where it can; missing proof is a coverage gap, not a speculative finding.
 
 ## Attribution and design basis
 
-The skill keeps the Standards and Spec distinction from Matt Pocock's MIT-licensed [`code-review`](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review). Its original workflow adds a defect-first gate and three review levels. Merge-base and surrounding-code review patterns were informed by [`openai/codex`](https://github.com/openai/codex); the deep independent-pass and candidate-validation shape was informed by [`anthropics/claude-code`](https://github.com/anthropics/claude-code). No upstream skill instructions are vendored.
+The skill keeps the Standards and Spec distinction from Matt Pocock's MIT-licensed [`code-review`](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review). Its original workflow adds a defect-first gate and three review levels. Merge-base and surrounding-code review patterns were informed by [`openai/codex`](https://github.com/openai/codex); the deep independent-pass and candidate-validation shape was informed by [`anthropics/claude-code`](https://github.com/anthropics/claude-code). The blast-radius proof ladder and the optional cross-model second opinion come from the [2026-09 source sweep](../research/2026-09-27-source-repos-sweep.md), drawing on Cursor pstack `blast-radius` and Trail of Bits `second-opinion`. No upstream skill instructions are vendored.
