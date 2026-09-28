@@ -9,9 +9,13 @@
 
 The skill starts only from an approved, unchanged spec. It composes [`planning-and-task-breakdown`](../engineering/planning-and-task-breakdown.md) for slices, dependencies, and the ready frontier, then adds:
 
+- **Decisions:** every choice the spec left open (stack, hosting, thresholds), each with an ID, including the spec conditions and concerns the plan settles.
+- **Carried items:** anything still undecided, with an owner and the slice it must be decided by.
 - **Coverage:** every acceptance criterion mapped to slices and the check that proves it.
 - **Assignment:** an implementer and a separate verifier for each slice.
 - **Risks and rollback:** how each slice can go wrong and be undone.
 - **Handoff:** [`implement`](../engineering/implement.md), or [`orchestrate`](../engineering/orchestrate.md) for independent slices.
+
+The skill also writes `progress.md`, a living record of slice state, evidence, delivery-time decisions, and carried items. It is never hashed, so delivery can update it without making the approved plan stale. Slice headings in the plan carry no status. For a plan approved before `progress.md` existed, the skill writes only `progress.md` from the delivery evidence.
 
 When planning finds a fact that contradicts the spec, the skill stops and routes back to `/adlc-spec` instead of changing the approved behavior. The draft ends at `/adlc-gate plan`.

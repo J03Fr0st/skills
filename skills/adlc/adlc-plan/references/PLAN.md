@@ -16,7 +16,17 @@ source: <spec path>@<content hash>
 
 ## Slices
 
-<slices, dependencies, and ready frontier from planning-and-task-breakdown>
+<slices, dependencies, and ready frontier from planning-and-task-breakdown; no status in slice headings>
+
+## Decisions
+
+| ID | Decision | Settles | Evidence |
+| --- | --- | --- | --- |
+| D1 | <stack, hosting, threshold, sequencing, ...> | <spec condition, open question, area of concern, or —> | <research, measurement, or reason> |
+
+## Carried items
+
+- <spec item still undecided> — owner: <who decides> — decide by: <slice that precedes any slice building on it>
 
 ## Coverage
 
@@ -36,7 +46,7 @@ source: <spec path>@<content hash>
 
 ## Handoff
 
-<implement | orchestrate>, starting from the ready frontier.
+<implement | orchestrate>, starting from the ready frontier. Delivery records each slice state change, its evidence, and every decision made during delivery in `progress.md` beside this plan; a sign-off the plan or a carried item requires goes through `/adlc-gate slice <id>`.
 
 ## Approvals
 ```

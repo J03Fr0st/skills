@@ -14,10 +14,13 @@
 | An artifact was rejected | The same stage's command, with the reasons |
 | Intent approved, no spec | `/adlc-spec` |
 | Spec approved, no plan | `/adlc-plan` |
-| Plan approved, slices open | `implement`, or `orchestrate` for independent slices |
-| Slices done | `code-review`, plus `security-review` when the spec calls for it |
-| Reviewed | `verification-before-completion`, then `git-workflow` |
+| Plan approved, no `progress.md` | `/adlc-plan` to write it |
+| A carried item or required sign-off is due and undecided | `/adlc-gate slice <id>` |
+| A slice is implemented | `code-review`, plus `security-review` when the spec calls for it |
+| A slice is reviewed | `verification-before-completion` |
+| A slice is verified | `git-workflow` |
+| Slices ready or in progress | `implement`, or `orchestrate` for independent slices |
 
-The router is read-only. It checks each artifact's `status` against its content hash, so an approval edited after sign-off counts as a draft, and an upstream change sends the work back to the earliest stale gate.
+The router is read-only. It checks each artifact's `status` against its content hash, so an approval edited after sign-off counts as a draft, and an upstream change sends the work back to the earliest stale gate. During delivery it reads slice state from `progress.md` and trusts only states backed by reachable evidence. Delivery returns to the router after each slice changes state.
 
 See the [ADLC research](../research/2026-09-26-adlc.md) for sources and design decisions.

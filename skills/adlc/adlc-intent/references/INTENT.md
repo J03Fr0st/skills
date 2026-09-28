@@ -15,7 +15,7 @@ status: draft
 
 ## Problem
 
-The current situation and its pain, in the human's terms.
+The current situation and its pain, in the human's own words.
 
 ## Outcome
 
@@ -39,11 +39,11 @@ The observable signal that the outcome was reached, and how it will be read.
 
 ## Assumptions
 
-- <assumption> — owner: <who confirms it>
+- <assumption> — owner: <who confirms it> — decide by: <spec | plan>
 
 ## Open questions
 
-- <question> — owner: <who answers it>
+- <question> — owner: <who answers it> — decide by: <spec | plan>
 
 ## Approvals
 ```

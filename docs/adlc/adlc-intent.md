@@ -9,8 +9,8 @@
 
 The skill resolves facts it can find in the repository, then interviews the human for everything code cannot say. Standard mode asks the targeted questions still open; deep mode runs [`grilling`](../productivity/grilling.md) when value, premise, or scope is contested.
 
-Business, policy, and user facts come only from the human. Anything the agent inferred is listed as an assumption with an owner to confirm it. The intent stays about the problem and the outcome; solutions belong to the spec and plan.
+The problem and why now are asked as open questions and recorded in the human's own words; multiple choice is kept for scope, constraints, and thresholds. Business, policy, and user facts come only from the human. Anything the agent inferred is listed as an assumption with an owner to confirm it. The intent stays about the problem and the outcome; solutions belong to the spec and plan.
 
 The draft ends at `/adlc-gate intent`. Only the gate changes its status.
 
-Artifacts live in the project's existing convention, or in `docs/adlc/<slug>/intent.md`.
+Artifacts live in the project's existing convention, or in `docs/adlc/<slug>/intent.md`. The skill adds a `.gitattributes` LF rule for that directory when it is missing, because approval hashes depend on line endings.

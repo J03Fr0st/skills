@@ -39,11 +39,12 @@ Carried from the intent's non-goals, plus anything excluded while specifying.
 
 ## Areas of concern
 
-- <conflict or judgement call> — owner: <who decides>
+- <conflict or judgement call> — owner: <who decides> — decide by: <spec | plan | slice>
+  Decision: <the human's decision, or "open">
 
 ## Open questions
 
-- <question> — owner: <who answers it>
+- <question> — owner: <who answers it> — decide by: <plan | slice>
 
 ## Approvals
 ```

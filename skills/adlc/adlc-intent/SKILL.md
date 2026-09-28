@@ -14,11 +14,15 @@ Read the repository instructions and any existing issue, spec system, or tracker
 
 When an intent already exists, revise it in place; a rejected one keeps its `## Approvals` history.
 
-**Complete when:** the artifact path is fixed and any prior intent or rejection reasons are read.
+Approval hashes assume LF line endings. When `.gitattributes` has no LF rule covering the artifact directory, add one, such as `docs/adlc/** text eol=lf`, and tell the human why: with `core.autocrlf=true`, a fresh checkout would otherwise change every hash and make every approval look stale.
+
+**Complete when:** the artifact path is fixed, an LF rule covers it, and any prior intent or rejection reasons are read.
 
 ## 2. Interview the human
 
 Resolve discoverable facts from the repository first: current behavior, existing users of the code, prior decisions. Then ask the human for everything the code cannot tell you: the problem, who feels it, the outcome, why now, what is out of scope, and how success will be observed.
+
+Ask the problem and why now as open questions and record the answers in the human's own words, quoted where they are short. Offer multiple-choice options only for scope, constraints, and success thresholds, and always leave room for a free-text answer.
 
 Choose the depth:
 
@@ -27,7 +31,7 @@ Choose the depth:
 
 Record business, policy, and user facts only as the human states them. A fact inferred from code goes in **Assumptions** with an owner to confirm it.
 
-**Complete when:** every section of the template has an answer from the human, an explicit "none", or an open question with an owner.
+**Complete when:** every section of the template has an answer from the human, an explicit "none", or an open question with an owner and a `decide by` stage.
 
 ## 3. Draft and correct
 
@@ -35,7 +39,7 @@ Write the artifact with [references/INTENT.md](references/INTENT.md). Keep it ab
 
 Show the draft and ask the human to correct it. Apply their corrections verbatim in meaning.
 
-**Complete when:** the human has reviewed the draft, the success signal is observable, and every assumption and open question has an owner.
+**Complete when:** the human has replied to the draft, the success signal is observable, and every assumption and open question has an owner and a `decide by` stage.
 
 ## 4. Hand off to the gate
 
