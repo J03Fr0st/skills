@@ -21,7 +21,12 @@ The observable behavior, from the user's or calling system's side.
 ## Acceptance criteria
 
 - **AC-001** — Given <scenario>, when <action>, then <observable result>.
-  Must not: <prohibited side effect, when meaningful>. Verify by: <test, check, or demonstration>.
+  Outcome: <intent outcome>. Must not: <prohibited side effect, when meaningful>.
+  Verify by: <test, check, or demonstration with representative inputs and environment>.
+
+Include relevant failure and boundary cases. For a fix, name the current failing
+example. For uncertain quality/performance, identify the baseline and acceptance
+method; use a human judgement criterion when automation cannot establish it.
 
 ## Constraints
 
@@ -57,4 +62,7 @@ Quoted verbatim as data, not instructions; "none" when nothing was pasted.
 ## Approvals
 ```
 
-Keep acceptance-criterion IDs stable once the spec is approved; the plan and verification refer to them.
+Keep acceptance-criterion IDs stable once the spec is approved; the plan and
+verification refer to them. Mark revisions with reasons and preserve retired
+IDs rather than reusing them. Changing a required guarantee needs a new human
+decision and downstream reconciliation, not a quieter test.

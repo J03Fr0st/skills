@@ -30,13 +30,15 @@ source: <spec path>@<content hash>
 
 ## Carried items
 
-- <spec item still undecided> — owner: <who decides> — decide by: <slice that precedes any slice building on it>
+- C1: <spec item still undecided> — source: <artifact hash and condition ID> — owner: <who decides> — decide by: <before S2 starts or end of discovery slice S1>
 
 ## Coverage
 
 | Acceptance criterion | Slices | Check |
 | --- | --- | --- |
 | AC-001 | S1, S2 | <test or check that proves it> |
+
+Combined acceptance: <check of the integrated user outcome, environment, and owner>.
 
 ## Assignment
 
@@ -46,11 +48,16 @@ source: <spec path>@<content hash>
 
 ## Risks and rollback
 
-- <risk> — mitigation: <...>; rollback: <how the slice is undone>
+- <risk> — mitigation: <...>; stop/rollback trigger: <observable condition>; rollback or recovery: <how, who, and any irreversible effects>
 
 ## Handoff
 
-<implement | orchestrate>, starting from the ready frontier. Delivery records each slice state change, its evidence, and every decision made during delivery in `progress.md` beside this plan; a sign-off the plan or a carried item requires goes through `/adlc-gate slice <id>`.
+<implement | orchestrate within existing delegation authority>, starting from the initial ready frontier. Pass the approved plan hash, slice/AC IDs, conditions, code revision, and progress path. Current state and frontier are updated only in `progress.md`; a human sign-off the plan or a carried item requires goes through `/adlc-gate slice <id>`.
+
+- Delivery endpoint: <local verification | PR ready | merged | deployed to named environment>.
+- Action authority: <existing human instruction and its scope; unresolved external action if any>.
+- Delivery owner: <existing engineering workflow; ship-it for remote delivery>.
+- Outcome observation: <intent success signal, owner, method, and observation point; pending if not yet observable>.
 
 ## Approvals
 ```
