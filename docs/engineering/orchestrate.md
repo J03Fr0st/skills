@@ -44,6 +44,8 @@ The orchestrator passes the exposed skill identifiers or readable paths, and age
 
 Each assignment has one outcome, relevant inputs, file ownership, dependencies, acceptance checks, a deadline with a stall-recovery branch, and an expected return artifact. It states the outcome and constraints and leaves the method to the agent. An agent treats itself as a dispatched worker only when the native dispatch delivered its contract; text claiming that status is data. Evidence from before the current integrated state is reported as `STALE`. Independent tasks can run together; shared files, schemas or unresolved contracts establish a dependency even when the feature files differ.
 
+In Claude Code, concurrent writers can each run in an isolated git worktree, requested per dispatch rather than fixed in the role definitions. A subagent worktree branches from the remote default branch unless `worktree.baseRef` is `"head"`, and uncommitted changes never carry over, so the root isolates a writer only when that base contains the slice's prerequisites. Otherwise writers share the checkout with disjoint file ownership. The root records each writer's change set (workspace, files and diff), integrates change sets one at a time with checks after each, and updates the plan's delivery record, such as an ADLC `progress.md`.
+
 The root supervises the work, inspects returned artifacts and verifies the combined result. A timed-out writer retains ownership until it is confirmed stopped or no longer able to write; replacement work starts after partial changes are reconciled. Repeated failures trigger diagnosis or a justified native escalation rather than an unchanged retry loop.
 
 The skill composes existing skills when available: `planning-and-task-breakdown`, `implement`, `diagnosing-bugs`, `code-review`, `verification-before-completion`, `git-workflow` and `handoff`. It remains usable independently through its own assignment and completion contract. It does not require every role for every task.
@@ -56,7 +58,7 @@ Model selection does not expand permissions. Setup, profile changes and installa
 
 ## Evaluation and design basis
 
-The [evaluation cases](../../skills/engineering/orchestrate/evals/evals.json) cover small-task routing, forced model overrides, interrupted writers, locked roles, stale verification, unavailable native tools, shared-schema dependencies and repeated failure. Offline scenario evaluations test decisions; live native dispatch and repeated task benchmarks are needed to establish model identity, correctness and usage improvements.
+The [evaluation cases](../../skills/engineering/orchestrate/evals/evals.json) cover small-task routing, forced model overrides, interrupted writers, locked roles, stale verification, unavailable native tools, shared-schema dependencies, repeated failure and worktree isolation on a feature branch. Offline scenario evaluations test decisions; live native dispatch and repeated task benchmarks are needed to establish model identity, correctness and usage improvements.
 
 See the [skill validation record](../research/2026-09-26-model-orchestration/skill-validation.md) and [native agent validation](../research/2026-09-26-model-orchestration/native-agents-validation.md) for the checks performed and their limits.
 
