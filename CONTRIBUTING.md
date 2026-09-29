@@ -45,16 +45,19 @@ one logical change per commit; feature branches are deleted after merge.
 
 The release workflow creates or updates the Changesets version PR. Its
 `npm run version:skills` command updates the package, plugin manifest, and root
-lockfile versions together, then validates the result. Review and merge the
-version PR after checks pass. The workflow tags private-package releases; it
-does not publish this repository to npm.
+lockfile versions together, then validates the result. Every merged PR with a
+changeset therefore produces a version bump: the release job approves the
+version PR's CI run and enables auto-merge, and the PR lands once the required
+checks pass on its head. The workflow tags private-package releases; it does not
+publish this repository to npm.
 
-GitHub does not start ordinary PR workflows for changes made by `GITHUB_TOKEN`.
-The release job explicitly dispatches CI on the bot-created version branch.
-This uses the workflow-dispatch exception and needs no personal access token.
-If that dispatch fails, a maintainer can run `gh workflow run ci.yml --ref
-changeset-release/main`. Keep the release workflow's PR creation permission
-enabled; it does not grant permission to bypass branch checks.
+The repository requires approval before Actions runs for external
+contributors, and GitHub counts the `github-actions` bot as one. The release job
+approves that pending run itself. A merge made by `GITHUB_TOKEN` starts no
+further workflows, so the release tag lands on the next push to `main`. If
+auto-merge stalls, approve the pending run on the version PR under Actions and
+merge it. Keep the release workflow's PR creation permission enabled; it does
+not grant permission to bypass branch checks.
 
 See [GitHub administration](docs/github-administration.md) for the managed
 settings and recovery procedure.
