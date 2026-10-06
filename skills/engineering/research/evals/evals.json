@@ -10,7 +10,8 @@
         "The installed 2.4 contract is distinguished from the 3.0 marketing claim.",
         "Material findings link to inspected primary sources and identify version or revision.",
         "Relevant preferred sources have an influence, non-applicability, or unavailability explanation.",
-        "A local report is saved without changing the source list or implementation."
+        "A local report is saved without changing the source list or implementation.",
+        "The report opens with a freshness fingerprint: source revisions or retrieval dates plus the monitored paths or URLs."
       ]
     },
     {

@@ -41,6 +41,28 @@
         "Missing production access and expired measurements are named as evidence limits, not bypassed through unauthorized access or speculative changes.",
         "The terminal state is INCONCLUSIVE or BLOCKED and identifies the minimum future telemetry or reproduction needed to make progress."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "What does `ReferenceError: total is not defined` mean in JavaScript? I just want a quick explanation, not a repo investigation.",
+      "expected_output": "A direct explanation of what the error means and the likely places to check, without starting a reproduction workflow or claiming a specific root cause from missing code.",
+      "files": [],
+      "expectations": [
+        "Explains that JavaScript could not resolve `total` in the scope where it was referenced.",
+        "Distinguishes likely causes, such as a missing declaration or spelling mismatch, from an observed cause.",
+        "Does not invent a reproduction, build an evidence ledger, or label the answer with a diagnosis terminal state."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "The npm test script has `nmp test` instead of `npm test`; I found the typo. Please fix that one script entry.",
+      "expected_output": "Routes the known-cause edit to implementation and verifies the script entry, without forcing a speculative root-cause investigation.",
+      "files": [],
+      "expectations": [
+        "Treats the supplied typo as a known-cause change to verify in the target file before editing.",
+        "Does not require a hypothesis ledger or a separate reproduction phase before a verified one-line correction.",
+        "Does not change unrelated scripts or claim success without checking the resulting entry."
+      ]
     }
   ]
 }

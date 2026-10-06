@@ -11,17 +11,21 @@ Use tests as a design and evidence loop, not as decoration added after implement
 
 Start from one observable behavior: an example, invariant, acceptance criterion, or reproduced defect. Locate the closest stable seam where a test can express that behavior without copying implementation details.
 
-Test public effects at the narrowest useful level. Prefer real collaborators inside the ownership boundary and substitute only slow, nondeterministic, unsafe, or externally controlled dependencies.
+Test public effects at the narrowest useful level. Prefer real collaborators inside the ownership boundary and substitute only slow, nondeterministic, unsafe, or externally controlled dependencies. A test that only proves how mocks were called is weak evidence unless the call protocol is itself the contract.
 
 Before accepting a test, name a realistic wrong implementation it would reject, derive expected values independently from the production algorithm, and confirm that assertions observe stable behavior rather than private structure.
 
-The sharpest wrong implementation is a hollow one: if the test would still pass with every function it imports returning `undefined`, it observes nothing. Rewrite the assertion or delete the test. Hollow tests take five shapes:
+Apply the **hollow-test** litmus: would this test still pass if every function it imports returned `undefined` or `null`? If yes, rewrite it. Common hollow shapes:
 
-- **Weak assertion:** checks only that a result exists, is truthy, or has a type.
-- **Mock-only:** asserts what a mock was called with or returned, not what the code produced, unless the call protocol is itself the contract.
-- **Self-referential:** computes the expected value with the code under test.
-- **Constant pinning:** asserts a literal the test itself supplied, or a configuration value copied into the test.
-- **Fixture echo:** asserts that fixture data equals the fixture.
+- asserts only truthiness, definedness, or that nothing threw;
+- asserts only that a mock was called, not what it received or what the subject produced;
+- computes the expected value with the subject itself;
+- pins a constant or snapshots the input fixture rather than the output;
+- never runs the subject, so the fixture asserts itself.
+
+A new test must also earn its place. Before adding one, answer: what behavior or contract does it protect, what credible regression makes it fail, and why existing coverage does not already catch that? When a nearby table-driven test or shared fixture covers the same contract, add a row there instead of a near-duplicate. If the test needs a production seam no production caller needs, such as an extra export, flag, or injection hook, test at the real boundary instead.
+
+When the behavior is an invariant over many inputs, such as a round-trip, ordering, or conservation rule, `property-based-testing` can supply a generative test in place of hand-picked examples.
 
 ## 1. Define the slice
 
@@ -60,7 +64,7 @@ Change the minimum production code needed for the red test. Avoid unrelated clea
 
 Run the same test target again. Green is valid only when the test executes and passes for the intended reason. Then run the nearest relevant existing tests to detect local regressions.
 
-If another failure appears, distinguish a task-caused regression from an unrelated or flaky failure. Do not weaken assertions, delete coverage, or broaden mocks merely to obtain green.
+If another failure appears, distinguish a task-caused regression from an unrelated or flaky failure, and record it for the handoff either way. Do not weaken assertions, delete coverage, or broaden mocks merely to obtain green; `verification-before-completion` scans the final diff for these.
 
 Record the command and result.
 
@@ -112,4 +116,4 @@ For behavior-bearing work, when the user explicitly requested TDD and no practic
 
 ## Handoff
 
-Report the behavior slices and, for each, the red command and expected failure, green command and result, final refactor command and result, test-quality caveats, exceptions taken, and broader checks still owed. Never label work TDD-complete when red was skipped or invalid.
+Report the behavior slices and, for each, the red command and expected failure, green command and result, final refactor command and result, test-quality caveats, exceptions taken, and broader checks still owed. Name every failing test observed in any run, including pre-existing, unrelated, and flaky ones, with its classification; a report that omits an observed failure is false by omission. Never label work TDD-complete when red was skipped or invalid.

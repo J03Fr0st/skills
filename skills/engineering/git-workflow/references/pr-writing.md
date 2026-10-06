@@ -37,6 +37,16 @@ reviewer assess the change:
 - Material compatibility, rollout, migration, or recovery implications.
 - Dependencies and a useful review starting point when the change needs one.
 
+End the body with one **Merge danger** line that names two things:
+
+- **Door:** *two-way* when reverting the merge fully restores prior behavior;
+  *one-way* when merging or deploying leaves a lasting effect, such as migrated
+  data, a published API or event, or sent messages. A one-way door also names
+  its recovery limit.
+- **Blast radius:** what breaks, and for whom, if the change is wrong.
+
+When the project template has a risk or rollout field, put the line there.
+
 Respect required template fields. Scale additional detail to reviewer uncertainty:
 a small risky change may need more explanation than a large mechanical rename.
 Use a diagram or table when it makes a relationship clearer. Simple changes can
@@ -56,5 +66,6 @@ Set base/head explicitly when publishing; choose draft/ready from the task's
 readiness and repository policy. Verify the saved metadata after the write.
 
 **Complete when:** the title and opening cover the final scope, every material
-claim is grounded, required fields are present, and the requested text or saved
+claim is grounded, the merge danger names its door and blast radius, required
+fields are present, and the requested text or saved
 PR metadata has been checked against the source diff and verification evidence.

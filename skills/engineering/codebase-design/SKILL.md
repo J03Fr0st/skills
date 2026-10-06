@@ -115,6 +115,7 @@ Read [references/TESTING.md](references/TESTING.md) for seam-aligned evidence an
 - Name consistency and delivery guarantees within their real scope. Treat unqualified “exactly once” as an unanswered question.
 - Preserve characterization evidence during refactoring; retire old tests only after replacement coverage is demonstrated.
 - Make architecture executable where drift matters, but keep enforcement proportional to the risk.
+- Design for a contributor, often an agent, who sees only the files it opened, copies the nearest example, and takes the shortest path that compiles. A change that looks right from one file should be right for the whole repository. Screen candidates for four red flags: **split ownership** (several modules write or copy the same state; give it one owner), **two ways to do one task** (keep one and delete the others in the same migration), **importable internals** (make them unreachable so the wrong import fails the build), and **hand-synced lists** (derive every copy from one list, or fail the build when they disagree).
 
 ## Handoff shape
 

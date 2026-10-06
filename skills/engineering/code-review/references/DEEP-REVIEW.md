@@ -40,11 +40,15 @@ Apply the instructions governing each changed file and the repository's establis
 
 Use KISS, YAGNI, DRY, SOLID, and smell names to investigate evidence, never as self-sufficient findings.
 
+### Optional second opinion
+
+When a reviewer on a different model or harness is available, such as another vendor's CLI, and sending the code to that provider is permitted, give it the same packet as one extra read-only pass. It is optional: when it is unavailable, fails, or times out, continue and note its absence in the review scope. Its candidates join the pool and face the same validation as every other pass.
+
 ## 3. Deepen only where evidence points
 
 - Inspect history or blame when intent is ambiguous, a suspicious line predates the change, or compatibility depends on an earlier decision.
 - Read distant callers and implementations when the changed contract can fan out beyond nearby code.
-- Map the blast radius of a changed assumption: name affected consumers and the control or invariant that keeps each safe. Exercise the decisive fact with a focused test or safe reproduction when static evidence cannot establish it; report unavailable proof as a coverage gap.
+- Map the blast radius of a changed assumption: name affected consumers and the control or invariant that keeps each safe. Push the load-bearing fact to *ran* or higher on the proof ladder with a focused test or safe reproduction; when that proof is unavailable, report the fact as `unproven` and the missing proof as a coverage gap.
 - Run the smallest relevant tests, static checks, reproductions, or focused experiments that can prove or disprove material candidates.
 - Expand to broader checks only when narrow evidence cannot cover the risk and the user has not imposed a tighter boundary.
 
@@ -66,4 +70,4 @@ Conflicting candidates require another evidence pass, not a compromise finding. 
 
 ## 5. Finish at the standard output gate
 
-Return to `SKILL.md` for the findings-first format. The deep review is complete only when all three axes have completed, the candidate pool has been independently validated, checks and intent sources are named, and residual uncertainty is explicit.
+Return to `SKILL.md` for the findings-first format. The deep review is complete only when all three axes have completed, the candidate pool has been independently validated, the load-bearing fact carries its proof rung, checks and intent sources are named, and residual uncertainty is explicit.

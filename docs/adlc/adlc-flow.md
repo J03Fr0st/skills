@@ -14,10 +14,30 @@
 | An artifact was rejected | The same stage's command, with the reasons |
 | Intent approved, no spec | `/adlc-spec` |
 | Spec approved, no plan | `/adlc-plan` |
-| Plan approved, slices open | `implement`, or `orchestrate` for independent slices |
-| Slices done | `code-review`, plus `security-review` when the spec calls for it |
-| Reviewed | `verification-before-completion`, then `git-workflow` |
+| Upstream reapproved, downstream source still old | Downstream authoring stage to reconcile, then its gate |
+| Plan approved, progress missing or bound to an older plan | `/adlc-plan` to reconcile it |
+| A carried item or required sign-off is due and undecided | `/adlc-gate slice <id>` |
+| Slice blocked by a dependency, failed check, or environment | Resolve that prerequisite; continue independent authorized work |
+| A slice is implemented | `code-review`, plus `security-review` when the spec calls for it |
+| A slice is reviewed | `verification-before-completion` |
+| A slice is verified, delivery endpoint not reached | `ship-it` within existing authorization |
+| Slices ready or in progress | `implement`, or `orchestrate` for independent slices |
+| All slices delivered, combined acceptance unverified | `verification-before-completion` |
+| Combined acceptance and endpoint evidenced | Report completion at that endpoint and any pending outcome observation |
 
-The router is read-only. It checks each artifact's `status` against its content hash, so an approval edited after sign-off counts as a draft, and an upstream change sends the work back to the earliest stale gate.
+The router is read-only. It verifies status, latest decision, current content
+hash, and every source link in the approval chain. An upstream change sends work
+to the earliest unresolved stage. During delivery, states need evidence for the
+actual code revision, conditions, and plan hash. A changed implementation cannot
+reuse an old review or test pass without a documented relevance check. A missing
+receipt means unknown, not merely one state earlier.
+
+The plan declares whether completion means local verification, PR readiness,
+merge, or deployment. Legacy plans without an endpoint retain `done = merged`.
+Deployment requires evidence from its target environment; neither approval nor
+passing tests grants permission to deploy. An observed incident or changed need
+starts a new intent. Delivery returns to the router at slice boundaries.
 
 See the [ADLC research](../research/2026-09-26-adlc.md) for sources and design decisions.
+The [2026-09-28 review](../research/2026-09-28-adlc-review.md) strengthens chain
+freshness, evidence, and terminal routing.

@@ -20,6 +20,14 @@ Evidence must be:
 
 An exit code is insufficient when a command can skip the decisive test, omit ignored fixtures, validate only syntax, use stale cache, or produce an artifact that still needs inspection.
 
+Data-shaped changes such as filtering, ordering, pagination, and aggregation get claims for each dimension alone and in combination.
+
+## Evidence integrity
+
+- **Hollow green:** the underlying checker's own status and output decide, not a wrapper's exit code. Checks are reported as pass, fail, skipped, or errored; partial coverage never yields a composite "all clean", and trends are compared only across identical check sets.
+- **Side-blind fix evidence:** a fix is supported by a check that fails before the patch and passes after it, cannot tell which revision it runs against, and proves the relevant code path was reached.
+- **Weakened checks:** before any verdict on code work, the diff is scanned for lowered thresholds, deleted or skipped tests, new suppressions, loosened assertions, and stubs posing as implementations. An unexplained flag makes the affected claim NOT VERIFIED.
+
 ## Evidence by artifact
 
 | Claim | Strong evidence |
@@ -61,3 +69,7 @@ The final report names verdict and scope, fresh commands or inspections and deci
 ## Attribution and design basis
 
 The original local protocol was informed by freshness and delegated-report skepticism from Obra's MIT-licensed [`verification-before-completion`](https://github.com/obra/superpowers/tree/main/skills/verification-before-completion), focused/final check separation from Matt Pocock's MIT-licensed [`implement`](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement), artifact and shipping distinctions from Addy Osmani's MIT-licensed [`code-review-and-quality`](https://github.com/addyosmani/agent-skills/tree/main/skills/code-review-and-quality) and [`shipping-and-launch`](https://github.com/addyosmani/agent-skills/tree/main/skills/shipping-and-launch), and claim/evidence receipts from Cursor's MIT-licensed `cursor-team-kit` and pstack subtrees. No upstream instructions or templates are vendored. See the pinned [research record](../research/verification-before-completion-skill-research.md).
+
+The evidence-integrity rules were added from the [2026-09 source sweep](../research/2026-09-27-source-repos-sweep.md): checker integrity from gstack's health-check rewrite, weakened-check detection from Addy Osmani's `constraint-driven-development`, side-blind validation from Trail of Bits' `post-patch-validation`, and combined data-dimension checks from `agent-dispatcher`.
+
+The measured-claims reference for performance and eval numbers (named limiter, tuning parity, physical limits, errors, interleaved repeats, end-to-end relevance, and proof the work ran) comes from Cursor pstack's `principle-explain-the-number` and `benchmark-checklist` in the [2026-10 source sweep](../research/2026-10-06-source-repos-sweep.md).

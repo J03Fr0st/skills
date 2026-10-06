@@ -10,10 +10,13 @@ Start from the question or outcome you have. Most skills can be selected by the 
 | Plan dependent work across sessions | [planning-and-task-breakdown](engineering/planning-and-task-breakdown.md) | Verifiable slices, dependencies, and ready frontier |
 | Research an API, approach, or current practice | [research](engineering/research.md) | Cited findings and evidence limits |
 | Stress-test a consequential decision | [grilling](productivity/grilling.md) | Confirmed understanding and owned unknowns |
+| Test invariants across many generated inputs | [property-based-testing](engineering/property-based-testing.md) | Strong properties, generators, and triaged counterexamples |
+| Record or prune a lesson worth keeping | [compound-learnings](engineering/compound-learnings.md) | One durable lesson, or a refreshed lesson store |
 | Try an uncertain design or feasibility idea | [prototype](engineering/prototype.md) | A reproducible experiment and observation |
 | Design a module or responsibility boundary | [codebase-design](engineering/codebase-design.md) | An explicit interface and ownership decision |
 | Simplify working code | [simplify](engineering/simplify.md) | Lower complexity with behavior-preservation evidence |
 | Review changes | [code-review](engineering/code-review.md) | Evidence-backed findings at the requested depth |
+| Ship finished changes | [ship-it](engineering/ship-it.md) | A verified PR, merge, or deployment endpoint |
 | Apply or define coding conventions | [coding-standards](engineering/coding-standards.md) | Project-first rules for the affected code domain |
 | Run a dedicated security audit | [security-review](engineering/security-review.md) | Scoped threat model, findings, and closing checks |
 | Pause, resume, or move work | [handoff](productivity/handoff.md) | Current state and the next executable check |
@@ -62,12 +65,26 @@ Keep the project's existing issue, plan, or cycle record authoritative. Use `han
 
 Commits, PRs, releases, and deployments follow the user's authorization and the project's tools. They are separate from proving the local result.
 
+For finished work, `ship-it` coordinates delivery using `code-review`,
+`verification-before-completion`, `git-workflow`, and `babysit-pr`. Bare "ship it"
+targets a merge-ready PR; an explicit publication, merge or deployment request
+sets that endpoint instead. Local implementation remains owned by `implement`,
+Git transitions by `git-workflow`, and the remote repair loop by `babysit-pr`.
+
 ## Agentic development lifecycle
 
-Use `/adlc-flow` when work should pass named human gates before agents build. `/adlc-intent`, `/adlc-spec`, and `/adlc-plan` each commit one artifact that the next stage reads, and `/adlc-gate` records the human's decision against the artifact's content hash. An approved plan hands off to `implement` or `orchestrate`, and the delivery path above runs unchanged.
+Use `/adlc-flow` when work should pass named human gates before agents build.
+`/adlc-intent`, `/adlc-spec`, and `/adlc-plan` each save one artifact that the next
+stage reads; commits stay within existing authorization. `/adlc-gate` records
+the human's revision-bound decision. The full approval chain, source hashes,
+and conditions must remain current. Authorized delivery hands the plan to
+`implement` or `orchestrate`, with mutable progress and revision-specific evidence
+kept separately. The plan declares the delivery endpoint; `ship-it` handles
+remote delivery, and combined acceptance is checked before completion. An outcome
+observation that is not yet possible stays pending; a new need returns to intent.
 
 ## Authoring and design basis
 
 Use [writing-for-agents](authoring/writing-for-agents.md) for skills and agent instructions, [writing-for-humans](authoring/writing-for-humans.md) for prose, and [html-writeup](authoring/html-writeup.md) for a visual HTML document.
 
-The [preferred-source research](research/preferred-skill-repositories-workflow-gap-research.md) records the six inspected repositories, revisions, influences, and decisions behind these additions.
+The [preferred-source research](research/preferred-skill-repositories-workflow-gap-research.md) records the six inspected repositories, revisions, influences, and decisions behind these additions. The [2026-09-27 sweep](research/2026-09-27-source-repos-sweep.md) covers all thirteen preferred repositories and adds `compound-learnings` and `property-based-testing`.

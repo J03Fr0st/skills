@@ -22,3 +22,6 @@ irreversible steps and data-loss limits explicitly; do not assume rollback is po
 ## Dependencies
 
 <Required predecessor changes, operational coordination, or follow-on work.>
+
+Merge danger: <One-way door unless the rollout is fully reversible; name the
+recovery limit from Recovery.> Blast radius: <What breaks, and for whom, if this is wrong.>

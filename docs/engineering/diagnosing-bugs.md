@@ -2,12 +2,16 @@
 
 `diagnosing-bugs` establishes why a bug or performance regression occurs before remediation begins. It separates observation, hypothesis, experiment, and cause so a plausible story or symptom-suppressing patch cannot masquerade as diagnosis.
 
-- **Invocation:** model-invoked for diagnose, debug, investigate, root-cause, broken, failing, flaky, intermittent, and slow reports whose cause is not established.
+- **Invocation:** model-invoked for explicit diagnosis or root-cause requests, and for failures whose cause needs investigation. Quick explanations and known-cause fixes take a direct route.
 - **Default:** source- and remote-state-read-only diagnosis.
-- **Posture:** exact symptom, competing hypotheses, one-variable experiments, and an honest terminal state.
-- **Output:** a reproduction record, evidence ledger, cause or remaining hypotheses, constraints, and the smallest next action.
+- **Full-investigation posture:** exact symptom, competing hypotheses, one-variable experiments, and an honest terminal state.
+- **Full-investigation output:** a reproduction record, evidence ledger, cause or remaining hypotheses, constraints, and the smallest next action.
 
 ## Workflow
+
+### Choose the route
+
+Start with the unresolved question. Answer a quick explanation from the evidence already provided, or route an established cause to `implement`. Use the full diagnostic workflow when the cause still needs evidence. Do not construct a hypothetical reproduction merely to answer a direct question.
 
 ### Pin the symptom
 
@@ -45,3 +49,5 @@ Known-cause changes belong to `implement`; stable behavior slices belong to `tdd
 ## Attribution and design basis
 
 The original local workflow was informed by exact-symptom feedback loops from Matt Pocock's MIT-licensed [`diagnosing-bugs`](https://github.com/mattpocock/skills/tree/main/skills/engineering/diagnosing-bugs), boundary tracing and falsifiable experiments from Obra's MIT-licensed [`systematic-debugging`](https://github.com/obra/superpowers/tree/main/skills/systematic-debugging), non-reproduction and untrusted-log handling from Addy Osmani's MIT-licensed [`debugging-and-error-recovery`](https://github.com/addyosmani/agent-skills/tree/main/skills/debugging-and-error-recovery), technique breadth from Wshobson's MIT-licensed [`debugging-strategies`](https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/debugging-strategies), and root-cause/controlled-comparison practices from Cursor's MIT-licensed pstack and Benny subtrees. No upstream scripts or instructions are vendored. See the pinned [research record](../research/diagnosing-bugs-skill-research.md).
+
+After a confirmed cause, the diagnosis searches for the same pattern at other sites and, when it recurs, proposes a structural prevention (one helper, a stricter type, or a lint rule or test) kept separate from the minimal fix. This step comes from the [2026-10 source sweep](../research/2026-10-06-source-repos-sweep.md), drawing on EveryInc's `ce-debug` and Cursor pstack's `correct`.

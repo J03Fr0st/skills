@@ -13,16 +13,16 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
 
 ### User-invoked
 
-- [adlc-flow](docs/adlc/adlc-flow.md) — route one piece of work through the agentic
-  development lifecycle from its evidenced stage to the next command or handoff.
+- [adlc-flow](docs/adlc/adlc-flow.md) — verify the approval chain and route work
+  from its evidenced stage to the next command or declared delivery endpoint.
 - [adlc-intent](docs/adlc/adlc-intent.md) — interview the human and record the problem,
   outcome, and success signal before agents build.
 - [adlc-spec](docs/adlc/adlc-spec.md) — turn approved intent into observable behavior
   and numbered, verifiable acceptance criteria.
 - [adlc-plan](docs/adlc/adlc-plan.md) — plan covered, assigned slices with separate
   verifiers and rollback from an approved spec.
-- [adlc-gate](docs/adlc/adlc-gate.md) — record a named human sign-off against the exact
-  content hash of an intent, spec, or plan.
+- [adlc-gate](docs/adlc/adlc-gate.md) — record revision-bound human sign-off with
+  portable content hashes, explicit conditions, and freshness checks.
 
 ### Model-invoked
 
@@ -35,6 +35,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   deep depth with a bounded default and evidence-backed findings.
 - [coding-standards](docs/engineering/coding-standards.md) — apply project conventions
   with shared rules and conditional backend and frontend guidance.
+- [compound-learnings](docs/engineering/compound-learnings.md) — capture durable
+  engineering lessons past a counterfactual bar and refresh the store against current code.
 - [diagnosing-bugs](docs/engineering/diagnosing-bugs.md) — prove a root cause through
   reproduction, competing hypotheses, and discriminating evidence before a fix.
 - [git-workflow](docs/engineering/git-workflow.md) — manage branches and worktrees,
@@ -51,12 +53,16 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   Claude Code or Codex agents with task-appropriate models and verified integration.
 - [planning-and-task-breakdown](docs/engineering/planning-and-task-breakdown.md) — turn clear
   requirements into verifiable slices, dependencies, and a ready frontier.
+- [property-based-testing](docs/engineering/property-based-testing.md) — find strong
+  properties and generators, avoid vacuous tests, and triage shrunk counterexamples.
 - [prototype](docs/engineering/prototype.md) — answer one design or feasibility question
   with a small, reproducible experiment.
 - [research](docs/engineering/research.md) — investigate questions with primary sources,
   revision-aware citations, and explicit evidence gaps.
 - [security-review](docs/engineering/security-review.md) — assess trust boundaries and
   concrete abuse paths through a scoped, read-only security review.
+- [ship-it](docs/engineering/ship-it.md) — carry finished changes through delivery
+  to an explicit, verified PR, merge, or deployment endpoint.
 - [simplify](docs/engineering/simplify.md) — reduce code complexity in a scoped pass
   while preserving observable behavior and useful boundaries.
 - [tdd](docs/engineering/tdd.md) — drive behavior changes through observable red, green,

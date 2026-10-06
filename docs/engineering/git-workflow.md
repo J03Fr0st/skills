@@ -16,7 +16,8 @@ automatically after every merge.
 
 PR titles describe the final outcome. Bodies explain motivation, relevant
 decisions, actual verification, and material risks, with detail proportional to
-reviewer uncertainty. Required project templates and naming conventions remain
+reviewer uncertainty, and close with a merge-danger line: whether the change is
+a one-way or two-way door, and what breaks, for whom, if it is wrong. Required project templates and naming conventions remain
 authoritative. Commits and PRs credit the human author only; agent
 "Generated with" footers and agent co-author trailers are left out unless a
 repository policy requires AI-use disclosure.
@@ -58,7 +59,8 @@ Superpowers informed native worktree reuse and ownership, EveryInc informed
 outcome-led PR writing, Cursor pstack and Matt Pocock informed review context and
 evidence, and Addy Osmani and ECC informed branching tradeoffs. Repository-specific
 approval rituals, fixed thresholds, and destructive command recipes were not
-adopted as universal rules.
+adopted as universal rules. The merge-danger line follows Matt Pocock's `pr`
+skill, recorded in the [2026-09 source sweep](../research/2026-09-27-source-repos-sweep.md).
 
 The [kit expansion record](../research/2026-09-26-git-workflow-kit.md) adds official
 Git references. The [validation record](../research/2026-09-26-git-workflow-validation.md)
