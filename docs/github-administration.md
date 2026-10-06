@@ -37,11 +37,13 @@ gh api repos/J03Fr0st/skills/private-vulnerability-reporting
 
 `can_approve_pull_request_reviews` is GitHub's combined switch allowing Actions
 to create and approve PRs. It remains enabled because Changesets creates release
-PRs. The workflow does not submit approvals. Release writes are limited to its
-job, including `actions: write` for explicit CI dispatch on the version branch.
+PRs. The workflow does not submit PR reviews. Release writes are limited to its
+job, including `actions: write` to approve the version PR's pending CI run and
+enable auto-merge.
 
-If required checks remain pending on a bot-created version PR, dispatch CI on
-that branch. If checks fail, repair the branch. Do not create fake passing
+If the version PR stays blocked, check for a CI run awaiting approval
+(`action_required`) on its head and approve it; a dispatched run on the branch
+does not satisfy the PR's required check. If checks fail, repair the branch. Do not create fake passing
 statuses or merge with an administrative bypass. In an emergency, the owner can
 edit the ruleset in Settings; record the reason and restore the policy afterward.
 
