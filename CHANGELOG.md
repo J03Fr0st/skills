@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.2.2
+
+### Patch Changes
+
+- [#31](https://github.com/J03Fr0st/skills/pull/31) [`4ad305f`](https://github.com/J03Fr0st/skills/commit/4ad305fb0e60639742067e98c125d82b864943e0) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Fold selected Cursor pstack principles into existing skills:
+  
+  - `coding-standards` adds a Types rule: tagged unions, exhaustive handling, branded identifiers, and schema-derived types.
+  - `codebase-design` flags scattered domain conditionals and phase-named modules, and deletes internal-only legacy shapes in the same change as the caller migration.
+  - `implement` routes repeated mechanical changes through a rerunnable codemod kept in the diff.
+  - `writing-for-agents` promotes repeatedly restated rules into checks.
+
+## 0.2.1
+
+### Patch Changes
+
+- [#38](https://github.com/J03Fr0st/skills/pull/38) [`c6a7335`](https://github.com/J03Fr0st/skills/commit/c6a73358417a07c103025b29293908f11bef90e0) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Strengthen the five ADLC skills with a shared portable content-hash helper,
+  full upstream approval-chain checks, revision-bound decisions and delivery
+  evidence, explicit conditional approval handling, and declared delivery endpoints.
+  Preserve existing authorization and progress across turns and plan revisions;
+  add regression checks and scenario fixtures for the lifecycle boundaries.
+
+- [#40](https://github.com/J03Fr0st/skills/pull/40) [`45dc9ee`](https://github.com/J03Fr0st/skills/commit/45dc9eeac03b14730b4364d02db4105c031a6b9b) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Fold the 2026-10 source-repository sweep into eight engineering skills:
+  structural prevention for recurring root causes in `diagnosing-bugs`, a
+  "build what was asked" rule in `implement`, agent-proof design red flags in
+  `codebase-design`, a ranked mechanism ladder in `compound-learnings`, a test
+  value bar in `tdd` and `code-review`, file-based worker results in
+  `orchestrate`, and a measured-claims reference in
+  `verification-before-completion`.
+
 ## 0.2.0
 
 ### Minor Changes

@@ -39,17 +39,30 @@ jobs:
 
       - name: Create Version Pull Request
         id: changesets
-        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
-          version: npm run version:skills
-          publish: npx changeset tag
-          commit: "chore: version skills"
-          title: "chore: version skills"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          version-script: npm run version:skills
+          publish-script: npx changeset tag
+          commit-message: "chore: version skills"
+          pr-title: "chore: version skills"
 
-      - name: Check the bot-created version branch
-        if: steps.changesets.outputs.pullRequestNumber != ''
+      # Bot-created PRs count as external contributions, so their CI run waits
+      # for approval. Approve it, then let auto-merge land the version PR once
+      # the required checks pass on that exact head.
+      - name: Approve CI and auto-merge the version PR
+        if: steps.changesets.outputs['pr-number'] != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run ci.yml --ref changeset-release/main
+          PR: ${{ steps.changesets.outputs['pr-number'] }}
+        run: |
+          head=$(gh pr view "$PR" --json headRefOid --jq .headRefOid)
+          for attempt in $(seq 1 12); do
+            runs=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$head&status=action_required" --jq '.workflow_runs[].id')
+            [ -n "$runs" ] && break
+            sleep 5
+          done
+          for id in $runs; do
+            gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$id/approve" ||
+              echo "::warning::Could not approve CI run $id; approve it under Actions."
+          done
+          gh pr merge "$PR" --auto --squash --match-head-commit "$head"
