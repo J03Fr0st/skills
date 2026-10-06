@@ -59,4 +59,4 @@ Pick by risk. Coverage percentages are not a slice-selection rule. Useful candid
 
 ## Mirror tests
 
-A test that compares generated output, a copied list, or a shim against a hard-coded fixture proves nothing about the generator. Ask: if the source of truth changed and the fixture did not, would this test fail? If not, assert against the source or regenerate the fixture in the test.
+A test that compares generated output, a copied list, or a shim against a fixture that was copied or regenerated from the implementation proves nothing about the generator: the fixture changes in lockstep with the code it checks. Ask: if the source of truth changed and the fixture did not, would this test fail? If not, assert against the source or regenerate the fixture in the test. A golden or oracle fixture authored independently of the implementation is a valid expected value and stays.

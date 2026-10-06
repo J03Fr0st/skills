@@ -61,7 +61,7 @@
       "expected_output": "A property-shaped slice using the existing property library, a compile-time failure treated only as a first step before a stub-driven runtime red, and a non-tautological property.",
       "files": [],
       "expectations": [
-        "Idempotence (normalizing twice equals normalizing once) or an equally strong property is chosen over a lone happy-path example, using the fast-check library the project already has.",
+        "The property asserts the normalization contract itself (no leading or trailing whitespace, no lowercase letters, no runs of internal whitespace), optionally combined with idempotence, using the fast-check library the project already has; idempotence alone is rejected because the identity function satisfies it.",
         "The expected result is not computed by re-implementing normalizeSku inside the test.",
         "A compile error for the missing function is not reported as red; a minimal compiling stub is added and a runtime behavioral failure is observed before the real implementation.",
         "Generator constraints are expressed in the arbitrary rather than by filtering most generated inputs away.",
