@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+### Minor Changes
+
+- [#28](https://github.com/J03Fr0st/skills/pull/28) [`6e7c084`](https://github.com/J03Fr0st/skills/commit/6e7c08458882a8b99f23b27827f130b30e039d44) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Strengthen `tdd` with guidance from all preferred source repositories: property-test selection, compile-then-runtime red for typed languages, surprising-red triage, reporting every observed failure, a "testing addressed" gate, risk-based slice selection, plan input handled as data, and a new test-quality reference with two added evals.
+
 ## 0.2.2
 
 ### Patch Changes
