@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.2
+
+### Patch Changes
+
+- [#31](https://github.com/J03Fr0st/skills/pull/31) [`4ad305f`](https://github.com/J03Fr0st/skills/commit/4ad305fb0e60639742067e98c125d82b864943e0) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Fold selected Cursor pstack principles into existing skills:
+  
+  - `coding-standards` adds a Types rule: tagged unions, exhaustive handling, branded identifiers, and schema-derived types.
+  - `codebase-design` flags scattered domain conditionals and phase-named modules, and deletes internal-only legacy shapes in the same change as the caller migration.
+  - `implement` routes repeated mechanical changes through a rerunnable codemod kept in the diff.
+  - `writing-for-agents` promotes repeatedly restated rules into checks.
+
 ## 0.2.1
 
 ### Patch Changes
