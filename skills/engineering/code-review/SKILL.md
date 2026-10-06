@@ -80,6 +80,8 @@ Track these axes even when one reviewer performs them together:
 
 Use architecture only to explain a concrete changed risk. Examine ownership, invariants, dependency direction, caller knowledge, failure semantics, and seam-aligned tests. Apply **KISS -> YAGNI -> DRY** as an evidence sequence: prefer the lowest total complexity that meets current constraints, reject structure justified only by hypothetical needs, then consolidate duplicated knowledge whose shared owner and change pattern are real. Similar syntax is not necessarily duplicated knowledge. Treat SOLID principles and code smells as diagnostic questions, not automatic findings.
 
+At `standard` and `deep`, identify the change's **load-bearing fact**: the one condition its safety depends on, such as "every caller already holds the lock" or "the removed column has no remaining readers." Record how far up the **proof ladder** that fact got: *asserted* -> *cited line* -> *walked through* -> *ran a script or test* -> *reproduced live*. A fact that stops below *ran* is **unproven**. Climb as far as the level's budget allows, then label the rung honestly.
+
 ## 4. Admit only proven findings
 
 A finding must satisfy every item:
@@ -92,6 +94,11 @@ A finding must satisfy every item:
 - Surrounding code, tests, contracts, or history were checked and support it. When the claim is that the change breaks something elsewhere, name the code that is provably affected; a ripple you cannot point at is not a finding.
 - The fix it implies matches the rigor the surrounding codebase already holds itself to.
 - It is not merely speculative, pre-existing, intentional behavior, personal style, or duplicated formatter or linter output.
+
+Two common candidates need the same concrete-impact test:
+
+- **Missing error handling** at an I/O boundary is a finding only when the failure it allows costs something where this code runs: a crashed or wedged process, a caller acting on a wrong or missing result, or work left half-done that rerunning does not repair. Judge how the code runs from the diff, description, and nearby docs, not from an assumed production service.
+- **A test offered as evidence** for changed behavior is a finding when it would still pass with that behavior removed, or when it adds a production seam (export, flag, hook) only the test uses. A merely redundant test is not a finding.
 
 For specification and standards findings, name the source file and the smallest quoted rule or line range that supports the claim. For architecture findings, show the concrete failure or change cost rather than reporting abstraction shape by itself. Verify uncertain candidates or leave them out and record the uncertainty under residual risks.
 
@@ -118,6 +125,7 @@ If nothing passes the gate, write `No findings.` Do not manufacture reassurance,
 After the findings, include only:
 
 - **Review scope:** target, base, level, and what was inspected.
+- **Blast radius** (`standard` and `deep`): the load-bearing fact, its rung on the proof ladder with the cited line or command, and the label `unproven` when it stopped below *ran*.
 - **Residual risks:** unavailable specification, checks not run, unverified generated output, or areas for which a deeper review is warranted. Write `None identified` when appropriate.
 
 ## Completion gate
@@ -129,5 +137,6 @@ The review is complete only when:
 - applicable repository instructions were applied;
 - each reported item passes the finding gate and cites a precise changed cause;
 - uncertain or duplicate candidates were verified, removed, or disclosed as residual risk;
+- at `standard` and `deep`, the load-bearing fact is named with its proof rung, labelled `unproven` below *ran*;
 - the final response leads with findings and names the review level and evidence limits;
 - the review itself changed no repository or remote state.

@@ -23,7 +23,7 @@ For each material boundary, follow attacker-controlled input through its transfo
 
 Use `research` for version-specific advisories or uncertain external contracts. Confirm affected versions and runtime reachability; a scanner alert or dangerous-looking API is a lead rather than a finding by itself.
 
-**Complete when:** each material abuse case is supported, contradicted by a verified control, or recorded as an unresolved coverage gap.
+**Complete when:** each material abuse case is sorted into one bucket: **supported** (reachable path and impact evidenced), **hypothesis** (plausible but unresolved, with the missing evidence named), or **disproved** (contradicted by a verified control).
 
 ## 3. Validate findings proportionately
 
@@ -33,18 +33,21 @@ A finding contains:
 
 - affected location and revision;
 - attacker capability, reachable trigger, and failed control;
-- concrete impact and severity rationale;
-- inspected evidence or reproduction result;
+- **Severity:** concrete impact given the attacker's realistic prerequisites;
+- **Confidence:** how strongly the evidence supports this exact claim, with counterevidence and unknowns;
+- **Evidence:** the cited code path or reproduction result, tagged `static`, `self_reported` (the target's own process reported the outcome), or `runtime_tested` (an observer outside the target process witnessed it);
 - smallest remediation direction and verification that would close it.
 
-Separate pre-existing findings from change-introduced ones. Whole-system audits may include either; diff reviews must make that provenance visible. Unconfirmed suspicion belongs in limitations or next checks, with the uncertainty named.
+Separate pre-existing findings from change-introduced ones. Whole-system audits may include either; diff reviews must make that provenance visible. Only supported findings count toward the finding total. Report hypotheses in their own list with the check that would resolve each, and keep disproved candidates as coverage evidence.
+
+When an independent reviewer challenges the findings, give it the locations, the invariant at stake, and the evidence, and withhold your own verdict so it judges the path fresh. Without an independent reviewer, label the pass `sequential challenge` and record the assumptions it could not test.
 
 **Complete when:** each finding has a defensible path and impact, and neither scanner severity nor reviewer confidence substitutes for evidence.
 
 ## 4. Return the scoped verdict
 
-Lead with actionable findings. If none are confirmed, say “No confirmed findings in the inspected scope,” then identify coverage and limitations. State whether the requested gate was fully assessed, has confirmed failures, or remains undecided because of named gaps. Avoid claims that the system is secure, compliant, or penetration-tested beyond the evidence.
+Lead with supported findings, then hypotheses, then disproved candidates. If none are supported, say “No supported findings in the inspected scope,” then identify coverage and limitations. State whether the requested gate was fully assessed, has confirmed failures, or remains undecided because of named gaps. Avoid claims that the system is secure, compliant, or penetration-tested beyond the evidence.
 
 Return remediation and closing checks to `implement` when changes are already authorized. After a fix, reassess the affected boundary and let `verification-before-completion` assess the final completion claim. A review-only request ends with the findings and unresolved checks.
 
-**Complete when:** the reader can distinguish confirmed risk, verified controls, and unknowns, and each needed follow-up has a concrete next check.
+**Complete when:** the reader can distinguish supported risk, hypotheses, and disproved candidates, and each needed follow-up has a concrete next check.

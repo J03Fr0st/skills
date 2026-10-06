@@ -13,16 +13,16 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
 
 ### User-invoked
 
-- [agile-flow](docs/agile/agile-flow.md) — route work from its evidenced current state
-  through refinement, planning, delivery, product review, and learning.
-- [agile-refine](docs/agile/agile-refine.md) — shape one valuable, Ready backlog item,
-  composing `/grilling` when important decisions remain hidden.
-- [agile-sprint-plan](docs/agile/agile-sprint-plan.md) — plan one coherent delivery
-  cycle around an observable goal and realistic capacity.
-- [agile-sprint-review](docs/agile/agile-sprint-review.md) — review working behavior
-  against intended outcomes and record stakeholder acceptance.
-- [agile-retro](docs/agile/agile-retro.md) — turn delivery evidence into one bounded,
-  measurable improvement experiment.
+- [adlc-flow](docs/adlc/adlc-flow.md) — verify the approval chain and route work
+  from its evidenced stage to the next command or declared delivery endpoint.
+- [adlc-intent](docs/adlc/adlc-intent.md) — interview the human and record the problem,
+  outcome, and success signal before agents build.
+- [adlc-spec](docs/adlc/adlc-spec.md) — turn approved intent into observable behavior
+  and numbered, verifiable acceptance criteria.
+- [adlc-plan](docs/adlc/adlc-plan.md) — plan covered, assigned slices with separate
+  verifiers and rollback from an approved spec.
+- [adlc-gate](docs/adlc/adlc-gate.md) — record revision-bound human sign-off with
+  portable content hashes, explicit conditions, and freshness checks.
 
 ### Model-invoked
 
@@ -35,8 +35,12 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   deep depth with a bounded default and evidence-backed findings.
 - [coding-standards](docs/engineering/coding-standards.md) — apply project conventions
   with shared rules and conditional backend and frontend guidance.
+- [compound-learnings](docs/engineering/compound-learnings.md) — capture durable
+  engineering lessons past a counterfactual bar and refresh the store against current code.
 - [diagnosing-bugs](docs/engineering/diagnosing-bugs.md) — prove a root cause through
   reproduction, competing hypotheses, and discriminating evidence before a fix.
+- [git-workflow](docs/engineering/git-workflow.md) — manage branches and worktrees,
+  write outcome-led PR titles and descriptions, and verify authorized integration.
 - [grilling](docs/productivity/grilling.md) — stress-test a consequential or ambiguous
   plan, decision, or idea through a live, dependency-aware interview.
 - [handoff](docs/productivity/handoff.md) — preserve verified task state across a pause,
@@ -45,14 +49,20 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   with diagrams, tables, and code, verified in a real browser.
 - [implement](docs/engineering/implement.md) — execute authorized changes in coherent,
   repository-safe slices and hand off fresh completion evidence.
+- [orchestrate](docs/engineering/orchestrate.md) — route bounded work to native
+  Claude Code or Codex agents with task-appropriate models and verified integration.
 - [planning-and-task-breakdown](docs/engineering/planning-and-task-breakdown.md) — turn clear
   requirements into verifiable slices, dependencies, and a ready frontier.
+- [property-based-testing](docs/engineering/property-based-testing.md) — find strong
+  properties and generators, avoid vacuous tests, and triage shrunk counterexamples.
 - [prototype](docs/engineering/prototype.md) — answer one design or feasibility question
   with a small, reproducible experiment.
 - [research](docs/engineering/research.md) — investigate questions with primary sources,
   revision-aware citations, and explicit evidence gaps.
 - [security-review](docs/engineering/security-review.md) — assess trust boundaries and
   concrete abuse paths through a scoped, read-only security review.
+- [ship-it](docs/engineering/ship-it.md) — carry finished changes through delivery
+  to an explicit, verified PR, merge, or deployment endpoint.
 - [simplify](docs/engineering/simplify.md) — reduce code complexity in a scoped pass
   while preserving observable behavior and useful boundaries.
 - [tdd](docs/engineering/tdd.md) — drive behavior changes through observable red, green,
@@ -81,7 +91,7 @@ npx skills@latest add J03Fr0st/skills
 ## Repository structure
 
 - `skills/` — original skills, added when ready
-- `docs/` — human-facing skill documentation grouped under `agile/`,
+- `docs/` — human-facing skill documentation grouped under `adlc/`,
   `engineering/`, `productivity/`, and `authoring/`, with source research under
   `research/`
 - `scripts/` — maintainer helpers
@@ -94,11 +104,7 @@ npx skills@latest add J03Fr0st/skills
 The repository shell is based on
 [`mattpocock/skills`](https://github.com/mattpocock/skills). `grilling`
 generalizes that project's design-tree and frontier-round model into an
-original local interview primitive. The Agile suite composes it and draws on
-the delivery guardrails of
-[`obra/superpowers`](https://github.com/obra/superpowers). No upstream skill
-files are vendored; the suite's instructions and artifact contracts are
-maintained here. `codebase-design`
+original local interview primitive. `codebase-design`
 adapts Matt Pocock's original deep-module vocabulary and expands it with
 source-backed guidance for simplicity and abstraction timing, decomposition,
 dependency direction, communication, reliability, testing, observability, and
@@ -157,3 +163,11 @@ The new instructions use original wording and preserve one owner per outcome.
 `simplify` adds a behavior-preserving cleanup entry point, informed by the
 [six-source comparison](docs/research/simplify-skill-research.md). Its instructions
 and evaluation fixtures are maintained here; no upstream skill file is vendored.
+
+The ADLC suite follows the artifact-and-gate lifecycle described in Anthropic's
+[AI-native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook),
+with per-work-item folders informed by the Conductor plugin in
+[`wshobson/agents`](https://github.com/wshobson/agents). It composes the local
+`grilling` and `planning-and-task-breakdown` skills; the
+[ADLC research](docs/research/2026-09-26-adlc.md) records every preferred source
+consulted. No upstream skill file is vendored.

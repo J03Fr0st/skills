@@ -1,0 +1,53 @@
+{
+  "skill_name": "git-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Rewrite a PR title/body only. Base is upstream/release/2, head is feature/retries. Original title: Add retries. Final diff adds bounded retries AND prevents duplicate charges with idempotency keys. Retry tests pass; duplicate-charge integration test was not run. Repository requires Conventional Commit titles. Produce the text and describe any state changes you would make.",
+      "expected_output": "Title and opening cover both final outcomes; body distinguishes retry test success from unrun integration checks. No commit, push, or PR metadata write for text-only scope. Uses the actual upstream release base. Body carries no agent attribution footer such as 'Generated with Claude Code'.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Set up a checkout for an independent task. Primary checkout has unrelated staged changes. A managed worktree is free with its prior changes preserved, but has an old task name. Remote default is develop. Describe actions; do not execute tools.",
+      "expected_output": "Inspect and reuse suitable free managed checkout, verify correct base/branch, preserve primary staging, establish environment and baseline in selected absolute path. Does not replace a worktree for its name or assume main.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "The PR was squash-merged. Clean up its managed worktree. It contains an ignored test database needed for reproductions and a running dev server owned by another active task. Describe actions; do not execute tools.",
+      "expected_output": "Retains the in-use worktree and identifies active ownership as blocking retirement. Accounts for ignored data separately from archive coverage and distinguishes branch deletion from worktree retirement. Does not infer deletion safety from squash-merged status.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "You were authorized to rewrite your feature branch. An explicit force-with-lease push failed. A background fetch ran, and the remote branch now has a collaborator commit you have not reviewed. What do you do next? Propose actions only.",
+      "expected_output": "Inspects remote divergence and collaborator intent; preserves remote work; does not refresh the lease and retry blindly. Establishes expected remote SHA and coordinates any justified rewrite.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Parent branch P was squash-merged to develop. Child C contains two more commits based on old P tip abc123, recorded before merge. The child PR still targets P. You may update the stack. Explain the safe sequence and validation, without executing commands.",
+      "expected_output": "Preserves old boundary and head, verifies child-only range, transplants unique commits onto current develop with rebase --onto or equivalent, retargets PR, verifies resulting diff and fresh checks, and coordinates publication.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Commit my fix to src/retry.ts. Another task's migration file is already staged in this checkout, and the repository uses Conventional Commits. Describe actions; do not execute tools.",
+      "expected_output": "Inspects staged and unstaged state, commits only the task path (e.g. git commit --only or equivalent) with a Conventional Commit message, and verifies the staged migration remains staged and out of the new commit. Commit message has no agent Co-Authored-By trailer or generated-by line. Does not stage everything or push.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "My PR #412 is open; CI is failing on a lint job and a reviewer left three comments. Keep it moving until it's green and approved.",
+      "expected_output": "Routes ongoing CI repair and review follow-up to babysit-pr, handing off the PR identity and current head; does not treat the request as a one-off git-workflow endpoint.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Explain why a rainbow has colors in two sentences.",
+      "expected_output": "Answers the science question directly; does not invoke Git workflow or inspect repository state.",
+      "files": []
+    }
+  ]
+}

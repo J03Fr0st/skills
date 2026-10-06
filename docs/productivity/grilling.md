@@ -22,7 +22,7 @@ When the tree is resolved, the skill summarizes the outcome, decisions, assumpti
 
 ## Composition and boundaries
 
-`grilling` does not write documents, update trackers, create plans, implement, commit, or publish. The calling workflow owns the durable artifact and all execution. For example, [`agile-refine`](../agile/agile-refine.md) invokes grilling when backlog value or scope remains materially uncertain, then resumes its own acceptance and readiness work only after confirmation.
+`grilling` does not write documents, update trackers, create plans, implement, commit, or publish. The calling workflow owns the durable artifact and all execution. For example, [`adlc-intent`](../adlc/adlc-intent.md) invokes grilling when value, premise, or scope is contested, then resumes its own intent drafting only after confirmation.
 
 ## Attribution and design basis
 

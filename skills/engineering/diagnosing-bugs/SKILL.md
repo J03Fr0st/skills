@@ -1,11 +1,21 @@
 ---
 name: diagnosing-bugs
-description: Diagnose bugs and performance regressions through reproduction, observations, competing hypotheses, and discriminating experiments before proposing a fix. Use when the user says diagnose, debug, investigate, find the root cause, explain a failure, or reports broken, throwing, failing, flaky, intermittent, or slow behavior whose cause is not established. Keep diagnosis read-only unless mutation is explicitly authorized; hand confirmed remediation to implement or tdd, and route review-only findings to code-review.
+description: Investigate an unexplained bug or performance regression when its cause requires evidence from code, runtime behavior, logs, or reproduction. Use for explicit diagnosis or root-cause requests, intermittent or environment-specific failures, and fix requests with an unknown cause. Answer quick questions from available evidence directly; send known-cause fixes to implement and review-only findings to code-review. Diagnose-only work remains read-only.
 ---
 
 # Diagnosing Bugs
 
 Establish what causes the observed behavior before changing production code. A plausible story is a hypothesis; a symptom disappearing after an edit is not automatically root-cause proof.
+
+## Choose the route
+
+Match the depth to the unresolved question before starting the diagnostic steps:
+
+- If the user asks for a quick explanation and the available error or code already supports one, answer it directly. State what the evidence shows and what remains uncertain. A hypothetical reproduction adds no evidence.
+- If the cause is already established and the user wants a change, use `implement`. A known-cause fix does not need a new diagnosis.
+- If the cause remains uncertain or the user asks for an investigation, follow the workflow below. Use the smallest faithful check that can distinguish causes; increase depth only when that check leaves uncertainty.
+
+**Complete when:** the request has a direct answer, a known-cause implementation route, or a specific unresolved causal question for diagnosis.
 
 ## Operating boundary
 
@@ -84,6 +94,8 @@ A root cause is confirmed only when the evidence:
 
 A proposed patch that suppresses the symptom is not confirmation by itself. When evidence cannot reach this bar, preserve the leading hypothesis as such.
 
+Once confirmed, search for the same root-cause pattern at other sites. When it recurs, a check at one more layer still leaves the next caller free to write the bug. Name a **structural prevention** that removes that freedom: one helper every site routes through, a type or constructor that cannot hold the bad state, or a lint rule or test that fails when the pattern reappears. Keep it separate from the minimal fix in the handoff, so `implement` can land the fix first and the prevention only within authorized scope, or record it as follow-up.
+
 ## Terminal states
 
 Assign a terminal state only after the requested diagnostic scope and all safe, authorized discriminating checks available in that scope are exhausted. During an ongoing investigation, report the current ledger and next check without labeling the diagnosis terminal. End the diagnosis with exactly one honest state:
@@ -93,4 +105,4 @@ Assign a terminal state only after the requested diagnostic scope and all safe, 
 - **COULD NOT REPRODUCE:** faithful attempts did not produce the symptom; list conditions tried and evidence needed next.
 - **BLOCKED:** a named access, authority, environment, data, or safety constraint prevents the next discriminating check.
 
-Then report the symptom and scope, reproduction evidence, decisive observations, the per-hypothesis ledger table, cause or remaining hypotheses, and the smallest next action. If remediation was authorized and the cause is confirmed, explicitly pass the regression condition to `tdd`, the bounded change to `implement`, and the final claim to `verification-before-completion`; do not erase the diagnosis boundary by silently editing first.
+Then report the symptom and scope, reproduction evidence, decisive observations, the per-hypothesis ledger table, cause or remaining hypotheses, any recurrence sites with the proposed structural prevention, and the smallest next action. If remediation was authorized and the cause is confirmed, explicitly pass the regression condition to `tdd`, the bounded change to `implement`, and the final claim to `verification-before-completion`; do not erase the diagnosis boundary by silently editing first.
