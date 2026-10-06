@@ -95,6 +95,11 @@ A finding must satisfy every item:
 - The fix it implies matches the rigor the surrounding codebase already holds itself to.
 - It is not merely speculative, pre-existing, intentional behavior, personal style, or duplicated formatter or linter output.
 
+Two common candidates need the same concrete-impact test:
+
+- **Missing error handling** at an I/O boundary is a finding only when the failure it allows costs something where this code runs: a crashed or wedged process, a caller acting on a wrong or missing result, or work left half-done that rerunning does not repair. Judge how the code runs from the diff, description, and nearby docs, not from an assumed production service.
+- **A test offered as evidence** for changed behavior is a finding when it would still pass with that behavior removed, or when it adds a production seam (export, flag, hook) only the test uses. A merely redundant test is not a finding.
+
 For specification and standards findings, name the source file and the smallest quoted rule or line range that supports the claim. For architecture findings, show the concrete failure or change cost rather than reporting abstraction shape by itself. Verify uncertain candidates or leave them out and record the uncertainty under residual risks.
 
 Assign the lowest severity that accurately represents impact:
