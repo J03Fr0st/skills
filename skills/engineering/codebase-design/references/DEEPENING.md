@@ -76,9 +76,9 @@ When every caller is internal, follow the single-change path in step 6 instead o
 
 ## 6. Retire the old shape
 
-When every caller is internal and changes in the same repository and deploy, migrate them all and delete the old shape in the same change. Keep no adapter, alias, or deprecation window: a second path doubles what readers and tests must cover and has no caller to protect.
+When every caller is internal and changes in the same repository and deploy, and nothing outside that deploy can still observe the old shape (no persisted data, queued messages, or caches in the old format, no rolling deployment where old and new instances overlap, and no rollback that would need it), migrate them all and delete the old shape in the same change. Keep no adapter, alias, or deprecation window: a second path doubles what readers and tests must cover and has no caller to protect.
 
-For public, external, or separately deployed callers, delete obsolete modules, adapters, compatibility paths, and tests only after:
+For public, external, or separately deployed callers, or when old-shape data or instances can outlive the change, delete obsolete modules, adapters, compatibility paths, and tests only after:
 
 - no supported caller depends on them;
 - replacement tests cover the same or greater risks;

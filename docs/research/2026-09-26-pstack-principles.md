@@ -135,9 +135,29 @@ align the global instruction is the owner's decision, so no change is recommende
 
 ## Other preferred repositories
 
-This review is scoped to pstack, entry 4 in `docs/source-repos.md`. The other
-preferred repositories were not re-surveyed. Their overlapping ideas reached this
-repository through earlier reports, which this review relied on:
+This review is scoped to pstack, entry 4 in `docs/source-repos.md`. It maps
+pstack's `principle-*` skills, so the other preferred repositories are not
+applicable to its question; none of them publishes an equivalent principle set.
+Each was assessed for the same skills elsewhere:
+
+| Repository | Where it was assessed |
+|---|---|
+| mattpocock/skills | `2026-09-27-source-repos-sweep.md`, `2026-10-06-source-repos-sweep.md` |
+| obra/superpowers | `2026-09-27-source-repos-sweep.md`, `tdd-skill-research.md` |
+| addyosmani/agent-skills | `2026-09-27-source-repos-sweep.md`, `2026-10-06-source-repos-sweep.md` |
+| cursor/plugins (pstack) | This report |
+| DietrichGebert/ponytail | `codebase-design-ponytail-research.md`, sweeps |
+| mvanhorn/last30days-skill | Sweeps; not applicable (research engine, no principle skills) |
+| anthropics/skills | Sweeps; not applicable (`skill-creator` covers authoring only) |
+| trailofbits/skills | `2026-09-27-source-repos-sweep.md` |
+| EveryInc/compound-engineering-plugin | `2026-09-27-source-repos-sweep.md`, `2026-10-06-source-repos-sweep.md` |
+| garrytan/gstack | `2026-09-27-source-repos-sweep.md`, `2026-10-06-source-repos-sweep.md` |
+| affaan-m/ECC | `2026-09-27-source-repos-sweep.md` |
+| wshobson/agents | `2026-09-27-source-repos-sweep.md` |
+| nahid-sparktales/agent-dispatcher | `2026-09-27-source-repos-sweep.md`, `2026-09-26-model-orchestration/preferred-sources.md` |
+
+Their overlapping ideas reached this repository through earlier reports, which this
+review relied on:
 `implement-skill-research.md`, `verification-before-completion-skill-research.md`,
 `tdd-skill-research.md`, `coding-standards-skill-research.md`,
 `diagnosing-bugs-skill-research.md`, `2026-09-26-adlc.md`, and
