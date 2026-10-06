@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync, realpathSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 function walk(path) {
   if (!existsSync(path)) return [];
