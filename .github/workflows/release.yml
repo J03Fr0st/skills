@@ -48,8 +48,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check the bot-created version branch
+      # Bot-created PRs count as external contributions, so their CI run waits
+      # for approval. Approve it, then let auto-merge land the version PR once
+      # the required checks pass on that exact head.
+      - name: Approve CI and auto-merge the version PR
         if: steps.changesets.outputs.pullRequestNumber != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run ci.yml --ref changeset-release/main
+          PR: ${{ steps.changesets.outputs.pullRequestNumber }}
+        run: |
+          head=$(gh pr view "$PR" --json headRefOid --jq .headRefOid)
+          for attempt in $(seq 1 12); do
+            runs=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$head&status=action_required" --jq '.workflow_runs[].id')
+            [ -n "$runs" ] && break
+            sleep 5
+          done
+          for id in $runs; do
+            gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$id/approve" ||
+              echo "::warning::Could not approve CI run $id; approve it under Actions."
+          done
+          gh pr merge "$PR" --auto --squash --match-head-commit "$head"
