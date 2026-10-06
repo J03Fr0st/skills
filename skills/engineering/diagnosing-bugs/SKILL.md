@@ -94,6 +94,8 @@ A root cause is confirmed only when the evidence:
 
 A proposed patch that suppresses the symptom is not confirmation by itself. When evidence cannot reach this bar, preserve the leading hypothesis as such.
 
+Once confirmed, search for the same root-cause pattern at other sites. When it recurs, a check at one more layer still leaves the next caller free to write the bug. Name a **structural prevention** that removes that freedom: one helper every site routes through, a type or constructor that cannot hold the bad state, or a lint rule or test that fails when the pattern reappears. Keep it separate from the minimal fix in the handoff, so `implement` can land the fix first and the prevention only within authorized scope, or record it as follow-up.
+
 ## Terminal states
 
 Assign a terminal state only after the requested diagnostic scope and all safe, authorized discriminating checks available in that scope are exhausted. During an ongoing investigation, report the current ledger and next check without labeling the diagnosis terminal. End the diagnosis with exactly one honest state:
@@ -103,4 +105,4 @@ Assign a terminal state only after the requested diagnostic scope and all safe, 
 - **COULD NOT REPRODUCE:** faithful attempts did not produce the symptom; list conditions tried and evidence needed next.
 - **BLOCKED:** a named access, authority, environment, data, or safety constraint prevents the next discriminating check.
 
-Then report the symptom and scope, reproduction evidence, decisive observations, the per-hypothesis ledger table, cause or remaining hypotheses, and the smallest next action. If remediation was authorized and the cause is confirmed, explicitly pass the regression condition to `tdd`, the bounded change to `implement`, and the final claim to `verification-before-completion`; do not erase the diagnosis boundary by silently editing first.
+Then report the symptom and scope, reproduction evidence, decisive observations, the per-hypothesis ledger table, cause or remaining hypotheses, any recurrence sites with the proposed structural prevention, and the smallest next action. If remediation was authorized and the cause is confirmed, explicitly pass the regression condition to `tdd`, the bounded change to `implement`, and the final claim to `verification-before-completion`; do not erase the diagnosis boundary by silently editing first.

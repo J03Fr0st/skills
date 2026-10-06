@@ -7,7 +7,7 @@
 **Method:** fresh blobless clones; `git log --since=2026-09-27` and
 `git diff --name-status <last commit before window> HEAD -- '*SKILL.md'`, then
 reads of every added skill and of the substantive skill diffs.
-**Boundary:** research only. No skill, manifest, or source list was changed.
+**Boundary:** the source list was not changed. The follow-up changes are listed under Applied.
 
 ## Activity
 
@@ -104,3 +104,21 @@ obra/superpowers (no commits), anthropics/skills (`claude-api` only),
 trailofbits (tool-specific), last30days (engine internals), ECC (rename and
 infra), wshobson (`connectivity-triage` is macOS ops, no local owner),
 agent-dispatcher (internals), addyosmani (fixes only).
+
+## Applied
+
+| Local skill | Change |
+|---|---|
+| `diagnosing-bugs` | Search for recurrence sites after a confirmed cause; propose a structural prevention separate from the minimal fix (#1) |
+| `implement` | "Build what was asked" rule; delete replaced in-repo interfaces; name the shared assumption after two failed fixes (#4) |
+| `codebase-design` | Agent-proof design red flags (#1) |
+| `compound-learnings` | Ranked mechanism ladder; prove the mechanism fails on the original mistake (#1) |
+| `tdd` | Test value questions and no test-only production seam (#3) |
+| `code-review` | Cost condition for missing I/O handling; hollow or seam-adding tests as findings (#3, smaller items) |
+| `orchestrate` | File-based worker results (smaller items) |
+| `verification-before-completion` | New `references/MEASURED-CLAIMS.md` for performance and eval numbers (#2) |
+
+Not applied: a standalone `test-audit` skill, `SCOPE.md`, `to-tickets`
+sub-issues (no local owner), and `principle-the-algorithm` (covered by
+`simplify` and `codebase-design`). The local `handoff` already writes a
+task-scoped file, so the temp-directory fix does not apply.
