@@ -35,6 +35,7 @@ Use the narrowest workflow that fits the evidence:
 | Observable behavior is changing and an executable harness is practical | Run `tdd` for each coherent behavior slice |
 | Working code needs a requested behavior-preserving cleanup | Use `simplify` for the scoped pass, then resume final verification |
 | Documentation, metadata, generated output, or a mechanical change has no useful behavioral test | Edit directly and define artifact-specific checks |
+| The same mechanical change repeats across many sites | Write a codemod or script, apply it, and keep it in the diff so a reviewer can rerun it; the rerunnable script is the evidence |
 | A module boundary or ownership decision blocks safe progress | Use `codebase-design` for that decision, then resume |
 | A large clear outcome lacks verifiable slices or a dependency order | Use `planning-and-task-breakdown`, then execute its ready frontier within the existing authorization |
 | An external API or version-dependent claim is uncertain | Use `research` for the needed evidence, then resume |
