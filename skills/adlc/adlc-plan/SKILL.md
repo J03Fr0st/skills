@@ -10,21 +10,9 @@ Turn an approved spec into a plan that an engineer or agent who never saw the co
 
 ## 1. Check the precondition
 
-Read the spec beside this work item (`docs/adlc/<slug>/spec.md` or the project's convention). Continue only when its `status` is `approved` and its current content hash matches the approved revision in its `## Approvals` table:
+Read the spec beside this work item (`docs/adlc/<slug>/spec.md` or the project's convention). Read [the approval contract](../adlc-gate/references/APPROVALS.md), run its hash helper, and verify intent → spec, including both approvals and the source link. Return the earliest unresolved gate or authoring stage when it fails; an unchanged spec can still be based on superseded intent.
 
-```bash
-sed -e '/^status:/d' -e '/^## Approvals/,$d' <spec> | git hash-object --stdin
-```
-
-In PowerShell without Git Bash:
-
-```powershell
-$f = New-TemporaryFile; [IO.File]::WriteAllText($f, ((Get-Content -Raw <spec>) -replace '(?m)^status:.*\n' -replace '(?ms)^## Approvals.*')); git hash-object --no-filters $f; Remove-Item $f
-```
-
-Otherwise return `/adlc-gate spec` and stop.
-
-When the plan is already approved and current but has no `progress.md`, write only `progress.md`: each slice's state from its reachable evidence (commits, PRs, test runs), the carried items, and decisions already made during delivery with who made them and where. Leave the plan untouched and return `/adlc-flow`.
+When the plan is already approved and current but `progress.md` is missing or bound to an older plan, reconcile only `progress.md` using [references/PROGRESS.md](references/PROGRESS.md). Preserve prior evidence and decisions, bind the current approved plan hash, and reassess changed slices and conditions rather than resetting or upgrading them. Leave the plan untouched and return `/adlc-flow`. A plan with an outdated spec source first needs explicit content reconciliation and its own gate.
 
 List the spec's approval conditions and its open questions and areas of concern with `decide by: plan` or a slice; this stage settles or schedules them.
 
@@ -36,7 +24,7 @@ Run `planning-and-task-breakdown` with the approved spec as the contract and the
 
 When planning uncovers a fact that contradicts the approved spec, stop and return `/adlc-spec` with the evidence. The plan carries the spec as settled; it does not quietly change it.
 
-Slice headings carry no status: state changes during delivery, and an edit to the approved plan makes it stale. Slice state lives in `progress.md`.
+Keep slice IDs stable across plan revisions; note added, changed, and retired slices. Slice headings carry no status: state changes during delivery, and an edit to the approved plan makes it stale. The approved plan's ready frontier is its initial snapshot; current state and frontier live in `progress.md`. These ADLC rules override the composed skill's instruction to refresh status in the plan itself.
 
 **Complete when:** the slices, interfaces, dependencies, review focus, and ready frontier are written by that skill, with no placeholders.
 
@@ -45,13 +33,13 @@ Slice headings carry no status: state changes during delivery, and an edit to th
 Add the sections in [references/PLAN.md](references/PLAN.md):
 
 - **Decisions**: every choice the plan makes that the spec left open (stack, hosting, thresholds, sequencing), each with an ID and its evidence, including every spec condition and item due by `plan` that it settles.
-- **Carried items**: every spec item still undecided, with an owner and a `decide by` slice that precedes any slice building on it.
-- **Coverage**: every acceptance criterion maps to the slices that deliver it and the check that proves it.
+- **Carried items**: every spec item still undecided, with a stable ID, owner, and `decide by` boundary before dependent work. Distinguish an entry prerequisite from a decision the slice is explicitly meant to produce.
+- **Coverage**: every acceptance criterion maps to the slices that deliver it and a check capable of disproving it, plus the combined acceptance check across slices. Do not substitute compilation or implementation-authored happy-path checks for the spec's required behavior.
 - **Assignment**: who executes each slice (a human, an agent role, or `orchestrate`), and a verifier who is separate from the implementer.
-- **Risks and rollback**: what could go wrong and how each slice is undone.
-- **Handoff**: `implement`, or `orchestrate` when slices are independent, and the rule that delivery updates `progress.md`.
+- **Risks and rollback**: what could go wrong, when to stop or roll back, and how each slice is undone. If reversal cannot restore data or an external effect, name the recovery/roll-forward owner and the decision required before proceeding.
+- **Handoff**: `implement`, or `orchestrate` when authorized and slices are independent; identify the delivery endpoint (local verification, PR ready, merged, or deployed), existing action authority, combined acceptance evidence, and who observes the intent's success signal and when. Use `ship-it` for remote delivery. Do not add deployment or monitoring to a local-only request.
 
-Write `progress.md` beside the plan with [references/PROGRESS.md](references/PROGRESS.md): every slice at `ready` or `blocked`, and the carried items. It is a living record, never hashed or gated.
+Write or reconcile `progress.md` beside the plan with [references/PROGRESS.md](references/PROGRESS.md). For new work, every slice starts `ready` or `blocked`; preserve evidenced progress when revising existing work. Record the plan hash as a draft candidate until its gate approves it. Progress is a living record, never itself hashed or gated, but it cannot grant approval to the referenced plan.
 
 **Complete when:** every spec condition and due item is settled under Decisions or carried to a slice, every acceptance criterion is covered, every slice has an implementer and a separate verifier, `progress.md` lists every slice, and a fresh reader could start the first ready slice from the plan alone.
 

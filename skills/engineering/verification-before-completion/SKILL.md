@@ -41,7 +41,7 @@ Prefer direct evidence over proxies:
 | Configuration or migration | Parser or validator, dry run when faithful, and inspection of effective state or migration behavior |
 | External or deployed state | Read-back from the actual target system after an authorized write |
 | Visual interface | Render in the relevant viewport or application and inspect the changed states, including error and responsive states when in scope |
-| Performance | Representative measurement against a comparable baseline with method and variance recorded |
+| Performance or eval result | Representative measurement against a comparable baseline with method, run count, spread, and named limiter; read [references/MEASURED-CLAIMS.md](references/MEASURED-CLAIMS.md) |
 
 An exit code is not sufficient when a command can skip the decisive test, omit untracked fixtures, validate only syntax, or produce an artifact that still needs inspection. Confirm what actually ran.
 

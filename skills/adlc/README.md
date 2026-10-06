@@ -1,6 +1,6 @@
 # ADLC
 
-Five composable skills for the agentic development lifecycle: agents draft and verify, humans decide at named gates. Each stage ends in a committed Markdown artifact that the next stage reads.
+Five composable skills for the agentic development lifecycle: agents draft and verify, humans decide at named gates. Each stage saves a durable Markdown artifact that the next stage reads; commits follow the user's authorization.
 
 ## User-invoked
 
@@ -15,7 +15,7 @@ Five composable skills for the agentic development lifecycle: agents draft and v
 ```text
 /adlc-intent -> /adlc-gate intent -> /adlc-spec -> /adlc-gate spec
   -> /adlc-plan -> /adlc-gate plan -> implement | orchestrate
-  -> code-review -> verification-before-completion -> git-workflow
+  -> code-review -> verification-before-completion -> declared delivery endpoint
 ```
 
 Build, test, review, and delivery reuse the engineering skills; the ADLC bucket adds only the artifacts and gates in front of them.
@@ -32,6 +32,16 @@ docs/adlc/<slug>/
 `-- progress.md
 ```
 
-Each artifact carries `status` frontmatter and an `## Approvals` table. An approval records the content hash the human reviewed; any later edit to the body makes it stale, and the stage passes its gate again. Artifacts an agent drafts carry a line saying so.
+Each gated artifact carries `status` frontmatter and a final `## Approvals` table.
+The shared [approval contract](adlc-gate/references/APPROVALS.md) and portable hash
+helper bind decisions to reviewed content. Downstream stages verify the full
+chain, including source hashes and conditions. Changed content needs renewed
+review; reapproving upstream does not refresh downstream automatically.
 
-`progress.md` is the exception: a living delivery record of slice state, evidence, delivery-time decisions, and carried items. It is never hashed, so updating it never makes the plan stale. Open questions and areas of concern carry an owner and a `decide by` stage or slice, and the gates fail when a due one is still undecided.
+`progress.md` is the exception: a living delivery record bound to the approved
+plan hash, with code revisions, review/test receipts, decisions, and carried
+items. It is never hashed. Conditions carry an ID, owner, and deadline, and due
+decisions block dependent work. The [progress contract](adlc-plan/references/PROGRESS.md)
+defines freshness, combined acceptance, and completion at the declared local,
+PR, merge, or deployment endpoint. Legacy plans retain `done = merged` until
+explicitly revised. Product outcome observation can remain pending after delivery.

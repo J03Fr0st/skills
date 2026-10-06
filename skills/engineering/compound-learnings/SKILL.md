@@ -24,7 +24,7 @@ Name the candidate in one sentence: what a future reader would get wrong without
 
 Reject the candidate when any of these already carries the reasoning; quote the artifact that does. Effort spent, diff size, and the user's request to document it do not lower the bar. Lessons that typically pass: a cause invisible from the fix, an approach that looked right and failed, a cross-file invariant no single file shows, an external system's undocumented behaviour, a measured threshold.
 
-Prefer a mechanism to prose. When a test, lint rule, type, assertion, or code comment beside the mechanism would stop the recurrence, recommend or (within existing edit authority) add that instead; the lesson then records only what the mechanism cannot.
+Prefer a mechanism to prose, at the highest level that works: a design that removes the wrong way (one owner, one supported path, unreachable internals), then a type that cannot hold the bad state, then a lint or check whose error names the fix, then a behavior test, and a code comment or prose last, since nothing fails when a reader skips them. Recommend that mechanism or, within existing edit authority, add it and show it fails on the original mistake; the lesson then records only what the mechanism cannot. A lesson about a mistake that has already recurred despite an existing written rule is evidence the rule needs a mechanism, not a second lesson.
 
 Search the store for an existing lesson on the same problem. A lesson that is now inaccurate or incomplete gets updated in place; a second lesson on the same problem is a duplicate.
 

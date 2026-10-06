@@ -35,7 +35,10 @@ What this work will not do, and why.
 
 ## Success signal
 
-The observable signal that the outcome was reached, and how it will be read.
+The observable signal that the outcome was reached. Baseline: <known current
+result, or how to establish it>. Target or acceptance evidence: <human's
+criterion, quantitative only when meaningful>. Observe by: <method>; owner:
+<who reads it>; when: <acceptance check or later observation point>.
 
 ## Assumptions
 

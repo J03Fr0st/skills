@@ -23,6 +23,8 @@ Apply the **hollow-test** litmus: would this test still pass if every function i
 - pins a constant or snapshots the input fixture rather than the output;
 - never runs the subject, so the fixture asserts itself.
 
+A new test must also earn its place. Before adding one, answer: what behavior or contract does it protect, what credible regression makes it fail, and why existing coverage does not already catch that? When a nearby table-driven test or shared fixture covers the same contract, add a row there instead of a near-duplicate. If the test needs a production seam no production caller needs, such as an extra export, flag, or injection hook, test at the real boundary instead.
+
 When the behavior is an invariant over many inputs, such as a round-trip, ordering, or conservation rule, `property-based-testing` can supply a generative test in place of hand-picked examples.
 
 ## 1. Define the slice

@@ -73,7 +73,15 @@ Git transitions by `git-workflow`, and the remote repair loop by `babysit-pr`.
 
 ## Agentic development lifecycle
 
-Use `/adlc-flow` when work should pass named human gates before agents build. `/adlc-intent`, `/adlc-spec`, and `/adlc-plan` each commit one artifact that the next stage reads, and `/adlc-gate` records the human's decision against the artifact's content hash. An approved plan hands off to `implement` or `orchestrate`, and the delivery path above runs unchanged.
+Use `/adlc-flow` when work should pass named human gates before agents build.
+`/adlc-intent`, `/adlc-spec`, and `/adlc-plan` each save one artifact that the next
+stage reads; commits stay within existing authorization. `/adlc-gate` records
+the human's revision-bound decision. The full approval chain, source hashes,
+and conditions must remain current. Authorized delivery hands the plan to
+`implement` or `orchestrate`, with mutable progress and revision-specific evidence
+kept separately. The plan declares the delivery endpoint; `ship-it` handles
+remote delivery, and combined acceptance is checked before completion. An outcome
+observation that is not yet possible stays pending; a new need returns to intent.
 
 ## Authoring and design basis
 
