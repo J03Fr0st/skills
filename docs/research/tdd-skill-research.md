@@ -176,3 +176,17 @@ The reviewed Matt Pocock, Obra, Addy Osmani, and Wshobson sources are MIT-licens
 - Evals 4 (property plus compile-time red) and 5 (hostile plan and pre-existing unrelated failure).
 
 No upstream prose or eval fixtures were vendored. ECC, Trail of Bits, EveryInc, gstack, and agent-dispatcher were reviewed for ideas only; the wording here is original.
+
+## Refresh verification (2026-10-07)
+
+**Local baseline:** `1cdbf74ad54ab67110847c74f5cb23ef06556613`
+
+| Source | 2026-09-23 pin | Current revision (2026-10-07) | Drift since 2026-09-23 |
+| --- | --- | --- | --- |
+| mattpocock/skills | `c55ee46073ed923f86ce59a5eb3b6d895095d1b7` | `6fd947921b935b7e1e69293a200400f0fdd5c15f` | One-line rename: `CONTEXT.md` to `GLOSSARY.md` in the domain-language guidance; `tests.md` and `mocking.md` unchanged |
+| obra/superpowers | `5bf4e78011075bcfc0dc295f0724994cd123ee71` | `8ca22dba9a94f28898bbce59f2537ff4d87c747d` | None - `SKILL.md` and `writing-good-tests.md` are identical to the last reviewed revisions |
+| addyosmani/agent-skills | `bcab6a1b8503100e8618c3b4e32cc78de43de769` | `1401c8b8030e023baeebb31781a6653fe8e93026` | None - `SKILL.md`, `references/testing-patterns.md`, and `evals/cases/test-driven-development.json` are identical to the last reviewed revisions |
+| wshobson/agents | `4236bb91f8395b0435f1d8b8baf9e8e4c69a8620` | `46891e7e60da0e52baf1050b7b6391b64e84c6d9` | Cosmetic - `tdd-refactor.md` gained a frontmatter description and `.codex-plugin/plugin.json` was removed; `tdd-cycle.md`, `tdd-red.md`, and `tdd-green.md` are unchanged since their last review |
+| cursor/plugins | `b0b9c7a0baf8b6aa1d00bf77d4101e577d4ba411` | `d0ef80d86795816da932a153458c5dbe192d294e` | None - `pstack/skills/tdd/SKILL.md` is unchanged and still at the same path |
+
+The drift is not material: the mattpocock change renames a context-file reference and the wshobson changes are plugin metadata and a command description line, so no evidence, conflict resolution, or adopted rule above changes. The issue's local handoff source `skills/agile/agile-flow/SKILL.md` no longer exists because the Agile suite was removed (commit `62dece2`) and replaced by the ADLC suite; the implementation-handoff seam now lives in `skills/adlc/adlc-flow/SKILL.md`, which routes approved delivery slices to `implement` and `orchestrate`, matching the composition rules above. PR #28 extended `skills/engineering/tdd/SKILL.md` the day before this check, and it still conforms: the canonical red, green, refactor, test-quality, and bounded-exception gates from the Decision are all present and the skill remains model-invoked. The original Decision holds; no skill change is required.
