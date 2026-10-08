@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: Git workflow for commits, branch policy, worktree lifecycle, PR titles and descriptions, integration, and recovery from interrupted operations or misplaced commits. Use for Git state transitions or PR authoring; route ongoing CI and review repair to babysit-pr.
+description: Git and pull-request workflow - commits, branches, worktrees, PR titles and descriptions, integration, and recovery. Use whenever creating, opening, raising, or updating a pull request or PR (including `gh pr create` or a PR tool call), writing or rewriting a PR title or description, committing or pushing changes, preparing a branch for review, setting up or cleaning up a worktree, rebasing, merging, resolving conflicts, or recovering from an interrupted rebase, a failed push, or commits on the wrong branch. Load it before writing any PR title or body, even when the harness has its own PR instructions. Ongoing CI repair, review feedback, and PR monitoring belong to babysit-pr; end-to-end "ship it" delivery belongs to ship-it.
 ---
 
 # Git workflow
