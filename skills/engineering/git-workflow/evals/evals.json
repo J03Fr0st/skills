@@ -48,6 +48,18 @@
       "prompt": "Explain why a rainbow has colors in two sentences.",
       "expected_output": "Answers the science question directly; does not invoke Git workflow or inspect repository state.",
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Create a PR for this branch.",
+      "expected_output": "Triggers git-workflow (not only harness defaults). Reads the repository PR template and title rules, writes the title from the final merge-base diff rather than the branch name or latest commit, fills the template, ends with a Merge danger line, and leaves out agent attribution footers. Verifies the saved PR metadata and returns the URL.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Open a pull request with what we just did and push it up.",
+      "expected_output": "Triggers git-workflow. Pushes the branch, writes the PR title and body from the final diff and verification evidence per the project template, ends with a Merge danger line, omits agent attribution, and confirms the published PR. Does not start a babysit loop unless asked.",
+      "files": []
     }
   ]
 }
