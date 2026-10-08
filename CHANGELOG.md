@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+### Patch Changes
+
+- [#43](https://github.com/J03Fr0st/skills/pull/43) [`e6257aa`](https://github.com/J03Fr0st/skills/commit/e6257aaf1e6504291eacb61aa1d1dec397c07e29) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Make `git-workflow` trigger on everyday PR requests. Its description now names the words people use ("create/open/raise a PR", `gh pr create`, commit, push) and tells the agent to load it before writing any PR title or body, so harness PR defaults no longer replace the skill's title and description rules. `ship-it` now routes plain "create a PR" requests to `git-workflow`, and two trigger evals were added.
+
 ## 0.3.0
 
 ### Minor Changes
