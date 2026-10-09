@@ -61,6 +61,8 @@ The dependency profile drives the test. “External equals mock” is not a stra
 
 ## 5. Migrate with overlapping evidence
 
+When every caller is internal, follow the single-change path in step 6 instead of overlapping old and new.
+
 1. Add characterization evidence for current behavior.
 2. Introduce the target interface and contract.
 3. Move policy behind it without changing all callers at once.
@@ -74,7 +76,9 @@ The dependency profile drives the test. “External equals mock” is not a stra
 
 ## 6. Retire the old shape
 
-Delete obsolete modules, adapters, compatibility paths, and tests only after:
+When every caller is internal and changes in the same repository and deploy, and nothing outside that deploy can still observe the old shape (no persisted data, queued messages, or caches in the old format, no rolling deployment where old and new instances overlap, and no rollback that would need it), migrate them all and delete the old shape in the same change. Keep no adapter, alias, or deprecation window: a second path doubles what readers and tests must cover and has no caller to protect.
+
+For public, external, or separately deployed callers, or when old-shape data or instances can outlive the change, delete obsolete modules, adapters, compatibility paths, and tests only after:
 
 - no supported caller depends on them;
 - replacement tests cover the same or greater risks;

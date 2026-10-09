@@ -14,7 +14,7 @@ Wait for a dispatch whose output the root needs before proceeding; a background 
 
 1. Refresh native status and inspect the current diff.
 2. If the writer is still active or termination is unconfirmed, stop or interrupt it through the native control and wait for confirmation. Silence, timeout, and a local assumption do not free ownership; until confirmation, report the workflow as blocked with unresolved ownership, not cancelled.
-3. Preserve user changes and the partial artifact. Mark the old slice's state and record the exact files still owned.
+3. Preserve user changes and the partial artifact, including an isolated writer's worktree and branch. Mark the old slice's state and record the exact files still owned.
 4. Transfer ownership explicitly to one replacement with a narrowed contract. A replacement may write only after step 2 is confirmed.
 5. Reconcile the combined diff, then run fresh checks after the replacement's latest edit.
 

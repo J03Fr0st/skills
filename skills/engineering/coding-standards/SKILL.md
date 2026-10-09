@@ -52,6 +52,13 @@ the shared baseline; unrelated domains stay unloaded.
   behavior outside the requested change. Use names from the domain and explicit
   representations for meaningful variants. In typed code, validate external
   values before narrowing; assertions must have a demonstrated invariant.
+- **Types:** in typed code, make illegal states unrepresentable. Model variants
+  as a tagged union rather than a record of optional fields or co-dependent
+  booleans, and handle every variant with an explicit exhaustiveness check (such
+  as a `never` assertion in TypeScript, or the compiler's exhaustive-match
+  check) so a new variant fails to compile at each unhandled site. Brand identifiers and units that share a primitive
+  type when mixing them up would be a defect. Derive types from the one schema
+  or source that owns the shape rather than maintaining parallel declarations.
 - **Boundaries:** validate untrusted input where it enters. Pass validated domain
   values internally. Keep failure distinguishable from an empty or successful
   result, and preserve useful error context without exposing sensitive data.

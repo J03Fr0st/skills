@@ -35,6 +35,7 @@ Use the narrowest workflow that fits the evidence:
 | Observable behavior is changing and an executable harness is practical | Run `tdd` for each coherent behavior slice |
 | Working code needs a requested behavior-preserving cleanup | Use `simplify` for the scoped pass, then resume final verification |
 | Documentation, metadata, generated output, or a mechanical change has no useful behavioral test | Edit directly and define artifact-specific checks |
+| The same mechanical change repeats across many sites | Write a codemod or script, apply it, and keep it in the diff so a reviewer can rerun it; the rerunnable script is the evidence |
 | A module boundary or ownership decision blocks safe progress | Use `codebase-design` for that decision, then resume |
 | A large clear outcome lacks verifiable slices or a dependency order | Use `planning-and-task-breakdown`, then execute its ready frontier within the existing authorization |
 | An external API or version-dependent claim is uncertain | Use `research` for the needed evidence, then resume |
@@ -59,6 +60,8 @@ For each slice:
 3. Update tests, documentation, configuration, migrations, and generated artifacts that are part of the same contract.
 4. Run the smallest useful check while the slice is still easy to reason about.
 5. Re-read the diff for accidental scope growth before starting another slice.
+
+**Build what was asked.** Add a mechanism nobody requested, such as a guard, retry, fallback, validation layer, option, mode, or abstraction, only when an existing contract requires it, when leaving it out lets harm land before anything notices, or when adding it later would be expensive because it concerns stored data, a public or shared interface, money, or security. When you cannot tell, build it. Name what you considered and did not build in the handoff. Never narrow requested behavior to fit a safeguard by gating, capping, delaying, or skipping part of it; a safeguard that truly conflicts with the request is a decision gate. When a change replaces a function, type, or module whose callers are all in this repository, move those callers and delete the old version in the same change rather than leaving a wrapper or alias an agent would copy.
 
 Do not mix opportunistic cleanup into the change. If new evidence invalidates the requested approach, reaches outside the authorized scope, or exposes a consequential product or architecture decision, stop at that gate and present the evidence and options.
 
@@ -86,7 +89,7 @@ Run `verification-before-completion` against the acceptance conditions after the
 
 If verification fails, return to the smallest responsible slice. If verification is unavailable, partial, destructive, costly, or needs new authority, preserve that boundary and report the corresponding honest terminal state instead of saying the work is done.
 
-When review finds a defect within the authorized scope, fix it and rerun the affected checks. If the same concern survives two correction attempts, switch to diagnosis with the failed attempts as evidence. Continue when new evidence changes the approach; report the concrete blocker when the remaining step needs unavailable input or authority. Do not rerun an unchanged review loop or end authorized work merely because the retry bound was reached.
+When review finds a defect within the authorized scope, fix it and rerun the affected checks. If the same concern survives two correction attempts, name the assumption both attempts relied on and switch to diagnosis with it and the failed attempts as evidence. Continue when new evidence changes the approach; report the concrete blocker when the remaining step needs unavailable input or authority. Do not rerun an unchanged review loop or end authorized work merely because the retry bound was reached.
 
 For long or resumable work, update the existing issue, plan, cycle record, or repository artifact with the base commit, pre-existing dirty paths, completed slices, evidence, and material decisions. Use a task-scoped scratch ledger only when no canonical artifact exists, and do not publish it without authorization.
 
@@ -99,7 +102,7 @@ Report:
 1. **Outcome:** what observable behavior or artifact changed.
 2. **Scope:** task-owned files changed, plus any pre-existing dirty state left untouched.
 3. **Evidence:** fresh commands or inspections and their results.
-4. **Decisions:** assumptions made and human decisions still required.
+4. **Decisions:** assumptions made, mechanisms considered and not built, and human decisions still required.
 5. **Residuals:** unverified behavior, known failures, or explicitly deferred work.
 
 Do not claim "done," "fixed," "passing," or "ready" unless the verification verdict supports that exact claim.

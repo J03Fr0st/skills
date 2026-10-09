@@ -47,6 +47,12 @@ cost context without improving reach.
   `pr-context` wrapped four standard Git commands, which the skill now lists
   directly. Its tests were removed with it; the remaining kit and Git lab tests
   pass.
+- PR #43 had broadened `git-workflow`'s description so everyday requests such
+  as "create a PR" and `gh pr create` load the skill instead of harness PR
+  defaults. Those triggers, including "load before writing any PR title or
+  body", moved to `pr-description`; commit, push, rebase, and recovery triggers
+  stayed with `git-workflow`, and `ship-it` routes each accordingly. The two
+  #43 trigger evals moved to `pr-description`.
 - Blind evals moved with their content: the PR text rewrite case to
   `pr-description`, the checkout reuse and retirement cases to `git-worktrees`.
   Each skill gained routing cases for its neighbours.

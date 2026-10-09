@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: Git workflow for commits, pushes, branches, rebasing and syncing, stacks, backports, local integration, branch policy, and recovery from interrupted operations or misplaced commits. Use for Git state transitions in a checkout. PR titles and descriptions belong to pr-description, isolated checkouts to git-worktrees, and CI, review, and PR merges to babysit-pr.
+description: Git workflow - commits, pushes, branches, rebasing and syncing, stacks, backports, local integration, branch policy, and recovery. Use whenever committing or pushing changes, preparing a branch for review, rebasing, merging locally, resolving conflicts, backporting, maintaining a stack, or recovering from an interrupted rebase, a failed push, or commits on the wrong branch. Creating, opening, or updating a PR and writing its title or description belong to pr-description; setting up or cleaning up a worktree to git-worktrees; CI repair, review feedback, PR monitoring, and PR merges to babysit-pr; end-to-end "ship it" delivery to ship-it.
 ---
 
 # Git workflow

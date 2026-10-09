@@ -1,6 +1,6 @@
 ---
 name: git-worktrees
-description: Git worktree lifecycle - selecting, creating, preparing, retiring, and recovering isolated checkouts. Use when a task needs its own checkout, when parallel tasks or agents need separate working directories, when cleaning up a worktree after a merge, or when a worktree was moved, archived, or has stale metadata. Branch, commit, and integration work belongs to git-workflow.
+description: Git worktree lifecycle - selecting, creating, preparing, retiring, and recovering isolated checkouts. Use whenever setting up or cleaning up a worktree, when a task needs its own checkout, when parallel tasks or agents need separate working directories, when cleaning up a worktree after a merge, or when a worktree was moved, archived, or has stale metadata. Branch, commit, and integration work belongs to git-workflow.
 ---
 
 # Git worktrees

@@ -17,3 +17,17 @@ The full Claude plugin registers five native definitions from `assets/claude-age
 Installing or linking only the skill does not register these definitions. When setup is requested, follow [setup.md](setup.md). A reviewer has Skill and repository read tools: include the current diff in its assignment or provide a readable diff artifact. Tool access and model availability must be checked in the active session.
 
 When a requested Claude model or role cannot be dispatched, report the exact unsupported capability. If the user authorizes a qualitative fallback, use a supported configured Claude role and label it as the fallback; otherwise keep the dependent slice blocked. Never route the slice to Codex or claim that an unobserved model was used.
+
+## Worktree isolation for writers
+
+Claude Code can give a dispatched subagent its own temporary git worktree and branch: the `isolation: worktree` dispatch parameter or agent frontmatter. Isolation removes shared-file collisions between concurrent writers, but the worktree's **base** decides whether the writer sees its prerequisites. By default it branches from the remote default branch; with the `worktree.baseRef: "head"` setting it branches from the local `HEAD`. Uncommitted changes never carry over, and gitignored files arrive only through `.worktreeinclude`.
+
+Request isolation per dispatch, keyed to the base:
+
+- **Concurrent writers, prerequisites contained in the base**: dispatch each writer with worktree isolation. Confirm the base first: the default branch for work that starts there, or `baseRef: "head"` with every prerequisite committed on the current branch.
+- **The base lacks a prerequisite** (a feature branch under the default base, or an uncommitted dependency): keep the writer in the shared checkout under the one-writer-per-file rule. When `baseRef` is already `"head"`, committing the prerequisite within authorization before dispatch also works. Changing `worktree.baseRef` is a configuration edit the user must authorize.
+- **A single writer, or read-only roles**: the shared checkout suffices.
+
+The bundled roles set no `isolation` in their frontmatter because the right base differs per run.
+
+Record each isolated writer's change set from the dispatch result: the worktree path, its branch, the files touched, and the diff against the base. A worktree with changes stays on disk until it is integrated or removed. Point a tester that verifies an isolated slice at that worktree's path, or run the test after integration. Integrate change sets into the root checkout one at a time, starting with the one that touches shared hotspot files (routes, configs, registries, schemas), and rerun checks after each merge. A clean merge does not show that the slices agree at runtime; the integrated checks do. Remove an integrated worktree and its branch only within the user's git authorization.

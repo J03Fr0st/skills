@@ -1,6 +1,6 @@
 ---
 name: pr-description
-description: PR titles and descriptions written from the final diff, closing with a merge-danger line. Use when asked to write, rewrite, or fix a pull request title or body, draft PR text before publishing, or update an existing PR's description after its scope changed. Branches, commits, and pushes belong to git-workflow; CI and review follow-up to babysit-pr.
+description: Pull request creation and PR titles and descriptions written from the final diff, closing with a merge-danger line. Use whenever creating, opening, raising, or updating a pull request or PR (including `gh pr create` or a PR tool call), writing or rewriting a PR title or description, or drafting PR text before publishing. Load it before writing any PR title or body, even when the harness has its own PR instructions. Commits and pushes belong to git-workflow; CI repair, review follow-up, and merging to babysit-pr; end-to-end "ship it" delivery to ship-it.
 ---
 
 # PR description
@@ -98,8 +98,10 @@ required template fields are present.
 
 ## 3. Deliver or apply
 
-For a text-only request, return the title and body. For authorized creation or
-metadata updates, use a structured tool argument or a UTF-8 body file so newlines
+For a text-only request, return the title and body. Before creating a PR, confirm
+the head branch exists on the remote with the intended commits; commit and push
+through `git-workflow` when it does not. For authorized creation or metadata
+updates, use a structured tool argument or a UTF-8 body file so newlines
 and literal shell characters survive unchanged:
 
 ```sh

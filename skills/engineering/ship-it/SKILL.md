@@ -1,6 +1,6 @@
 ---
 name: ship-it
-description: Coordinates delivery of finished changes. Use when asked to ship completed work or resume an interrupted delivery across local work and a PR. Standalone Git operations belong to git-workflow, an existing PR watch to babysit-pr, and product or UX audits to code-review or specialist review.
+description: Coordinates delivery of finished changes. Use when asked to ship completed work, take it to a merge-ready or merged PR, or resume an interrupted delivery across local work and a PR. A request only to commit or push belongs to git-workflow; only to create or open a PR, or write its title or description, to pr-description; an existing PR watch to babysit-pr; product or UX audits to code-review or specialist review.
 ---
 
 # Ship it
