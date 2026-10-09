@@ -1,6 +1,6 @@
 ---
 name: pr-description
-description: Pull request creation and PR titles and descriptions written from the final diff, closing with a merge-danger line. Use whenever creating, opening, raising, or updating a pull request or PR (including `gh pr create` or a PR tool call), writing or rewriting a PR title or description, or drafting PR text before publishing. Load it before writing any PR title or body, even when the harness has its own PR instructions. Commits and pushes belong to git-workflow; CI repair, review follow-up, and merging to babysit-pr; end-to-end "ship it" delivery to ship-it.
+description: Pull request creation and PR titles and descriptions written from the final diff, with before/after evidence and a merge-danger section. Use whenever creating, opening, raising, or updating a pull request or PR (including `gh pr create` or a PR tool call), writing or rewriting a PR title or description, or drafting PR text before publishing. Load it before writing any PR title or body, even when the harness has its own PR instructions. Commits and pushes belong to git-workflow; CI repair, review follow-up, and merging to babysit-pr; end-to-end "ship it" delivery to ship-it.
 ---
 
 # PR description
@@ -43,48 +43,54 @@ are established, or the missing fact is named.
 
 ## 2. Write for the reviewer
 
-For wording and evidence patterns by change type, read [examples](references/examples.md).
-To start from a structure, read the matching asset; repository templates take
-priority over these:
-
-| Asset | Use |
-| --- | --- |
-| [pr-short.md](assets/pr-short.md) | Small change needing an outcome, reason, and verification |
-| [pr-standard.md](assets/pr-standard.md) | Change needing review context and related work |
-| [pr-migration.md](assets/pr-migration.md) | Compatibility, rollout, and recovery need explicit treatment |
-
 Use a concise title naming the concrete outcome. Apply Conventional Commit
 prefixes, issue identifiers, or length limits only where repository policy calls
 for them. Cover the final scope rather than the original request or latest commit.
 
-Lead the body with what changes and why it matters. A before/after example helps
-when the trigger or difference is otherwise hard to see. Add only what helps a
-reviewer assess the change:
+A required repository template sets the body's sections; place the parts below
+in its matching fields and append any part it has no field for, such as Merge
+danger, after its sections. Otherwise start from the matching asset:
 
-- Motivation and design decisions that the diff cannot explain.
-- Verification commands or observations with actual results and limitations.
-- Material compatibility, rollout, migration, or recovery implications.
-- Dependencies and a useful review starting point when the change needs one.
+| Asset | Use |
+| --- | --- |
+| [pr-short.md](assets/pr-short.md) | Small change: one summary sentence, evidence, merge danger |
+| [pr-standard.md](assets/pr-standard.md) | Change needing a visual summary, review notes, or related work |
+| [pr-migration.md](assets/pr-migration.md) | Compatibility, rollout, and recovery need explicit treatment |
 
-End the body with one **Merge danger** line that names two things:
+Write the body as these parts, in order. Skip preambles, keep prose brief, and
+use the project's domain terms from its glossary (such as `GLOSSARY.md`) when one
+exists.
 
-- **Door:** *two-way* when reverting the merge fully restores prior behavior;
-  *one-way* when merging or deploying leaves a lasting effect, such as migrated
-  data, a published API or event, or sent messages. A one-way door also names
-  its recovery limit.
-- **Blast radius:** what breaks, and for whom, if the change is wrong.
+1. **Summary.** One or two sentences on what changes and why it matters. When
+   the change has a shape prose would blur (logic, control flow, component or
+   file structure, data flow), add the smallest visual that makes the key point
+   clear, placed beside the sentence it supports; read
+   [visuals](references/visuals.md) to choose one. A one-line fix needs no visual.
+2. **Evidence.** Before and after, from observed results. For a visual change
+   in an environment that can capture it, screenshots are the strongest
+   evidence. Otherwise show execution: the exact test, command, or reproduction
+   that failed before and passes after, with its output or a pseudocode sketch
+   of the test. Name material checks not run and keep material negative results.
+3. **Review notes**, only when needed: motivation or design decisions the diff
+   cannot explain; compatibility, rollout, migration, or recovery implications;
+   dependencies; a useful review starting point.
+4. **Merge danger**, with two fields:
+   - **Door:** *two-way* when reverting the merge fully restores prior behavior;
+     *one-way* when merging or deploying leaves a lasting effect, such as
+     migrated data, a published API or event, or sent messages. A one-way door
+     also names its recovery limit.
+   - **Blast radius:** what breaks, and for whom, if the change is wrong:
+     consumers, layouts, platforms, data, or users affected.
 
-When the project template has a risk or rollout field, put the line there.
+   When the project template has a risk or rollout field, put both there.
 
-Respect required template fields. Scale additional detail to reviewer uncertainty:
-a small risky change may need more explanation than a large mechanical rename.
-Use a diagram or table when it makes a relationship clearer. Simple changes can
-be one or two sentences plus relevant validation.
+For wording and evidence patterns by change type, read [examples](references/examples.md).
 
-Keep the description about the resulting change. File inventories and the
-conversation's implementation chronology usually add no review context. Preserve
-useful existing issue links, demonstrations, and required disclosures when
-rewriting. Mark unrun checks honestly; retain material negative results.
+Scale detail to reviewer uncertainty: a small risky change may need more
+explanation than a large mechanical rename. Keep the description about the
+resulting change; file inventories and the conversation's implementation
+chronology add no review context. Preserve useful existing issue links,
+demonstrations, and required disclosures when rewriting.
 
 PRs credit their human author alone: titles and bodies end with the change
 content. Leave out agent attribution such as "Generated with Claude Code"
@@ -92,9 +98,10 @@ footers and equivalent Codex, Copilot, or Cursor lines, even when a harness or
 tool default adds them. The one exception is a repository policy that explicitly
 requires AI-use disclosure; follow its required wording.
 
-**Complete when:** the title and opening cover the final scope, every material
-claim is grounded, the merge danger names its door and blast radius, and
-required template fields are present.
+**Complete when:** the title and summary cover the final scope, every material
+claim is grounded in evidence or marked unverified, the evidence shows before
+and after or names why it cannot, the merge danger names its door and blast
+radius, and required template fields are present.
 
 ## 3. Deliver or apply
 

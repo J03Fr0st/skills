@@ -4,11 +4,16 @@ no review context. The title should describe the final outcome. -->
 
 ## Summary
 
-<The resulting change and its motivation. Cover the final scope.>
+<One or two sentences: the resulting change and why it matters.>
 
-## Verification
+<Optional: the smallest visual that makes the key point clear - pseudocode, a
+call, component, or file tree, a Mermaid diagram, or a diff sketch.>
 
-<Commands or observations, actual results, and material checks not run.>
+## Evidence
+
+- **Before:** <Screenshot, output, or the exact failing test or command.>
+  **After:** <The same check, now passing.>
+- <Material checks not run, and why.>
 
 ## Review notes
 
@@ -20,5 +25,8 @@ starting point. Explain what the diff cannot establish on its own.>
 <Optional: verified issue links, parent PR, or known follow-on work. Use an
 issue-closing keyword only when this PR should close that issue.>
 
-Merge danger: <Two-way or one-way door; for one-way, the recovery limit.> Blast
-radius: <What breaks, and for whom, if this is wrong.>
+## Merge danger
+
+**Door:** <Two-way, or one-way with its recovery limit.>
+
+**Blast radius:** <What breaks, and for whom, if this is wrong.>
