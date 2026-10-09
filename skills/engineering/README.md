@@ -17,7 +17,7 @@ See the [workflow map](../../docs/workflow.md) for entry points and handoffs.
 - [git-worktrees](../../docs/engineering/git-worktrees.md) - select, prepare, retire, and recover isolated checkouts.
 - [orchestrate](../../docs/engineering/orchestrate.md) - select native agents and models, coordinate bounded assignments, and verify integrated results.
 - [planning-and-task-breakdown](../../docs/engineering/planning-and-task-breakdown.md) - plan verifiable slices, dependencies, and the ready frontier.
-- [pr-description](../../docs/engineering/pr-description.md) - write PR titles and bodies from the final diff with a merge-danger line.
+- [pr-description](../../docs/engineering/pr-description.md) - write PR titles and bodies from the final diff with a visual summary, before/after evidence, and a merge-danger section.
 - [property-based-testing](../../docs/engineering/property-based-testing.md) - find strong properties and generators, avoid vacuous tests, and triage shrunk counterexamples.
 - [prototype](../../docs/engineering/prototype.md) - answer one empirical design question through a reproducible experiment.
 - [research](../../docs/engineering/research.md) - investigate primary sources and preserve cited findings with explicit limitations.

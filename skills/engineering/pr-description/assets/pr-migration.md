@@ -10,9 +10,9 @@ repository's template, replace every placeholder, and remove these instructions.
 <Old/new version compatibility, deployment order, prerequisites, and any window
 during which both formats or behaviors must be supported.>
 
-## Verification
+## Evidence
 
-<Evidence on representative data or traffic, actual results, and gaps.>
+<Before and after on representative data or traffic: actual results, and gaps.>
 
 ## Recovery
 
@@ -23,5 +23,9 @@ irreversible steps and data-loss limits explicitly; do not assume rollback is po
 
 <Required predecessor changes, operational coordination, or follow-on work.>
 
-Merge danger: <One-way door unless the rollout is fully reversible; name the
-recovery limit from Recovery.> Blast radius: <What breaks, and for whom, if this is wrong.>
+## Merge danger
+
+**Door:** <One-way unless the rollout is fully reversible; name the recovery
+limit from Recovery.>
+
+**Blast radius:** <What breaks, and for whom, if this is wrong.>

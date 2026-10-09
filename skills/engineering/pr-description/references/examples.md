@@ -15,30 +15,70 @@ observed outcomes and follow the project's template and title convention.
 
 Example fix body:
 
-> A timeout after a successful payment could cause a retry to create a second
-> charge. Retries now reuse an idempotency key for the same payment attempt.
->
-> Validation: [reproduction command and observed before/after result].
-> [Name any integration check not run and its practical limit.]
->
-> Merge danger: two-way door. If wrong, retried payments fail or double-charge
-> for every customer until reverted.
+~~~markdown
+## Summary
+
+A timeout after a successful payment could make a retry create a second charge.
+Retries now reuse one idempotency key per payment attempt.
+
+```text
+chargePayment(attempt)
+  key = attempt.idempotencyKey   # was: new key per call
+  provider.charge(amount, key)
+```
+
+## Evidence
+
+- **Before:** [reproduction command] -> two charges for one attempt.
+- **After:** same command -> one charge; retry returns the original result.
+- Not run: [integration check and its practical limit].
+
+## Merge danger
+
+**Door:** two-way. Reverting restores per-call keys.
+
+**Blast radius:** checkout for every customer; if wrong, retried payments fail
+or double-charge until reverted.
+~~~
 
 Example mechanical refactor body:
 
-> Token expiry checks now use one implementation so callers apply the same
-> boundary condition. Behavior is intended to remain unchanged.
->
-> Validation: [actual regression checks and outcome].
->
-> Merge danger: two-way door. If wrong, sessions near expiry are accepted or
-> rejected one boundary tick early or late across every caller.
+~~~markdown
+## Summary
+
+Token expiry checks now use one implementation, so every caller applies the same
+boundary condition. Behavior is intended to remain unchanged.
+
+```diff
+ src/auth/
+-├── session-expiry.ts
+-├── refresh-expiry.ts
++├── expiry.ts           # single boundary check
+ └── session.ts
+```
+
+## Evidence
+
+- **Before/after:** [existing regression suite and its result on both revisions].
+
+## Merge danger
+
+**Door:** two-way.
+
+**Blast radius:** every authenticated caller; if wrong, sessions near expiry are
+accepted or rejected one tick early or late.
+~~~
 
 Example migration merge danger:
 
-> Merge danger: one-way door. The backfill rewrites plan IDs in place; revert
-> restores the code but not the old IDs, so recovery needs the pre-migration
-> snapshot. If wrong, affected subscribers lose access until restored.
+~~~markdown
+## Merge danger
+
+**Door:** one-way. The backfill rewrites plan IDs in place; revert restores the
+code but not the old IDs, so recovery needs the pre-migration snapshot.
+
+**Blast radius:** affected subscribers lose access until restored.
+~~~
 
 ## Editing checks
 
@@ -46,7 +86,7 @@ Example migration merge danger:
 | --- | --- |
 | “Update files” | Name the resulting behavior or concrete structural change |
 | “Add retry.ts and edit payment.ts” | Explain the payment outcome; file changes are visible in the diff |
-| “Fully tested” | State which behavior was exercised, the result, and material gaps |
+| “Fully tested” | Show the before/after result for the exercised behavior and name material gaps |
 | “Fix retries” when scope also changes charge identity | Cover both outcomes in title/opening or find a precise shared outcome |
 | “Safe rollback” for an irreversible migration | State the actual recovery procedure and its limits |
 | “Low risk” | Name the door and who is affected if the change is wrong |
