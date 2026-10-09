@@ -66,10 +66,11 @@ Keep the project's existing issue, plan, or cycle record authoritative. Use `han
 Commits, PRs, releases, and deployments follow the user's authorization and the project's tools. They are separate from proving the local result.
 
 For finished work, `ship-it` coordinates delivery using `code-review`,
-`verification-before-completion`, `git-workflow`, and `babysit-pr`. Bare "ship it"
-targets a merge-ready PR; an explicit publication, merge or deployment request
-sets that endpoint instead. Local implementation remains owned by `implement`,
-Git transitions by `git-workflow`, and the remote repair loop by `babysit-pr`.
+`verification-before-completion`, `git-workflow`, `pr-description`, and `babysit-pr`.
+Bare "ship it" targets a merge-ready PR; an explicit publication, merge or deployment
+request sets that endpoint instead. Local implementation remains owned by `implement`,
+Git transitions by `git-workflow`, isolated checkouts by `git-worktrees`, PR text by
+`pr-description`, and the remote repair loop and PR merge by `babysit-pr`.
 
 ## Agentic development lifecycle
 

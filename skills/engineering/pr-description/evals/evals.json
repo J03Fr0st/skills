@@ -1,0 +1,23 @@
+{
+  "skill_name": "pr-description",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Rewrite a PR title/body only. Base is upstream/release/2, head is feature/retries. Original title: Add retries. Final diff adds bounded retries AND prevents duplicate charges with idempotency keys. Retry tests pass; duplicate-charge integration test was not run. Repository requires Conventional Commit titles. Produce the text and describe any state changes you would make.",
+      "expected_output": "Title and opening cover both final outcomes; body distinguishes retry test success from unrun integration checks. No commit, push, or PR metadata write for text-only scope. Uses the actual upstream release base. Body carries no agent attribution footer such as 'Generated with Claude Code'.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Write the PR description for my branch fix/session-expiry against main. The diff moves token expiry checks into one helper used by four callers; unit tests pass. The project has no PR template.",
+      "expected_output": "Inspects the merge-base diff against main, writes an outcome-led title and short body stating intended behavior preservation and the actual test evidence, and ends with a merge-danger line naming a two-way door and blast radius. Makes no commits or pushes and adds no agent attribution.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Commit my staged fix and push the branch.",
+      "expected_output": "Recognizes a commit/push request for git-workflow rather than PR text; does not draft a PR description.",
+      "files": []
+    }
+  ]
+}

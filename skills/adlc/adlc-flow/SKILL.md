@@ -53,7 +53,7 @@ Take the first unresolved row:
 | A carried item or required sign-off is due at the next slice and undecided | `/adlc-gate slice <id>` |
 | A slice is `implemented` | `code-review`; add `security-review` when the spec's constraints or risk call for it |
 | A slice is `reviewed` | `verification-before-completion` |
-| A slice is `verified` | `git-workflow` for commit and PR within the user's authorization |
+| A slice is `verified` | `git-workflow` for commits and `pr-description` for the PR, within the user's authorization |
 | Slices `ready` or `in-progress` | `implement`, or `orchestrate` for independent slices |
 | Every slice `done`, and an incident or new need appears | A new `/adlc-intent` |
 

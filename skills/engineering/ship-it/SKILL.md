@@ -54,8 +54,8 @@ continue only work that does not depend on its result.
 
 ## 3. Publish the reviewed change
 
-Required: use `git-workflow` for branch/base preparation, focused commits, push,
-and PR authoring. Follow repository versioning and release-document policy.
+Required: use `git-workflow` for branch/base preparation, focused commits and
+push, and `pr-description` for the PR title and body. Follow repository versioning and release-document policy.
 Reuse the existing PR for this work and write its description from the final diff
 and verification results. If publication preparation changes the code or its base,
 return to step 2 for affected checks before pushing.

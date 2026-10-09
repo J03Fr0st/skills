@@ -58,7 +58,7 @@ Before replacing a writer, obtain native evidence that it terminated or can no l
 
 ## 5. Integrate through existing owners
 
-Use existing skills for their established work: `planning-and-task-breakdown` for slicing, `implement` for bounded changes, `diagnosing-bugs` for evidence before a fix, `code-review` for independent findings, `verification-before-completion` for acceptance, and `git-workflow` for checkout/commit mechanics. If one is unavailable, perform only its equivalent scoped checks inline; the orchestrator must remain independently usable.
+Use existing skills for their established work: `planning-and-task-breakdown` for slicing, `implement` for bounded changes, `diagnosing-bugs` for evidence before a fix, `code-review` for independent findings, `verification-before-completion` for acceptance, `git-worktrees` for isolated checkouts, and `git-workflow` for commit mechanics. If one is unavailable, perform only its equivalent scoped checks inline; the orchestrator must remain independently usable.
 
 The root resolves conflicting findings, applies or accepts changes within the owned scope, and reruns checks after the latest integrated edit. Do not let workers recursively create an unbounded team or silently expand their scope. This step is complete when the integrated diff is understood, ownership conflicts are resolved, and the intended artifacts are present.
 

@@ -39,8 +39,10 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   engineering lessons past a counterfactual bar and refresh the store against current code.
 - [diagnosing-bugs](docs/engineering/diagnosing-bugs.md) — prove a root cause through
   reproduction, competing hypotheses, and discriminating evidence before a fix.
-- [git-workflow](docs/engineering/git-workflow.md) — manage branches and worktrees,
-  write outcome-led PR titles and descriptions, and verify authorized integration.
+- [git-workflow](docs/engineering/git-workflow.md) — make focused commits, manage
+  branches, rebases, stacks and backports, and recover interrupted Git state.
+- [git-worktrees](docs/engineering/git-worktrees.md) — select, prepare, retire, and
+  recover isolated checkouts without displacing another task's work.
 - [grilling](docs/productivity/grilling.md) — stress-test a consequential or ambiguous
   plan, decision, or idea through a live, dependency-aware interview.
 - [handoff](docs/productivity/handoff.md) — preserve verified task state across a pause,
@@ -53,6 +55,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   Claude Code or Codex agents with task-appropriate models and verified integration.
 - [planning-and-task-breakdown](docs/engineering/planning-and-task-breakdown.md) — turn clear
   requirements into verifiable slices, dependencies, and a ready frontier.
+- [pr-description](docs/engineering/pr-description.md) — write outcome-led PR titles
+  and bodies from the final diff, closing with a merge-danger line.
 - [property-based-testing](docs/engineering/property-based-testing.md) — find strong
   properties and generators, avoid vacuous tests, and triage shrunk counterexamples.
 - [prototype](docs/engineering/prototype.md) — answer one design or feasibility question
