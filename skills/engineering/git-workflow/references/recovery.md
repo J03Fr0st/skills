@@ -13,17 +13,16 @@ separately when a repair might overwrite them.
 | Missing commit after rewrite | Inspect local reflogs and candidate commits with `git show`; create a rescue ref at the verified candidate before further edits. Reflogs are local and expire, so recovery is not guaranteed. | Recovered files and commit identity match the lost work |
 | Interrupted merge/rebase/cherry-pick | Follow the operation named by `git status`. Either resolve, stage, and continue that operation, or preserve new resolution work and use its matching abort command when returning to the starting state is intended. | No unexpected operation remains; intended files, index, and history verified |
 | Push rejected | Read the rejection. For divergence or a lease failure, fetch and compare remote/local history. For policy/auth failures, address the named requirement. | Remote target contains the intended authorized result; collaborator commits preserved |
-| Moved worktree or stale metadata | Locate the actual checkout and common repository, then use host recovery or Git worktree repair. Review stale entries before pruning. | Inventory paths resolve to intended checkouts and files |
 
 For an interrupted merge begun with local edits, abort may not reconstruct all
 pre-operation changes. Preserve them before aborting and compare afterwards.
 Never expire reflogs or run pruning garbage collection as part of recovering
 lost work. If the candidate or ownership is ambiguous, retain all candidates and
-ask for the missing decision rather than choosing by recency alone.
+ask for the missing decision rather than choosing by recency alone. A moved
+worktree or stale worktree metadata belongs to `git-worktrees`.
 
 **Complete when:** recovered work is reachable or safely preserved, the intended
 state is verified, and any irrecoverable or uncertain data is stated explicitly.
 
 Primary references: [reflog](https://git-scm.com/docs/git-reflog),
-[merge](https://git-scm.com/docs/git-merge),
-[worktree](https://git-scm.com/docs/git-worktree).
+[merge](https://git-scm.com/docs/git-merge).

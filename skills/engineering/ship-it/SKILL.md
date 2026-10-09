@@ -1,6 +1,6 @@
 ---
 name: ship-it
-description: Coordinates delivery of finished changes. Use when asked to ship completed work, take it to a merge-ready or merged PR, or resume an interrupted delivery across local work and a PR. A request only to commit, push, or create or open a PR, and PR title or description writing, belong to git-workflow; an existing PR watch to babysit-pr; product or UX audits to code-review or specialist review.
+description: Coordinates delivery of finished changes. Use when asked to ship completed work, take it to a merge-ready or merged PR, or resume an interrupted delivery across local work and a PR. A request only to commit or push belongs to git-workflow; only to create or open a PR, or write its title or description, to pr-description; an existing PR watch to babysit-pr; product or UX audits to code-review or specialist review.
 ---
 
 # Ship it
@@ -54,8 +54,8 @@ continue only work that does not depend on its result.
 
 ## 3. Publish the reviewed change
 
-Required: use `git-workflow` for branch/base preparation, focused commits, push,
-and PR authoring. Follow repository versioning and release-document policy.
+Required: use `git-workflow` for branch/base preparation, focused commits and
+push, and `pr-description` for the PR title and body. Follow repository versioning and release-document policy.
 Reuse the existing PR for this work and write its description from the final diff
 and verification results. If publication preparation changes the code or its base,
 return to step 2 for affected checks before pushing.

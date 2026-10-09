@@ -48,7 +48,7 @@ In Claude Code, concurrent writers can each run in an isolated git worktree, req
 
 The root supervises the work, inspects returned artifacts and verifies the combined result. A timed-out writer retains ownership until it is confirmed stopped or no longer able to write; replacement work starts after partial changes are reconciled. Repeated failures trigger diagnosis or a justified native escalation rather than an unchanged retry loop.
 
-The skill composes existing skills when available: `planning-and-task-breakdown`, `implement`, `diagnosing-bugs`, `code-review`, `verification-before-completion`, `git-workflow` and `handoff`. It remains usable independently through its own assignment and completion contract. It does not require every role for every task.
+The skill composes existing skills when available: `planning-and-task-breakdown`, `implement`, `diagnosing-bugs`, `code-review`, `verification-before-completion`, `git-worktrees`, `git-workflow` and `handoff`. It remains usable independently through its own assignment and completion contract. It does not require every role for every task.
 
 ## Boundaries
 

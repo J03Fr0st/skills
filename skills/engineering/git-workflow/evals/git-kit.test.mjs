@@ -186,74 +186,7 @@ test('CLI runs when invoked through a linked skill directory', (t) => {
     windowsHide: true,
   });
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /pr-context/);
-});
-
-test('pr-context uses an explicit non-main base and preserves dirty state', (t) => {
-  const sandbox = createSandbox(t);
-  const { repository, release, feature, featureOne } = createRepository(sandbox);
-  writeRepoFile(repository, 'staged-dirty.txt', 'staged\n');
-  git(sandbox, repository, ['add', 'staged-dirty.txt']);
-  writeRepoFile(repository, 'unstaged-dirty.txt', 'unstaged\n');
-  const before = git(sandbox, repository, ['status', '--porcelain=v1', '-z']);
-
-  const result = runKit(sandbox, sandbox.root, [
-    'pr-context', '--repo', repository, '--base', 'release', '--head', 'feature',
-  ]);
-  assert.equal(result.status, 0, result.stderr);
-  const payload = JSON.parse(result.stdout);
-  assert.equal(payload.base, release);
-  assert.equal(payload.head, feature);
-  assert.equal(payload.mergeBase, release);
-  assert.deepEqual(payload.commits, [featureOne, feature]);
-  assert.deepEqual(payload.changedFiles.map((file) => file.path), ['feature-one.txt', 'feature-two.txt']);
-  assert.ok(payload.changedFiles.every((file) => file.status === 'A'));
-  assert.ok(payload.changedFiles.every((file) => file.additions === 1 && file.deletions === 0));
-  assert.equal(payload.workingTreeDirty, true);
-  assert.equal(git(sandbox, repository, ['status', '--porcelain=v1', '-z']), before);
-  assert.deepEqual(Object.keys(payload).sort(), [
-    'base', 'changedFiles', 'commits', 'head', 'mergeBase', 'root', 'stat', 'workingTreeDirty',
-  ]);
-});
-
-test('pr-context reports Unicode paths and unrelated histories', (t) => {
-  const sandbox = createSandbox(t);
-  const { repository } = createRepository(sandbox);
-  writeRepoFile(repository, 'naïve ünïcode.txt', 'u\n');
-  commitAll(sandbox, repository, 'unicode');
-  const unicode = runKit(sandbox, sandbox.root, [
-    'pr-context', '--repo', repository, '--base', 'release',
-  ]);
-  assert.equal(unicode.status, 0, unicode.stderr);
-  assert.ok(JSON.parse(unicode.stdout).changedFiles.some((file) => file.path === 'naïve ünïcode.txt'));
-
-  git(sandbox, repository, ['switch', '--orphan', 'orphan']);
-  writeRepoFile(repository, 'orphan.txt', 'orphan\n');
-  commitAll(sandbox, repository, 'orphan');
-  const unrelated = runKit(sandbox, sandbox.root, [
-    'pr-context', '--repo', repository, '--base', 'release',
-  ]);
-  assert.notEqual(unrelated.status, 0);
-  assert.match(unrelated.stderr, /no merge base/i);
-});
-
-test('pr-context keeps rename status and old/new paths aligned', (t) => {
-  const sandbox = createSandbox(t);
-  const { repository } = createRepository(sandbox);
-  git(sandbox, repository, ['mv', 'README.md', 'feature-readme.md']);
-  const renamedHead = commitAll(sandbox, repository, 'rename feature file');
-  const result = runKit(sandbox, sandbox.root, [
-    'pr-context', '--repo', repository, '--base', 'release', '--head', 'feature',
-  ]);
-  assert.equal(result.status, 0, result.stderr);
-  const payload = JSON.parse(result.stdout);
-  assert.equal(payload.head, renamedHead);
-  const renamed = payload.changedFiles.find((file) => file.path === 'feature-readme.md');
-  assert.ok(renamed);
-  assert.match(renamed.status, /^R/);
-  assert.equal(renamed.originalPath, 'README.md');
-  assert.equal(renamed.additions, 0);
-  assert.equal(renamed.deletions, 0);
+  assert.match(result.stdout, /status \[--repo PATH\]/);
 });
 
 test('status reports null branch for detached HEAD', (t) => {
@@ -278,24 +211,12 @@ test('worktree porcelain parser preserves newline-bearing fields', () => {
   }]);
 });
 
-test('invalid refs and invalid argument shapes fail clearly', (t) => {
+test('invalid argument shapes fail clearly', (t) => {
   const sandbox = createSandbox(t);
   const { repository } = createRepository(sandbox);
-  const invalidRef = runKit(sandbox, sandbox.root, [
-    'pr-context', '--repo', repository, '--base', 'does-not-exist',
-  ]);
-  assert.notEqual(invalidRef.status, 0);
-  assert.match(invalidRef.stderr, /Unable to resolve Base ref: does-not-exist/);
-
-  const dashRef = runKit(sandbox, sandbox.root, [
-    'pr-context', '--repo', repository, '--base', '-main',
-  ]);
-  assert.notEqual(dashRef.status, 0);
-  assert.match(dashRef.stderr, /dash/i);
-
-  const missingBase = runKit(sandbox, sandbox.root, ['pr-context', '--repo', repository]);
-  assert.notEqual(missingBase.status, 0);
-  assert.match(missingBase.stderr, /requires --base/i);
+  const positional = runKit(sandbox, sandbox.root, ['status', 'extra']);
+  assert.notEqual(positional.status, 0);
+  assert.match(positional.stderr, /Unexpected positional argument/);
 
   const duplicate = runKit(sandbox, sandbox.root, ['status', '--repo', repository, '--repo', repository]);
   assert.notEqual(duplicate.status, 0);
@@ -306,13 +227,13 @@ test('template output is allowlisted, literal-path safe, and exclusive', (t) => 
   const sandbox = createSandbox(t);
   const outputName = 'literal [output] & spaces.md';
   const outputPath = path.join(sandbox.root, outputName);
-  const expected = readFileSync(path.join(ASSETS, 'pr-short.md'), 'utf8');
-  const written = runKit(sandbox, sandbox.root, ['template', 'pr-short.md', '--output', outputName]);
+  const expected = readFileSync(path.join(ASSETS, 'commit.txt'), 'utf8');
+  const written = runKit(sandbox, sandbox.root, ['template', 'commit.txt', '--output', outputName]);
   assert.equal(written.status, 0, written.stderr);
   assert.equal(written.stdout, '');
   assert.equal(readFileSync(outputPath, 'utf8'), expected);
 
-  const overwrite = runKit(sandbox, sandbox.root, ['template', 'pr-short.md', '--output', outputName]);
+  const overwrite = runKit(sandbox, sandbox.root, ['template', 'commit.txt', '--output', outputName]);
   assert.notEqual(overwrite.status, 0);
   assert.match(overwrite.stderr, /Unable to create template output/i);
   assert.equal(readFileSync(outputPath, 'utf8'), expected);
@@ -355,7 +276,7 @@ test('help is available and unknown flags do not run Git', (t) => {
   const sandbox = createSandbox(t);
   const help = runKit(sandbox, sandbox.root, ['--help']);
   assert.equal(help.status, 0);
-  assert.match(help.stdout, /pr-context/);
+  assert.match(help.stdout, /template NAME/);
   const commandHelp = runKit(sandbox, sandbox.root, ['status', '--help']);
   assert.equal(commandHelp.status, 0);
   assert.match(commandHelp.stdout, /status \[--repo PATH\]/);

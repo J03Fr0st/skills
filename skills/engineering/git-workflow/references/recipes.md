@@ -6,7 +6,7 @@ quote shell arguments, and execute in the intended checkout. Read
 [branching](branching.md) for authority and history rules and
 [recovery](recovery.md) if an operation is already interrupted.
 
-For executable state/range inspection and commit templates, use
+For executable state inspection and commit templates, use
 [tooling](tooling.md). Mutating recipes below remain deliberate workflow steps.
 
 ## Start a feature
@@ -15,7 +15,7 @@ For executable state/range inspection and commit templates, use
 
 1. Fetch the relevant remote and inspect the resolved base commit.
 2. Reuse the task branch, or create a collision-free descriptive branch at that
-   commit. Use [worktree lifecycle](worktrees.md) when isolation is needed.
+   commit. Use `git-worktrees` when isolation is needed.
 3. Establish setup and baseline evidence before changing behavior.
 
 **Done:** checkout path, branch, starting commit, and baseline are verified.
@@ -41,11 +41,11 @@ remains unchanged. See the [commit manual](https://git-scm.com/docs/git-commit).
 
 Fetch that head through the forge's supported mechanism. Use a free checkout or
 a detached worktree at the verified revision; record the merge base used for
-review. Set up the [environment](environments.md) and run scoped checks. A detached
+review. Prepare it through `git-worktrees` and run scoped checks. A detached
 review checkout needs a branch before keeping new commits as task work.
 
-**Done:** findings and checks identify the reviewed revision; apply the lifecycle
-decision to the review checkout.
+**Done:** findings and checks identify the reviewed revision; retire the review
+checkout through `git-worktrees`.
 
 ## Update a branch or sync a fork
 

@@ -9,7 +9,7 @@ not establish that it is the intended or current integration target.
 Reuse the task's branch when its scope and ancestry still fit. For a new change,
 create a descriptive branch from the intended base after fetching the relevant
 remote when available. Check for name collisions before creation. If the current
-checkout holds another task's work, consult [worktree lifecycle](worktrees.md).
+checkout holds another task's work, use `git-worktrees` for an isolated checkout.
 
 When designing or resolving missing policy, read [repository policy](policy.md).
 For feature setup, isolated PR review, selective commits, branch/fork updates,
@@ -44,10 +44,9 @@ the resulting diff for lost behavior, finish the merge/rebase, and rerun checks
 affected by the resolution. Take a whole side only when the other side's change
 is deliberately superseded.
 
-Before an authorized merge, inspect the current PR head, base, required checks,
-review/conversation requirements, and dependencies. Honor merge queues and host
-controls. Confirm the merged state and resulting revision afterwards. A local
-merge is distinct from a remote PR merge; report the endpoint actually reached.
+A local merge is distinct from a remote PR merge. Merging a PR on its forge,
+including queues and auto-merge, belongs to `babysit-pr`; report the endpoint
+actually reached.
 
 **Complete when:** branch ancestry and change scope match the task, any in-progress
 Git operation is resolved or explicitly reported, and the requested publication

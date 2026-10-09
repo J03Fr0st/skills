@@ -9,9 +9,6 @@ const COMMAND_TIMEOUT_MS = 15_000;
 const MAX_OUTPUT_BYTES = 8 * 1024 * 1024;
 const ASSET_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'assets');
 const TEMPLATE_NAMES = new Set([
-  'pr-short.md',
-  'pr-standard.md',
-  'pr-migration.md',
   'commit.txt',
   'commit-conventional.txt',
 ]);
@@ -21,7 +18,6 @@ class CliError extends Error {}
 function usage() {
   return `Usage:
   git-kit.mjs status [--repo PATH]
-  git-kit.mjs pr-context --repo PATH --base REF [--head REF]
   git-kit.mjs template NAME [--output PATH]
 
 Commands inspect local Git state without fetching or changing the repository.
@@ -31,9 +27,6 @@ Use --help with a command for command-specific usage.
 
 function commandUsage(command) {
   if (command === 'status') return 'Usage: git-kit.mjs status [--repo PATH]\n';
-  if (command === 'pr-context') {
-    return 'Usage: git-kit.mjs pr-context --repo PATH --base REF [--head REF]\n';
-  }
   if (command === 'template') {
     return 'Usage: git-kit.mjs template NAME [--output PATH]\n';
   }
@@ -50,16 +43,12 @@ function parseArgs(argv) {
   }
 
   const command = argv[0];
-  if (!['status', 'pr-context', 'template'].includes(command)) {
+  if (!['status', 'template'].includes(command)) {
     optionError(`Unknown command: ${command}`);
   }
 
   const values = { command, positionals: [], help: false };
-  const allowed = command === 'status'
-    ? new Set(['repo'])
-    : command === 'pr-context'
-      ? new Set(['repo', 'base', 'head'])
-      : new Set(['output']);
+  const allowed = command === 'status' ? new Set(['repo']) : new Set(['output']);
   const seen = new Set();
 
   for (let index = 1; index < argv.length; index += 1) {
@@ -103,15 +92,6 @@ function parseArgs(argv) {
 
   if (command === 'status' && values.positionals.length > 0) {
     optionError(`Unexpected positional argument: ${values.positionals[0]}`);
-  }
-  if (command === 'pr-context') {
-    if (values.positionals.length > 0) optionError(`Unexpected positional argument: ${values.positionals[0]}`);
-    if (values.repo === undefined) optionError('pr-context requires --repo PATH');
-    if (values.base === undefined) optionError('pr-context requires --base REF');
-    if (values.base.startsWith('-')) optionError('Base ref must not start with a dash');
-    if (values.head !== undefined && values.head.startsWith('-')) {
-      optionError('Head ref must not start with a dash');
-    }
   }
   if (command === 'template') {
     if (values.positionals.length !== 1) {
@@ -280,110 +260,6 @@ function resolveCommit(root, ref, label) {
   return sha;
 }
 
-function parseNameStatus(raw) {
-  const fields = raw.split('\0');
-  const files = [];
-  for (let index = 0; index < fields.length;) {
-    const status = fields[index++];
-    if (!status) continue;
-    const filePath = fields[index++];
-    if (filePath === undefined) throw new CliError('Git returned malformed name status');
-    const file = { status, path: filePath };
-    if (status[0] === 'R' || status[0] === 'C') {
-      const newPath = fields[index++];
-      if (newPath === undefined) throw new CliError('Git returned malformed rename status');
-      file.originalPath = filePath;
-      file.path = newPath;
-    }
-    files.push(file);
-  }
-  return files;
-}
-
-function parseNumstat(raw) {
-  const fields = raw.split('\0');
-  const stats = [];
-  for (let index = 0; index < fields.length;) {
-    const first = fields[index++];
-    if (!first) continue;
-    const firstTab = first.indexOf('\t');
-    const secondTab = first.indexOf('\t', firstTab + 1);
-    if (firstTab < 0 || secondTab < 0) throw new CliError('Git returned malformed numstat');
-    const additions = first.slice(0, firstTab);
-    const deletions = first.slice(firstTab + 1, secondTab);
-    let filePath = first.slice(secondTab + 1);
-    let originalPath;
-    if (filePath === '') {
-      originalPath = fields[index++];
-      filePath = fields[index++];
-    }
-    if (filePath === undefined) throw new CliError('Git returned malformed numstat');
-    const stat = {
-      additions: additions === '-' ? null : Number(additions),
-      deletions: deletions === '-' ? null : Number(deletions),
-      path: filePath,
-    };
-    if (originalPath !== undefined) stat.originalPath = originalPath;
-    if (Number.isNaN(stat.additions) || Number.isNaN(stat.deletions)) {
-      throw new CliError('Git returned malformed numstat values');
-    }
-    stats.push(stat);
-  }
-  return stats;
-}
-
-function prContextCommand(repoArg, baseRef, headRef) {
-  const root = repositoryRoot(repoArg);
-  const base = resolveCommit(root, baseRef, 'Base');
-  const head = resolveCommit(root, headRef ?? 'HEAD', 'Head');
-  const mergeBaseResult = runGit(['merge-base', base, head], root, { allowFailure: true });
-  if (mergeBaseResult.status === 1) {
-    throw new CliError('Base and head have no merge base (unrelated histories)');
-  }
-  if (mergeBaseResult.status !== 0) {
-    throw new CliError(redactedGitError(mergeBaseResult.stderr) || 'git merge-base failed');
-  }
-  const mergeBase = mergeBaseResult.stdout.trim();
-
-  const commits = runGit(['rev-list', '--reverse', `${mergeBase}..${head}`], root)
-    .stdout.trim()
-    .split(/\r?\n/)
-    .filter(Boolean);
-  const diffArgs = [
-    '--no-ext-diff',
-    '--no-textconv',
-    '--find-renames',
-    `${mergeBase}..${head}`,
-  ];
-  const nameStatus = runGit(['diff', '--name-status', '-z', ...diffArgs], root).stdout;
-  const numstat = runGit(['diff', '--numstat', '-z', ...diffArgs], root).stdout;
-  const changedFiles = parseNameStatus(nameStatus);
-  const stats = parseNumstat(numstat);
-  const statsByPath = new Map(stats.map((stat) => [stat.path, stat]));
-  for (const file of changedFiles) {
-    const stat = statsByPath.get(file.path);
-    if (stat) {
-      file.additions = stat.additions;
-      file.deletions = stat.deletions;
-    } else {
-      file.additions = null;
-      file.deletions = null;
-    }
-  }
-  const shortStat = runGit(['diff', '--shortstat', ...diffArgs], root).stdout.trim();
-  const dirty = runGit(['status', '--porcelain=v1', '-z', '--untracked-files=all'], root).stdout.length > 0;
-  return {
-    root,
-    base,
-    head,
-    mergeBase,
-    commits,
-    changedFiles,
-    stat: shortStat,
-    workingTreeDirty: dirty,
-  };
-}
-
 function templateCommand(name, output) {
   const content = readFileSync(path.join(ASSET_DIR, name), 'utf8');
   if (output === undefined) {
@@ -406,9 +282,7 @@ function main(argv = process.argv.slice(2)) {
       return 0;
     }
     if (args.command === 'status') process.stdout.write(`${JSON.stringify(statusCommand(args.repo))}\n`);
-    else if (args.command === 'pr-context') {
-      process.stdout.write(`${JSON.stringify(prContextCommand(args.repo, args.base, args.head))}\n`);
-    } else templateCommand(args.positionals[0], args.output);
+    else templateCommand(args.positionals[0], args.output);
     return 0;
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

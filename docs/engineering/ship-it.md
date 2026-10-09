@@ -20,7 +20,8 @@ the conversation, within repository and host policy.
 
 The skill coordinates existing owners: `code-review` for supported findings,
 `implement` for repairs, `verification-before-completion` for fresh evidence,
-`git-workflow` for publication, and `babysit-pr` for remote follow-through. It
+`git-workflow` for commits and push, `pr-description` for the PR text, and
+`babysit-pr` for remote follow-through. It
 reuses existing reviews and PRs where they cover the current change. Repairs
 and base changes trigger the affected checks again.
 

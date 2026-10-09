@@ -15,8 +15,8 @@ Use the project's existing setup scripts and lockfiles as the source of truth.
 
 Record the chosen checkout, relevant resource assignments, and baseline result in
 the existing task record. Classify failures as missing setup, pre-existing
-behavior, or introduced regression before expanding checks. Delegate lifecycle
-and preservation decisions to [worktree lifecycle](worktrees.md).
+behavior, or introduced regression before expanding checks. Lifecycle and
+preservation decisions stay with the [main skill](../SKILL.md).
 
 **Complete when:** the decisive build/test can run in the intended checkout with
 known resource ownership, or a concrete unavailable dependency is reported.
