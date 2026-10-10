@@ -27,8 +27,6 @@ Apply the **hollow-test** litmus: would this test still pass if every function i
 
 A new test must also earn its place. Before adding one, answer: what behavior or contract does it protect, what credible regression makes it fail, and why existing coverage does not already catch that? When a nearby table-driven test or shared fixture covers the same contract, add a row there instead of a near-duplicate. If the test needs a production seam no production caller needs, such as an extra export, flag, or injection hook, test at the real boundary instead.
 
-When the behavior is an invariant over many inputs, such as a round-trip, ordering, or conservation rule, `property-based-testing` can supply a generative test in place of hand-picked examples.
-
 ## 1. Define the slice
 
 Write down:
@@ -41,7 +39,7 @@ Write down:
 
 For a bug, use the diagnosis evidence and reproduce the defect at the responsible seam. Do not use a speculative fix as the test specification.
 
-Use a property instead of an example when the behavior has an algebraic shape, such as a roundtrip, inverse, idempotence, invariant, or reference oracle, and the project already uses a property-testing library. Adding such a library is a dependency decision for the user: offer it once, naming the property you would write.
+Use a property instead of an example when the behavior has an algebraic shape, such as a roundtrip, inverse, idempotence, invariant, or reference oracle, and the project already uses a property-testing library; `property-based-testing` designs that test. Adding such a library is a dependency decision for the user: offer it once, naming the property you would write.
 
 **Complete when:** the proposed test can fail for the missing or broken behavior and does not depend on the implementation shape you intend to write.
 

@@ -15,25 +15,9 @@ When two properties conflict, keep behavior-sensitivity. A brittle test that cat
 
 ## Example or property
 
-An example test asserts one point. A property asserts a rule over an input domain and lets a generator search for a counterexample. Use a property only when the code has one of these shapes:
+An example test asserts one point. A property asserts a rule over an input domain and lets a generator search for a counterexample. Prefer a property when the code has an algebraic shape: roundtrip or inverse, idempotence, invariant, reference oracle, cheap checker, or algebraic law. Otherwise use examples.
 
-| Shape | Rule |
-| --- | --- |
-| Roundtrip or inverse | `decode(encode(x)) == x` |
-| Idempotence | `f(f(x)) == f(x)` |
-| Invariant | a stated condition holds before and after the operation |
-| Oracle | `new(x) == reference(x)` for a rewrite or optimization |
-| Cheap checker | `is_sorted(sort(x))` |
-| Algebraic law | commutativity, associativity, or identity |
-
-From weakest to strongest: no crash, type preservation, invariant, idempotence, roundtrip or oracle. Assert the strongest rule the code supports. If only "no crash" is available, first check whether a small refactor would expose a stronger rule; otherwise use examples.
-
-A property test asserts nothing in two ways:
-
-- **Tautology:** the expected value recomputes the implementation, so a bug they share cannot fail the test.
-- **Vacuity:** input filters reject almost every generated case, so the test passes having exercised almost nothing. Constrain the generator rather than filtering its output.
-
-When a generator shrinks to a counterexample, check the input against the contract before trusting the failure. In descending authority, the contract comes from an external specification, then types, then documentation, then existing tests, then the function name. Input outside a documented precondition means the generator is too broad. An edge case that no source settles is a question for the user, not a bug.
+Choosing the strongest property, designing generators, spotting tautological or vacuous properties, and triaging shrunk counterexamples belong to `property-based-testing`; load it before writing or judging a property test.
 
 ## Test doubles
 

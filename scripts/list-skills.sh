@@ -8,4 +8,4 @@ if [ ! -d skills ]; then
   exit 0
 fi
 
-find . -name SKILL.md -not -path '*/node_modules/*' | sed 's|^\./||' | sort
+find skills -name SKILL.md -not -path '*/node_modules/*' | sort
