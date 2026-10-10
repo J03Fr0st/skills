@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- [#48](https://github.com/J03Fr0st/skills/pull/48) [`1b38fcf`](https://github.com/J03Fr0st/skills/commit/1b38fcff8517cabdc71b1b54f168b8f8ff4b1d2b) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `pr-description` now writes PR bodies as a brief summary with the smallest
+  useful visual (pseudocode, a call, component, or file tree, Mermaid, or a diff
+  sketch), before/after evidence, optional review notes, and a merge-danger
+  section with separate door and blast-radius fields. Adapted from Matt Pocock's
+  `pr` skill and Dex Horthy's `show-me`. Repository PR templates stay
+  authoritative.
+
 ## 0.4.0
 
 ### Minor Changes
