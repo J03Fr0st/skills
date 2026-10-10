@@ -65,10 +65,9 @@ the shared baseline; unrelated domains stay unloaded.
 - **State:** make ownership and mutation visible. Update shared or observable
   state through its established owner. Local mutation during construction is
   acceptable when it cannot alter another caller's state.
-- **Simplicity:** reuse the existing owner or suitable native facility. Introduce
-  an abstraction when it removes a concrete comprehension burden or protects a
-  real contract. Judge cohesion and callers; line counts alone do not justify
-  splitting a function or adding layers.
+- **Simplicity:** reuse the existing owner or suitable native facility. Time
+  abstractions by `codebase-design`'s KISS -> YAGNI -> DRY sequence; line counts
+  alone do not justify splitting a function or adding layers.
 - **Asynchrony:** await dependent work; bound independent concurrency. Define who
   owns cancellation, cleanup, and failure. Preserve required ordering and release
   resources on both success and failure.
