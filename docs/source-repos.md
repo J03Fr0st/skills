@@ -25,3 +25,4 @@ research citations. Change the list only when the owner's preferences change.
 13. [`nahid-sparktales/agent-dispatcher`](https://github.com/nahid-sparktales/agent-dispatcher)
     — a capability-aware dispatcher routing tasks to specialist roles, each
     with its own focused skills, tools, and verification workflows
+14. [`humanlayer/skills`](https://github.com/humanlayer/skills)
