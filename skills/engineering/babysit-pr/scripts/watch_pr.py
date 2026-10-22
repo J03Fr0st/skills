@@ -63,6 +63,10 @@ def snapshot(host, repo, number):
         if not isinstance(pages, list) or any(not isinstance(p, list) for p in pages):
             raise RuntimeError(f"Unexpected {kind} pagination response")
         feedback[kind] = [item for page in pages for item in page]
+    pending = {r.get("id") for r in feedback["reviews"] if r.get("state") == "PENDING"}
+    feedback["reviews"] = [r for r in feedback["reviews"] if r.get("id") not in pending]
+    feedback["inline_comments"] = [c for c in feedback["inline_comments"]
+                                   if c.get("pull_request_review_id") not in pending]
     owner, name = repo.split("/")
     pages = gh("api", "graphql", "--hostname", host, "--paginate", "--slurp",
                "-f", f"query={THREADS}", "-f", f"owner={owner}",
