@@ -35,6 +35,12 @@ correct stale commit subjects and discard superseded implementation history.
 For a known stack or series, identify this PR's contribution and known dependencies
 or follow-on work. An unknown series stays unknown.
 
+When later commits on an open PR materially change its scope, approach,
+breaking behavior, risk, rollout, or review expectations, refresh the title and
+body from the new final diff; typo-, formatting-, and rename-only commits do not
+need it. Keep the existing title only when it still covers the whole diff, and
+describe the PR as it now stands rather than its revision history.
+
 For an empty range, report that no changes are available to describe. For missing
 evidence, state the gap rather than inventing behavior or validation.
 
@@ -68,9 +74,15 @@ exists.
    [visuals](references/visuals.md) to choose one. A one-line fix needs no visual.
 2. **Evidence.** Before and after, from observed results. For a visual change
    in an environment that can capture it, screenshots are the strongest
-   evidence. Otherwise show execution: the exact test, command, or reproduction
-   that failed before and passes after, with its output or a pseudocode sketch
-   of the test. Name material checks not run and keep material negative results.
+   evidence: capture the real app on the base and head revisions with the same
+   region and size, and report a pair with no visible difference as unchanged.
+   Otherwise show execution: the exact test, command, or reproduction that
+   failed before and passes after, with the output line that proves it or a
+   pseudocode sketch of the test. Quote output; never paste command
+   transcripts, CI logs, or validation dumps. Name material checks not run and
+   keep material negative results. A change with no runtime behavior to
+   exercise, such as documentation, copy, or comments, needs at most one line on
+   how it was checked instead of a before and after.
 3. **Review notes**, only when needed: motivation or design decisions the diff
    cannot explain; compatibility, rollout, migration, or recovery implications;
    dependencies; a useful review starting point.
@@ -78,7 +90,9 @@ exists.
    - **Door:** *two-way* when reverting the merge fully restores prior behavior;
      *one-way* when merging or deploying leaves a lasting effect, such as
      migrated data, a published API or event, or sent messages. A one-way door
-     also names its recovery limit.
+     also names its recovery limit. The author is rating its own change: when
+     unsure, call it one-way and say what is uncertain. Follow any project
+     list of changes that are always one-way.
    - **Blast radius:** what breaks, and for whom, if the change is wrong:
      consumers, layouts, platforms, data, or users affected.
 
@@ -89,8 +103,14 @@ For wording and evidence patterns by change type, read [examples](references/exa
 Scale detail to reviewer uncertainty: a small risky change may need more
 explanation than a large mechanical rename. Keep the description about the
 resulting change; file inventories and the conversation's implementation
-chronology add no review context. Preserve useful existing issue links,
-demonstrations, and required disclosures when rewriting.
+chronology add no review context. Cut any sentence a reader could reconstruct
+from the diff, and replace prompt, plan, or session wording with the behavior it
+produced. Preserve useful existing issue links, demonstrations, and required
+disclosures when rewriting.
+
+Keep customer or organization names, user emails, support-ticket text, secrets,
+tokens, and other personal data out of the title, body, quoted output, and
+screenshots; redact them in images before upload.
 
 PRs credit their human author alone: titles and bodies end with the change
 content. Leave out agent attribution such as "Generated with Claude Code"
@@ -100,8 +120,9 @@ requires AI-use disclosure; follow its required wording.
 
 **Complete when:** the title and summary cover the final scope, every material
 claim is grounded in evidence or marked unverified, the evidence shows before
-and after or names why it cannot, the merge danger names its door and blast
-radius, and required template fields are present.
+and after, names why it cannot, or states in one line how a change with no
+runtime behavior was checked, the merge danger names its door and blast radius,
+no private data appears, and required template fields are present.
 
 ## 3. Deliver or apply
 
