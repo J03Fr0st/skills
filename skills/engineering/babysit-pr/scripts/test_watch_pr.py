@@ -26,6 +26,16 @@ class WatchTests(unittest.TestCase):
         self.assertEqual(result["feedback"]["reviews"][0]["id"], 3)
         self.assertEqual(len(result["threads"]), 2)
 
+    def test_pending_review_and_its_comments_are_left_out(self):
+        pages = [{"data": {"repository": {"pullRequest": {"reviewThreads": {
+            "nodes": [], "pageInfo": {"hasNextPage": False}}}}}}]
+        inline = [[{"id": 10, "pull_request_review_id": 7}, {"id": 11, "pull_request_review_id": 8}]]
+        reviews = [[{"id": 7, "state": "PENDING"}, {"id": 8, "state": "COMMENTED"}]]
+        with patch.object(watcher, "gh", side_effect=[PR, [[]], inline, reviews, pages, PR]):
+            result = watcher.snapshot("github.com", "owner/repo", 1)
+        self.assertEqual([r["id"] for r in result["feedback"]["reviews"]], [8])
+        self.assertEqual([c["id"] for c in result["feedback"]["inline_comments"]], [11])
+
     def test_head_race_rejected(self):
         later = dict(PR, headRefOid="h2")
         pages = [{"data": {"repository": {"pullRequest": {"reviewThreads": {
