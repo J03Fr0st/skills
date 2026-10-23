@@ -1,6 +1,6 @@
 ---
 name: writing-for-humans
-description: Write and revise human-facing prose so it is clear, specific, natural, and faithful to the author's intent and genre. Use for emails, articles, reports, documentation, announcements, talks, and other prose when the user asks to draft, diagnose, edit, rewrite, make writing less formulaic or less AI-like, sound more natural or direct, or match a supplied voice. Do not use for agent instructions such as skills or AGENTS.md, code-only work, verbatim transcription, or translation without editorial changes.
+description: Write and revise human-facing prose so it is clear, specific, natural, and faithful to the author's intent and genre. Use for emails, chat messages, articles, reports, documentation, announcements, talks, and other prose when the user asks to draft, diagnose, edit, rewrite, make writing less formulaic or less AI-like, sound more natural or direct, or match a supplied voice. Do not use for agent instructions such as skills or AGENTS.md, code-only work, verbatim transcription, or translation without editorial changes.
 ---
 
 # Writing for humans
@@ -115,7 +115,8 @@ house style for another:
 1. **Truth pass:** repair unsupported emphasis, vague attribution, abstraction,
    missing context, and certainty drift.
 2. **Shape pass:** lead with the useful point, group related ideas, earn every
-   heading and list, and remove restatement or canned framing.
+   heading and list, and remove restatement or canned framing. Give a chat
+   message or email the [message layout](#message-layout).
 3. **Voice pass:** choose words, cadence, formality, and personality that fit
    the genre and any supplied sample.
 
@@ -139,6 +140,8 @@ Read the revision once as a reader, without scanning for banned words. Check:
 
 - the useful point arrives when the reader needs it;
 - the prose is specific enough to trust and easy enough to follow;
+- a chat message or email follows the message layout, so the ask and each
+  fact can be found at a glance;
 - the tone belongs to this author, audience, and genre;
 - no fact, qualification, relationship, or protected literal drifted;
 - nothing useful was cut to make the draft shorter;
@@ -151,6 +154,29 @@ Make one corrective pass for real regressions, then stop.
 
 The work is complete when the prose fulfils the brief, the meaning contract is
 intact, and every remaining stylistic choice earns its place in context.
+
+## Message layout
+
+People read chat messages and emails in a narrow pane, often on a phone, and
+scan before they read. Lay out every chat message or email, in any mode, in
+this order:
+
+1. the greeting on its own line;
+2. the ask in its own paragraph, directly after the greeting;
+3. supporting context in paragraphs of one to three sentences, one idea each;
+4. when three or more separate facts support the ask, such as a cause, a
+   result, and a current state, a short list under a short label, one fact
+   per item;
+5. any remaining need or deadline in its own paragraph;
+6. the sign-off on its own line.
+
+Bold the item the reader acts on, such as the thing to approve, and at most a
+short label that introduces a list.
+
+Match the layout to how the target renders. For HTML, such as a Teams message
+sent with `bodyType: html`, put each paragraph in `<p>` and each list in
+`<ul><li>`. For plain text or Markdown, separate paragraphs with a blank line
+and start list items with `-`.
 
 ## Deliver the mode, not the process
 
