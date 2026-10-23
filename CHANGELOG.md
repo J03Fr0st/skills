@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0
+
+### Minor Changes
+
+- [#57](https://github.com/J03Fr0st/skills/pull/57) [`0282467`](https://github.com/J03Fr0st/skills/commit/028246752eac74a7a36041bb4606fc8bde14aaa1) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `writing-for-humans` now lays out chat messages and emails for scanning: greeting and sign-off on their own lines, the ask in its own paragraph, short one-idea paragraphs, and three or more parallel facts as a list, mapped to HTML or plain text for the target. Dense message paragraphs are a named shape problem, the final check covers layout, and a new eval covers a condensed Teams approval request.
+
 ## 0.6.0
 
 ### Minor Changes
