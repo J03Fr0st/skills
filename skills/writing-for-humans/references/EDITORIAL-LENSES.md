@@ -34,7 +34,9 @@ Look for:
 - a preamble that delays the answer or repeats the prompt;
 - headings that divide a short thought into ceremonial sections;
 - bullets used for fragments that form one argument, or paragraphs used for
-  genuinely parallel choices;
+  genuinely parallel choices or facts;
+- a chat message or email packed into dense paragraphs, with the ask or
+  several separate facts buried inside one block;
 - rigid symmetry that gives minor points the same weight as the central one;
 - a conclusion that merely repeats the introduction;
 - transitions that announce movement instead of establishing a logical link;
@@ -43,7 +45,8 @@ Look for:
 Choose structure from the reader's job. Lead with the decision in operational
 writing, the claim in argumentative writing, the event in narrative writing,
 and the governing definition in reference material. Use headings and bullets
-when they make relationships easier to see.
+when they make relationships easier to see. Lay out chat messages and emails
+with the message layout in `SKILL.md`.
 
 ## 3. Paragraphs and sentences
 

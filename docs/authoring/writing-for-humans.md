@@ -43,6 +43,15 @@ technical meaning. One dash, colon, heading, technical noun, or polished
 sentence is not a violation. Repetition, density, poor fit, and reader cost are
 the relevant signals.
 
+## Message layout
+
+Chat messages and emails get a fixed layout in every mode, because people scan
+them in a narrow pane: greeting on its own line, the ask in its own paragraph,
+short one-idea paragraphs, three or more parallel facts as a list, and the
+sign-off on its own line. The skill maps that layout to HTML paragraphs and
+lists when the target renders HTML, such as Teams, and to blank lines in plain
+text.
+
 ## Preservation gate
 
 Existing prose gets a meaning contract before revision. Claims, numbers, dates,
@@ -97,5 +106,5 @@ brevity.
 - `skills/writing-for-humans/scripts/check_preservation.py` - dependency-free
   literal and Markdown-structure comparison.
 - `skills/writing-for-humans/evals/evals.json` - scenarios for operational
-  accuracy, diagnosis-only restraint, announcement cleanup, voice transfer, and
-  minimal change on a draft that already works.
+  accuracy, diagnosis-only restraint, announcement cleanup, voice transfer,
+  minimal change on a draft that already works, and chat-message layout.

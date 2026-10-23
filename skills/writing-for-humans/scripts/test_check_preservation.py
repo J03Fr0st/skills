@@ -65,6 +65,19 @@ class PreservationTests(unittest.TestCase):
         after = BEFORE.replace("# Checkout incident", "# Service incident")
         self.assertEqual(compare(BEFORE, after, {"heading"}), [])
 
+    def test_message_facts_moved_into_a_list_are_not_reported(self):
+        before = (
+            "Hi Priya, could you approve run 5974587? It has the fix from PR #196. "
+            "On eu4 it had about 2,000 errors per hour before the flip and none since. Thanks!"
+        )
+        after = (
+            "Hi Priya,\n\nCould you approve **run 5974587**?\n\n"
+            "**Why:** it has the fix from PR #196.\n\n"
+            "- On eu4 it had about 2,000 errors per hour before the flip, and none since.\n\n"
+            "Thanks!\n"
+        )
+        self.assertEqual(compare(before, after), [])
+
     def test_table_shape_change_is_reported(self):
         after = BEFORE.replace("| EU | 42 |", "| EU | Checkout | 42 |")
         self.assertIn("table-shape", {item.category for item in compare(BEFORE, after)})

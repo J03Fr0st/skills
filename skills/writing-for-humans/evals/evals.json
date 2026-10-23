@@ -66,6 +66,20 @@
         "The two tickets, one customer, CSV header row, de-DE locale, one-line fix, and two days remain exact.",
         "The response reports named writing observations rather than an AI score or authorship verdict."
       ]
+    },
+    {
+      "id": 6,
+      "prompt": "Edit this Teams message to the person who approves our pipeline stages. They will read it in Teams, and I will send it as HTML. Keep every fact exact. Draft: 'Hi Priya, could you please approve \"Deployment Guardrails eu1\" on billing-api run 5974587? This run has the fix from PR #196. Since the .NET 10 upgrade, every health check logs a \"StatusCode cannot be set\" error. On eu4 the fix is live; it had about 2,000 errors per hour before the flip and none since. On eu1 the new version is staged and the functional tests passed, so your approval lets it flip. We need staging on this version for the partner integration testing. Thanks!'",
+      "expected_output": "A message laid out for scanning: the greeting on its own line, the approval ask in its own paragraph, the reason and the three status facts as a short list, the staging need in its own paragraph, and the sign-off on its own line, delivered as HTML paragraphs and a list with every fact unchanged.",
+      "files": [],
+      "expectations": [
+        "The greeting and the sign-off each stand on their own line rather than merging into a sentence.",
+        "The approval ask is its own paragraph directly after the greeting, and the stage to approve is easy to identify.",
+        "The status facts appear as a short list, with at least the eu4 result and the eu1 staged state as separate items, rather than one dense paragraph.",
+        "No paragraph is longer than three sentences.",
+        "Deployment Guardrails eu1, billing-api run 5974587, PR #196, .NET 10, the StatusCode cannot be set error, eu4, about 2,000 errors per hour, none since, the passed functional tests, staging, and the partner integration testing remain exact.",
+        "The message is delivered as HTML with <p> paragraphs and a <ul><li> list, and adds no facts, urgency, or emojis."
+      ]
     }
   ]
 }
