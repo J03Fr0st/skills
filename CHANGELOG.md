@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.0
+
+### Minor Changes
+
+- [#59](https://github.com/J03Fr0st/skills/pull/59) [`d4dd743`](https://github.com/J03Fr0st/skills/commit/d4dd743fdd2d81b04b75517f05d9638b8529c908) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add `skill-evolve`, which turns evidence from real sessions into candidate
+  skill edits. Each candidate is run against a snapshot of the current skill,
+  including a case rebuilt from the original failure, and is kept only when it
+  wins without regressing. Nothing is applied until the user approves it.
+
 ## 0.7.0
 
 ### Minor Changes
