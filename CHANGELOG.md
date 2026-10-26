@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.9.0
+
+### Minor Changes
+
+- [#61](https://github.com/J03Fr0st/skills/pull/61) [`9560abf`](https://github.com/J03Fr0st/skills/commit/9560abfe7ac66ada990ef06985618cfa59d99fb8) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `git-workflow` now checks branch freshness. Asked whether a branch is up to
+  date or its fixes already landed in an incoming PR, it finds where each commit
+  went, including squash merges, and what landing the branch would still change.
+  It then gives a verdict (current, partial, landed, superseded, or rework)
+  before syncing, so it does not rebase work that is already on the base or
+  bring back something the base removed.
+
 ## 0.8.0
 
 ### Minor Changes
