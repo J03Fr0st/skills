@@ -59,6 +59,7 @@
     "./skills/engineering/verification-before-completion",
     "./skills/productivity/grilling",
     "./skills/productivity/handoff",
+    "./skills/skill-evolve",
     "./skills/writing-for-agents",
     "./skills/writing-for-humans"
   ]

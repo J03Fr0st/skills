@@ -1,6 +1,6 @@
 ---
 name: writing-for-agents
-description: Write and revise documents that agents consume - skills, SKILL.md, AGENTS.md, CLAUDE.md, and reference files reached by a pointer. Use when creating, editing, reviewing, or splitting a skill, when writing or updating AGENTS.md or CLAUDE.md, when a skill triggers unreliably or gets ignored, when agent instructions are bloated or followed inconsistently, or when deciding what belongs in context versus behind a pointer. Do not use for human-facing prose, which belongs to writing-for-humans.
+description: Write and revise documents that agents consume - skills, SKILL.md, AGENTS.md, CLAUDE.md, and reference files reached by a pointer. Use when creating, editing, reviewing, or splitting a skill, when writing or updating AGENTS.md or CLAUDE.md, when a skill triggers unreliably or gets ignored, when agent instructions are bloated or followed inconsistently, or when deciding what belongs in context versus behind a pointer. Do not use for human-facing prose, which belongs to writing-for-humans, or for changing a skill because of session evidence, which belongs to skill-evolve.
 ---
 
 # Writing for agents
