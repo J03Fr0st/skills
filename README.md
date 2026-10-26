@@ -40,7 +40,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
 - [diagnosing-bugs](docs/engineering/diagnosing-bugs.md) — prove a root cause through
   reproduction, competing hypotheses, and discriminating evidence before a fix.
 - [git-workflow](docs/engineering/git-workflow.md) — make focused commits, manage
-  branches, rebases, stacks and backports, and recover interrupted Git state.
+  branches, rebases, stacks and backports, check whether a branch already
+  landed, and recover interrupted Git state.
 - [git-worktrees](docs/engineering/git-worktrees.md) — select, prepare, retire, and
   recover isolated checkouts without displacing another task's work.
 - [grilling](docs/productivity/grilling.md) — stress-test a consequential or ambiguous

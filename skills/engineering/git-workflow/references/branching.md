@@ -28,6 +28,9 @@ keeping required dependencies and useful review context together.
 
 ## Update and integrate
 
+Before updating a branch that predates recent base changes, or a PR someone
+else opened, establish its verdict with [branch freshness](freshness.md).
+
 Use merge or rebase according to repository policy and branch ownership. Rebasing
 rewrites commit identities: coordinate with anyone relying on a published branch.
 For an authorized rewrite, record the previous head and establish recoverability.
