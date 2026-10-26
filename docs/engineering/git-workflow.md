@@ -5,7 +5,8 @@ stacks, backports, local integration, and recovery from interrupted Git
 operations. It is model-invoked and can also be requested directly.
 
 Try: “Commit my fix without the other staged files,” “Rebase this stack after
-the parent squash-merged,” “Backport this fix to release/2,” “I committed to the
+the parent squash-merged,” “Backport this fix to release/2,” “Split this one-way-door PR into a
+reversible PR and a stacked follow-up,” “I committed to the
 wrong branch,” “Is my branch up to date, and did these fixes already land in a
 PR?” or “Choose a branching policy for our release process.”
 
@@ -34,7 +35,7 @@ existing owners.
 | --- | --- |
 | Run local inspection or create a commit message draft | [Runnable tooling and templates](../../skills/engineering/git-workflow/references/tooling.md) |
 | Discover rules or choose a branch/merge policy | [Repository policy](../../skills/engineering/git-workflow/references/policy.md) |
-| Start, review, commit selected paths, sync, backport, or maintain a stack | [Common recipes](../../skills/engineering/git-workflow/references/recipes.md) |
+| Start, review, commit selected paths, sync, backport, maintain a stack, or split a one-way-door PR | [Common recipes](../../skills/engineering/git-workflow/references/recipes.md) |
 | Decide whether a branch or PR is current, already landed, or superseded | [Branch freshness](../../skills/engineering/git-workflow/references/freshness.md) |
 | Recover misplaced commits or interrupted Git operations | [Recovery](../../skills/engineering/git-workflow/references/recovery.md) |
 | Handle squash ancestry, leases, stale checks, and merge queues | [Integration pitfalls](../../skills/engineering/git-workflow/references/integration.md) |
