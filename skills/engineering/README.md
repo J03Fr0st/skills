@@ -13,7 +13,7 @@ See the [workflow map](../../docs/workflow.md) for entry points and handoffs.
 - [diagnosing-bugs](../../docs/engineering/diagnosing-bugs.md) - establish root causes through reproduction, hypotheses, and discriminating evidence before remediation.
 - [coding-standards](../../docs/engineering/coding-standards.md) - apply project conventions with shared rules and conditional backend and frontend guidance.
 - [implement](../../docs/engineering/implement.md) - execute authorized changes in coherent slices while preserving repository state and user authority.
-- [git-workflow](../../docs/engineering/git-workflow.md) - make focused commits, manage branches and integration, and recover interrupted Git state.
+- [git-workflow](../../docs/engineering/git-workflow.md) - make focused commits, manage branches and integration, check whether a branch already landed, and recover interrupted Git state.
 - [git-worktrees](../../docs/engineering/git-worktrees.md) - select, prepare, retire, and recover isolated checkouts.
 - [orchestrate](../../docs/engineering/orchestrate.md) - select native agents and models, coordinate bounded assignments, and verify integrated results.
 - [planning-and-task-breakdown](../../docs/engineering/planning-and-task-breakdown.md) - plan verifiable slices, dependencies, and the ready frontier.
