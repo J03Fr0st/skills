@@ -26,6 +26,10 @@ A commit should explain its purpose, with implementation details only where they
 clarify it. Split unrelated changes while
 keeping required dependencies and useful review context together.
 
+When a change includes a step a revert cannot undo, such as a destructive
+migration or a removed contract, split it into a reversible expand PR and a
+stacked contract PR with [the one-way-door recipe](recipes.md#split-a-one-way-door-change-expandcontract).
+
 ## Update and integrate
 
 Before updating a branch that predates recent base changes, or a PR someone

@@ -60,6 +60,12 @@
       "prompt": "Bring my branch feat/export up to date with main. Three of its five commits were cherry-picked to main last week in a hotfix PR; the other two add a CSV option nobody else has built. Propose actions only.",
       "expected_output": "Detects the three landed commits via git cherry or equivalent and gives a PARTIAL verdict; rebases so patch-equivalent commits drop out; verifies with range-diff and the final diff that only the two CSV commits remain; reruns affected checks; publishes any rewrite with an explicit lease against the observed remote head; reports which commits landed where.",
       "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "My PR feat/orders-v2 adds a new orders service, migrates existing rows to the new table, and drops the old orders table in the same change. Split this one-way-door PR so we can test most of it in production first. Propose actions only.",
+      "expected_output": "Classifies the table drop and destructive migration as one-way. Proposes an expand PR from the base with the new service behind the repository's flag (default off), additive schema, and data the old path can still read, verified with the flag off and on and revertible. Proposes a stacked contract PR targeting the expand branch that removes the flag, old path, and old table, checks its tree against the original head, and waits for the expand PR to be observed in production. Routes PR text to pr-description and merging to babysit-pr; records the original head before rewriting.",
+      "files": []
     }
   ]
 }
