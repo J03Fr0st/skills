@@ -70,6 +70,9 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
   to an explicit, verified PR, merge, or deployment endpoint.
 - [simplify](docs/engineering/simplify.md) — reduce code complexity in a scoped pass
   while preserving observable behavior and useful boundaries.
+- [skill-evolve](docs/authoring/skill-evolve.md) — turn evidence from real sessions
+  into candidate skill edits, keep only those that beat the current version, and
+  apply them after approval.
 - [tdd](docs/engineering/tdd.md) — drive behavior changes through observable red, green,
   and refactor evidence, with example or property tests and bounded practical exceptions.
 - [verification-before-completion](docs/engineering/verification-before-completion.md) —
@@ -168,6 +171,11 @@ The new instructions use original wording and preserve one owner per outcome.
 `simplify` adds a behavior-preserving cleanup entry point, informed by the
 [six-source comparison](docs/research/simplify-skill-research.md). Its instructions
 and evaluation fixtures are maintained here; no upstream skill file is vendored.
+
+`skill-evolve` adds an evidence-gated loop for improving skills from session
+experience, informed by the
+[skill-evolution research](docs/research/2026-10-26-skill-evolution.md), which
+covers all fifteen preferred repositories. No upstream skill file is vendored.
 
 The ADLC suite follows the artifact-and-gate lifecycle described in Anthropic's
 [AI-native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook),
