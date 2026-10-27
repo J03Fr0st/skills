@@ -37,6 +37,10 @@ Look for:
   genuinely parallel choices or facts;
 - a chat message or email packed into dense paragraphs, with the ask or
   several separate facts buried inside one block;
+- blocks with no blank line between them, or the opposite: one thought
+  chopped into a run of one-line paragraphs;
+- a signature or sign-off on a chat message, where the client already names
+  the sender;
 - rigid symmetry that gives minor points the same weight as the central one;
 - a conclusion that merely repeats the introduction;
 - transitions that announce movement instead of establishing a logical link;
@@ -46,7 +50,7 @@ Choose structure from the reader's job. Lead with the decision in operational
 writing, the claim in argumentative writing, the event in narrative writing,
 and the governing definition in reference material. Use headings and bullets
 when they make relationships easier to see. Lay out chat messages and emails
-with the message layout in `SKILL.md`.
+with the message layout in `SKILL.md`, and apply its spacing and genre shapes.
 
 ## 3. Paragraphs and sentences
 

@@ -47,10 +47,22 @@ the relevant signals.
 
 Chat messages and emails get a fixed layout in every mode, because people scan
 them in a narrow pane: greeting on its own line, the ask in its own paragraph,
-short one-idea paragraphs, three or more parallel facts as a list, and the
-sign-off on its own line. The skill maps that layout to HTML paragraphs and
-lists when the target renders HTML, such as Teams, and to blank lines in plain
-text.
+short one-idea paragraphs, three or more parallel facts as a list, and, for
+email only, the sign-off on its own line. Chat messages such as Teams or Slack
+end on the ask or the last fact, with no sign-off or signature, because the
+client already shows the sender.
+
+## Spacing and genre
+
+Every draft separates its paragraphs, lists, and labels with a blank line, or
+with HTML block elements when the target renders HTML, such as Teams. Space
+separates ideas without splitting them: a cause stays with its effect, and a
+run of one-line paragraphs that form one thought is merged.
+
+A short table gives the shape for chat, email, status or incident updates,
+documentation and reports, and announcements. A mandated template or house
+style overrides these defaults. The evidence and its limits are in the
+[format research](../research/2026-10-27-writing-for-humans-formats.md).
 
 ## Preservation gate
 
@@ -107,4 +119,5 @@ brevity.
   literal and Markdown-structure comparison.
 - `skills/writing-for-humans/evals/evals.json` - scenarios for operational
   accuracy, diagnosis-only restraint, announcement cleanup, voice transfer,
-  minimal change on a draft that already works, and chat-message layout.
+  minimal change on a draft that already works, chat-message layout without a
+  sign-off, and email spacing with the sign-off kept.
