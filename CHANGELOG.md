@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.0
+
+### Minor Changes
+
+- [#67](https://github.com/J03Fr0st/skills/pull/67) [`c85a60b`](https://github.com/J03Fr0st/skills/commit/c85a60b7163b1676d882d723db2dab47579f7fb6) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `writing-for-humans` now separates every paragraph and list with a blank line
+  while keeping one thought in one paragraph, and gives chat, email, status
+  updates, documentation and reports, and announcements their own shape. Chat
+  messages such as Teams and Slack end on the ask or the last fact with no
+  sign-off or signature; email keeps its sign-off.
+
 ## 0.11.0
 
 ### Minor Changes
