@@ -116,7 +116,8 @@ house style for another:
    missing context, and certainty drift.
 2. **Shape pass:** lead with the useful point, group related ideas, earn every
    heading and list, and remove restatement or canned framing. Give a chat
-   message or email the [message layout](#message-layout).
+   message or email the [message layout](#message-layout), give every draft
+   the [spacing](#spacing), and follow the [genre's shape](#format-by-genre).
 3. **Voice pass:** choose words, cadence, formality, and personality that fit
    the genre and any supplied sample.
 
@@ -141,7 +142,9 @@ Read the revision once as a reader, without scanning for banned words. Check:
 - the useful point arrives when the reader needs it;
 - the prose is specific enough to trust and easy enough to follow;
 - a chat message or email follows the message layout, so the ask and each
-  fact can be found at a glance;
+  fact can be found at a glance, and a chat message has no sign-off;
+- blank lines separate every block, and no one-line paragraph exists only
+  because a single thought was split;
 - the tone belongs to this author, audience, and genre;
 - no fact, qualification, relationship, or protected literal drifted;
 - nothing useful was cut to make the draft shorter;
@@ -161,22 +164,56 @@ People read chat messages and emails in a narrow pane, often on a phone, and
 scan before they read. Lay out every chat message or email, in any mode, in
 this order:
 
-1. the greeting on its own line;
+1. the greeting on its own line, in the same message as the ask;
 2. the ask in its own paragraph, directly after the greeting;
 3. supporting context in paragraphs of one to three sentences, one idea each;
-4. when three or more separate facts support the ask, such as a cause, a
-   result, and a current state, a short list under a short label, one fact
-   per item;
+4. when three or more separate, parallel facts support the ask, such as a
+   cause, a result, and a current state, a short list under a short label,
+   one fact per item;
 5. any remaining need or deadline in its own paragraph;
-6. the sign-off on its own line.
+6. for email only, the sign-off on its own line.
+
+A chat message, such as one in Teams or Slack, ends on the ask, the deadline,
+or the last fact. It has no sign-off, signature, name, or closing pleasantry:
+the client already shows who sent it. Keep the sign-off in email, and add a
+signature block only when the user's own template has one.
 
 Bold the item the reader acts on, such as the thing to approve, and at most a
 short label that introduces a list.
 
-Match the layout to how the target renders. For HTML, such as a Teams message
+## Spacing
+
+Give the reader visible space. Separate every paragraph, list, and list label
+from its neighbours with a blank line, so the eye can find each block without
+reading. One idea per paragraph, with the point in its first sentence.
+
+Space separates ideas; it does not split them. Keep a cause with its effect and
+a claim with its qualification in the same paragraph. Merge adjacent one-line
+paragraphs that form a single thought, and keep reasoning as prose rather than
+bullets.
+
+Match the spacing to how the target renders. For HTML, such as a Teams message
 sent with `bodyType: html`, put each paragraph in `<p>` and each list in
-`<ul><li>`. For plain text or Markdown, separate paragraphs with a blank line
-and start list items with `-`.
+`<ul><li>`, never paragraphs joined by `<br>`. For plain text or Markdown,
+leave one blank line between blocks, including before and after a list, and
+start list items with `-`.
+
+A mandated template or house style overrides these defaults.
+
+## Format by genre
+
+Use the genre's own shape when the brief names one:
+
+| Genre | Shape |
+| --- | --- |
+| Chat message | [Message layout](#message-layout); no sign-off; one message, not a greeting followed by the ask. |
+| Email | Subject names the topic and the action; the point in the first paragraph; greeting and sign-off. |
+| Status or incident update | Current status, impact, actions, remaining uncertainty, and next update time, under short labels; no invented ETA. |
+| Documentation or report | Descriptive headings; paragraphs of three to seven rendered lines; lists for steps or parallel items; a table when three or more items share the same fields. |
+| Announcement | The change and who it affects first, then the reader's action and its deadline; no ceremony. |
+
+Pull request descriptions and commit messages belong to their own skills when
+those are available.
 
 ## Deliver the mode, not the process
 
