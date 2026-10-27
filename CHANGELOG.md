@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.11.0
+
+### Minor Changes
+
+- [#65](https://github.com/J03Fr0st/skills/pull/65) [`b266cc7`](https://github.com/J03Fr0st/skills/commit/b266cc7af23bedbc24bbed4cde57bf223b432777) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `babysit-pr` now keeps the branch up to date: when the base moves ahead, it
+  merges the base into the branch as a new commit, verifies it and pushes
+  normally, without rebasing or force-pushing. Asking it to babysit a PR now
+  authorizes the final merge once required checks and approvals are in. It never
+  approves the PR itself. Say you will merge, or ask to stop at merge-ready, to
+  withhold the merge.
+
 ## 0.10.0
 
 ### Minor Changes
