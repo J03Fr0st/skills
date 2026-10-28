@@ -24,5 +24,6 @@ See the [workflow map](../../docs/workflow.md) for entry points and handoffs.
 - [security-review](../../docs/engineering/security-review.md) - review concrete security and privacy abuse paths read-only.
 - [ship-it](../../docs/engineering/ship-it.md) - coordinate finished work through publication and a verified delivery endpoint.
 - [simplify](../../docs/engineering/simplify.md) - reduce scoped code complexity while preserving behavior and useful boundaries.
+- [sprint-planning](../../docs/engineering/sprint-planning.md) - plan a team sprint with a goal, capacity, stories and spikes, and anchored Fibonacci points.
 - [tdd](../../docs/engineering/tdd.md) - drive one behavior at a time through observable red, green, and refactor evidence.
 - [verification-before-completion](../../docs/engineering/verification-before-completion.md) - verify completion claims with fresh, scope-matched evidence and honest terminal states.

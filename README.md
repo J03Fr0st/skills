@@ -74,6 +74,8 @@ release checks, and [security reporting](SECURITY.md) for vulnerability reports.
 - [skill-evolve](docs/authoring/skill-evolve.md) — turn evidence from real sessions
   into candidate skill edits, keep only those that beat the current version, and
   apply them after approval.
+- [sprint-planning](docs/engineering/sprint-planning.md) — plan a team sprint with a goal,
+  capacity, stories and spikes, and Fibonacci points anchored to reference stories.
 - [tdd](docs/engineering/tdd.md) — drive behavior changes through observable red, green,
   and refactor evidence, with example or property tests and bounded practical exceptions.
 - [verification-before-completion](docs/engineering/verification-before-completion.md) —
