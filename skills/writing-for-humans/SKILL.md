@@ -161,22 +161,26 @@ People read chat messages and emails in a narrow pane, often on a phone, and
 scan before they read. Lay out every chat message or email, in any mode, in
 this order:
 
-1. the greeting on its own line;
-2. the ask in its own paragraph, directly after the greeting;
-3. supporting context in paragraphs of one to three sentences, one idea each;
-4. when three or more separate facts support the ask, such as a cause, a
-   result, and a current state, a short list under a short label, one fact
-   per item;
-5. any remaining need or deadline in its own paragraph;
-6. the sign-off on its own line.
+1. the greeting on its own line, addressed to the person who acts, by the
+   name the author gave, then a blank line;
+2. the ask as one bold sentence alone on its line;
+3. directly under the ask, each short piece of context, such as timing or
+   what changed, on its own line with no blank line between them;
+4. when three or more separate facts support the ask, such as one per system
+   or per step, a list with one fact per item, each item opening with a bold
+   label naming its subject;
+5. any remaining need, deadline, or reassurance in its own paragraph;
+6. the sign-off, only when the author's draft has one, after a blank line.
 
-Bold the item the reader acts on, such as the thing to approve, and at most a
-short label that introduces a list.
+Never run the ask and its context together in one paragraph, and never let
+the sign-off touch the paragraph above it. Bold only the ask and the list-item
+labels.
 
 Match the layout to how the target renders. For HTML, such as a Teams message
-sent with `bodyType: html`, put each paragraph in `<p>` and each list in
-`<ul><li>`. For plain text or Markdown, separate paragraphs with a blank line
-and start list items with `-`.
+sent with `bodyType: html`, put each paragraph in `<p>`, join the context lines
+under the ask with `<br>` inside one `<p>`, and put each list in `<ul><li>`.
+For plain text or Markdown, separate paragraphs with a blank line, end each
+context line with a hard line break, and start list items with `-`.
 
 ## Deliver the mode, not the process
 

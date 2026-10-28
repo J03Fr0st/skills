@@ -46,11 +46,13 @@ the relevant signals.
 ## Message layout
 
 Chat messages and emails get a fixed layout in every mode, because people scan
-them in a narrow pane: greeting on its own line, the ask in its own paragraph,
-short one-idea paragraphs, three or more parallel facts as a list, and the
-sign-off on its own line. The skill maps that layout to HTML paragraphs and
-lists when the target renders HTML, such as Teams, and to blank lines in plain
-text.
+them in a narrow pane: the greeting to the person who acts, a blank line, the
+ask as one bold sentence alone on its line, each piece of context on its own
+line directly under it, three or more parallel facts as a list with bold
+labels, a closing line, and a sign-off only when the author uses one. The
+skill maps that layout to HTML paragraphs, line breaks, and lists when the
+target renders HTML, such as Teams, and to blank lines and hard line breaks in
+plain text.
 
 ## Preservation gate
 
