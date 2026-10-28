@@ -78,7 +78,7 @@
         "The status facts appear as a short list, with at least the eu4 result and the eu1 staged state as separate items, rather than one dense paragraph.",
         "No paragraph is longer than three sentences.",
         "Deployment Guardrails eu1, billing-api run 5974587, PR #196, .NET 10, the StatusCode cannot be set error, eu4, about 2,000 errors per hour, none since, the passed functional tests, staging, and the partner integration testing remain exact.",
-        "The message is delivered as HTML with <p> paragraphs and a <ul><li> list, and adds no facts, urgency, or emojis."
+        "The message is delivered as HTML with <p> paragraphs, an empty <p>&nbsp;</p> line after the greeting, and a <ul><li> list, and adds no facts, urgency, or emojis."
       ]
     }
   ]

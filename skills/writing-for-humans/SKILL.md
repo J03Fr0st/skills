@@ -182,6 +182,11 @@ under the ask with `<br>` inside one `<p>`, and put each list in `<ul><li>`.
 For plain text or Markdown, separate paragraphs with a blank line, end each
 context line with a hard line break, and start list items with `-`.
 
+Email clients, Teams, and Slack often show no space between paragraphs, so
+write the empty line after the greeting explicitly: in HTML email or Teams,
+follow the greeting's `<p>` with `<p>&nbsp;</p>`; in Slack or a plain-text
+email, follow the greeting with two newlines.
+
 ## Deliver the mode, not the process
 
 - **Write / Rewrite:** lead with the finished prose. Explain choices only when
