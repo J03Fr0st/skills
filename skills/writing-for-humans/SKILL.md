@@ -164,22 +164,54 @@ People read chat messages and emails in a narrow pane, often on a phone, and
 scan before they read. Lay out every chat message or email, in any mode, in
 this order:
 
-1. the greeting on its own line, in the same message as the ask;
-2. the ask in its own paragraph, directly after the greeting;
-3. supporting context in paragraphs of one to three sentences, one idea each;
-4. when three or more separate, parallel facts support the ask, such as a
-   cause, a result, and a current state, a short list under a short label,
-   one fact per item;
-5. any remaining need or deadline in its own paragraph;
-6. for email only, the sign-off on its own line.
+1. the greeting on its own line, in the same message as the ask, addressed
+   to the person who acts, then an empty line;
+2. the ask as one bold sentence alone on its line;
+3. directly under the ask, each short piece of context, such as timing or
+   what changed, on its own line with no blank line between them;
+4. when three or more separate, parallel facts support the ask, such as one
+   per system or per step, a list with one fact per item, each item opening
+   with a bold label naming its subject;
+5. any remaining need, deadline, or reassurance in its own paragraph;
+6. for email only, the sign-off on its own line, after a blank line.
 
 A chat message, such as one in Teams or Slack, ends on the ask, the deadline,
 or the last fact. It has no sign-off, signature, name, or closing pleasantry:
 the client already shows who sent it. Keep the sign-off in email, and add a
 signature block only when the user's own template has one.
 
-Bold the item the reader acts on, such as the thing to approve, and at most a
-short label that introduces a list.
+Never run the ask and its context together in one paragraph, and never let
+the sign-off touch the paragraph above it. Bold only the ask and the list-item
+labels.
+
+The context lines under the ask are one block: in HTML, join them with `<br>`
+inside one `<p>`; in plain text or Markdown, end each with a hard line break.
+
+Email clients, Teams, and Slack often show no space between paragraphs, so
+write the empty line after the greeting explicitly: in HTML email or Teams,
+follow the greeting's `<p>` with `<p>&nbsp;</p>`; in Slack or a plain-text
+email, follow the greeting with two newlines.
+
+When the target supports mentions, greet the person who acts with a mention
+so they are notified. Markup alone notifies no one; each form needs its
+matching metadata:
+
+- Teams message sent through Graph: `<at id="0">Display Name</at>` in an HTML
+  body, plus a `mentions` entry with `id` 0, `mentionText` equal to the text
+  inside the `at` element, and `mentioned.user` holding the person's Entra
+  object ID with `userIdentityType` `aadUser`.
+- Teams Adaptive Card from a bot or incoming webhook: `<at>Display Name</at>`
+  in the card text, plus an `msteams.entities` item of type `mention` whose
+  `text` repeats that string and whose `mentioned` holds the UPN or Entra
+  object ID and the name.
+- Slack: `<@USER_ID>`.
+- Outlook email: a mention is message metadata, not body markup. Write
+  `@Display Name` as plain text and tell the author to retype it in Outlook
+  by typing @ and picking the person, which also adds them to To. Never use
+  a `mailto` anchor as a mention; it is only a link.
+
+Use only the name, ID, or address the author or a lookup tool supplied; when
+none is available, write the plain name and say a mention needs the ID.
 
 ## Spacing
 
@@ -194,9 +226,9 @@ bullets.
 
 Match the spacing to how the target renders. For HTML, such as a Teams message
 sent with `bodyType: html`, put each paragraph in `<p>` and each list in
-`<ul><li>`, never paragraphs joined by `<br>`. For plain text or Markdown,
-leave one blank line between blocks, including before and after a list, and
-start list items with `-`.
+`<ul><li>`, never paragraphs joined by `<br>`, apart from the context lines
+under a message's ask. For plain text or Markdown, leave one blank line between
+blocks, including before and after a list, and start list items with `-`.
 
 A mandated template or house style overrides these defaults.
 
