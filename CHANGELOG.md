@@ -1,5 +1,54 @@
 # Changelog
 
+## 0.13.0
+
+### Minor Changes
+
+- [#69](https://github.com/J03Fr0st/skills/pull/69) [`1921a02`](https://github.com/J03Fr0st/skills/commit/1921a0274c236a7c3b56be1c3d54386423b21357) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `sprint-planning` skill: plan a team sprint with a goal, measured capacity, stories and timeboxed spikes, and Fibonacci points anchored to reference stories and sized by done-cost for AI-assisted teams.
+
+## 0.12.0
+
+### Minor Changes
+
+- [#67](https://github.com/J03Fr0st/skills/pull/67) [`c85a60b`](https://github.com/J03Fr0st/skills/commit/c85a60b7163b1676d882d723db2dab47579f7fb6) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `writing-for-humans` now separates every paragraph and list with a blank line
+  while keeping one thought in one paragraph, and gives chat, email, status
+  updates, documentation and reports, and announcements their own shape. Chat
+  messages such as Teams and Slack end on the ask or the last fact with no
+  sign-off or signature; email keeps its sign-off.
+
+## 0.11.0
+
+### Minor Changes
+
+- [#65](https://github.com/J03Fr0st/skills/pull/65) [`b266cc7`](https://github.com/J03Fr0st/skills/commit/b266cc7af23bedbc24bbed4cde57bf223b432777) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `babysit-pr` now keeps the branch up to date: when the base moves ahead, it
+  merges the base into the branch as a new commit, verifies it and pushes
+  normally, without rebasing or force-pushing. Asking it to babysit a PR now
+  authorizes the final merge once required checks and approvals are in. It never
+  approves the PR itself. Say you will merge, or ask to stop at merge-ready, to
+  withhold the merge.
+
+## 0.10.0
+
+### Minor Changes
+
+- [#63](https://github.com/J03Fr0st/skills/pull/63) [`093237b`](https://github.com/J03Fr0st/skills/commit/093237b3cf20b4fbf1177eb64afc4978c331350d) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `git-workflow` can now split a one-way-door PR (expand/contract). It finds the
+  steps a revert cannot undo, such as a destructive migration or a removed
+  contract. Everything else goes into a reversible expand PR behind a feature
+  flag that is off by default, verified with the flag off and on. The
+  irreversible steps go into a contract PR stacked on top, which waits until the
+  expand PR has been observed in production.
+
+## 0.9.0
+
+### Minor Changes
+
+- [#61](https://github.com/J03Fr0st/skills/pull/61) [`9560abf`](https://github.com/J03Fr0st/skills/commit/9560abfe7ac66ada990ef06985618cfa59d99fb8) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `git-workflow` now checks branch freshness. Asked whether a branch is up to
+  date or its fixes already landed in an incoming PR, it finds where each commit
+  went, including squash merges, and what landing the branch would still change.
+  It then gives a verdict (current, partial, landed, superseded, or rework)
+  before syncing, so it does not rebase work that is already on the base or
+  bring back something the base removed.
+
 ## 0.8.0
 
 ### Minor Changes

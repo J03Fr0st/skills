@@ -2,12 +2,14 @@
 
 `babysit-pr` carries an existing pull request through review feedback, CI failures and completion. It is model-invoked for requests to babysit or resume a PR, and can also be invoked explicitly.
 
-The default endpoint is confirmed merge. That endpoint does not grant permission to merge: the skill retains the user's existing action scope and performs the final merge when authorized. Ask to stop at merge-ready when you want that earlier endpoint. It continues independent repairs while another item needs a decision and reports a precise handback when no autonomous work remains.
+The default endpoint is confirmed merge. Asking it to babysit a PR authorizes the final merge, using the repository's normal method once required checks and approvals are in. It never approves the PR itself; it waits for reviewers and can request their review. Say you will merge it yourself, or ask to stop at merge-ready, to withhold the merge.
+
+While it watches, it keeps the branch up to date: whenever the base has moved ahead, it merges the base into the branch as a new commit, verifies the result and pushes normally. It does not rebase or force-push unless you ask. Conflicts it cannot resolve from known intent come back to you as a decision. It continues independent repairs while another item needs a decision and reports a precise handback when no autonomous work remains.
 
 ## Examples
 
 - “Babysit this PR; fix CI and review findings, commit and push the repairs. I'll merge it.”
-- “Babysit PR 123 and merge when ready using the repository's normal method.”
+- “Babysit PR 123.” (keeps it current with main, fixes what it can, merges once approved and green)
 - “Get this PR merge-ready, then stop.”
 - “Resume babysitting this PR from the saved run record.”
 

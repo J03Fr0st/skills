@@ -70,15 +70,28 @@
     {
       "id": 6,
       "prompt": "Edit this Teams message to the person who approves our pipeline stages. They will read it in Teams, and I will send it as HTML. Keep every fact exact. Draft: 'Hi Priya, could you please approve \"Deployment Guardrails eu1\" on billing-api run 5974587? This run has the fix from PR #196. Since the .NET 10 upgrade, every health check logs a \"StatusCode cannot be set\" error. On eu4 the fix is live; it had about 2,000 errors per hour before the flip and none since. On eu1 the new version is staged and the functional tests passed, so your approval lets it flip. We need staging on this version for the partner integration testing. Thanks!'",
-      "expected_output": "A message laid out for scanning: the greeting on its own line, the approval ask as one bold sentence alone on its line, the reason and the three status facts as a short list, the staging need in its own paragraph, and the sign-off on its own line, delivered as HTML paragraphs and a list with every fact unchanged.",
+      "expected_output": "A message laid out for scanning: the greeting on its own line, the approval ask as one bold sentence alone on its line, the reason and the three status facts as a short list, the staging need in its own paragraph, and no sign-off, delivered as HTML paragraphs and a list with every fact unchanged.",
       "files": [],
       "expectations": [
-        "The greeting and the sign-off each stand on their own line rather than merging into a sentence.",
+        "The greeting stands on its own line, and the message ends on the staging need with no sign-off, signature, name, or closing pleasantry such as 'Thanks!'.",
         "The approval ask is one bold sentence alone on its line directly after the greeting, and its context is not run into the same sentence or line.",
         "The status facts appear as a short list, with at least the eu4 result and the eu1 staged state as separate items, rather than one dense paragraph.",
         "No paragraph is longer than three sentences.",
         "Deployment Guardrails eu1, billing-api run 5974587, PR #196, .NET 10, the StatusCode cannot be set error, eu4, about 2,000 errors per hour, none since, the passed functional tests, staging, and the partner integration testing remain exact.",
-        "The message is delivered as HTML with <p> paragraphs, an empty <p>&nbsp;</p> line after the greeting, and a <ul><li> list, and adds no facts, urgency, or emojis."
+        "The message is delivered as HTML with separate <p> paragraphs, an empty <p>&nbsp;</p> after the greeting, <br> only between context lines under the ask, and a <ul><li> list, and adds no facts, urgency, or emojis."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Edit this email to our finance contact so it is easy to scan. It goes out as plain text. Keep every fact exact. Draft: 'Hi Marta, I need the Q3 vendor accruals by Friday 31 October so we can close the books on Monday. Last quarter the accruals arrived late and the close slipped two days. The template is the same as last time and is in the shared Finance folder. Please flag any vendor over EUR 50,000 separately because audit asked for those. Kind regards, Joe'",
+      "expected_output": "A plain-text email with the greeting on its own line, the request and deadline first, one idea per short paragraph separated by blank lines, and the sign-off kept on its own lines.",
+      "files": [],
+      "expectations": [
+        "The greeting and the 'Kind regards, Joe' sign-off are kept, each on its own line, because this is an email rather than a chat message.",
+        "The Q3 vendor accruals request and the Friday 31 October deadline come first.",
+        "Paragraphs are separated by a blank line, and each holds one idea in one to three sentences.",
+        "Related sentences are not split into a run of one-line paragraphs; the late-arrival reason stays with the slipped close.",
+        "Q3, Friday 31 October, Monday, two days, the shared Finance folder, EUR 50,000, and the audit reason remain exact."
       ]
     }
   ]

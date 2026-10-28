@@ -46,15 +46,25 @@ the relevant signals.
 ## Message layout
 
 Chat messages and emails get a fixed layout in every mode, because people scan
-them in a narrow pane: the greeting to the person who acts, a blank line, the
-ask as one bold sentence alone on its line, each piece of context on its own
-line directly under it, three or more parallel facts as a list with bold
-labels, a closing line, and a sign-off only when the author uses one. The
-skill maps that layout to HTML paragraphs, line breaks, and lists when the
-target renders HTML, such as Teams, and to blank lines and hard line breaks in
-plain text, with an explicit empty line after the greeting in emails, Teams,
-and Slack, which often drop paragraph spacing, and an @mention of the person who
-acts when the target supports one.
+them in a narrow pane: the greeting to the person who acts, @mentioned when
+the target supports it, then an explicit empty line; the ask as one bold
+sentence alone on its line, with each piece of context on its own line
+directly under it; three or more parallel facts as a list with bold labels;
+and, for email only, the sign-off on its own line. Chat messages such as Teams
+or Slack end on the ask or the last fact, with no sign-off or signature,
+because the client already shows the sender.
+
+## Spacing and genre
+
+Every draft separates its paragraphs, lists, and labels with a blank line, or
+with HTML block elements when the target renders HTML, such as Teams. Space
+separates ideas without splitting them: a cause stays with its effect, and a
+run of one-line paragraphs that form one thought is merged.
+
+A short table gives the shape for chat, email, status or incident updates,
+documentation and reports, and announcements. A mandated template or house
+style overrides these defaults. The evidence and its limits are in the
+[format research](../research/2026-10-27-writing-for-humans-formats.md).
 
 ## Preservation gate
 
@@ -111,4 +121,5 @@ brevity.
   literal and Markdown-structure comparison.
 - `skills/writing-for-humans/evals/evals.json` - scenarios for operational
   accuracy, diagnosis-only restraint, announcement cleanup, voice transfer,
-  minimal change on a draft that already works, and chat-message layout.
+  minimal change on a draft that already works, chat-message layout without a
+  sign-off, and email spacing with the sign-off kept.

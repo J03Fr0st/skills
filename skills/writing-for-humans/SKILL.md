@@ -116,7 +116,8 @@ house style for another:
    missing context, and certainty drift.
 2. **Shape pass:** lead with the useful point, group related ideas, earn every
    heading and list, and remove restatement or canned framing. Give a chat
-   message or email the [message layout](#message-layout).
+   message or email the [message layout](#message-layout), give every draft
+   the [spacing](#spacing), and follow the [genre's shape](#format-by-genre).
 3. **Voice pass:** choose words, cadence, formality, and personality that fit
    the genre and any supplied sample.
 
@@ -141,7 +142,9 @@ Read the revision once as a reader, without scanning for banned words. Check:
 - the useful point arrives when the reader needs it;
 - the prose is specific enough to trust and easy enough to follow;
 - a chat message or email follows the message layout, so the ask and each
-  fact can be found at a glance;
+  fact can be found at a glance, and a chat message has no sign-off;
+- blank lines separate every block, and no one-line paragraph exists only
+  because a single thought was split;
 - the tone belongs to this author, audience, and genre;
 - no fact, qualification, relationship, or protected literal drifted;
 - nothing useful was cut to make the draft shorter;
@@ -161,26 +164,28 @@ People read chat messages and emails in a narrow pane, often on a phone, and
 scan before they read. Lay out every chat message or email, in any mode, in
 this order:
 
-1. the greeting on its own line, addressed to the person who acts, by the
-   name the author gave, then a blank line;
+1. the greeting on its own line, in the same message as the ask, addressed
+   to the person who acts, then an empty line;
 2. the ask as one bold sentence alone on its line;
 3. directly under the ask, each short piece of context, such as timing or
    what changed, on its own line with no blank line between them;
-4. when three or more separate facts support the ask, such as one per system
-   or per step, a list with one fact per item, each item opening with a bold
-   label naming its subject;
+4. when three or more separate, parallel facts support the ask, such as one
+   per system or per step, a list with one fact per item, each item opening
+   with a bold label naming its subject;
 5. any remaining need, deadline, or reassurance in its own paragraph;
-6. the sign-off, only when the author's draft has one, after a blank line.
+6. for email only, the sign-off on its own line, after a blank line.
+
+A chat message, such as one in Teams or Slack, ends on the ask, the deadline,
+or the last fact. It has no sign-off, signature, name, or closing pleasantry:
+the client already shows who sent it. Keep the sign-off in email, and add a
+signature block only when the user's own template has one.
 
 Never run the ask and its context together in one paragraph, and never let
 the sign-off touch the paragraph above it. Bold only the ask and the list-item
 labels.
 
-Match the layout to how the target renders. For HTML, such as a Teams message
-sent with `bodyType: html`, put each paragraph in `<p>`, join the context lines
-under the ask with `<br>` inside one `<p>`, and put each list in `<ul><li>`.
-For plain text or Markdown, separate paragraphs with a blank line, end each
-context line with a hard line break, and start list items with `-`.
+The context lines under the ask are one block: in HTML, join them with `<br>`
+inside one `<p>`; in plain text or Markdown, end each with a hard line break.
 
 Email clients, Teams, and Slack often show no space between paragraphs, so
 write the empty line after the greeting explicitly: in HTML email or Teams,
@@ -194,6 +199,40 @@ HTML email, `<a href="mailto:ADDRESS">@Display Name</a>` with that person on
 the To line. Use only the name, ID, or address the author or a lookup tool
 supplied; when none is available, write the plain name and say a mention
 needs the ID.
+
+## Spacing
+
+Give the reader visible space. Separate every paragraph, list, and list label
+from its neighbours with a blank line, so the eye can find each block without
+reading. One idea per paragraph, with the point in its first sentence.
+
+Space separates ideas; it does not split them. Keep a cause with its effect and
+a claim with its qualification in the same paragraph. Merge adjacent one-line
+paragraphs that form a single thought, and keep reasoning as prose rather than
+bullets.
+
+Match the spacing to how the target renders. For HTML, such as a Teams message
+sent with `bodyType: html`, put each paragraph in `<p>` and each list in
+`<ul><li>`, never paragraphs joined by `<br>`, apart from the context lines
+under a message's ask. For plain text or Markdown, leave one blank line between
+blocks, including before and after a list, and start list items with `-`.
+
+A mandated template or house style overrides these defaults.
+
+## Format by genre
+
+Use the genre's own shape when the brief names one:
+
+| Genre | Shape |
+| --- | --- |
+| Chat message | [Message layout](#message-layout); no sign-off; one message, not a greeting followed by the ask. |
+| Email | Subject names the topic and the action; the point in the first paragraph; greeting and sign-off. |
+| Status or incident update | Current status, impact, actions, remaining uncertainty, and next update time, under short labels; no invented ETA. |
+| Documentation or report | Descriptive headings; paragraphs of three to seven rendered lines; lists for steps or parallel items; a table when three or more items share the same fields. |
+| Announcement | The change and who it affects first, then the reader's action and its deadline; no ceremony. |
+
+Pull request descriptions and commit messages belong to their own skills when
+those are available.
 
 ## Deliver the mode, not the process
 

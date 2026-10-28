@@ -42,6 +42,30 @@
       "prompt": "Explain why a rainbow has colors in two sentences.",
       "expected_output": "Answers the science question directly; does not invoke Git workflow or inspect repository state.",
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Check the branch and make sure it is up to date, pull latest changes if needed, and see if these changes/fixes are in a PR that came in. Facts: you are on feat/retry with one local commit; git branch -vv shows its upstream as [gone]; origin/main is 2 commits ahead, one of them is 'feat: retry with backoff (#59)' and the other a release commit that deleted .changeset/retry.md. Propose actions only.",
+      "expected_output": "Fetches and records base, head, merge base and upstream state; treats [gone] as a hint, not proof; confirms via the forge or patch equivalence (synthetic squash if needed) and the merge-tree residual that the work landed through #59; recognizes the only residual (.changeset/retry.md) as a reintroduction, so the verdict is LANDED; does not rebase, push, or open a PR on feat/retry; updates local main instead and offers to switch and to retire the branch, without deleting it unasked; reports verdict first with the PR link.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Rebase PR #301 from a teammate onto main and get it current; it is four months old. Since it was opened, main merged #350, which fixes the same timeout bug with a different approach in another module. Propose actions only.",
+      "expected_output": "Establishes the PR's intent and what changed on main before rebasing; identifies #350 as covering the same goal even without line overlap; gives a SUPERSEDED verdict with evidence; does not spend effort rebasing or force-push the teammate's branch; does not close the PR without permission; recommends closing or folding remaining value into a follow-up and leaves the decision to the user.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Bring my branch feat/export up to date with main. Three of its five commits were cherry-picked to main last week in a hotfix PR; the other two add a CSV option nobody else has built. Propose actions only.",
+      "expected_output": "Detects the three landed commits via git cherry or equivalent and gives a PARTIAL verdict; rebases so patch-equivalent commits drop out; verifies with range-diff and the final diff that only the two CSV commits remain; reruns affected checks; publishes any rewrite with an explicit lease against the observed remote head; reports which commits landed where.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "My PR feat/orders-v2 adds a new orders service, migrates existing rows to the new table, and drops the old orders table in the same change. Split this one-way-door PR so we can test most of it in production first. Propose actions only.",
+      "expected_output": "Classifies the table drop and destructive migration as one-way. Proposes an expand PR from the base with the new service behind the repository's flag (default off), additive schema, and data the old path can still read, verified with the flag off and on and revertible. Proposes a stacked contract PR targeting the expand branch that removes the flag, old path, and old table, checks its tree against the original head, and waits for the expand PR to be observed in production. Routes PR text to pr-description and merging to babysit-pr; records the original head before rewriting.",
+      "files": []
     }
   ]
 }

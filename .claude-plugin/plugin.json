@@ -1,6 +1,6 @@
 {
   "name": "j03fr0st-skills",
-  "version": "0.8.0",
+  "version": "0.13.0",
   "description": "J03Fr0st's public agent skills library.",
   "author": {
     "name": "J03Fr0st",
@@ -55,6 +55,7 @@
     "./skills/engineering/security-review",
     "./skills/engineering/ship-it",
     "./skills/engineering/simplify",
+    "./skills/engineering/sprint-planning",
     "./skills/engineering/tdd",
     "./skills/engineering/verification-before-completion",
     "./skills/productivity/grilling",
