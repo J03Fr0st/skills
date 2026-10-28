@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.0
+
+### Minor Changes
+
+- [#69](https://github.com/J03Fr0st/skills/pull/69) [`1921a02`](https://github.com/J03Fr0st/skills/commit/1921a0274c236a7c3b56be1c3d54386423b21357) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `sprint-planning` skill: plan a team sprint with a goal, measured capacity, stories and timeboxed spikes, and Fibonacci points anchored to reference stories and sized by done-cost for AI-assisted teams.
+
 ## 0.12.0
 
 ### Minor Changes
