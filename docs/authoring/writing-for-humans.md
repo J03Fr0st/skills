@@ -54,6 +54,12 @@ and, for email only, the sign-off on its own line. Chat messages such as Teams
 or Slack end on the ask or the last fact, with no sign-off or signature,
 because the client already shows the sender.
 
+Teams and Slack mentions carry the markup and metadata each platform needs to
+notify the person. In Outlook a mention is message metadata rather than body
+markup, so the draft writes `@Name` and the author retypes it as a mention in
+Outlook. The evidence is in the
+[mention research](../research/2026-10-28-teams-outlook-mentions.md).
+
 ## Spacing and genre
 
 Every draft separates its paragraphs, lists, and labels with a blank line, or

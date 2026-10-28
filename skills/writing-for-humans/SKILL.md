@@ -193,12 +193,25 @@ follow the greeting's `<p>` with `<p>&nbsp;</p>`; in Slack or a plain-text
 email, follow the greeting with two newlines.
 
 When the target supports mentions, greet the person who acts with a mention
-so they are notified: in Teams HTML, `<at id="0">Display Name</at>` plus a
-matching entry in the message's `mentions` array; in Slack, `<@USER_ID>`; in
-HTML email, `<a href="mailto:ADDRESS">@Display Name</a>` with that person on
-the To line. Use only the name, ID, or address the author or a lookup tool
-supplied; when none is available, write the plain name and say a mention
-needs the ID.
+so they are notified. Markup alone notifies no one; each form needs its
+matching metadata:
+
+- Teams message sent through Graph: `<at id="0">Display Name</at>` in an HTML
+  body, plus a `mentions` entry with `id` 0, `mentionText` equal to the text
+  inside the `at` element, and `mentioned.user` holding the person's Entra
+  object ID with `userIdentityType` `aadUser`.
+- Teams Adaptive Card from a bot or incoming webhook: `<at>Display Name</at>`
+  in the card text, plus an `msteams.entities` item of type `mention` whose
+  `text` repeats that string and whose `mentioned` holds the UPN or Entra
+  object ID and the name.
+- Slack: `<@USER_ID>`.
+- Outlook email: a mention is message metadata, not body markup. Write
+  `@Display Name` as plain text and tell the author to retype it in Outlook
+  by typing @ and picking the person, which also adds them to To. Never use
+  a `mailto` anchor as a mention; it is only a link.
+
+Use only the name, ID, or address the author or a lookup tool supplied; when
+none is available, write the plain name and say a mention needs the ID.
 
 ## Spacing
 
