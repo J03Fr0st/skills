@@ -53,7 +53,8 @@ labels, a closing line, and a sign-off only when the author uses one. The
 skill maps that layout to HTML paragraphs, line breaks, and lists when the
 target renders HTML, such as Teams, and to blank lines and hard line breaks in
 plain text, with an explicit empty line after the greeting in emails, Teams,
-and Slack, which often drop paragraph spacing.
+and Slack, which often drop paragraph spacing, and an @mention of the person who
+acts when the target supports one.
 
 ## Preservation gate
 

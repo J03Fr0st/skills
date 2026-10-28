@@ -187,6 +187,14 @@ write the empty line after the greeting explicitly: in HTML email or Teams,
 follow the greeting's `<p>` with `<p>&nbsp;</p>`; in Slack or a plain-text
 email, follow the greeting with two newlines.
 
+When the target supports mentions, greet the person who acts with a mention
+so they are notified: in Teams HTML, `<at id="0">Display Name</at>` plus a
+matching entry in the message's `mentions` array; in Slack, `<@USER_ID>`; in
+HTML email, `<a href="mailto:ADDRESS">@Display Name</a>` with that person on
+the To line. Use only the name, ID, or address the author or a lookup tool
+supplied; when none is available, write the plain name and say a mention
+needs the ID.
+
 ## Deliver the mode, not the process
 
 - **Write / Rewrite:** lead with the finished prose. Explain choices only when
