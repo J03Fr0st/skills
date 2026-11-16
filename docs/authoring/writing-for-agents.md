@@ -171,6 +171,8 @@ Where the sources conflict, the skill states the conflict and resolves it rather
 than picking a side silently: the description question above, and the strictness
 of the testing gate.
 
+The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) adds the tool itself (help text, errors, replies) below the document on the information ladder, and edit-before-append with size reported before and after. Both come from gstack's `write-skill`.
+
 ## Resources
 
 - `skills/writing-for-agents/references/SKILL-MECHANICS.md` - frontmatter, the

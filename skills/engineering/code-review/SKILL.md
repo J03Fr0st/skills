@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Review code changes read-only at quick, standard, or deep depth, with a bounded single-reviewer default and evidence-backed findings. Use when the user asks to review a branch, pull request, commit, working-tree changes, staged changes, a diff, or code before merge; asks for a quick or deep review; or wants to know whether a change matches its specification and repository rules. Route whole-codebase audits, product acceptance, dedicated security audits, and implementation-only requests to their own workflows.
+description: Review code changes read-only at quick, standard, or deep depth, with a bounded single-reviewer default and evidence-backed findings. Use when the user asks to review a branch, pull request, commit, working-tree changes, staged changes, a diff, or code before merge, including a diff pasted inline that looks quick to review; asks for a quick or deep review; or wants to know whether a change matches its specification and repository rules. Route whole-codebase audits, product acceptance, dedicated security audits, and implementation-only requests to their own workflows.
 ---
 
 # Code Review
@@ -37,7 +37,7 @@ Read every changed hunk in scope. A working-tree review must also read each untr
 
 A very large change can exceed what the selected level covers honestly. Never sample silently. Say that the change is too large for the level, review the highest-risk changed files in full, name the smallest coherent stage the change could land as, and list every unreviewed file under residual risks. Absent a repository policy, treat roughly 800 changed lines — or 500 for dense logic — as the point where a single pass stops being trustworthy.
 
-Also locate the instructions that govern the changed files, such as `AGENTS.md`, `CLAUDE.md`, contributor guidance, and nested directory rules. More specific rules take precedence.
+Also search the repository for every file that governs how the changed files should be written, such as `AGENTS.md`, `CLAUDE.md`, `CODING_STANDARDS.md`, `CONTRIBUTING.md`, and nested directory rules. They apply together; when two state rules that cannot both hold for the same changed file, the one in the directory nearer that file decides.
 
 **Complete when:** the target, the resolved base, the changed files, the untracked files, and the applicable repository instructions are explicit, and any coverage limit imposed by change size has been stated.
 
@@ -53,6 +53,7 @@ Use for a fast preflight or a small, low-risk change.
 - Use only the intent already supplied by the user or attached to the target.
 - Open surrounding code only when a changed hunk cannot be understood locally.
 - Report obvious, concrete regressions; do not search history, fan out through distant callers, run tests, or delegate.
+- Do not use `quick` for a change to a verification mechanism whose failure mode is going green while the real thing is red, such as CI gating, a merge-blocking check, a coverage or lint gate, or test infrastructure and mocks. Use `standard` and say why.
 
 ### `standard` — default
 
@@ -60,9 +61,9 @@ Use one reviewer and keep the work bounded.
 
 - Read the complete merge-base diff, applicable instructions, and enough surrounding code to understand changed behavior.
 - Find readily available intent: a supplied issue or document, pull-request description, commit message, or a directly referenced local spec. Do not conduct an open-ended issue search.
-- Check the nearest callers, contracts, and existing tests when they can confirm or reject a candidate finding.
+- Check the nearest callers, contracts, and existing tests when they can confirm or reject a candidate finding. When a signature, return value, or behavior changes, find every caller; a change can break code it does not touch, and a fix applied in one caller can leave the shared function broken for the rest.
 - Run only the smallest targeted check when it is the cheapest reliable way to settle a material candidate. Do not run broad suites, inspect history by default, audit unrelated code, or delegate.
-- If the change touches authorization, money, destructive data operations, migrations, concurrency, cross-process retries, public compatibility, or another high-consequence boundary, complete the standard review and recommend `deep` for the residual risk.
+- If the change touches authorization, money, destructive data operations, migrations, concurrency, cross-process retries, public compatibility, or another high-consequence boundary, and you can state a credible failure scenario with a material consequence, complete the standard review and recommend `deep`, naming that scenario. Diff size, file paths, or domain keywords alone are not a reason; record that uncertainty under residual risks instead.
 
 ### `deep`
 
@@ -95,10 +96,15 @@ A finding must satisfy every item:
 - The fix it implies matches the rigor the surrounding codebase already holds itself to.
 - It is not merely speculative, pre-existing, intentional behavior, personal style, or duplicated formatter or linter output.
 
-Two common candidates need the same concrete-impact test:
+A failure that appears only after the change is not always introduced by it. If the change makes a latent defect reachable, that is a finding; say the defect predates the change. A defect in the base that the change neither causes nor exposes goes under residual risks, labelled pre-existing.
+
+Three common candidates need the same concrete-impact test:
 
 - **Missing error handling** at an I/O boundary is a finding only when the failure it allows costs something where this code runs: a crashed or wedged process, a caller acting on a wrong or missing result, or work left half-done that rerunning does not repair. Judge how the code runs from the diff, description, and nearby docs, not from an assumed production service.
 - **A test offered as evidence** for changed behavior is a finding when it would still pass with that behavior removed, or when it adds a production seam (export, flag, hook) only the test uses. A merely redundant test is not a finding.
+- **A race** is not speculation when you can name two code paths that run independently (a scheduled job and a user action, two workers, a retried delivery), show that nothing serializes them (no lock, transaction, unique constraint, or single-instance schedule), and give the order of steps that produces the bad state. Look for one whenever the change adds a state value or changes code that writes lifecycle state or the condition that guards the write: a status column, a claim or lease stamp, a nullable `processed_at`, a counter that triggers an action.
+
+A finding that depends on scale or concurrency states the load it assumes and where that came from, such as the README or deploy configuration.
 
 For specification and standards findings, name the source file and the smallest quoted rule or line range that supports the claim. For architecture findings, show the concrete failure or change cost rather than reporting abstraction shape by itself. Verify uncertain candidates or leave them out and record the uncertainty under residual risks.
 

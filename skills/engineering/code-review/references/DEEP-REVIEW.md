@@ -64,6 +64,8 @@ Combine the independent candidate lists, deduplicate them, then challenge every 
 4. Confirm that impact and severity match the scenario.
 5. Reject pre-existing, intentional, speculative, style-only, tool-owned, or non-actionable items.
 
+When a command can settle a candidate, such as a failing test or a short reproduction, prefer that proof: rerun it and keep the candidate only when the output shows the failure. Give validation the candidate and the code, not the pass's reasoning, so the framing that produced it cannot carry over.
+
 Validation confirms or drops. A candidate that survived a review pass but that validation cannot confirm does not become a hedged finding; drop it, and carry it into residual risks only when the unresolved uncertainty is itself material. Agreement between passes is not confirmation — the same missing context can mislead every reviewer.
 
 Conflicting candidates require another evidence pass, not a compromise finding. A minority reviewer may be correct; evidence decides.

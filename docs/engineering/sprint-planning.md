@@ -27,3 +27,5 @@ The plan should derive capacity from the three-sprint mean, scale it for the lea
 ## Design basis
 
 The [research report](../research/2026-10-28-sprint-planning.md) records the community discussion this skill responds to and the preferred-source review.
+
+The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) adds ticket creation order, native blocking links, sub-issues, and a second pass for real cross-references, from Matt Pocock's `to-tickets` and `wayfinder`.

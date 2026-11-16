@@ -10,6 +10,7 @@ Match an existing store's frontmatter and section names when they differ from th
 ---
 title: Webhook deduplication collides across test and live mode
 date: 2026-09-27
+verified_at: 4f1c2ab
 area: payments/webhooks
 tags: [webhooks, idempotency]
 retire_when: The provider guarantees globally unique event ids, or webhooks stop using event-id deduplication. Check the provider changelog and src/payments/webhooks/dedup.ts.
@@ -40,6 +41,7 @@ The composite key looks redundant to a reader who does not know the provider reu
 - **What did not work** carries the approaches a reasonable engineer would try first. Omit the section only when there were none.
 - **Fix** points at the code and test rather than reproducing them.
 - **Why it stays written down** names what is not recoverable from the fix. If this section cannot be written, the lesson fails the durable bar.
+- **verified_at** names the commit the lesson's claims about code were checked against. A refresh that re-checks them updates it. Never write "currently" or "now" about code without that commit beside it.
 - **retire_when** names an observable change and where to check for it. "When no longer relevant" is not a retirement condition.
 
 Omit session narrative, lists of changed files, and restatements of contracts another file owns.

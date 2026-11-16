@@ -111,6 +111,8 @@ answer past the point of usefulness. Hence the least-invasive default, the
 instruction to leave a sound draft alone, and the refusal to trade detail for
 brevity.
 
+The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) flags coined labels and unclear referents (humanlayer's `rpi` prose reference, Cursor pstack's `ketchup`) and adds a catch-up genre shape (Cursor pstack's `ketchup`).
+
 ## Resources
 
 - `skills/writing-for-humans/references/EDITORIAL-LENSES.md` - the ordered review
