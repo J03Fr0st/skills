@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.13.1
+
+### Patch Changes
+
+- [#72](https://github.com/J03Fr0st/skills/pull/72) [`c401482`](https://github.com/J03Fr0st/skills/commit/c401482255af6dfd46d89fdea7e41ee5f2f63546) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Fold the 2026-11 source-repository sweep into 29 skills: root-cause and
+  always-on-signal rules in `diagnosing-bugs`, a revert arm and eval checks in
+  `verification-before-completion`, consequence-based review depth and race
+  checks in `code-review`, fresh-context workers and capped fix loops in
+  `orchestrate`, a one-pull-request default and an evidence gate in
+  `planning-and-task-breakdown`, and smaller updates across the engineering,
+  ADLC, productivity, and authoring skills.
+
 ## 0.13.0
 
 ### Minor Changes
