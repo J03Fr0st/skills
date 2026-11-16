@@ -49,6 +49,14 @@ Classify every residual path:
 - **Conflict:** `merge-tree` exits 1. Both sides changed the same behavior;
   read both intents before calling it either of the above.
 
+A residual can be still new and still wrong. Ask whether the base changed
+something the branch relies on, even in files the branch never touches: a
+renamed helper, a contract the branch's tests assume, a bug the branch fixes
+that the base fixed another way, or a recorded decision that went the other
+way. Read the changelog and commit messages for `MERGE_BASE..BASE`, not only
+the diff. A yes points to **REWORK** or **SUPERSEDED**, however cleanly the
+rebase would apply.
+
 For other people's PRs, compare goals, not just lines. A merged PR that solved
 the same user-facing problem another way supersedes the branch even when no
 line overlaps. Confirm the claim from that PR's diff and behavior, not its title
@@ -62,10 +70,18 @@ superseded, or residual, and each claim names its evidence.
 | Verdict | Condition | Action |
 | --- | --- | --- |
 | **CURRENT** | Residual is all still-new work and nothing competes with it | Sync under [branching](branching.md) policy, rerun affected checks, publish under [integration pitfalls](integration.md) |
-| **PARTIAL** | Some commits landed and still-new residual remains | Rebase, which drops commits whose patch is already upstream; confirm with `git range-diff` that only the residual remains |
+| **PARTIAL** | Some commits landed and still-new residual remains | Rebase, which drops commits whose patch is already upstream; confirm with `git range-diff` that only the residual remains, and explain every hunk it shows as changed |
 | **LANDED** | Residual is empty or only reintroductions | Name the PR or commit that carried the work; do not push or open a PR; offer retirement through `git-worktrees` |
 | **SUPERSEDED** | Another merged or open PR covers the same goal | Name it and recommend closing or joining it instead of rebasing |
 | **REWORK** | The goal still matters, but the base changed APIs, types, or architecture so a mechanical rebase keeps the wrong shape | Describe the smallest credible rewrite and stop before pushing unless the rework was requested |
+
+Before any rebase, check the branch's range for merge commits with
+`git rev-list --merges MERGE_BASE..HEAD`. A plain rebase drops a conflict
+resolution made in a merge commit, and `git range-diff` compares only
+non-merge patches, so the loss would not show. Stop and turn that work into
+ordinary commits first. During the rebase, resolve conflicts by the branch's
+intent and keep the author's commits as theirs, with your fixes as separate
+commits on top. A changed hunk you cannot explain is lost intent.
 
 Age is not evidence in either direction, and effort already spent is not a
 reason to keep a branch. When the evidence cannot separate two verdicts, report

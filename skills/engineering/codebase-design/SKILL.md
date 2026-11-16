@@ -105,6 +105,7 @@ Read [references/TESTING.md](references/TESTING.md) for seam-aligned evidence an
 
 - Consolidate duplicated knowledge, not similar syntax. Similar code stays separate when owners, invariants, or change axes differ, and caller flags multiplying inside a shared abstraction are evidence it has joined unrelated knowledge.
 - Cheap code generation lowers the cost of writing an abstraction, not the cost of understanding, maintaining, migrating, or deleting it. Speculative structure still needs present evidence or a recorded trigger.
+- Once evidence justifies a structure, prefer the strictly simpler form that meets the same evidence: a function over a class, one concrete type over an interface with one implementation, a literal over a configurable value, an inline check over a shared middleware. Move up a step only when the simpler form demonstrably falls short.
 - Hide difficult or volatile decisions, not merely steps in a processing sequence.
 - Put cohesion before depth. A small interface does not redeem an unrelated god module.
 - Expose coherent client-specific interfaces instead of one union surface for every caller.

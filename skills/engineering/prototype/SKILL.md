@@ -9,7 +9,7 @@ Answer one empirical question with the smallest artifact that can distinguish th
 
 ## 1. Define the experiment
 
-Name the question, competing expectations, representative input or interaction, and the observation that would change the decision. Resolve human preferences through the user; measurement cannot choose a product goal. For an existing failure, use `diagnosing-bugs` instead.
+Name the question, competing expectations, representative input or interaction, and the observation that would change the decision. Write down the decision each possible result would lead to; if every result leads to the same decision, the experiment cannot change anything, so say so and decide without it. Resolve human preferences through the user; measurement cannot choose a product goal. For an existing failure, use `diagnosing-bugs` instead.
 
 Set a task-appropriate effort bound and completion condition. Use a throwaway location allowed by the repository or a unique temporary directory. Check the destination before writing and preserve existing work. A request to build a prototype authorizes that artifact; a read-only question permits observations but does not authorize creating it.
 

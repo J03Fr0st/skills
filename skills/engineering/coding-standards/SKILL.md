@@ -15,8 +15,11 @@ and compiler configuration, and representative code near the change. Identify
 the language, existing libraries, and framework version where applicable from
 project files.
 
-Follow explicit user direction and applicable repository rules. Where they are
-silent, use the shared baseline below. Treat nearby code as evidence of a
+Follow explicit user direction and applicable repository rules. Search for every
+file that states them, such as `CODING_STANDARDS.md`, `CONTRIBUTING.md`, and
+nested instruction files; they apply together, and when two state rules that
+cannot both hold for the same file, the one in the directory nearer that file
+decides. Where they are silent, use the shared baseline below. Treat nearby code as evidence of a
 convention, not authority to repeat a defect. When a local pattern conflicts with
 correctness or a trust boundary, explain the concrete consequence and propose a
 scoped correction. Resolve ambiguity through repository evidence first; ask the
@@ -57,7 +60,8 @@ the shared baseline; unrelated domains stay unloaded.
   booleans, and handle every variant with an explicit exhaustiveness check (such
   as a `never` assertion in TypeScript, or the compiler's exhaustive-match
   check) so a new variant fails to compile at each unhandled site. Brand identifiers and units that share a primitive
-  type when mixing them up would be a defect. Derive types from the one schema
+  type when mixing them up would be a defect, and create a branded value only
+  through a function or type guard that checks it, never through a bare cast. Derive types from the one schema
   or source that owns the shape rather than maintaining parallel declarations.
 - **Boundaries:** validate untrusted input where it enters. Pass validated domain
   values internally. Keep failure distinguishable from an empty or successful

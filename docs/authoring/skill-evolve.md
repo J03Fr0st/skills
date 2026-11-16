@@ -132,6 +132,8 @@ frozen-incumbent comparison from
 keeping a champion through unstable search from Sakana AI's
 [MASS](https://pub.sakana.ai/mass/). No upstream skill file is vendored.
 
+The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) drops findings the current skill already fixes and weighs cumulative cost against the ongoing cost of an always-loaded line (EveryInc's `ce-retro`), spot-checks the judge against hand labels and adds an optional no-skill arm, and reports when the incumbent barely beats no skill (gstack's `eval-plan` and its retirement of `/investigate` after a no-gain eval).
+
 ## Resources
 
 - `skills/skill-evolve/SKILL.md` - the six steps, decision table, and red flags.

@@ -18,7 +18,11 @@ Look for:
   consequence;
 - confidence strengthened by editing: "may" becoming "will", or a correlation
   becoming a cause;
-- a polished transition that hides a missing step in the reasoning.
+- a polished transition that hides a missing step in the reasoning;
+- a label the writer coined for something that already has a name, such as
+  "the switch-back note", where the code identifier, the reader's own word, or
+  a short description would do;
+- "it", "this", or "that" whose referent the reader has to guess.
 
 Repair the evidence boundary before the wording. Name the source, qualify the
 claim, supply the concrete fact, or remove the assertion. Preserve deliberate

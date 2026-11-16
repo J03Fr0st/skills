@@ -36,6 +36,8 @@ Ask independent frontier questions together unless the user requests one questio
 3. concrete options when comparison helps;
 4. a recommendation with its principal trade-off.
 
+Word a yes-or-no or confirm question so that "yes" accepts your recommendation. A choice whose answer would not change the outcome is not a question: state your call and its reason as a proposal the user can correct.
+
 Before sending the round, remove any question whose wording, options, or recommendation could change based on another unanswered question in that round. For example, settle the intended user and guest definition before asking about conversion thresholds, packaging, limits, or rollout evidence.
 
 Wait for the user's answers. Do not choose on their behalf or bury the recommendation in neutral option lists.

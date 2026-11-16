@@ -53,7 +53,7 @@ Take the first unresolved row:
 | Every slice `done`, and an incident or new need appears | A new `/adlc-intent` |
 | Combined acceptance and declared endpoint evidenced | Report completion at that endpoint; name any pending outcome observation |
 
-Evaluate the artifact chain first, then select a slice from the dependency frontier and use its row. A blocked slice does not stop unrelated authorized slices. On an incident or changed user outcome, route to a new intent before reporting completion; never silently expand the approved work.
+Evaluate the artifact chain first, then select a slice from the dependency frontier and use its row. A blocked slice does not stop unrelated authorized slices. On an incident or changed user outcome, route to a new intent before reporting completion; never silently expand the approved work. Before reporting completion, compare the delivered diff with the plan's slices. A change that no slice covers is unapproved scope: name it and route it to `/adlc-plan` or a new `/adlc-intent`.
 
 **Complete when:** one row is selected from evidence rather than from labels or memory.
 

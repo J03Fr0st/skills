@@ -46,6 +46,10 @@ classify it:
 | Wrong | The skill's own command, path, or fact is incorrect | The fact |
 | Not the skill | Environment, tool failure, model capability, a changed request | None. Drop it. |
 
+Check each finding against the skill as it is now, not as it was in the
+session. A finding whose cause the current text already removes is dropped as
+fixed.
+
 **Complete when** every finding cites its source passage, names a skill and
 section, and has a class. Stop here when none are attributable to a skill, and
 say so.
@@ -68,6 +72,12 @@ Take the first verdict that applies:
    rule in more words.
 4. **Drop**: a one-off, or a fix that would need a nuance clause to avoid
    breaking other cases.
+
+Weigh what a finding cost across all the sessions that show it against what
+the fix costs from then on. Removing or correcting a line is nearly free; a new
+line in an always-loaded skill is paid for in every future session. A finding
+seen once can still qualify when its consequence reached beyond the session,
+such as a bad commit or an exposed secret.
 
 **Complete when** every finding has a verdict and a one-line reason.
 
@@ -116,8 +126,11 @@ incumbent as control, and script checks, are in `writing-for-agents`
   undecided, however good it looks.
 - **Judge.** Where a script cannot decide, use a judge that is blind to which
   arm produced the output, on a different model family from the one that
-  drafted the candidate. If none is available, say so and mark those verdicts
-  as weaker evidence.
+  drafted the candidate. Spot-check its verdicts against a few outputs you have
+  labelled by hand before its scores count. If none is available, say so and
+  mark those verdicts as weaker evidence.
+- **No-skill arm.** When the suite is cheap enough, also run it once with no
+  version of the skill loaded. It shows whether the skill helps at all.
 
 If the harness cannot start fresh contexts, through subagents or separate
 sessions, stop and report the candidates as unevaluated.
@@ -160,6 +173,9 @@ Report in this order:
 3. Routed and dropped findings, one line each.
 4. What was not run or not shown, such as an unreproduced failure, a stopped
    evaluation, or a same-family judge.
+5. When the run included a no-skill arm and the incumbent barely beat it, say
+   so: the better change may be to cut or retire the skill rather than add to
+   it.
 
 Then wait for the user to pick from the kept and trade-off candidates. Apply
 each approved candidate as its diff plus its failure cases, which join the
