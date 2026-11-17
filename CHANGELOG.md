@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.15.0
+
+### Minor Changes
+
+- [#71](https://github.com/J03Fr0st/skills/pull/71) [`b1ec751`](https://github.com/J03Fr0st/skills/commit/b1ec751f34178f67b67604a4d522df20b486bbc8) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `writing-for-humans` now sets the bold ask alone on its line, in each target's own bold syntax, with each context line directly under it, opens list items with bold labels, writes an explicit empty line after the greeting, and before an email's sign-off, in emails, Teams, and Slack, and @mentions the person who acts with the markup and metadata Teams and Slack need, or as plain `@Name` for the author to retype in Outlook.
+
 ## 0.14.0
 
 ### Minor Changes
