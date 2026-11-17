@@ -73,12 +73,11 @@ exists.
    clear, placed beside the sentence it supports; read
    [visuals](references/visuals.md) to choose one. A one-line fix needs no visual.
 2. **Evidence.** Before and after, from observed results. For a visual change
-   in an environment that can capture it, screenshots are the strongest
-   evidence: capture the real app on the base and head revisions with the same
-   region and size, and report a pair with no visible difference as unchanged.
-   Otherwise show execution: the exact test, command, or reproduction that
-   failed before and passes after, with the output line that proves it or a
-   pseudocode sketch of the test. Quote output; never paste command
+   screenshots are the strongest evidence; use `pr-images` to capture, check,
+   and attach them, and place its section here. When it cannot attach them,
+   keep its one-line reason. Otherwise show execution: the exact test,
+   command, or reproduction that failed before and passes after, with the
+   output line that proves it or a pseudocode sketch of the test. Quote output; never paste command
    transcripts, CI logs, or validation dumps. Name material checks not run and
    keep material negative results. A change with no runtime behavior to
    exercise, such as documentation, copy, or comments, needs at most one line on
@@ -110,7 +109,7 @@ disclosures when rewriting.
 
 Keep customer or organization names, user emails, support-ticket text, secrets,
 tokens, and other personal data out of the title, body, quoted output, and
-screenshots; redact them in images before upload.
+screenshots; `pr-images` retakes any image that shows them before upload.
 
 PRs credit their human author alone: titles and bodies end with the change
 content. Leave out agent attribution such as "Generated with Claude Code"
