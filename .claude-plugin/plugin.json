@@ -49,6 +49,7 @@
     "./skills/engineering/orchestrate",
     "./skills/engineering/planning-and-task-breakdown",
     "./skills/engineering/pr-description",
+    "./skills/engineering/pr-images",
     "./skills/engineering/property-based-testing",
     "./skills/engineering/prototype",
     "./skills/engineering/research",
