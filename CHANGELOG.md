@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.0
+
+### Minor Changes
+
+- [#74](https://github.com/J03Fr0st/skills/pull/74) [`845b4c0`](https://github.com/J03Fr0st/skills/commit/845b4c0a43713b6077fc3e9ecf32e99fdd65aa19) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Add the `pr-images` skill: capture, privacy-check, and attach before/after screenshots to GitHub PRs, issues, and comments with `gh --attach`, retake them after later commits, and say why when no upload path exists. `pr-description` and `babysit-pr` now hand screenshot work to it.
+
 ## 0.13.1
 
 ### Patch Changes
