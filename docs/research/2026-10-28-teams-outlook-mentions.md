@@ -32,10 +32,12 @@ Teams and Outlook work differently.
   in Outlook makes the client set it. No HTML a writer can paste is documented
   to produce a real mention.
 
-The skill's current email rule, `<a href="mailto:ADDRESS">@Display Name</a>`,
-therefore produces a link, not a mention. Its Teams rule is correct for Graph
-`chatMessage`, but it needs the ID type stated and does not cover Adaptive
-Cards sent by bots or incoming webhooks.
+This research checked the first draft of the mention rule, written earlier in
+the same pull request and never released. That draft's email rule,
+`<a href="mailto:ADDRESS">@Display Name</a>`, produces a link, not a mention.
+Its Teams rule was correct for Graph `chatMessage`, but it did not state the
+ID type and did not cover Adaptive Cards sent by bots or incoming webhooks.
+The rule that shipped follows the implications below.
 
 ## Teams
 
@@ -141,7 +143,8 @@ filter. No Microsoft source documents an `OWAAM` anchor.
 
 ## Implications for writing-for-humans
 
-These are inferences from the evidence above.
+These are inferences from the evidence above, stated as changes to the first
+draft of the rule.
 
 1. **Teams via Graph:** keep `<at id="N">Display Name</at>` with a matching
    `mentions[N]`. Require `mentionText` to equal the text inside the `at`
@@ -151,12 +154,12 @@ These are inferences from the evidence above.
    `<at>Display Name</at>` with an `msteams.entities` mention whose `text`
    repeats that string. The ID is the UPN or Entra object ID, or the Teams
    user ID for a bot.
-3. **Outlook email:** stop recommending the `mailto` anchor. Write `@Display
+3. **Outlook email:** drop the draft's `mailto` anchor. Write `@Display
    Name` as plain text and tell the author to retype it as a mention in
    Outlook, by typing @ and picking the person, which also adds them to To.
    When the message is sent through Graph beta, set `mentions` and
    `toRecipients`. In both cases the body text is just `@Name`.
-4. **No ID available:** keep the current fallback. Write the plain name and
+4. **No ID available:** keep the draft's fallback. Write the plain name and
    say that a real mention needs the ID.
 
 ## Limits

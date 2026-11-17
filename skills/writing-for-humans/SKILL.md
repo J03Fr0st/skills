@@ -182,7 +182,9 @@ signature block only when the user's own template has one.
 
 Never run the ask and its context together in one paragraph, and never let
 the sign-off touch the paragraph above it. Bold only the ask and the list-item
-labels.
+labels, in the target's own syntax: `<strong>` in HTML, `**text**` in
+Markdown, and `*text*` in Slack. Plain-text email has no bold, so leave the ask
+unmarked on its own line and end each list label with a colon.
 
 The context lines under the ask are one block: in HTML, join them with `<br>`
 inside one `<p>`; in plain text or Markdown, end each with a hard line break.
@@ -193,8 +195,8 @@ follow the greeting's `<p>` with `<p>&nbsp;</p>`; in Slack or a plain-text
 email, follow the greeting with two newlines.
 
 When the target supports mentions, greet the person who acts with a mention
-so they are notified. Markup alone notifies no one; each form needs its
-matching metadata:
+so they are notified. Slack needs only its markup. In Teams and Outlook, markup
+alone notifies no one, so each form there needs its matching metadata:
 
 - Teams message sent through Graph: `<at id="0">Display Name</at>` in an HTML
   body, plus a `mentions` entry with `id` 0, `mentionText` equal to the text
