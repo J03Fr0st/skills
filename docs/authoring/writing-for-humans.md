@@ -49,8 +49,10 @@ Chat messages and emails get a fixed layout in every mode, because people scan
 them in a narrow pane: the greeting to the person who acts, @mentioned when
 the target supports it, then an explicit empty line; the ask as one bold
 sentence alone on its line, with each piece of context on its own line
-directly under it; three or more parallel facts as a list with bold labels;
-and, for email only, the sign-off on its own line. Chat messages such as Teams
+directly under it in the same block; three or more parallel facts as a list
+with bold labels; and, for email only, the sign-off on its own line after an
+explicit empty line. Bold uses each target's own syntax, and a plain-text
+email, which has none, leaves the ask unmarked. Chat messages such as Teams
 or Slack end on the ask or the last fact, with no sign-off or signature,
 because the client already shows the sender.
 
@@ -130,4 +132,5 @@ The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) flags c
 - `skills/writing-for-humans/evals/evals.json` - scenarios for operational
   accuracy, diagnosis-only restraint, announcement cleanup, voice transfer,
   minimal change on a draft that already works, chat-message layout without a
-  sign-off, and email spacing with the sign-off kept.
+  sign-off, email spacing with the sign-off kept, and Slack and Outlook
+  mentions.

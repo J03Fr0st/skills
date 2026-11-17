@@ -174,9 +174,12 @@ draft of the rule.
 ## Preferred source repositories
 
 These are agent-skill repositories, not Microsoft API documentation, so none
-was expected to own a claim here. I code-searched each for mention-related
-files at the revisions below before GitHub's search rate limit cut the check
-short.
+was expected to own a claim here. On 2026-10-28 I code-searched each for
+mention-related files, but GitHub's search rate limit cut the check short for
+seven of them. On 2026-11-17 I finished those seven by cloning each at the
+revision shown and searching the whole tree for Teams, Outlook, and Slack
+mention forms (`<at`, `msteams`, `mentions`, `mentionText`, `<@U…>`,
+`@mention`, Outlook, and Teams or Slack messages), then reading every match.
 
 | Repository | Revision | Result |
 | --- | --- | --- |
@@ -187,14 +190,15 @@ short.
 | DietrichGebert/ponytail | `09c434a` | No match; not applicable |
 | mvanhorn/last30days-skill | `e06af25` | No match; not applicable |
 | anthropics/skills | `dbd4588` | No match; not applicable |
-| trailofbits/skills | `bf23bfb` | Two path matches; inspection blocked by the rate limit, so unverified |
-| EveryInc/compound-engineering-plugin | `00d0a5b` | Two path matches; inspection blocked by the rate limit, so unverified |
+| trailofbits/skills | `149d7b2` | No match; not applicable |
+| EveryInc/compound-engineering-plugin | `a3d6a8e` | Its Slack researcher agents search with `from:<@U123456>`, which agrees with the `<@USER_ID>` form the skill uses for Slack; no Teams or Outlook guidance. Secondary corroboration only |
 | garrytan/gstack | `9e3308f` | No match; not applicable |
-| affaan-m/ECC | `25278e7` | Search unavailable (rate limit) |
-| wshobson/agents | `0874a27` | Search unavailable (rate limit) |
-| nahid-sparktales/agent-dispatcher | `564c3f0` | Search unavailable (rate limit) |
-| humanlayer/skills | `653b641` | Search unavailable (rate limit) |
-| testdouble/han | `abba73a` | Search unavailable (rate limit) |
+| affaan-m/ECC | `3f14a10` | Only generic advice to "use @mentions" in Jira and an Outlook address regex; not applicable |
+| wshobson/agents | `9c61ab2` | Lists Teams as an integration and says to "tag relevant stakeholders with @mentions", with no markup or metadata; not applicable |
+| nahid-sparktales/agent-dispatcher | `564c3f0` | "mentions" matches only issue-reference scoring code; not applicable |
+| humanlayer/skills | `4d69d20` | No match; not applicable |
+| testdouble/han | `abba73a` | Writes GitHub `@mentions` in changelogs as profile links, a different platform; not applicable |
 
-None of the checked repositories influenced the conclusion, which rests on
-Microsoft's own documentation.
+None of the repositories influenced the Teams or Outlook conclusion, which
+rests on Microsoft's own documentation. compound-engineering-plugin is the only
+one that touches the Slack form, and it agrees with it.
