@@ -46,11 +46,21 @@ the relevant signals.
 ## Message layout
 
 Chat messages and emails get a fixed layout in every mode, because people scan
-them in a narrow pane: greeting on its own line, the ask in its own paragraph,
-short one-idea paragraphs, three or more parallel facts as a list, and, for
-email only, the sign-off on its own line. Chat messages such as Teams or Slack
-end on the ask or the last fact, with no sign-off or signature, because the
-client already shows the sender.
+them in a narrow pane: the greeting to the person who acts, @mentioned when
+the target supports it, then an explicit empty line; the ask as one bold
+sentence alone on its line, with each piece of context on its own line
+directly under it in the same block; three or more parallel facts as a list
+with bold labels; and, for email only, the sign-off on its own line after an
+explicit empty line. Bold uses each target's own syntax, and a plain-text
+email, which has none, leaves the ask unmarked. Chat messages such as Teams
+or Slack end on the ask or the last fact, with no sign-off or signature,
+because the client already shows the sender.
+
+Teams and Slack mentions carry the markup and metadata each platform needs to
+notify the person. In Outlook a mention is message metadata rather than body
+markup, so the draft writes `@Name` and the author retypes it as a mention in
+Outlook. The evidence is in the
+[mention research](../research/2026-10-28-teams-outlook-mentions.md).
 
 ## Spacing and genre
 
@@ -122,4 +132,5 @@ The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) flags c
 - `skills/writing-for-humans/evals/evals.json` - scenarios for operational
   accuracy, diagnosis-only restraint, announcement cleanup, voice transfer,
   minimal change on a draft that already works, chat-message layout without a
-  sign-off, and email spacing with the sign-off kept.
+  sign-off, email spacing with the sign-off kept, and Slack and Outlook
+  mentions.
