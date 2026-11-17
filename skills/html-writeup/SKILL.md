@@ -9,14 +9,14 @@ Deliver one considered `.html` document that opens from a double-click, travels 
 
 ## 1. Frame the document
 
-Define the reader's question or decision and answer it in one sentence. Choose the presentation profile from the reader's job, then outline the shortest spine that carries the answer.
+Define the reader's question or decision and answer it in one sentence, followed by two or three plain takeaways a reader could act on without reading further. Choose the presentation profile from the reader's job, then outline the shortest spine that carries the answer.
 
 - **Profiles:** read [references/PROFILES.md](references/PROFILES.md) to choose editorial, analytical, operational, or showcase direction.
 - **Recipes:** read [references/RECIPES.md](references/RECIPES.md) when the request matches a comparison, audit, research brief, architecture decision, plan, status report, or incident review.
 
-For every section, choose its form before writing it: prose for judgement, a table for shared axes, a diagram for relationships, a stat row for decisive numbers, code for source truth, and a callout for a caveat that would derail the paragraph. The user's pinned style, supplied template, brand system, and factual content override profile defaults.
+For every section, choose its form before writing it: prose for judgement, a table for shared axes, a diagram for relationships, a stat row for decisive numbers, code for source truth, and a callout for a caveat that would derail the paragraph. Place each visual beside the short text it supports, and replace dense prose with the smallest view that makes its point. The user's pinned style, supplied template, brand system, and factual content override profile defaults.
 
-**Complete when:** the outline records the title, its one-sentence answer, each section's job and form, and the single visual anchor.
+**Complete when:** the outline records the title, its one-sentence answer and takeaways, each section's job and form, and the single visual anchor.
 
 ## 2. Build from the system
 

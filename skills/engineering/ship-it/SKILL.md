@@ -41,6 +41,10 @@ Required routes, loaded when their condition applies:
 | A supported finding needs repair | `implement`: scoped correction and affected checks |
 | Final local result needs proof | `verification-before-completion`: fresh evidence for the final changed artifacts |
 
+Before review, compare the delivery diff with what the task asked for. A changed
+path outside that scope is removed or reported, never shipped silently. A changed
+behavior that no check exercises is a gap to report even when every check passes.
+
 Reuse a completed review when it covers the current diff. Otherwise review the
 delivery diff and address supported blockers. After a repair or base update,
 refresh affected review and verification evidence. Resolve check failures through

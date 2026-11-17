@@ -20,7 +20,7 @@ A request to capture authorizes writing inside the store. A request to refresh, 
 
 ## 2. Capture: apply the durable bar
 
-Name the candidate in one sentence: what a future reader would get wrong without it. Then apply the **counterfactual**: if this lesson were lost, would someone reading the final code, tests, types, comments, commit messages, and existing docs still be likely to repeat the mistake or redo substantial investigation?
+Name the candidate in one sentence: what a future reader would get wrong without it. A candidate usually comes from verified work that corrected a wrong belief: an approach that failed, a defect a review caught, an assumption or document that turned out wrong. Work that went as first planned rarely holds one. Then apply the **counterfactual**: if this lesson were lost, would someone reading the final code, tests, types, comments, commit messages, and existing docs still be likely to repeat the mistake or redo substantial investigation?
 
 Reject the candidate when any of these already carries the reasoning; quote the artifact that does. Effort spent, diff size, and the user's request to document it do not lower the bar. Lessons that typically pass: a cause invisible from the fix, an approach that looked right and failed, a cross-file invariant no single file shows, an external system's undocumented behaviour, a measured threshold.
 
@@ -49,6 +49,7 @@ For each lesson, check its claims against current code, tests, and docs, then ch
 - A claim the repository cannot corroborate - an operational practice, an external service's behaviour - is unverifiable, not false. Keep it and note the gap.
 - Missing files prove the implementation moved, not that the problem disappeared. If the project still faces the problem, the lesson is replaced, not deleted.
 - A met retirement condition is evidence; verify it against the tree before acting on it.
+- Decide whether code moved after a lesson from version control, not from how confident the lesson sounds. Take the last commit that touched the lesson and the last that touched the code it describes; if the lesson's commit is an ancestor of the code's, the code changed after it. History that cannot be ordered, such as a shallow clone or divergent branches, means "can't tell", never "current".
 - **Recoverable** means a named artifact states the same reasoning in its own text: a test assertion or comment, a code comment, the instruction file, a skill, or another lesson. Topical overlap is not recoverability; quote the sentence.
 
 **Complete when:** every in-scope lesson has evidence for its accuracy, overlap, and recoverability, including unverifiable claims marked as such.

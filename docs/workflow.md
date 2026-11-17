@@ -71,7 +71,8 @@ For finished work, `ship-it` coordinates delivery using `code-review`,
 Bare "ship it" targets a merge-ready PR; an explicit publication, merge or deployment
 request sets that endpoint instead. Local implementation remains owned by `implement`,
 Git transitions by `git-workflow`, isolated checkouts by `git-worktrees`, PR text by
-`pr-description`, and the remote repair loop and PR merge by `babysit-pr`.
+`pr-description`, screenshots on PRs and issues by `pr-images`, and the remote repair
+loop and PR merge by `babysit-pr`.
 
 ## Agentic development lifecycle
 

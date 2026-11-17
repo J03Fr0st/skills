@@ -21,6 +21,8 @@ Preserve work already present. Never discard, overwrite, reset, clean, or hide a
 
 Read the repository instructions, relevant source, nearby tests, and supplied intent. State the observable outcome, acceptance conditions, explicit exclusions, and any constraint that changes the implementation approach.
 
+When the user passes an issue or ticket reference, fetch it and state its title as the tracker gives it before starting. If the reference could name more than one item, ask which.
+
 Inspect the current branch, HEAD, staged and unstaged changes, and untracked files before editing. Ask only when a missing decision would materially change behavior, architecture, external state, cost, or risk. Otherwise make the smallest reasonable assumption and record it.
 
 **Complete when:** the intended outcome, working-tree baseline, governing rules, and material decision gates are known.
@@ -65,7 +67,9 @@ For each slice:
 
 Do not mix opportunistic cleanup into the change. If new evidence invalidates the requested approach, reaches outside the authorized scope, or exposes a consequential product or architecture decision, stop at that gate and present the evidence and options.
 
-When a check exposes an unrelated pre-existing failure, separate it from change-caused failures. Do not repair it unless the user expands scope.
+When a check exposes an unrelated pre-existing failure, separate it from change-caused failures. Do not repair it unless the user expands scope. A failure is pre-existing only when it was already failing before your first edit, on the baseline or on your first run of that check. A changed file breaking a test you did not touch is your defect.
+
+Keep going until every in-scope slice is done. A progress update does not end the run; stop earlier only at a named blocker or decision gate.
 
 **Complete when:** every accepted behavior is represented by a coherent change and no known task-owned inconsistency remains between code, tests, docs, and configuration.
 

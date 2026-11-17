@@ -25,10 +25,12 @@ Include only the fields relevant to continuation:
 - canonical source pointers and the current revision or snapshot;
 - task-owned changes, preserved dirty paths, and unknown ownership;
 - completed work with evidence, distinguishing observed from reported results;
-- material decisions, rejected approaches that still matter, and unresolved owners;
+- material decisions, rejected approaches that still matter, and unresolved owners; mark each decision made on the user's behalf with what it costs if it is wrong;
 - remaining dependencies, ready frontier, and the exact next check;
 - active jobs, processes, or delegates with handles, state, and coordination owner;
 - granted scope and actions that still require a user decision.
+
+When the recipient is a person, open with what is waiting on them, or say nothing is. Give each pending decision the facts, evidence, and risk needed to make it from the handoff alone; a link can add depth but cannot stand in for the item. Assume they remember the last thing they asked and nothing after it.
 
 Use pointers for lengthy investigation and keep active errors and constraints directly visible. Include commands needed to reproduce evidence, but exclude credentials, tokens, personal data, and environment dumps. Name the authorized credential source when needed, never its value.
 

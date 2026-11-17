@@ -71,3 +71,5 @@ including their limits. The [branch freshness record](../research/2026-10-26-bra
 covers the stale-branch verdict, its sources including Theo Browne's tstack
 `modernize` skill, two more Git exercises, and a blind comparison on three
 freshness scenarios.
+
+The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) extends the freshness check with conceptual conflicts in untouched files, merge commits a rebase would silently drop, and an explanation for every changed hunk in `git range-diff`. These come from gstack's `modernize`.

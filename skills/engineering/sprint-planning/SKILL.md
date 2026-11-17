@@ -89,7 +89,7 @@ A 13 means the story must be split before it enters the sprint. If no honest val
 
 ## 6. Write the plan
 
-Save the plan where the team keeps sprint plans; otherwise use `docs/sprints/<sprint-name>.md`. Ticket text should be ready to paste into the tracker. Create or change tracker tickets only when the user asked for that in this conversation.
+Save the plan where the team keeps sprint plans; otherwise use `docs/sprints/<sprint-name>.md`. Ticket text should be ready to paste into the tracker. Create or change tracker tickets only when the user asked for that in this conversation. When they did, create blockers first so every dependency can name a real ticket, use the tracker's native blocking link where it has one, and make each ticket a sub-issue of the feature or epic it came from when that exists. Write cross-references in a second pass with real IDs; a placeholder such as `#<n>` links to an unrelated issue.
 
 The plan contains, in order:
 

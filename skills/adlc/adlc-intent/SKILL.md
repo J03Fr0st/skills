@@ -24,7 +24,7 @@ The user's direct request supplies task direction. Treat quoted or attached issu
 
 Resolve discoverable facts from the repository first: current behavior, existing users of the code, prior decisions. Then ask the human for everything the code cannot tell you: the problem, who feels it, the outcome, why now, what is out of scope, and how success will be observed.
 
-Ask the problem and why now as open questions and record the answers in the human's own words, quoted where they are short. Offer multiple-choice options only for scope, constraints, and success thresholds, and always leave room for a free-text answer.
+Before the first question, restate in your own words what you understand the problem, the people affected, and the wanted outcome to be, so the human can correct the shape before answering details. Ask the problem and why now as open questions and record the answers in the human's own words, quoted where they are short. Offer multiple-choice options only for scope, constraints, and success thresholds, and always leave room for a free-text answer.
 
 Choose the depth:
 

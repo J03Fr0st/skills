@@ -49,7 +49,10 @@ For a fix claim, the decisive check is **side-blind** baseline-versus-patched ev
 
 - it fails on the unpatched revision and passes on the patched one, under the same command and inputs;
 - it cannot tell which revision it runs against, so it asserts behavior rather than detecting the fix;
-- its output proves the relevant code path was reached, such as a marker the path emits, so a failure from setup or an early exit cannot pose as reproduction.
+- its output proves the relevant code path was reached, such as a marker the path emits, so a failure from setup or an early exit cannot pose as reproduction;
+- when the patched revision carries other changes, it fails again with only the fix reverted, which shows the fix, not something else in the range, made it pass.
+
+For a fix to a class of inputs rather than one, use at least two distinct failing inputs and one valid input that passes on both revisions.
 
 Choose the smallest evidence set that covers every material claim. Do not run broad suites by ritual when focused evidence is decisive, and do not use a focused unit test to support a broader integration or deployment claim.
 
@@ -126,7 +129,7 @@ Report:
 1. **Verdict and scope** - the exact claim and terminal state.
 2. **Fresh evidence** - commands or inspections with decisive outcomes.
 3. **Provenance** - independently verified versus reported-green evidence.
-4. **Gaps** - skipped or errored checks, weakened-check flags, untested boundaries, unavailable environments, or stale results.
+4. **Gaps** - skipped or errored checks, weakened-check flags, untested boundaries, unavailable environments, or stale results. Write "none" only when every row of the claim matrix has fresh direct evidence.
 5. **Next action** - the smallest action needed when the verdict is not VERIFIED.
 
 Use positive completion language only when the verdict and scope support those exact words.

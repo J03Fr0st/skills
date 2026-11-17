@@ -243,6 +243,7 @@ Use the genre's own shape when the brief names one:
 | Chat message | [Message layout](#message-layout); no sign-off; one message, not a greeting followed by the ask. |
 | Email | Subject names the topic and the action; the point in the first paragraph; greeting and sign-off. |
 | Status or incident update | Current status, impact, actions, remaining uncertainty, and next update time, under short labels; no invented ETA. |
+| Catch-up after time away | One opening line naming what waits on the reader, or saying nothing does; then one line per thing they asked for, saying what came of it and whether it is done, running, failed, or not checked; then each pending decision with your pick and the facts and risk needed to make it from the message alone. Never a count or a bare link in place of an item. |
 | Documentation or report | Descriptive headings; paragraphs of three to seven rendered lines; lists for steps or parallel items; a table when three or more items share the same fields. |
 | Announcement | The change and who it affects first, then the reader's action and its deadline; no ceremony. |
 

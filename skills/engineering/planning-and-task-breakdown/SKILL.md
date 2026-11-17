@@ -13,7 +13,9 @@ Read the requested outcome, repository instructions, existing plan or tracker, r
 
 Ask about an unresolved choice only when it changes acceptance, scope, architecture, or risk. Use `grilling` for an interview when several material choices depend on each other. Continue planning independent parts while a decision is pending.
 
-**Complete when:** the outcome, exclusions, acceptance conditions, existing state, and unresolved decision owners are explicit.
+Keep an item in the plan only when evidence shows it is needed now: a stated need, a slice that cannot work without it, an existing contract that breaks without it, a rule that applies today, or an observed incident or metric. Prefer the strictly simpler version that meets the same evidence. List what you cut under **Deferred**, each with the concrete trigger that would reopen it, so it is neither lost nor built silently.
+
+**Complete when:** the outcome, exclusions, deferred items, acceptance conditions, existing state, and unresolved decision owners are explicit.
 
 ## 2. Slice by observable outcomes
 
@@ -37,6 +39,8 @@ Keep estimates conditional on evidence. Use code examples only when they settle 
 Walk dependencies for missing IDs, cycles, and work falsely marked independent. Shared schemas, files, mutable environments, and unresolved contracts can serialize otherwise separate tasks. Name an integration owner if parallel execution is proposed; execution and delegation remain within the caller's authority.
 
 Write a **review focus**: the input classes and failure modes the requirements imply but no slice's check exercises, ranked by likelihood, each assigned to the slice whose check should cover it. Reviewers look hardest there.
+
+Decide the **delivery shape**. One pull request is the default; each extra one costs another round of CI, review, and rebasing. Group slices into separate pull requests only when the project requires a part to ship alone or to have an approver the rest does not need, a required human reviewer could not review one pull request well, a part must reach production before the rest is ready, or a later part cannot merge until an earlier one is deployed, has migrated data, or has run for a set time. Different risk, separate rollback, merge order, and waiting on someone's decision are not reasons on their own; record a pending decision as a merge gate. Name the reason under each extra group.
 
 List the ready frontier and why each other slice is blocked. The final integration check must cover the combined user outcome, even when every slice has passed its own check.
 

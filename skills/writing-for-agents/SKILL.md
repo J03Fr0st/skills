@@ -84,6 +84,12 @@ the agent needs it:
 3. **Disclosed reference** is pushed into a separate file behind a pointer and
    loaded only when the pointer fires.
 
+Below the document sits the **tool** itself: its `--help`, and the errors and
+replies it gives when a guess is wrong. An error that names the right value and
+the next step reaches the agent at the moment it needs it and costs nothing on
+every other run. When a failure comes from a tool call, fix the tool's message
+or add a check before adding a line of prose.
+
 Push too little down and the top bloats. Push too much and you hide material the
 agent actually needs. That tension is the whole decision.
 
@@ -205,7 +211,9 @@ restatements that leading words retire.
    neighbours. *Complete when the pointer names the material and every distinct
    branch that should reach it.*
 4. **Prune.** Apply single source of truth, the environment test, relevance, and
-   the no-op hunt. Fold restatements into leading words. *Complete when every
+   the no-op hunt. Fold restatements into leading words. When an edit adds an
+   idea, change the line that already covers it before appending a new one, and
+   report the document's size before and after. *Complete when every
    remaining line changes behaviour against the default.*
 5. **Verify proportionately.** Match the effort to the stakes using
    [`references/TESTING-SKILLS.md`](references/TESTING-SKILLS.md). A document that

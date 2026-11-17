@@ -48,3 +48,5 @@ python -m unittest discover -s skills/engineering/babysit-pr/scripts -p test_wat
 ```
 
 The skill directory also contains agent evaluation scenarios for late feedback, authority, races, retries, interruption, budgets, non-convergence, escalation, social limits, commit hygiene, API outages, reporting, pending reviews, description refresh and multi-reviewer triage. Those scenarios are specifications until exercised in a controlled agent harness; passing helper tests does not establish end-to-end agent performance.
+
+The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) adds three readiness rules from EveryInc's `ce-babysit-pr`: base-branch movement does not restart the quiet window, an announced reviewer has only started until its verdict appears on the head, and a lookup that could not be read in full is not evidence that no review is coming.

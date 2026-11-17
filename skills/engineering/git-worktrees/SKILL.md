@@ -56,6 +56,10 @@ A merged PR is a lifecycle checkpoint, not an automatic deletion instruction.
 Retain checkouts needed by review, follow-up work, running processes, or the user.
 Before retirement inspect the exact target, changes, unpushed commits, untracked
 files, and needed ignored assets. Preserve pinned, shared, or in-use worktrees.
+A worktree that Git reports as `locked` stays until its owner releases it, even
+under a force option. When removing a directory, inspect every checkout and
+submodule nested inside it, not only the top one, and repeat the inspection
+immediately before deletion: work can land while a confirmation waits.
 
 Use managed archival when supported; verify its snapshot and exclusions. Preserve
 needed ignored assets separately if archival omits them: use a durable location

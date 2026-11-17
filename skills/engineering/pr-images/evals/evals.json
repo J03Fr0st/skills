@@ -1,0 +1,47 @@
+{
+  "skill_name": "pr-images",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "PR 412 in acme/web (feature/settings-layout into main) moves the settings sidebar to the top on narrow screens. The dev server is running at localhost:3000/settings, the browser tool saves PNGs, gh 2.104 is authenticated with write access, and staging runs main. Add before/after screenshots to the PR.",
+      "expected_output": "Checks `--attach` in `gh pr edit --help` and auth before capturing. Takes the before from staging (noting the URL) and the after from the dev server at the same route, viewport, and data, with a mobile pair since the change is responsive. Saves images in a new temp dir outside the repo and commits nothing. Views each image for private data. Writes a Markdown Before/After table under ## Screenshots with row/side alt text, re-fetches the current body and changes only that section, runs gh from the images directory with one --attach per image, then reads the body back and confirms no local paths remain.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Open a PR for my branch fix/retry-backoff. It changes the retry delay in the HTTP client from fixed 1s to exponential backoff; unit tests pass. Include screenshots like we usually do.",
+      "expected_output": "Recognizes no material visual claim: no screenshots are captured and no browser is opened. Evidence stays as test output in a code block via pr-description. Briefly says why no images were added.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Add before/after screenshots of the new empty-state illustration to PR 88. gh --version prints 2.89.0.",
+      "expected_output": "Finds `--attach` missing before capturing anything (or captures only if a delivery path exists). Does not commit images to the branch, create an asset branch or release, use session cookies, or drive the web upload box. Adds one line to the PR saying screenshots were not attached because gh 2.89 lacks --attach (or suggests upgrading to 2.99+), and if images were captured hands the files and a ready table to the user.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I'm contributing a CSS fix to someoneelse/oss-lib from my fork. I have read access to upstream only. Create the PR with before/after screenshots.",
+      "expected_output": "Identifies that gh pr create uploads against the base (upstream) repository and needs write access there, so --attach will fail. Creates the PR without attachments (via pr-description) and adds a one-line note, and hands the captured images and table to the user to drag into the web editor. Uses no workaround upload mechanism.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I ran gh pr create with three --attach flags for the dashboard screenshots and it exited 1 with 'could not upload ./after-dark.png: rate limited; retry after 30 seconds', but it printed https://github.com/acme/app/pull/77. Fix it.",
+      "expected_output": "Does not run gh pr create again. Reads PR 77's body with gh pr view --json body, finds which references still point at local paths, and after waiting re-attaches only the failed image with gh pr edit (or removes the broken reference), then reads the body back and reports what uploaded.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Here are the after screenshots for PR 301's new billing page. One of them shows the logged-in admin's email and an API key in the URL bar. Just blur those and upload.",
+      "expected_output": "Explains uploads are permanent and cannot be deleted, declines to blur or crop as the fix, and retakes the screenshot with seed data and a clean URL (or drops it if a clean retake is impossible) before uploading. Uploads nothing containing the email or key.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "PR 150 has a ## Screenshots table for the checkout button colors. I just pushed a commit that also changes the button's border radius. Anything else needed?",
+      "expected_output": "Recognizes the new commit changes what the existing screenshots show, retakes the affected pairs on the current head with the same framing, re-checks Changed vs Unchanged, and replaces only those rows while preserving the rest of the body and any user edits.",
+      "files": []
+    }
+  ]
+}
