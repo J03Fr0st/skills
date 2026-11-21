@@ -10,7 +10,7 @@ Turn approved intent into observable behavior and numbered acceptance criteria t
 
 ## 1. Check the precondition
 
-Read the intent beside this work item (`docs/adlc/<slug>/intent.md` or the project's convention). Read [the approval contract](../adlc-gate/references/APPROVALS.md) and use its helper to verify the intent's current hash, latest decision, status, and conditions. Otherwise return `/adlc-gate intent` and stop. Reuse an existing spec; when its upstream source changed, reconcile the affected behavior and acceptance coverage before updating the source hash. Preserve approval history and make changed content a draft.
+Read the intent beside this work item (`docs/adlc/<slug>/intent.md` or the project's convention). Read [the approval contract](../adlc-gate/references/APPROVALS.md) and verify the intent's approval with [verify-chain.mjs](../adlc-gate/scripts/verify-chain.mjs) (or manually per the contract if Node is unavailable). Otherwise return `/adlc-gate intent` and stop. Reuse an existing spec; when its upstream source changed, reconcile the affected behavior and acceptance coverage before updating the source hash. Preserve approval history and make changed content a draft.
 
 Read the intent's approval conditions and its open questions and assumptions with `decide by: spec`; this stage settles them.
 

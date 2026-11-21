@@ -1,6 +1,6 @@
 ---
 name: writing-for-humans
-description: Write and revise human-facing prose so it is clear, specific, natural, and faithful to the author's intent and genre. Use for emails, chat messages, articles, reports, documentation, announcements, talks, and other prose when the user asks to draft, diagnose, edit, rewrite, make writing less formulaic or less AI-like, sound more natural or direct, or match a supplied voice. Do not use for agent instructions such as skills or AGENTS.md, code-only work, verbatim transcription, or translation without editorial changes.
+description: Write and revise human-facing prose so it is clear, specific, natural, and faithful to the author's intent and genre. Use for emails, chat messages (Teams, Slack), catch-ups, articles, reports, documentation, announcements, talks, and other prose when the user asks to draft, diagnose, edit, rewrite, make writing less formulaic or less AI-like, sound more natural or direct, or match a supplied voice. Do not use for agent instructions such as skills or AGENTS.md (use writing-for-agents), code-only work, verbatim transcription, or translation without editorial changes.
 ---
 
 # Writing for humans
@@ -63,20 +63,11 @@ Before changing existing prose, identify what must survive:
 
 Keep literal spans exact unless the user explicitly asks to change them. Never
 invent facts, sources, experiences, opinions, or personal details to make prose
-feel more authentic.
+feel more authentic. For a file-to-file revision, keep an unedited copy of the
+original so Step 5 can verify literal and structural preservation.
 
-For a file-to-file revision, keep an unedited copy of the original and run the
-bundled `scripts/check_preservation.py BEFORE AFTER` from this skill's directory
-when Python is available.
-
-The checker compares inventories of protected values, so it catches literal and
-structural drift but not semantic equivalence, and not a swap that leaves the
-same values in different places. Review every reported change in context, and
-still read the diff on a clean run; an intentional change may be accepted, but
-it must not pass unnoticed.
-
-The step is complete when every material difference still expresses the same
-meaning or is directly authorized by the user.
+The step is complete when the protected claims, literals, and required
+structure are identified before editing begins.
 
 ## 3. Diagnose by editorial priority
 
@@ -115,9 +106,10 @@ house style for another:
 1. **Truth pass:** repair unsupported emphasis, vague attribution, abstraction,
    missing context, and certainty drift.
 2. **Shape pass:** lead with the useful point, group related ideas, earn every
-   heading and list, and remove restatement or canned framing. Give a chat
-   message or email the [message layout](#message-layout), give every draft
-   the [spacing](#spacing), and follow the [genre's shape](#format-by-genre).
+   heading and list, and remove restatement or canned framing. Give every draft
+   the [spacing](#spacing) and follow the [genre's shape](#format-by-genre);
+   for chat messages, emails, or catch-ups, read
+   [`references/MESSAGE-LAYOUT.md`](references/MESSAGE-LAYOUT.md).
 3. **Voice pass:** choose words, cadence, formality, and personality that fit
    the genre and any supplied sample.
 
@@ -152,72 +144,16 @@ Read the revision once as a reader, without scanning for banned words. Check:
 - removing another supposed "AI tell" would improve the writing rather than
   merely make it conform to a checklist.
 
-When files are available, run the preservation checker and inspect the diff.
-Make one corrective pass for real regressions, then stop.
+For a file-to-file revision when Python is available, run
+`python "<skill-dir>/scripts/check_preservation.py" BEFORE AFTER` (or `python3`)
+and inspect every reported finding plus the full diff. The checker compares
+inventories of protected values, so it catches literal and structural drift but
+not semantic equivalence or swapped values; confirm every material difference
+still expresses the same meaning or was directly authorized. Make one corrective
+pass for real regressions, then stop.
 
 The work is complete when the prose fulfils the brief, the meaning contract is
 intact, and every remaining stylistic choice earns its place in context.
-
-## Message layout
-
-People read chat messages and emails in a narrow pane, often on a phone, and
-scan before they read. Lay out every chat message or email, in any mode, in
-this order:
-
-1. the greeting on its own line, in the same message as the ask, addressed
-   to the person who acts, then an empty line;
-2. the ask as one bold sentence alone on its line;
-3. directly under the ask, in the same block, each short piece of context,
-   such as timing or what changed, on its own line, with no blank line
-   between the ask and these lines;
-4. when three or more separate, parallel facts support the ask, such as one
-   per system or per step, a list with one fact per item, each item opening
-   with a bold label naming its subject;
-5. any remaining need, deadline, or reassurance in its own paragraph;
-6. for email only, the sign-off on its own line, after a blank line.
-
-A chat message, such as one in Teams or Slack, ends on the ask, the deadline,
-or the last fact. It has no sign-off, signature, name, or closing pleasantry:
-the client already shows who sent it. Keep the sign-off in email, and add a
-signature block only when the user's own template has one.
-
-Never run the ask and its context together in one sentence or line, and never
-let the sign-off touch the paragraph above it. Bold only the ask and the
-list-item labels, in the target's own syntax: `<strong>` in HTML, `**text**`
-in Markdown, and `*text*` in Slack. Plain-text email has no bold, so leave the
-ask unmarked on its own line and end each list label with a colon.
-
-The ask and the context lines under it form one block. In HTML, put them in
-one `<p>`: the ask in `<strong>`, then `<br>` before each context line. In
-plain text or Markdown, end the ask and every context line but the last with a
-hard line break. With no context lines, the ask is a paragraph of its own.
-
-Email clients, Teams, and Slack often show no space between paragraphs, so
-write the two empty lines this layout names explicitly: after the greeting,
-and before an email's sign-off. In HTML email or Teams, put `<p>&nbsp;</p>` at
-each; in Slack or a plain-text email, use two newlines. Add no `<p>&nbsp;</p>`
-anywhere else.
-
-When the target supports mentions, greet the person who acts with a mention
-so they are notified. Slack needs only its markup. In Teams and Outlook, markup
-alone notifies no one, so each form there needs its matching metadata:
-
-- Teams message sent through Graph: `<at id="0">Display Name</at>` in an HTML
-  body, plus a `mentions` entry with `id` 0, `mentionText` equal to the text
-  inside the `at` element, and `mentioned.user` holding the person's Entra
-  object ID with `userIdentityType` `aadUser`.
-- Teams Adaptive Card from a bot or incoming webhook: `<at>Display Name</at>`
-  in the card text, plus an `msteams.entities` item of type `mention` whose
-  `text` repeats that string and whose `mentioned` holds the UPN or Entra
-  object ID and the name.
-- Slack: `<@USER_ID>`.
-- Outlook email: a mention is message metadata, not body markup. Write
-  `@Display Name` as plain text and tell the author to retype it in Outlook
-  by typing @ and picking the person, which also adds them to To. Never use
-  a `mailto` anchor as a mention; it is only a link.
-
-Use only the name, ID, or address the author or a lookup tool supplied; when
-none is available, write the plain name and say a mention needs the ID.
 
 ## Spacing
 
@@ -227,8 +163,8 @@ reading. One idea per paragraph, with the point in its first sentence.
 
 Space separates ideas; it does not split them. Keep a cause with its effect and
 a claim with its qualification in the same paragraph. Merge adjacent one-line
-paragraphs that form a single thought, and keep reasoning as prose rather than
-bullets.
+paragraphs that form a single thought (apart from short context lines under a
+message ask), and keep reasoning as prose rather than bullets.
 
 Match the spacing to how the target renders. For HTML, such as a Teams message
 sent with `bodyType: html`, put each paragraph in `<p>` and each list in
@@ -245,10 +181,10 @@ Use the genre's own shape when the brief names one:
 
 | Genre | Shape |
 | --- | --- |
-| Chat message | [Message layout](#message-layout); no sign-off; one message, not a greeting followed by the ask. |
-| Email | Subject names the topic and the action; the point in the first paragraph; greeting and sign-off. |
+| Chat message | Read [`references/MESSAGE-LAYOUT.md`](references/MESSAGE-LAYOUT.md): ask-first block, mentions, no sign-off, one message. |
+| Email | Read [`references/MESSAGE-LAYOUT.md`](references/MESSAGE-LAYOUT.md): topic-and-action subject, ask-first block, greeting and sign-off. |
 | Status or incident update | Current status, impact, actions, remaining uncertainty, and next update time, under short labels; no invented ETA. |
-| Catch-up after time away | One opening line naming what waits on the reader, or saying nothing does; then one line per thing they asked for, saying what came of it and whether it is done, running, failed, or not checked; then each pending decision with your pick and the facts and risk needed to make it from the message alone. Never a count or a bare link in place of an item. |
+| Catch-up after time away | Read [`references/MESSAGE-LAYOUT.md`](references/MESSAGE-LAYOUT.md): open with what waits on the reader, list item statuses, make pending decisions self-contained. |
 | Documentation or report | Descriptive headings; paragraphs of three to seven rendered lines; lists for steps or parallel items; a table when three or more items share the same fields. |
 | Announcement | The change and who it affects first, then the reader's action and its deadline; no ceremony. |
 

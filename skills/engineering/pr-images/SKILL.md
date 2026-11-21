@@ -1,6 +1,6 @@
 ---
 name: pr-images
-description: Screenshots, GIFs, and short videos on GitHub pull requests, issues, and their comments, from deciding whether a change needs them through capture, privacy check, upload with `gh --attach`, and refresh after later commits. Use whenever a PR or issue should show a visual change, when asked to add, attach, upload, retake, or embed screenshots, before/after images, or a demo on a PR, issue, or comment, or when pr-description's evidence calls for screenshots. PR title and body text belong to pr-description; CI and review follow-up to babysit-pr.
+description: Screenshots, GIFs, and short videos on GitHub pull requests, issues, and their comments. Use whenever a PR or issue should show a visual change, when asked to add, attach, upload, retake, or embed screenshots, before/after images, or a demo on a PR, issue, or comment, or when pr-description's evidence calls for screenshots. PR title and body text belong to pr-description; CI and review follow-up to babysit-pr.
 ---
 
 # PR images
@@ -47,7 +47,12 @@ images cannot reach the PR.
   one the project documents that starts without new dependencies, secrets, or
   seeded data.
 
-When one fails, go to step 7.
+When the capture tool or running-app precondition fails, go to step 7. When
+only the delivery path fails: if the user explicitly asked for screenshots or a
+demo, capture and check them locally under steps 3–4, then go to step 7 to hand
+the files and Markdown table to the user; if images are being added
+automatically as part of a PR description, skip capture and go straight to
+step 7 with the one-line reason.
 
 **Complete when:** all three preconditions are confirmed, or the failing one is
 named.
@@ -116,7 +121,9 @@ An after-only table uses a single `After` column. Use Markdown, not HTML
 [gh-attach](references/gh-attach.md) when cells must span rows.
 
 Write the full body to a file in the temporary directory, run `gh` from that
-directory, and pass one `--attach` per image:
+directory, and pass one `--attach` per image. Because `cd "$SHOTS_DIR"` leaves
+the git repository, always pass `--repo OWNER/REPO` (and `--base` and `--head`
+for `gh pr create`):
 
 ```sh
 cd "$SHOTS_DIR"
@@ -126,10 +133,10 @@ gh pr edit 123 --repo OWNER/REPO --body-file body.md \
 ```
 
 Before editing a body someone else may have changed, fetch it again and change
-only your section. After a non-zero exit, never run `gh pr create` again: the
-PR may exist. Read the body back with `gh pr view URL --json body`, repair or
-remove any reference still pointing at a local path, and report which images
-did not upload.
+only your section. After a non-zero exit, never run `gh pr create` or
+`gh issue create` again: the item may exist. Read the saved body back (`gh pr view`,
+`gh issue view`, or the comment endpoint), repair or remove any reference still
+pointing at a local path, and report which images did not upload.
 
 **Complete when:** the saved body, read back from GitHub, shows every image as
 an uploaded URL and no local paths, or the images that failed are named.

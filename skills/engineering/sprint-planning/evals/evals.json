@@ -34,6 +34,17 @@
         "The agent does not produce a sprint goal, capacity calculation, or story points.",
         "The agent produces or routes to a slice-and-dependency implementation plan."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "Since our 4-person team started using AI coding agents last month, completed story points jumped from 30 to 65 per sprint, but three large PRs sat in review for four days and two caused production regressions. Help us size capacity for next sprint without touching Jira.",
+      "expected_output": "Explains why raw AI-accelerated story points stop measuring sustainable throughput when review and verification are the bottleneck, scales sprint capacity around human review/verification bandwidth and agent-fit risk categories rather than committing 65 raw points, and makes no Jira writes.",
+      "files": [],
+      "expectations": [
+        "Identifies human review and verification throughput (not raw code generation) as the governing sprint bottleneck.",
+        "Refuses to blindly plan 65 points from inflated post-AI velocity; proposes capacity/WIP limits grounded in review load and done-cost.",
+        "Uses agent-fit tagging (e.g., mechanical vs judgment/high-risk work) to cap risky concurrent diffs and makes no tracker edits."
+      ]
     }
   ]
 }

@@ -66,9 +66,4 @@ more checks apply to evals:
 
 ## Report
 
-Lead with the verdict: faster, slower, no measurable difference, or
-inconclusive. Give the number with its unit, run count, range, and limiter, for
-example "p50 41 ms to 33 ms, median of 7 runs per side, range 32 to 35 ms,
-bound by JSON parsing on one core". The verdict is INCONCLUSIVE when the
-limiter is unnamed, a side ran untuned, or checks 4 or 7 could not be done;
-name the gap.
+Lead with the measured outcome (`faster`, `slower`, `no measurable difference`, or `inconclusive`) and map it to the receipt verdict in `../SKILL.md`: `VERIFIED` only when the claimed effect holds above the noise floor with all checks satisfied, `NOT VERIFIED` when the measurement contradicts the claim, and `INCONCLUSIVE` when the limiter is unnamed, a side ran untuned, or checks 4 or 7 could not be done. Give the number with its unit, run count, range, and limiter, for example "p50 41 ms to 33 ms, median of 7 runs per side, range 32 to 35 ms, bound by JSON parsing on one core", and name any gap.

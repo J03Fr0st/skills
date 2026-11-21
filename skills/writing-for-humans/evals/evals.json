@@ -123,6 +123,28 @@
         "The sign-off from Joe is kept on its own line.",
         "PO-88213, 40 laptop docks, Thursday 20 November, IT-2026-17, and the Friday quote expiry remain exact, and no facts or urgency are added."
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "Edit the draft in evals/fixtures/incident-draft.md into a crisp operational update for engineering leadership. Run scripts/check_preservation.py to confirm every protected token survived intact, and do not modify the fixture file itself.",
+      "expected_output": "Returns a tight, status-first operational update with every timestamp, percentage, version (v4.8.2), command, file path, bare URL, full URL, count, and unproved-cause qualification preserved, verified with scripts/check_preservation.py.",
+      "files": ["evals/fixtures/incident-draft.md"],
+      "expectations": [
+        "Preserves 14:30 UTC, 2026-11-20, 17.5%, eu-west-1, v4.8.2, `queue inspect --failed`, `/srv/checkout/config.yml`, status.example.com/incidents/482, https://metrics.example.com/d/chk-482, 14:47 UTC, 0.8%, 14:52 UTC, and 42 delayed orders verbatim.",
+        "Keeps the retry-loop cause explicitly unconfirmed.",
+        "Runs scripts/check_preservation.py against the draft and edited text (or reports its exact result) without mutating evals/fixtures/incident-draft.md."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Tighten this short Slack status note for teammates who were out yesterday, without inventing any missing context: 'Quick update on the Horizon Pivot: it broke them during the cutover, so we rolled that back and are waiting on the green light from the other side before trying again.'",
+      "expected_output": "Flags the opaque coined label ('Horizon Pivot') and unresolved referents ('it', 'them', 'the other side') rather than guessing what they mean, and offers a tightened version or specific replacements once the author supplies the missing referents.",
+      "files": [],
+      "expectations": [
+        "Identifies the unclear referents ('it', 'them', 'the other side') and opaque coined label ('Horizon Pivot') that make the update unactionable for returning teammates.",
+        "Does not invent concrete system names, teams, or causes to fill the gaps.",
+        "Either asks for the missing concrete facts or provides a clear template/tightened draft with explicit author-fill placeholders."
+      ]
     }
   ]
 }

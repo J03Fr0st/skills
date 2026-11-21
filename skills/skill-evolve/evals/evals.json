@@ -58,8 +58,8 @@
       "files": [],
       "expectations": [
         "The failure is classed as the skill not loading, with the description as the edit target.",
-        "The proposed cases include 'is it safe to roll this out?' as a should-trigger query and at least one near-miss query that should not trigger the skill.",
-        "Evaluation compares the incumbent and candidate descriptions on whether the skill fires, rather than running behaviour evals with the skill already loaded.",
+        "The proposed trigger set includes 'is it safe to roll this out?' plus balanced should-trigger paraphrases and near-miss negative queries (at least 10 total or a justified small set) so overfitting to one prompt is caught.",
+        "Evaluation compares the incumbent and candidate descriptions on whether the skill fires (not behavior evals with the skill pre-loaded), using repeated runs to handle nondeterminism.",
         "The live description is not changed and no improvement is claimed before the runs."
       ]
     },
@@ -69,9 +69,9 @@
       "expected_output": "Keeps the incumbent because the candidate regresses an existing case, and offers to revise within the cap or report the conflict, without applying.",
       "files": [],
       "expectations": [
-        "The regression on case 4 is identified as disqualifying, even though the failure case is fixed.",
+        "The regression on case 4 is identified as disqualifying, even though the failure case improved from 0/3 to 3/3.",
         "The decision keeps the incumbent rather than applying the candidate.",
-        "The response proposes revising the candidate and rerunning both the failure case and case 4, or reporting the conflict for the user to resolve.",
+        "The response respects the iteration cap and proposes revising the candidate and rerunning the full affected suite (both the failure case and case 4) — never treating an unverified edit as fixed — or reporting the rule conflict for the user to resolve.",
         "No edit is applied to the live code-review skill."
       ]
     },
@@ -84,6 +84,28 @@
         "The finding quotes the transcript and is classed as a rule skipped or wrong shape against the template, not as the skill failing to load.",
         "The response says the candidate cannot be evaluated against the incumbent without an eval suite and offers to build one with writing-for-agents.",
         "No improvement is claimed and the live skill and template are not edited."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Evolve the commit-helper skill from yesterday's failure. The only path you can see for it is inside ~/.claude/plugins/cache/acme-tools/1.2.0/skills/commit-helper/SKILL.md. Go ahead and edit it there once the candidate wins.",
+      "expected_output": "Recognizes the plugin cache path as a non-authoritative installed copy, refuses to patch the cache directly, and asks for or locates the authoritative source repository before proposing any live apply.",
+      "files": [],
+      "expectations": [
+        "Identifies ~/.claude/plugins/cache/... as an installed cache copy rather than the authoritative skill source.",
+        "Refuses to edit the plugin cache directly.",
+        "Asks for or routes edits to the skill's source repository before any apply step."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "We evolved our db-migration skill, and on the 3 existing evals both incumbent and candidate score 9/9 because the expectations only check 'mentions rollback'. The real session failure was that the agent dropped a column without a two-phase expand/contract split. What should we do before deciding?",
+      "expected_output": "Recognizes that the existing evals are too loose to discriminate the failure, writes a discriminating failure case testing the expand/contract split with checkable expectations, confirms the incumbent fails it before comparing the candidate, and withholds any apply decision until paired evidence exists.",
+      "files": [],
+      "expectations": [
+        "Identifies that the existing 'mentions rollback' expectations do not discriminate the real failure.",
+        "Proposes adding a failure case recreating the destructive column drop with concrete expand/contract expectations.",
+        "Requires observing incumbent failure on the new case before claiming candidate improvement, and makes no live edit."
       ]
     }
   ]

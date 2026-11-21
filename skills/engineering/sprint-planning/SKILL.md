@@ -1,11 +1,11 @@
 ---
 name: sprint-planning
-description: Plan a team sprint - sprint goal, capacity, breaking features into stories and investigation spikes, and assigning Fibonacci story points against the team's reference stories. Use when asked to plan or prepare a sprint, size or point a backlog, break an epic or feature into tickets, prepare for planning poker or refinement, decide what fits a sprint, or when velocity stopped meaning anything after the team adopted AI coding tools. Agent implementation plans belong to planning-and-task-breakdown; an unclear product decision belongs to grilling.
+description: Plan a team sprint with reference-anchored Fibonacci story points, capacity, and timeboxed spikes. Use when asked to plan or prepare a sprint, size or point a backlog, break an epic or feature into tickets, prepare for planning poker or refinement, decide what fits a sprint, or when velocity stopped meaning anything after the team adopted AI coding tools. Agent implementation plans belong to planning-and-task-breakdown; an unclear product decision belongs to grilling.
 ---
 
 # Sprint Planning
 
-Produce a sprint plan a team can commit to: one sprint goal, sized stories and timeboxed spikes that serve it, and a selection that fits measured capacity.
+Produce a sprint plan a team can commit to: one sprint goal, sized stories and timeboxed spikes that serve it, and a selection that fits measured capacity. For a partial request — backlog refinement, epic breakdown, or pointing only — run only the applicable steps (Steps 1, 3, and 4) without inventing sprint dates, a sprint goal, or capacity.
 
 Three leading words run through this skill:
 
@@ -17,22 +17,22 @@ Three leading words run through this skill:
 
 Collect from the user, the tracker, or the repository:
 
-- candidate backlog items, in priority order;
-- sprint length and dates;
+- candidate backlog items in priority order, plus in-flight carryover work from the prior sprint (remaining done-cost);
+- sprint length and dates (full sprint plan only);
 - team members, availability (leave, on-call, part-time), and who can review which areas;
-- completed points for the last three sprints;
+- completed points for the last three sprints (and whether those sprints already included spikes or reduced availability);
 - the definition of done;
 - anchors for at least 1, 3, and 5 points, ideally 2 and 8 as well.
 
-When anchors are missing, propose them from completed stories the team recognises: pick one story per value, show its scope and the effort it took, and have the user confirm or replace each one. Points assigned without confirmed anchors are guesses with numbers on them, so no story receives a point until the anchors are confirmed. If anchors cannot be confirmed in this conversation, continue through the breakdown in step 3 and deliver it with the anchor request, leaving every point blank. When fewer than three sprints of history exist, say so and treat capacity as a forecast range.
+When anchors are missing, propose them from completed stories the team recognises: pick one story per value, show its scope and the effort it took, and have the user confirm or replace each one. Points assigned without confirmed anchors are guesses with numbers on them, so no story receives a point until the anchors are confirmed. If anchors cannot be confirmed in this conversation, continue through the breakdown in step 3 and deliver it with the anchor request, leaving every point blank (skip steps 4–5). When fewer than three sprints of history exist (including zero), say so and treat capacity as a forecast range.
 
-**Complete when:** every input above is either recorded or explicitly marked missing with its consequence, and the anchors are confirmed.
+**Complete when:** every relevant input above is recorded or explicitly marked missing with its consequence, and either the anchors are confirmed or the run is marked for the step-3 unpointed exit.
 
 ## 2. Draft the sprint goal
 
 Write one sentence naming the outcome the sprint delivers for a user or the business, chosen from the top of the backlog. The goal decides what belongs in the sprint: an item that does not serve it needs a stated reason to be included (a commitment, an incident, a deadline).
 
-**Complete when:** the goal is one outcome sentence and the user has accepted it or replaced it.
+**Complete when:** the goal is one outcome sentence accepted by the user, or marked proposed for team confirmation in a single-pass draft.
 
 ## 3. Break down the work
 
@@ -81,7 +81,7 @@ A 13 means the story must be split before it enters the sprint. If no honest val
 
 ## 5. Fit the sprint to capacity
 
-1. Compute capacity as: mean completed points of the last three sprints × (available person-days − spike person-days) ÷ a normal sprint's person-days. Count a spike day as one person-day per assignee, and show the arithmetic.
+1. Compute capacity as: baseline velocity × (available person-days − extra spike person-days) ÷ a normal sprint's person-days, then deduct carryover remaining points. Use the 3-sprint mean when 3+ sprints exist; with 1–2 sprints use their range; with 0 sprints present a conservative forecast range flagged for confirmation. Deduct only spike days beyond what the baseline sprints already absorbed (avoid double-deducting), count one person-day per assignee, and show the arithmetic.
 2. Check review load: count `assisted` and `judgment` points per reviewer area. Name any area whose reviewers are overloaded and rebalance, because review is where AI-assisted teams queue.
 3. Select stories in goal order until capacity is reached. Draw the cut line there: mark the next one or two as stretch, each with the condition that would pull it in. When the candidates run out below capacity, report the gap and leave the choice to fill it to the team.
 
