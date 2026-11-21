@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.15.1
+
+### Patch Changes
+
+- [#78](https://github.com/J03Fr0st/skills/pull/78) [`f9e3f96`](https://github.com/J03Fr0st/skills/commit/f9e3f96cbf4774afbf1820f05c27188cdb980b92) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - Apply per-skill enhancements across all 33 skills, supporting scripts, eval
+  suites, and repository validation: add `verify-chain.mjs` and tighten
+  `content-hash.mjs` in `adlc-gate`, harden `check_preservation.py`,
+  `check_html.py`, `watch_pr.py`, `git-kit.mjs`, and `install-agents.mjs`,
+  extract `MESSAGE-LAYOUT.md` in `writing-for-humans`, resolve guidance gaps
+  and contradictions across all 33 skills, add checkable `expectations` to every
+  skill's `evals/evals.json`, and enforce non-empty `expectations` in
+  `scripts/validate-repo.mjs`.
+
 ## 0.15.0
 
 ### Minor Changes
