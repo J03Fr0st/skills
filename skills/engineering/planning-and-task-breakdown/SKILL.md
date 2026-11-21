@@ -1,6 +1,6 @@
 ---
 name: planning-and-task-breakdown
-description: Plan technical work when clear requirements span dependent changes, multiple sessions, or an uncertain implementation order. Use for implementation plans, vertical slices, and task dependencies. A small clear change can go directly to implement.
+description: Plan technical work when clear requirements span dependent changes, multiple sessions, or an uncertain implementation order. Use for implementation plans, vertical slices, breaking down a multi-step feature or migration, and task dependencies. Small clear changes go directly to implement; team sprint capacity and story pointing belong to sprint-planning; unclear product decisions belong to grilling.
 ---
 
 # Planning and Task Breakdown
@@ -9,7 +9,7 @@ Turn an agreed outcome into independently verifiable slices and a ready frontier
 
 ## 1. Establish the contract
 
-Read the requested outcome, repository instructions, existing plan or tracker, relevant code, and available checks. Separate confirmed behavior from assumptions. Resolve discoverable facts directly; use `research` for external facts and `codebase-design` for a consequential module decision.
+Read the requested outcome, repository instructions, existing plan or tracker, relevant code, and available checks. Separate confirmed behavior from assumptions. Before introducing new components or complexity, check whether an existing owner or native facility already solves the problem. Resolve discoverable facts directly; use `research` for external facts, `codebase-design` for a consequential module decision, and `prototype` when a feasibility experiment blocks slicing.
 
 Ask about an unresolved choice only when it changes acceptance, scope, architecture, or risk. Use `grilling` for an interview when several material choices depend on each other. Continue planning independent parts while a decision is pending.
 
@@ -36,24 +36,34 @@ Keep estimates conditional on evidence. Use code examples only when they settle 
 
 ## 3. Check the graph and frontier
 
-Walk dependencies for missing IDs, cycles, and work falsely marked independent. Shared schemas, files, mutable environments, and unresolved contracts can serialize otherwise separate tasks. Name an integration owner if parallel execution is proposed; execution and delegation remain within the caller's authority.
+Walk dependencies for missing IDs, cycles, and work falsely marked independent. Shared schemas, files, mutable environments, and unresolved contracts can serialize otherwise separate tasks. Name an integration owner if parallel execution is proposed (`orchestrate` owns bounded parallel dispatch); execution and delegation remain within the caller's authority.
 
-Write a **review focus**: the input classes and failure modes the requirements imply but no slice's check exercises, ranked by likelihood, each assigned to the slice whose check should cover it. Reviewers look hardest there.
+Write a **review focus**: residual input classes and failure modes the requirements imply that automated slice checks do not fully cover (or cross-slice interactions), ranked by likelihood, each linked to its owning slice so reviewers probe there hardest.
 
-Decide the **delivery shape**. One pull request is the default; each extra one costs another round of CI, review, and rebasing. Group slices into separate pull requests only when the project requires a part to ship alone or to have an approver the rest does not need, a required human reviewer could not review one pull request well, a part must reach production before the rest is ready, or a later part cannot merge until an earlier one is deployed, has migrated data, or has run for a set time. Different risk, separate rollback, merge order, and waiting on someone's decision are not reasons on their own; record a pending decision as a merge gate. Name the reason under each extra group.
+Decide the **delivery shape** (one pull request is the default; each extra one costs another round of CI, review, and rebasing):
+
+- **Valid reasons to split PRs:** project rules require separate approval or shipping alone; a required human reviewer cannot review one PR well; a part must reach production first; or a later part cannot merge until an earlier one is deployed, migrated, or baked in. Name the reason under each extra group.
+- **Not reasons on their own:** different risk, separate rollback, merge order, or waiting on a decision (record a pending decision as a merge gate instead).
 
 List the ready frontier and why each other slice is blocked. The final integration check must cover the combined user outcome, even when every slice has passed its own check.
 
 Ready means ready to start: required inputs and permissions are present. Distinguish entry prerequisites from decisions or evidence a slice is meant to produce. A discovery slice can be ready while implementation remains blocked; name that distinction explicitly.
 
-**Complete when:** the graph has no unexplained cycle or dependency, every cross-slice contract appears in both slices' interfaces, the review focus is written, the ready frontier is accurate, and combined acceptance has a verification path.
+**Complete when:** the graph has no unexplained cycle or dependency, every cross-slice contract appears in both slices' interfaces, the review focus is written, the delivery shape is stated, the ready frontier is accurate, and combined acceptance has a verification path.
 
 ## 4. Save and return the plan
 
 Use the canonical plan or tracker already designated for this work. A planning request authorizes a local plan artifact unless the user requests chat-only or no file changes. Follow repository conventions; otherwise use a unique `docs/plans/<task>.md`. Preserve another task's unfinished plan. For an external tracker, prepare local content unless writing there is already authorized; use links instead of maintaining duplicate status lists.
 
-Before saving, check **proportion**: the plan's length tracks the problem's size. Trim narrative, restated requirements, and implementation steps until what remains is decisions, slices, interfaces, and checks.
+Include these plan sections in order (omitting only sections that genuinely do not apply):
 
-Record the inspected revision or snapshot, material decisions, evidence pointers, frontier, and next action. Refresh these at slice boundaries. Keep active constraints and failing evidence available; leave old exploration behind pointers. Use `handoff` when work must move to another session, harness, directory, or person.
+1. **Context & inspected revision** — outcome, exclusions, baseline revision/snapshot, and material decisions.
+2. **Deferred** — cut items with their concrete reopen triggers.
+3. **Slices & Interfaces** — verifiable slices, cross-slice contracts, dependencies, and checks.
+4. **Review focus** — ranked residual failure modes and owning slices.
+5. **Delivery shape** — single PR default or justified PR groups.
+6. **Ready frontier & combined acceptance** — what can start now, what blocks the rest, and the end-to-end check.
+
+Before saving, check **proportion**: trim narrative, restated requirements, and implementation steps until what remains is decisions, slices, interfaces, and checks. Leave old exploration behind pointers, and use `handoff` when work must move to another session, harness, directory, or person.
 
 **Complete when:** the plan is saved or delivered in the requested form and another agent can identify its next executable slice. If implementation is already authorized, return to `implement` and continue from that frontier; a request for planning alone ends with the plan.

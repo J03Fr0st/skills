@@ -70,7 +70,7 @@ superseded, or residual, and each claim names its evidence.
 | Verdict | Condition | Action |
 | --- | --- | --- |
 | **CURRENT** | Residual is all still-new work and nothing competes with it | Sync under [branching](branching.md) policy, rerun affected checks, publish under [integration pitfalls](integration.md) |
-| **PARTIAL** | Some commits landed and still-new residual remains | Rebase, which drops commits whose patch is already upstream; confirm with `git range-diff` that only the residual remains, and explain every hunk it shows as changed |
+| **PARTIAL** | Some commits landed and still-new residual remains | When rebasing is authorized under [branching](branching.md) and published-rewrite rules in [integration pitfalls](integration.md), rebase to drop commits whose patch is already upstream, confirm with `git range-diff` that only the residual remains, and explain every hunk it shows as changed |
 | **LANDED** | Residual is empty or only reintroductions | Name the PR or commit that carried the work; do not push or open a PR; offer retirement through `git-worktrees` |
 | **SUPERSEDED** | Another merged or open PR covers the same goal | Name it and recommend closing or joining it instead of rebasing |
 | **REWORK** | The goal still matters, but the base changed APIs, types, or architecture so a mechanical rebase keeps the wrong shape | Describe the smallest credible rewrite and stop before pushing unless the rework was requested |

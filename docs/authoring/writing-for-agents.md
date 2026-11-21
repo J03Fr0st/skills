@@ -185,6 +185,7 @@ The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) adds th
   gate, document classification, micro-testing, baseline runs, loophole closing,
   and eval sets.
 - `skills/writing-for-agents/evals/evals.json` - scenarios for description
-  writing, instruction-file pruning with an embedded injection, invocation and
-  layout choice, failure-form matching, and refusing an unearned claim that a
-  skill works.
+  writing, instruction-file pruning with an embedded injection, premature
+  completion, failure-form matching, refusing an unearned claim that a skill
+  works, edit-before-append/tool-level fixes, two-file instruction wiring, and
+  deceptive-skill refusal.

@@ -4,26 +4,15 @@ Behavior of GitHub CLI's attachment flag, read from the `cli/cli` source
 (`internal/attachments`) through v2.104.0. Recheck `--help` when the installed
 version is newer.
 
-## Contents
-
-- Availability
-- Permission and host
-- Files and limits
-- How references are rewritten
-- Path resolution by version
-- Partial failure
-- HTML tables
-- Visibility and permanence
-
 ## Availability
 
 `--attach '<file>#<alt text>'` exists on `gh pr create`, `gh pr edit`,
 `gh pr comment`, `gh issue create`, and `gh issue comment` from **v2.99.0**.
 It is repeatable, up to 50 files per command. `--web` and `--dry-run` reject it.
-Check the command you will run:
+Check that the command you will run lists `--attach` and that auth succeeds:
 
 ```sh
-gh pr edit --help | grep -- --attach
+gh pr edit --help
 gh auth status
 ```
 
@@ -71,8 +60,10 @@ twice are refused.
   working directory.
 
 Running gh from the directory that holds both the body file and the images,
-with `./name.png` in the body and in `--attach`, matches on every version. A
-body file in the images directory run from the repository root works only on
+with `./name.png` in the body and in `--attach`, matches on every version.
+Because that temporary directory is outside the git repository, pass
+`--repo OWNER/REPO` (and `--base` and `--head` for `gh pr create`) explicitly.
+A body file in the images directory run from the repository root works only on
 2.103+; on older versions the reference stays a broken local path and the image
 is appended a second time.
 
