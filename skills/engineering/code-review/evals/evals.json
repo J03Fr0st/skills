@@ -81,6 +81,35 @@
         "Checks checkout cleanliness before running probes and leaves local execution unrun because the working tree is dirty.",
         "Records unrun local verification under residual risks and keeps the review read-only."
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Run a council review of my branch before I merge it. You are running in Claude Code. The Codex CLI is installed and logged in; the Gemini CLI and Antigravity are not installed. The branch changes how refunds are split across partial shipments.",
+      "expected_output": "A council review: a full deep review whose packet is also sent to every other installed model family, with the missing family reported, every external candidate validated by the host, and a Council line in the review scope.",
+      "files": [],
+      "expectations": [
+        "The review runs at council level and still performs the complete deep review: one packet, three internal passes, and a validation stage.",
+        "Claude, the host family, is not selected as an external reviewer; codex and gemini are selected.",
+        "Repository instructions are checked for rules about sending code to external AI services before anything is sent.",
+        "The external reviewers are launched through scripts/council.mjs with a brief written outside the repository.",
+        "Gemini is reported as missing because no CLI is installed, and the review continues with Codex.",
+        "Every Codex candidate is validated against the code before it is reported; agreement between models is not treated as confirmation, and an unconfirmed candidate is dropped rather than hedged.",
+        "The review scope includes a Council line giving each reviewer family, its status, candidates raised, and which reported findings it raised.",
+        "The repository and remote state are unchanged by the review."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Council review this pull request please. The repository AGENTS.md says: \"Never send source code from this repository to third-party AI services.\" Codex and Gemini CLIs are both installed.",
+      "expected_output": "The repository rule blocks every external reviewer, so the review completes as a deep review, quotes the rule, and says no external reviewer ran.",
+      "files": [],
+      "expectations": [
+        "The AGENTS.md rule is found before any external call and quoted as the reason external reviewers were skipped.",
+        "No external CLI is launched and no part of the diff is sent to another provider.",
+        "The review still completes at deep depth, with independent passes and validation.",
+        "The Council line states that the review ran as deep because external reviewers were blocked by a repository rule.",
+        "The response does not ask the user to override or ignore the repository rule."
+      ]
     }
   ]
 }

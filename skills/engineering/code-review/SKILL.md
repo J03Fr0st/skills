@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Review code changes read-only at quick, standard, or deep depth, with a bounded single-reviewer default and evidence-backed findings. Use when the user asks to review a branch, pull request, commit, working-tree changes, staged changes, a diff, or code before merge, including a diff pasted inline that looks quick to review; asks for a quick or deep review; or wants to know whether a change matches its specification and repository rules. Route dedicated security audits to security-review, implementation-only requests to implement, and whole-codebase audits or product acceptance to their own workflows.
+description: Review code changes read-only at quick, standard, deep, or council depth, with a bounded single-reviewer default and evidence-backed findings. Use when the user asks to review a branch, pull request, commit, working-tree changes, staged changes, a diff, or code before merge, including a diff pasted inline that looks quick to review; asks for a quick, deep, or council review; wants a multi-model review or a second opinion from Codex, Gemini, or Claude; or wants to know whether a change matches its specification and repository rules. Route dedicated security audits to security-review, implementation-only requests to implement, and whole-codebase audits or product acceptance to their own workflows.
 ---
 
 # Code Review
@@ -16,10 +16,10 @@ For a dedicated security audit or threat model, use `security-review`. Security 
 Accept three inputs when present:
 
 - **Target:** working tree, staged changes, commit, branch, tag, pull request, or explicit diff.
-- **Level:** `quick`, `standard`, or `deep`.
+- **Level:** `quick`, `standard`, `deep`, or `council`.
 - **Intent:** issue, acceptance criteria, design note, user statement, or focused risk to check.
 
-Use `standard` when no level is named. Treat “fast,” “light,” or “sanity check” as `quick`; treat “thorough,” “exhaustive,” or “adversarial” as `deep`. Do not silently promote a review to `deep`.
+Use `standard` when no level is named. Treat “fast,” “light,” or “sanity check” as `quick`; treat “thorough,” “exhaustive,” or “adversarial” as `deep`; treat “council,” “multi-model,” “cross-model,” or a request for other models' opinions as `council`. Do not silently promote a review to `deep` or `council`.
 
 ## 1. Resolve the review boundary
 
@@ -31,7 +31,7 @@ Prefer, in order:
 
 For branch and pull-request reviews, review what would actually merge. Resolve the base to its remote-tracking ref when the local copy is behind, take the merge base with the reviewed head, and review the changes introduced since that commit. Record the base commit. Never use the reviewed branch's own upstream as the base; that hides every change already pushed. Do not compare only the two branch tips when their histories have diverged. When re-reviewing after fixes to a gate-class defect (authorization, data loss, migrations, concurrency, or verification gates), inspect the full merge-base diff rather than only the follow-up commit.
 
-For a diff pasted inline without repository access, treat the pasted diff as the scope and record unavailable surrounding code, callers, and repository rules under residual risks. Before running any local check in `standard` or `deep` against a branch or pull request, confirm the checkout is clean (`git status --short` empty) and `git rev-parse HEAD` matches the exact reviewed head; otherwise leave execution unrun and record it under residual risks.
+For a diff pasted inline without repository access, treat the pasted diff as the scope and record unavailable surrounding code, callers, and repository rules under residual risks. Before running any local check at any level above `quick` against a branch or pull request, confirm the checkout is clean (`git status --short` empty) and `git rev-parse HEAD` matches the exact reviewed head; otherwise leave execution unrun and record it under residual risks.
 
 Confirm that the base resolves and that the resulting range is non-empty before gathering further evidence. An unresolvable ref or an empty range is a scope problem to report, not a review to perform.
 
@@ -71,6 +71,10 @@ Use one reviewer and keep the work bounded.
 
 Use when the user explicitly requests it or accepts the recommendation. Read and follow [references/DEEP-REVIEW.md](references/DEEP-REVIEW.md). That reference adds independent review axes, candidate validation, selective history, and risk-based checks.
 
+### `council`
+
+Use only when the user explicitly requests it. `council` is `deep` plus independent passes from other model families (Codex, Gemini, Claude) run through their command-line tools, with every external candidate validated by you before it is reported. Read and follow [references/COUNCIL.md](references/COUNCIL.md), which runs on top of DEEP-REVIEW.md. When no other model family can run, the review completes as `deep` and says so.
+
 **Complete when:** the requested level has been applied without borrowing expensive steps from a deeper level, and any uncovered high-risk area is named as residual risk.
 
 ## 3. Review through three axes
@@ -83,7 +87,7 @@ Track these axes even when one reviewer performs them together:
 
 Use architecture only to explain a concrete changed risk. Examine ownership, invariants, dependency direction, caller knowledge, failure semantics, and seam-aligned tests. Apply `codebase-design`'s **KISS -> YAGNI -> DRY** evidence sequence; similar syntax is not necessarily duplicated knowledge. Treat SOLID principles and code smells as diagnostic questions, not automatic findings.
 
-At `standard` and `deep`, identify the change's **load-bearing fact**: the one condition its safety depends on, such as "every caller already holds the lock" or "the removed column has no remaining readers." Record how far up the **proof ladder** that fact got: *asserted* -> *cited line* -> *walked through* -> *ran a script or test* -> *reproduced live*. A fact that stops below *ran* is **unproven**. Climb as far as the level's budget allows, then label the rung honestly.
+At every level above `quick`, identify the change's **load-bearing fact**: the one condition its safety depends on, such as "every caller already holds the lock" or "the removed column has no remaining readers." Record how far up the **proof ladder** that fact got: *asserted* -> *cited line* -> *walked through* -> *ran a script or test* -> *reproduced live*. A fact that stops below *ran* is **unproven**. Climb as far as the level's budget allows, then label the rung honestly.
 
 ## 4. Admit only proven findings
 
@@ -133,7 +137,7 @@ If nothing passes the gate, write `No findings.` Do not manufacture reassurance,
 After the findings, include only:
 
 - **Review scope:** target, base, level, and what was inspected.
-- **Blast radius** (`standard` and `deep`): the load-bearing fact, its rung on the proof ladder with the cited line or command, and the label `unproven` when it stopped below *ran*. For a trivial `standard` change with no cross-caller or state assumption, write `None — local change with no unverified assumption`.
+- **Blast radius** (every level above `quick`): the load-bearing fact, its rung on the proof ladder with the cited line or command, and the label `unproven` when it stopped below *ran*. For a trivial `standard` change with no cross-caller or state assumption, write `None — local change with no unverified assumption`.
 - **Residual risks:** unavailable specification, checks not run, unverified generated output, or areas for which a deeper review is warranted. Write `None identified` when appropriate.
 
 ## Completion gate
@@ -143,8 +147,8 @@ The review is complete only when:
 - the target and fixed point are named;
 - every changed hunk and untracked file in scope was read, or the uncovered files were named as residual risk;
 - applicable repository instructions were applied;
-- each reported item passes the finding gate and cites a precise changed cause;
+- each reported item passes the finding gate and cites a precise changed cause, and every candidate that passed is reported, however many or few there are;
 - uncertain or duplicate candidates were verified, removed, or disclosed as residual risk;
-- at `standard` and `deep`, the load-bearing fact is named with its proof rung, labelled `unproven` below *ran*;
+- at every level above `quick`, the load-bearing fact is named with its proof rung, labelled `unproven` below *ran*;
 - the final response leads with findings and names the review level and evidence limits;
 - the review itself changed no repository or remote state.
