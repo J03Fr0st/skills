@@ -8,7 +8,7 @@ See the [workflow map](../../docs/workflow.md) for entry points and handoffs.
 
 - [babysit-pr](../../docs/engineering/babysit-pr.md) - own the PR repair and watch loop through an explicit, verified endpoint.
 - [codebase-design](../../docs/engineering/codebase-design.md) - design cohesive modules, evidence-gated abstractions, intentional dependency direction, and explicit inter-module contracts.
-- [code-review](../../docs/engineering/code-review.md) - review changes at quick, standard, or deep depth with a bounded default and evidence-backed findings.
+- [code-review](../../docs/engineering/code-review.md) - review changes at quick, standard, deep, or multi-model council depth with a bounded default and evidence-backed findings.
 - [compound-learnings](../../docs/engineering/compound-learnings.md) - capture durable engineering lessons past a counterfactual bar and refresh the store against current code.
 - [diagnosing-bugs](../../docs/engineering/diagnosing-bugs.md) - establish root causes through reproduction, hypotheses, and discriminating evidence before remediation.
 - [coding-standards](../../docs/engineering/coding-standards.md) - apply project conventions with shared rules and conditional backend and frontend guidance.

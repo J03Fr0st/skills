@@ -1,11 +1,11 @@
 # Code Review
 
-`code-review` reviews a defined set of changes and reports only introduced, concrete problems that the author can act on. One public skill covers three depths so callers can ask for more evidence without learning separate review workflows.
+`code-review` reviews a defined set of changes and reports only introduced, concrete problems that the author can act on. One public skill covers four depths so callers can ask for more evidence without learning separate review workflows.
 
 - **Invocation:** model-invoked for working-tree, commit, branch, pull-request, pre-merge, specification-compliance, and repository-standards reviews.
 - **Default:** `standard`, a bounded single-reviewer pass.
 - **Posture:** read-only during review. A requested review-and-fix completes review first, then hands findings to `implement`; publishing, approving, merging, committing, and posting remote comments require separate authorization.
-- **Output:** severity-ordered findings first, followed by the exact review scope, a blast-radius line at `standard` and `deep`, and residual risks.
+- **Output:** severity-ordered findings first, followed by the exact review scope, a blast-radius line at every level above `quick`, a Council line at `council`, and residual risks.
 
 ## Review levels
 
@@ -14,8 +14,9 @@
 | `quick`    | Small changes and fast preflight      | Complete diff, repository rules, supplied intent, and only the local context needed to prove an obvious issue |
 | `standard` | Most branch and pull-request reviews  | Complete merge-base diff, nearby behavior, readily available intent, callers or tests that settle candidates, and at most a narrow targeted check |
 | `deep`     | High-risk or explicitly thorough work | Independent defects, specification, and standards/architecture passes; selective history and checks; a separate candidate-validation stage |
+| `council`  | Changes worth several models' scrutiny | Everything in `deep`, plus independent read-only passes from the other model families (Codex, Gemini, Claude) through their CLIs, all validated by the host before reporting |
 
-The skill never silently escalates. If a standard review encounters authorization, money, destructive data work, migrations, concurrency, cross-process retries, or public compatibility, it completes the bounded review and names deep review as a residual-risk recommendation.
+The skill never silently escalates, and `council` runs only on an explicit request. If a standard review encounters authorization, money, destructive data work, migrations, concurrency, cross-process retries, or public compatibility, it completes the bounded review and names deep review as a residual-risk recommendation.
 
 ## Review boundary
 
@@ -51,9 +52,15 @@ This separation gives high-risk work broader attention while keeping the default
 
 When a reviewer on a different model or harness is available and permitted, deep mode can add it as one more read-only pass. It never blocks the review, and its candidates face the same validation. Dedicated threat modeling belongs to [security-review](security-review.md).
 
+## Council review
+
+Council mode is a deep review with outside reviewers. After building the deep packet, the host checks repository instructions for rules against sending code to external AI services, removes secret-bearing files from what leaves the machine, and selects every model family other than its own. `scripts/council.mjs` then runs those reviewers in parallel and read-only: `codex exec` in its read-only sandbox, `gemini` in default approval mode or `agy` (Antigravity) in its sandbox, and `claude -p` limited to read tools. Each reviewer gets the same brief and answers in a fixed candidate format; a missing CLI, failure, or timeout is reported rather than hidden.
+
+External candidates join the host's own and face the same reasoning-blind validation. The host is the only judge: a candidate raised by one model is neither discounted nor favoured, agreement between models is not confirmation, and an external fix suggestion is never passed on until validation confirms the problem it fixes. The review scope ends with a Council line naming each reviewer's status, candidates raised, and confirmed findings. When no other family can run, the review completes as `deep` and says why.
+
 ## Blast radius
 
-At `standard` and `deep`, the reviewer names the one fact the change's safety depends on and reports how far it was proven: asserted, cited line, walked through, ran a script or test, or reproduced live. A fact that never reached a run is labelled `unproven` rather than presented as safe. Deep review also maps affected consumers and the invariant protecting each, and pushes the fact to a runtime check where it can; missing proof is a coverage gap, not a speculative finding.
+At every level above `quick`, the reviewer names the one fact the change's safety depends on and reports how far it was proven: asserted, cited line, walked through, ran a script or test, or reproduced live. A fact that never reached a run is labelled `unproven` rather than presented as safe. Deep review also maps affected consumers and the invariant protecting each, and pushes the fact to a runtime check where it can; missing proof is a coverage gap, not a speculative finding.
 
 ## Attribution and design basis
 
@@ -62,3 +69,5 @@ The skill keeps the Standards and Spec distinction from Matt Pocock's MIT-licens
 The cost condition for missing I/O error handling comes from EveryInc's `ce-code-review`, and the rule for tests that would pass with the behavior removed or that add a test-only seam comes from gstack's test value bar, both from the [2026-10 source sweep](../research/2026-10-06-source-repos-sweep.md).
 
 The [2026-11 source sweep](../research/2026-11-16-source-repos-sweep.md) adds: searching for every standards file, with the nearer file deciding a conflict (Matt Pocock's and EveryInc's `code-review`); a caller check when a signature or behavior changes, and a stated load for scale findings (Ponytail's rewritten `ponytail-review`); latent defects a change exposes (Trail of Bits' `regression-hunt`, Addy Osmani's `code-review-and-quality`); a race test and lifecycle-state check, `deep` recommended only for a stated material failure scenario, and no `quick` review of verification mechanisms (EveryInc's `ce-code-review`); and run-proven, reasoning-blind validation in deep review (Cursor pstack's `interrogate`, Trail of Bits' `patching-bugs`).
+
+The `council` level comes from the [2026-11 council research](../research/2026-11-24-code-review-council.md): the reviewer CLI invocations follow Trail of Bits' `second-opinion`, the host-only validation and per-model calibration follow published comparisons of Claude and Codex reviews.
