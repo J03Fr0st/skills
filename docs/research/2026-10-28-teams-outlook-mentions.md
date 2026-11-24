@@ -73,7 +73,13 @@ value in the corresponding `<at id="{index}">` tag", and that the body
 "encloses the **mentionText** of each mention in an HTML `at` element". The
 documented `mentioned.user.id` is the Microsoft Entra object ID with
 `userIdentityType` `aadUser`. The Graph pages show no example using a UPN
-or email address for this ID.
+or email address for this ID. Because `mentionText` only has to match the text
+inside `<at id="{index}">...</at>` while `mentioned.user` carries the Entra ID
+and full `displayName`, a greeting can highlight just the person's first name
+(`<at id="0">Jane</at>` with `mentionText: "Jane"`). Leaving `<at id="0">` out
+of the greeting causes Graph to reject the payload, or causes wrapper/MCP tools
+that synthesize missing `<at>` tags to append the mention pill at the bottom of
+the message after a plain-text greeting.
 
 ### Adaptive Cards (bots and incoming webhooks)
 
@@ -146,14 +152,19 @@ filter. No Microsoft source documents an `OWAAM` anchor.
 These are inferences from the evidence above, stated as changes to the first
 draft of the rule.
 
-1. **Teams via Graph:** keep `<at id="N">Display Name</at>` with a matching
-   `mentions[N]`. Require `mentionText` to equal the text inside the `at`
-   element, `mentioned.user.id` to be the Entra object ID, and
-   `userIdentityType` to be `aadUser`.
-2. **Teams via an Adaptive Card** (bot or incoming webhook): use
-   `<at>Display Name</at>` with an `msteams.entities` mention whose `text`
-   repeats that string. The ID is the UPN or Entra object ID, or the Teams
-   user ID for a bot.
+1. **Teams via Graph:** place `<at id="N">First Name</at>` inline in the
+   greeting (falling back to the supplied display name if ambiguous) with a
+   matching `mentions[N]`. Require `mentionText` to equal the exact text inside
+   the `at` element, `mentioned.user.id` to be the Entra object ID,
+   `mentioned.user.displayName` to keep the full display name, and
+   `userIdentityType` to be `aadUser`. Never append a mention at the bottom of
+   the message; if a wrapper/MCP tool's `mentions` parameter appends to the end
+   of the body rather than binding inline, omit it and use the plain first name
+   in the greeting.
+2. **Teams via an Adaptive Card** (bot or incoming webhook): place
+   `<at>First Name</at>` inline in the greeting with an `msteams.entities`
+   mention whose `text` repeats that exact string. The ID is the UPN or Entra
+   object ID, or the Teams user ID for a bot.
 3. **Outlook email:** drop the draft's `mailto` anchor. Write `@Display
    Name` as plain text and tell the author to retype it as a mention in
    Outlook, by typing @ and picking the person, which also adds them to To.
