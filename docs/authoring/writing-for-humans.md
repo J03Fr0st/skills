@@ -53,13 +53,17 @@ directly under it in the same block; three or more parallel facts as a list
 with bold labels; and, for email only, the sign-off on its own line after an
 explicit empty line. Bold uses each target's own syntax, and a plain-text
 email, which has none, leaves the ask unmarked. Chat messages such as Teams
-or Slack end on the ask or the last fact, with no sign-off or signature,
-because the client already shows the sender.
+or Slack end on the ask or the last fact, with no sign-off, signature, or
+trailing mention, because the client already shows the sender.
 
-Teams and Slack mentions carry the markup and metadata each platform needs to
-notify the person. In Outlook a mention is message metadata rather than body
-markup, so the draft writes `@Name` and the author retypes it as a mention in
-Outlook. The evidence is in the
+Teams and Slack mentions sit inline inside the greeting (using the person's
+first name in Teams, in both 1:1 and group chats) and carry the markup and
+metadata each platform needs to notify the person, never appended at the bottom
+of the message. If a Teams tool can only append mentions at the end of the body,
+the skill falls back to the plain first name in the greeting and notes the tool
+limit. In Outlook a mention is message metadata rather than body markup, so the
+draft writes `@Name` and the author retypes it as a mention in Outlook. The
+evidence is in the
 [mention research](../research/2026-10-28-teams-outlook-mentions.md).
 
 ## Spacing and genre

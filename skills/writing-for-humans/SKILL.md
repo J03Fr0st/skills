@@ -134,7 +134,8 @@ Read the revision once as a reader, without scanning for banned words. Check:
 - the useful point arrives when the reader needs it;
 - the prose is specific enough to trust and easy enough to follow;
 - a chat message or email follows the message layout, so the ask and each
-  fact can be found at a glance, and a chat message has no sign-off;
+  fact can be found at a glance, any chat mention sits inline in the greeting,
+  and a chat message ends with no sign-off or trailing name;
 - blank lines separate every block, and no one-line paragraph exists only
   because a single thought was split;
 - the tone belongs to this author, audience, and genre;

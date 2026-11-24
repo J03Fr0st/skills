@@ -145,6 +145,30 @@
         "Does not invent concrete system names, teams, or causes to fill the gaps.",
         "Either asks for the missing concrete facts or provides a clear template/tightened draft with explicit author-fill placeholders."
       ]
+    },
+    {
+      "id": 12,
+      "prompt": "Draft a 1:1 Teams message sent via Microsoft Graph HTML to Nair, Priya (ENG) (Entra object ID a1b2c3d4-5678-90ab-cdef-1234567890ab). Ask her to approve \"Release Candidate Guardrails eu1\" for checkout-api #312 on pipeline 4180. Context: #312 sends the quickCheckoutLaunch flag and is the last launch PR not on stage1; runs 4812010 and 4812095 reached stage2 and stage4 but their eu1 approval expired; new run is 4813402; after stage1 it also needs prod1 and prod2 approvals, and each approval expires 24h after the run starts.",
+      "expected_output": "A Teams Graph HTML payload whose greeting highlights Priya's first name inline with <at id=\"0\">Priya</at> and matching mentions metadata, followed by <p>&nbsp;</p>, a bold ask with <br>-separated context lines, and no sign-off or trailing mention at the bottom.",
+      "files": [],
+      "expectations": [
+        "The greeting puts <at id=\"0\">Priya</at> inline using her first name (for example, <p>Hi <at id=\"0\">Priya</at>,</p>), not her full directory display name, and is followed by <p>&nbsp;</p>.",
+        "The mentions array entry has id 0, mentionText \"Priya\" matching the <at> tag verbatim, and mentioned.user with id \"a1b2c3d4-5678-90ab-cdef-1234567890ab\", full displayName, and userIdentityType \"aadUser\".",
+        "The message ends on the last fact with no sign-off, signature, closing pleasantry, or trailing <at> mention or recipient name at the bottom.",
+        "The approval ask is one <strong> sentence inside a <p> with <br>-separated context lines directly under it.",
+        "Release Candidate Guardrails eu1, checkout-api, #312, pipeline 4180, quickCheckoutLaunch, stage1, runs 4812010 and 4812095, stage2, stage4, new run 4813402, prod1, prod2, and 24h remain exact."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Draft a Teams message to Priya Nair (Entra object ID a1b2c3d4-5678-90ab-cdef-1234567890ab) asking her to approve \"Deployment Guardrails eu1\" for billing-api run 4813402. Note: my Teams MCP send_chat_message tool's mentions parameter appends mention pills at the bottom of the message instead of replacing an inline tag.",
+      "expected_output": "A Teams HTML message that omits the trailing mentions parameter, greets Priya with her plain first name at the top, lays out the bold ask with no trailing name or sign-off at the bottom, and notes that the tool cannot place an inline mention.",
+      "files": [],
+      "expectations": [
+        "Does not pass the tool's trailing mentions parameter and places no mention pill, recipient name, or sign-off at the bottom of the message.",
+        "Greets Priya with her plain first name (Hi Priya,) at the top followed by <p>&nbsp;</p> and tells the user the tool cannot place an inline mention.",
+        "Sets the approval ask for Deployment Guardrails eu1 on billing-api run 4813402 as one bold <strong> sentence with no invented facts."
+      ]
     }
   ]
 }
