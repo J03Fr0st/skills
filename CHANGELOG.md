@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.16.0
+
+### Minor Changes
+
+- [#82](https://github.com/J03Fr0st/skills/pull/82) [`56d36c1`](https://github.com/J03Fr0st/skills/commit/56d36c1be3e0e85700c00ecb0c77210c10d422c4) Thanks [@J03Fr0st](https://github.com/J03Fr0st)! - `code-review` gains a fourth level, `council`: a deep review plus independent read-only passes from the other model families (Codex, Gemini or Antigravity, Claude) run through `scripts/council.mjs`. External candidates are validated by the host before they are reported, repository rules against sending code to external AI services are honoured, and the review scope reports each reviewer's status in a Council line.
+
 ## 0.15.2
 
 ### Patch Changes
